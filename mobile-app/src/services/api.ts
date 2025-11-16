@@ -1,11 +1,10 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-const API_URL = __DEV__ ? 'http://localhost:3000/api' : 'https://your-production-api.com/api';
+import { config } from '../../config';
 
 export const api = axios.create({
-  baseURL: API_URL,
-  timeout: 10000,
+  baseURL: config.api.baseUrl,
+  timeout: config.api.timeout,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -13,12 +12,12 @@ export const api = axios.create({
 
 // Request interceptor to add auth token
 api.interceptors.request.use(
-  async (config) => {
-    const token = await AsyncStorage.getItem('access_token');
+  async (axiosConfig) => {
+    const token = await AsyncStorage.getItem(config.storage.accessToken);
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+      axiosConfig.headers.Authorization = `Bearer ${token}`;
     }
-    return config;
+    return axiosConfig;
   },
   (error) => {
     return Promise.reject(error);
@@ -30,8 +29,8 @@ api.interceptors.response.use(
   (response) => response,
   async (error) => {
     if (error.response?.status === 401) {
-      await AsyncStorage.removeItem('access_token');
-      await AsyncStorage.removeItem('user');
+      await AsyncStorage.removeItem(config.storage.accessToken);
+      await AsyncStorage.removeItem(config.storage.user);
     }
     return Promise.reject(error);
   }

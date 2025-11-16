@@ -1,0 +1,95 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy-backend:
+    name: Deploy Backend
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Build Backend
+        working-directory: ./backend
+        run: |
+          npm ci
+          npx prisma generate
+          npm run build
+
+      # Add your deployment steps here
+      # Example for Heroku:
+      # - name: Deploy to Heroku
+      #   uses: akhileshns/heroku-deploy@v3.12.14
+      #   with:
+      #     heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+      #     heroku_app_name: "your-app-name"
+      #     heroku_email: "your-email@example.com"
+      #     appdir: "backend"
+
+      # Example for Railway:
+      # - name: Deploy to Railway
+      #   uses: bervProject/railway-deploy@main
+      #   with:
+      #     railway_token: ${{ secrets.RAILWAY_TOKEN }}
+      #     service: "backend"
+
+      # Example for DigitalOcean App Platform:
+      # - name: Deploy to DigitalOcean
+      #   uses: digitalocean/app_action@v1
+      #   with:
+      #     app_name: your-app-name
+      #     token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+      - name: Deployment Status
+        run: echo "Add your deployment configuration in this workflow file"
+
+  deploy-mobile:
+    name: Build Mobile App
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Setup Expo
+        uses: expo/expo-github-action@v8
+        with:
+          expo-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Install dependencies
+        working-directory: ./mobile-app
+        run: npm ci
+
+      # Uncomment when you have EAS configured
+      # - name: Build Android
+      #   working-directory: ./mobile-app
+      #   run: eas build --platform android --non-interactive
+
+      # - name: Build iOS
+      #   working-directory: ./mobile-app
+      #   run: eas build --platform ios --non-interactive
+
+      # - name: Submit to App Stores
+      #   working-directory: ./mobile-app
+      #   run: eas submit --platform all --non-interactive
+
+      - name: Build Status
+        run: echo "Configure EAS Build for mobile deployments"
