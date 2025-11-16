@@ -15,16 +15,25 @@ yarn.lock
 
 # IDE
 .idea/
-.vscode/
 *.swp
 *.swo
 *~
 .DS_Store
 
+# VS Code - но оставляем настройки проекта
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+
 # Build outputs
 dist/
 build/
 *.tsbuildinfo
+
+# Test coverage
+coverage/
+.nyc_output/
 
 # Database
 *.db
