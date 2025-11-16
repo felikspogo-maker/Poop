@@ -10,6 +10,7 @@
 - [Установка](#установка)
 - [Запуск](#запуск)
 - [Конфигурация](#конфигурация)
+- [Production Deployment](#production-deployment)
 - [API Documentation](#api-documentation)
 
 ## 🚀 Технологии
@@ -226,6 +227,67 @@ API URL настраивается в `mobile-app/src/services/api.ts`:
 const API_URL = __DEV__
   ? 'http://localhost:3000/api'  // Development
   : 'https://your-api.com/api';  // Production
+```
+
+## 🚀 Production Deployment
+
+### Quick Production Deployment
+
+Полное руководство: [PRODUCTION-README.md](PRODUCTION-README.md) | [docs/PRODUCTION.md](docs/PRODUCTION.md)
+
+```bash
+# 1. Clone repository
+git clone <your-repo>
+cd Poop
+
+# 2. Create production config
+cp backend/.env.production.example .env.production
+
+# 3. Edit .env.production (replace all placeholders)
+# Generate secrets:
+openssl rand -base64 32  # JWT_SECRET
+openssl rand -base64 24  # POSTGRES_PASSWORD
+
+# 4. Setup SSL certificates (Let's Encrypt recommended)
+mkdir -p nginx/ssl
+# Copy cert.pem and key.pem to nginx/ssl/
+
+# 5. Initialize and deploy
+chmod +x scripts/*.sh
+./scripts/init-prod.sh
+./scripts/deploy-prod.sh
+```
+
+### Production Features
+
+✅ **Docker-based deployment** with multi-stage builds
+✅ **Health checks** for backend and database
+✅ **Automated database migrations**
+✅ **SSL/TLS support** via Nginx reverse proxy
+✅ **Persistent volumes** for database and uploads
+✅ **Rate limiting** and security headers
+✅ **Automated backups** scripts included
+✅ **Zero-downtime deployments**
+
+### Production Scripts
+
+```bash
+./scripts/init-prod.sh      # Initialize production environment
+./scripts/deploy-prod.sh     # Deploy/update application
+./scripts/migrate-prod.sh    # Run database migrations
+```
+
+### Monitoring
+
+```bash
+# View logs
+docker-compose -f docker-compose.prod.yml logs -f
+
+# Check health
+curl https://yourdomain.com/health
+
+# Container stats
+docker stats
 ```
 
 ## 📚 API Documentation
