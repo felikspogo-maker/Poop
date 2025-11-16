@@ -3,6 +3,7 @@ import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { ConsultationsService } from './consultations.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
+import { CreateConsultationDto } from './dto/create-consultation.dto';
 
 @ApiTags('Consultations')
 @Controller('consultations')
@@ -25,7 +26,7 @@ export class ConsultationsController {
 
   @Post()
   @ApiOperation({ summary: 'Create new consultation' })
-  async create(@CurrentUser() user: any, @Body() data: any) {
+  async create(@CurrentUser() user: any, @Body() data: CreateConsultationDto) {
     return this.consultationsService.create(user.id, data);
   }
 

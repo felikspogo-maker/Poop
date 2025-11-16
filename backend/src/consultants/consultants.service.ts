@@ -61,4 +61,50 @@ export class ConsultantsService {
       },
     });
   }
+
+  /**
+   * Get consultant availability - returns booked time slots
+   */
+  async getAvailability(consultantId: string, dateFilter?: string) {
+    const startDate = dateFilter ? new Date(dateFilter) : new Date();
+
+    // Get all future consultations for this consultant
+    const consultations = await this.prisma.consultation.findMany({
+      where: {
+        consultantId,
+        status: {
+          in: ['SCHEDULED', 'CONFIRMED'],
+        },
+        date: {
+          gte: startDate,
+        },
+      },
+      select: {
+        id: true,
+        date: true,
+        duration: true,
+        status: true,
+      },
+      orderBy: {
+        date: 'asc',
+      },
+    });
+
+    // Transform to booked slots with start and end times
+    const bookedSlots = consultations.map((consultation) => ({
+      id: consultation.id,
+      startTime: consultation.date,
+      endTime: new Date(
+        consultation.date.getTime() + consultation.duration * 60000,
+      ),
+      duration: consultation.duration,
+      status: consultation.status,
+    }));
+
+    return {
+      consultantId,
+      bookedSlots,
+      totalBooked: bookedSlots.length,
+    };
+  }
 }
