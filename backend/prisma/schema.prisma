@@ -15,6 +15,7 @@ enum UserRole {
 
 enum ConsultationStatus {
   SCHEDULED
+  CONFIRMED
   COMPLETED
   CANCELLED
 }
@@ -23,6 +24,7 @@ enum PaymentStatus {
   PENDING
   COMPLETED
   FAILED
+  CANCELLED
   REFUNDED
 }
 
@@ -46,6 +48,7 @@ model User {
   receivedMessages Message[]       @relation("ReceivedMessages")
   documents        Document[]
   conversations    Conversation[]  @relation("UserConversations")
+  reviews          Review[]
 
   @@map("users")
 }
@@ -66,6 +69,7 @@ model Consultant {
   // Relations
   user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   consultations Consultation[]
+  reviews       Review[]
 
   @@map("consultants")
 }
@@ -154,4 +158,21 @@ model Document {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("documents")
+}
+
+model Review {
+  id           String   @id @default(uuid())
+  consultantId String
+  userId       String
+  rating       Int // 1-5 stars
+  comment      String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  consultant Consultant @relation(fields: [consultantId], references: [id], onDelete: Cascade)
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([consultantId, userId]) // One review per user per consultant
+  @@map("reviews")
 }

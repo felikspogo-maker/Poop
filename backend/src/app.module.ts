@@ -14,6 +14,7 @@ import { PaymentsModule } from './payments/payments.module';
 import { MessagesModule } from './messages/messages.module';
 import { DocumentsModule } from './documents/documents.module';
 import { HealthModule } from './health/health.module';
+import { ReviewsModule } from './reviews/reviews.module';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
 import { TimeoutInterceptor } from './common/interceptors/timeout.interceptor';
@@ -44,6 +45,7 @@ import { validate } from './config/env.validation';
     MessagesModule,
     DocumentsModule,
     HealthModule,
+    ReviewsModule,
   ],
   controllers: [AppController],
   providers: [

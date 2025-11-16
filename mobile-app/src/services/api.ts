@@ -109,3 +109,19 @@ export const documentsAPI = {
 
   delete: (id: string) => api.delete(`/documents/${id}`),
 };
+
+// Reviews API
+export const reviewsAPI = {
+  getByConsultant: (consultantId: string) =>
+    api.get(`/reviews/consultant/${consultantId}`),
+
+  getMyReviews: () => api.get('/reviews/my-reviews'),
+
+  create: (data: { consultantId: string; rating: number; comment?: string }) =>
+    api.post('/reviews', data),
+
+  update: (reviewId: string, data: { rating?: number; comment?: string }) =>
+    api.patch(`/reviews/${reviewId}`, data),
+
+  delete: (reviewId: string) => api.delete(`/reviews/${reviewId}`),
+};
