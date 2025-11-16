@@ -1,0 +1,157 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  CLIENT
+  CONSULTANT
+  ADMIN
+}
+
+enum ConsultationStatus {
+  SCHEDULED
+  COMPLETED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  firstName String
+  lastName  String
+  phone     String
+  role      UserRole @default(CLIENT)
+  avatar    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  consultant       Consultant?
+  consultations    Consultation[]
+  payments         Payment[]
+  sentMessages     Message[]       @relation("SentMessages")
+  receivedMessages Message[]       @relation("ReceivedMessages")
+  documents        Document[]
+  conversations    Conversation[]  @relation("UserConversations")
+
+  @@map("users")
+}
+
+model Consultant {
+  id             String   @id @default(uuid())
+  userId         String   @unique
+  specialization String
+  bio            String?
+  hourlyRate     Int
+  rating         Float    @default(5.0)
+  reviewsCount   Int      @default(0)
+  skills         String[]
+  availability   Json?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  // Relations
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  consultations Consultation[]
+
+  @@map("consultants")
+}
+
+model Consultation {
+  id           String             @id @default(uuid())
+  userId       String
+  consultantId String
+  date         DateTime
+  duration     Int // in minutes
+  description  String?
+  status       ConsultationStatus @default(SCHEDULED)
+  meetingLink  String?
+  notes        String?
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+
+  // Relations
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  consultant Consultant @relation(fields: [consultantId], references: [id], onDelete: Cascade)
+  payment    Payment?
+
+  @@map("consultations")
+}
+
+model Payment {
+  id               String        @id @default(uuid())
+  userId           String
+  consultationId   String        @unique
+  amount           Int // in cents
+  currency         String        @default("rub")
+  status           PaymentStatus @default(PENDING)
+  stripePaymentId  String?
+  stripeCustomerId String?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  // Relations
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  consultation Consultation @relation(fields: [consultationId], references: [id], onDelete: Cascade)
+
+  @@map("payments")
+}
+
+model Conversation {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  participants User[]    @relation("UserConversations")
+  messages     Message[]
+
+  @@map("conversations")
+}
+
+model Message {
+  id             String   @id @default(uuid())
+  conversationId String
+  senderId       String
+  receiverId     String
+  content        String
+  read           Boolean  @default(false)
+  createdAt      DateTime @default(now())
+
+  // Relations
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  sender       User         @relation("SentMessages", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver     User         @relation("ReceivedMessages", fields: [receiverId], references: [id], onDelete: Cascade)
+
+  @@map("messages")
+}
+
+model Document {
+  id        String   @id @default(uuid())
+  userId    String
+  name      String
+  type      String
+  size      Int
+  url       String
+  path      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("documents")
+}
