@@ -7,7 +7,6 @@ import {
   Body,
   Param,
   UseGuards,
-  Query,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { ReviewsService } from './reviews.service';

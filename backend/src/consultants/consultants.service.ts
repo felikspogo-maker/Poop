@@ -1,5 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../common/prisma/prisma.service';
+import { CreateConsultantDto } from './dto/create-consultant.dto';
+import { UpdateConsultantDto } from './dto/update-consultant.dto';
 
 @Injectable()
 export class ConsultantsService {
@@ -40,11 +42,19 @@ export class ConsultantsService {
     });
   }
 
-  async create(userId: string, data: any) {
+  async create(userId: string, data: CreateConsultantDto) {
+    const { userId: _, ...createData } = data;
     return this.prisma.consultant.create({
       data: {
         userId,
-        ...data,
+        specialization: createData.specialization,
+        bio: createData.bio,
+        experience: createData.experience,
+        hourlyRate: createData.rate,
+        skills: createData.services || [],
+        availability: createData.certifications
+          ? { certifications: createData.certifications }
+          : null,
       },
       include: {
         user: true,
@@ -52,10 +62,21 @@ export class ConsultantsService {
     });
   }
 
-  async update(id: string, data: any) {
+  async update(id: string, data: UpdateConsultantDto) {
+    const updateData: any = {};
+
+    if (data.specialization) updateData.specialization = data.specialization;
+    if (data.bio) updateData.bio = data.bio;
+    if (data.experience !== undefined) updateData.experience = data.experience;
+    if (data.rate) updateData.hourlyRate = data.rate;
+    if (data.services) updateData.skills = data.services;
+    if (data.certifications) {
+      updateData.availability = { certifications: data.certifications };
+    }
+
     return this.prisma.consultant.update({
       where: { id },
-      data,
+      data: updateData,
       include: {
         user: true,
       },

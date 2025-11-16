@@ -58,6 +58,7 @@ model Consultant {
   userId         String   @unique
   specialization String
   bio            String?
+  experience     Int      @default(0)
   hourlyRate     Int
   rating         Float    @default(5.0)
   reviewsCount   Int      @default(0)
