@@ -13,6 +13,7 @@ from datetime import datetime
 from telegram import (
     InputMediaPhoto,
     KeyboardButton,
+    LinkPreviewOptions,
     ReplyKeyboardMarkup,
     ReplyKeyboardRemove,
     Update,
@@ -104,12 +105,14 @@ WELCOME = (
     "• Mrs Russia Earth 👑 (18–45 лет)\n"
     "• Classic Mrs Russia Earth 👑 (45–60 лет)\n\n"
     "Чтобы подать заявку, нажмите /apply\n"
-    f"❓ Вопросы — в директ {config.CONTACT}"
+    f"❓ Вопросы — пишите в {config.CONTACT_LINK}"
 )
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_html(WELCOME)
+    await update.message.reply_html(
+        WELCOME, link_preview_options=LinkPreviewOptions(is_disabled=True)
+    )
 
 
 async def apply(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
@@ -344,8 +347,10 @@ async def confirm(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     if delivered:
         await update.message.reply_text(
             "🎉 Спасибо! Ваша заявка принята.\n\n"
-            f"Организаторы свяжутся с вами. По всем вопросам — {config.CONTACT}\n\n"
+            f"Организаторы свяжутся с вами. По всем вопросам пишите в {config.CONTACT_LINK}\n\n"
             "Желаем удачи! 👑",
+            parse_mode=ParseMode.HTML,
+            link_preview_options=LinkPreviewOptions(is_disabled=True),
             reply_markup=ReplyKeyboardRemove(),
         )
     else:

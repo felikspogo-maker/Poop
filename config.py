@@ -32,6 +32,9 @@ DEADLINE = "10 сентября 2026"
 FINAL_DATE = "26 сентября 2026"
 FINAL_PLACE = "г. Москва, МТС Live — Театр на Цветном"
 CONTACT = "@mrs_russia_earth"
+INSTAGRAM_URL = "https://www.instagram.com/mrs_russia_earth/"
+# Слово «директ» как ссылка на Instagram (для сообщений с parse_mode=HTML)
+CONTACT_LINK = f'<a href="{INSTAGRAM_URL}">директ</a>'
 
 # Ограничения анкеты
 MIN_AGE = 14
