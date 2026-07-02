@@ -28,6 +28,9 @@
 
 ## Установка
 
+> 🍎 **Запускаете на MacBook?** Есть подробная пошаговая инструкция с нуля
+> (Python, Google Cloud, таблица, запуск) — см. [SETUP-macbook.md](SETUP-macbook.md).
+
 ```bash
 pip install -r requirements.txt
 cp .env.example .env
