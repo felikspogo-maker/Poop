@@ -2,10 +2,11 @@
 «Мисс и Миссис Россия Земля 2026».
 
 Бот проводит участницу по анкете, собирает данные и 5–7 фотографий,
-показывает итог, а после подтверждения сохраняет заявку, пересылает её
-администратору и (если настроен SMTP) отправляет на почту организаторов.
+показывает итог, а после подтверждения пересылает заявку организатору в
+Telegram и добавляет участницу в накопительную таблицу Google Sheets.
 """
 
+import asyncio
 import logging
 from datetime import datetime
 
@@ -464,6 +465,15 @@ def build_application() -> Application:
 
 def main() -> None:
     config.validate()
+
+    # На новых версиях Python (3.12+, особенно 3.14) в главном потоке может
+    # отсутствовать событийный цикл asyncio, который ожидает run_polling.
+    # Создаём его явно, иначе запуск падает с RuntimeError.
+    try:
+        asyncio.get_event_loop()
+    except RuntimeError:
+        asyncio.set_event_loop(asyncio.new_event_loop())
+
     application = build_application()
     logger.info("Бот запущен. Ожидание сообщений...")
     application.run_polling(allowed_updates=Update.ALL_TYPES)
