@@ -7,6 +7,7 @@
 """
 
 import logging
+import os
 from datetime import datetime
 
 from telegram import (
@@ -28,6 +29,7 @@ from telegram.ext import (
 
 import categories
 import config
+import excel_export
 
 
 def format_application(data: dict) -> str:
@@ -331,10 +333,13 @@ async def confirm(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     photos = data.pop("photos", [])
     data["photos_count"] = len(photos)
 
+    data["submitted_at"] = datetime.now().strftime("%d.%m.%Y %H:%M")
     body = format_application(data)
 
-    # Единственный канал — пересылка заявки лично организатору в Telegram
+    # Пересылка заявки лично организатору в Telegram
     delivered = await _forward_to_admin(context, photos, body)
+    # Автоматический перенос участницы в накопительную таблицу Excel
+    await _update_excel(context, data)
 
     if delivered:
         await update.message.reply_text(
@@ -366,6 +371,23 @@ async def _forward_to_admin(context, photos, body) -> bool:
         return False
 
 
+async def _update_excel(context, data) -> None:
+    """Дописывает участницу в таблицу и отправляет обновлённый файл организатору."""
+    path = excel_export.append_participant(data)
+    if not path:
+        return
+    try:
+        with open(path, "rb") as f:
+            await context.bot.send_document(
+                chat_id=config.ADMIN_CHAT_ID,
+                document=f,
+                filename="Участницы.xlsx",
+                caption="📊 Обновлённая таблица участниц",
+            )
+    except Exception:
+        logger.exception("Не удалось отправить таблицу участниц организатору")
+
+
 async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     context.user_data.clear()
     await update.message.reply_text(
@@ -373,6 +395,21 @@ async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         reply_markup=ReplyKeyboardRemove(),
     )
     return ConversationHandler.END
+
+
+async def excel_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Отправляет организатору текущую таблицу участниц. Доступно только организатору."""
+    if update.effective_chat.id != config.ADMIN_CHAT_ID:
+        return
+    if not os.path.exists(config.EXCEL_FILE):
+        await update.message.reply_text("Пока нет ни одной заявки.")
+        return
+    with open(config.EXCEL_FILE, "rb") as f:
+        await update.message.reply_document(
+            document=f,
+            filename="Участницы.xlsx",
+            caption="📊 Таблица участниц",
+        )
 
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -423,6 +460,7 @@ def build_application() -> Application:
 
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("help", help_command))
+    application.add_handler(CommandHandler("excel", excel_command))
     application.add_handler(conv)
     return application
 

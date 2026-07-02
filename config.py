@@ -40,6 +40,9 @@ MIN_HEIGHT = 160
 MIN_PHOTOS = 5
 MAX_PHOTOS = 7
 
+# Файл накопительной таблицы участниц
+EXCEL_FILE: str = os.getenv("EXCEL_FILE", "participants.xlsx").strip()
+
 
 def validate() -> None:
     """Проверяет, что заданы обязательные настройки."""
