@@ -40,8 +40,13 @@ MIN_HEIGHT = 160
 MIN_PHOTOS = 5
 MAX_PHOTOS = 7
 
-# Файл накопительной таблицы участниц
-EXCEL_FILE: str = os.getenv("EXCEL_FILE", "participants.xlsx").strip()
+# --- Google Sheets (накопительная таблица участниц) ---
+# Путь к файлу с ключом сервисного аккаунта Google
+GOOGLE_CREDENTIALS_FILE: str = os.getenv("GOOGLE_CREDENTIALS_FILE", "credentials.json").strip()
+# ID таблицы (из ссылки .../spreadsheets/d/<ЭТОТ_ID>/edit)
+GOOGLE_SHEET_ID: str = os.getenv("GOOGLE_SHEET_ID", "").strip()
+# Название листа внутри таблицы
+WORKSHEET_NAME: str = os.getenv("WORKSHEET_NAME", "Участницы").strip()
 
 
 def validate() -> None:

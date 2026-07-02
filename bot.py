@@ -7,7 +7,6 @@
 """
 
 import logging
-import os
 from datetime import datetime
 
 from telegram import (
@@ -29,7 +28,7 @@ from telegram.ext import (
 
 import categories
 import config
-import excel_export
+import sheets_export
 
 
 def format_application(data: dict) -> str:
@@ -338,8 +337,8 @@ async def confirm(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
 
     # Пересылка заявки лично организатору в Telegram
     delivered = await _forward_to_admin(context, photos, body)
-    # Автоматический перенос участницы в накопительную таблицу Excel
-    await _update_excel(context, data)
+    # Автоматический перенос участницы в Google-таблицу
+    await _update_table(context, data)
 
     if delivered:
         await update.message.reply_text(
@@ -371,21 +370,20 @@ async def _forward_to_admin(context, photos, body) -> bool:
         return False
 
 
-async def _update_excel(context, data) -> None:
-    """Дописывает участницу в таблицу и отправляет обновлённый файл организатору."""
-    path = excel_export.append_participant(data)
-    if not path:
+async def _update_table(context, data) -> None:
+    """Дописывает участницу в Google-таблицу; при ошибке уведомляет организатора."""
+    if sheets_export.append_participant(data):
         return
     try:
-        with open(path, "rb") as f:
-            await context.bot.send_document(
-                chat_id=config.ADMIN_CHAT_ID,
-                document=f,
-                filename="Участницы.xlsx",
-                caption="📊 Обновлённая таблица участниц",
-            )
+        await context.bot.send_message(
+            chat_id=config.ADMIN_CHAT_ID,
+            text=(
+                "⚠️ Участницу не удалось добавить в Google-таблицу. "
+                "Проверьте настройки Google Sheets (см. логи бота)."
+            ),
+        )
     except Exception:
-        logger.exception("Не удалось отправить таблицу участниц организатору")
+        logger.exception("Не удалось уведомить организатора об ошибке таблицы")
 
 
 async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
@@ -397,19 +395,18 @@ async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     return ConversationHandler.END
 
 
-async def excel_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    """Отправляет организатору текущую таблицу участниц. Доступно только организатору."""
+async def table_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Присылает организатору ссылку на Google-таблицу участниц."""
     if update.effective_chat.id != config.ADMIN_CHAT_ID:
         return
-    if not os.path.exists(config.EXCEL_FILE):
-        await update.message.reply_text("Пока нет ни одной заявки.")
-        return
-    with open(config.EXCEL_FILE, "rb") as f:
-        await update.message.reply_document(
-            document=f,
-            filename="Участницы.xlsx",
-            caption="📊 Таблица участниц",
+    if not sheets_export.is_configured():
+        await update.message.reply_text(
+            "Google-таблица пока не настроена (см. README)."
         )
+        return
+    await update.message.reply_text(
+        f"📊 Таблица участниц:\n{sheets_export.sheet_url()}"
+    )
 
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -460,7 +457,7 @@ def build_application() -> Application:
 
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("help", help_command))
-    application.add_handler(CommandHandler("excel", excel_command))
+    application.add_handler(CommandHandler("table", table_command))
     application.add_handler(conv)
     return application
 

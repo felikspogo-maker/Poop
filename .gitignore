@@ -1,8 +1,6 @@
 # Секреты
 .env
-
-# Таблица участниц (персональные данные)
-*.xlsx
+credentials.json
 
 # Python
 __pycache__/
