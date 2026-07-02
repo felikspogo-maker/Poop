@@ -30,6 +30,8 @@
 
 > 🍎 **Запускаете на MacBook?** Есть подробная пошаговая инструкция с нуля
 > (Python, Google Cloud, таблица, запуск) — см. [SETUP-macbook.md](SETUP-macbook.md).
+> Для запуска в один клик есть готовые файлы `setup.command` (настройка) и
+> `start.command` (запуск) — достаточно двойного щелчка в Finder.
 
 ```bash
 pip install -r requirements.txt
