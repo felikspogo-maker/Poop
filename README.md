@@ -32,6 +32,9 @@
 > (Python, Google Cloud, таблица, запуск) — см. [SETUP-macbook.md](SETUP-macbook.md).
 > Для запуска в один клик есть готовые файлы `setup.command` (настройка) и
 > `start.command` (запуск) — достаточно двойного щелчка в Finder.
+>
+> 🖥 **Круглосуточная работа на сервере?** См. [SETUP-server.md](SETUP-server.md)
+> — деплой на VPS с автозапуском через systemd или Docker.
 
 ```bash
 pip install -r requirements.txt
