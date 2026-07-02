@@ -10,6 +10,7 @@ import logging
 from datetime import datetime
 
 from telegram import (
+    InputMediaPhoto,
     KeyboardButton,
     ReplyKeyboardMarkup,
     ReplyKeyboardRemove,
@@ -27,8 +28,30 @@ from telegram.ext import (
 
 import categories
 import config
-import mailer
-import storage
+
+
+def format_application(data: dict) -> str:
+    """Формирует текст заявки на русском языке для отправки организатору."""
+    lines = [
+        "🌟 НОВАЯ ЗАЯВКА — Мисс и Миссис Россия Земля 2026 🌟",
+        "",
+        f"👤 ФИ: {data.get('name', '—')}",
+        f"🏙 Город: {data.get('city', '—')}",
+        f"🎂 Возраст: {data.get('age', '—')}",
+        f"📏 Рост: {data.get('height', '—')} см",
+        f"💍 Семейное положение: {data.get('marital', '—')}",
+        f"📞 Телефон: {data.get('phone', '—')}",
+        f"🏷 Категория: {data.get('category', '—')}",
+        f"🏆 Опыт участия в конкурсах: {data.get('experience', '—')}",
+        f"📸 Фотографий: {data.get('photos_count', '—')}",
+    ]
+    if data.get("username"):
+        lines.append(f"💬 Telegram: @{data['username']}")
+    if data.get("telegram_id"):
+        lines.append(f"🆔 Telegram ID: {data['telegram_id']}")
+    if data.get("consent"):
+        lines.append(f"✅ Согласие на обработку перс. данных: {data['consent']}")
+    return "\n".join(lines)
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
@@ -284,7 +307,7 @@ async def photos_done(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int
     context.user_data["username"] = user.username
     context.user_data["telegram_id"] = user.id
 
-    summary = storage.format_application(context.user_data)
+    summary = format_application(context.user_data)
     await update.message.reply_text(
         "Проверьте вашу заявку:\n\n"
         f"{summary}\n\n"
@@ -308,47 +331,39 @@ async def confirm(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     photos = data.pop("photos", [])
     data["photos_count"] = len(photos)
 
-    # 1. Сохраняем на диск
-    try:
-        folder = storage.save_submission(data, photos)
-        logger.info("Заявка сохранена: %s", folder)
-    except Exception:
-        logger.exception("Ошибка сохранения заявки на диск")
+    body = format_application(data)
 
-    body = storage.format_application(data)
+    # Единственный канал — пересылка заявки лично организатору в Telegram
+    delivered = await _forward_to_admin(context, photos, body)
 
-    # 2. Пересылаем администратору
-    await _forward_to_admin(context, data, photos, body)
-
-    # 3. Отправляем на почту (если настроено)
-    mailer.send_application(
-        subject=f"Заявка на конкурс — {data.get('name', '')}",
-        body=body,
-        photos=photos,
-    )
-
-    await update.message.reply_text(
-        "🎉 Спасибо! Ваша заявка принята.\n\n"
-        f"Организаторы свяжутся с вами. По всем вопросам — {config.CONTACT}\n\n"
-        "Желаем удачи! 👑",
-        reply_markup=ReplyKeyboardRemove(),
-    )
+    if delivered:
+        await update.message.reply_text(
+            "🎉 Спасибо! Ваша заявка принята.\n\n"
+            f"Организаторы свяжутся с вами. По всем вопросам — {config.CONTACT}\n\n"
+            "Желаем удачи! 👑",
+            reply_markup=ReplyKeyboardRemove(),
+        )
+    else:
+        await update.message.reply_text(
+            "⚠️ Не удалось отправить заявку автоматически. "
+            f"Пожалуйста, напишите организаторам напрямую — {config.CONTACT}",
+            reply_markup=ReplyKeyboardRemove(),
+        )
     context.user_data.clear()
     return ConversationHandler.END
 
 
-async def _forward_to_admin(context, data, photos, body) -> None:
-    if not config.ADMIN_CHAT_ID:
-        return
+async def _forward_to_admin(context, photos, body) -> bool:
+    """Пересылает заявку организатору. Возвращает True при успехе."""
     try:
-        from telegram import InputMediaPhoto
-
         await context.bot.send_message(chat_id=config.ADMIN_CHAT_ID, text=body)
         if photos:
             media = [InputMediaPhoto(p) for p in photos[:10]]
             await context.bot.send_media_group(chat_id=config.ADMIN_CHAT_ID, media=media)
+        return True
     except Exception:
-        logger.exception("Не удалось переслать заявку администратору")
+        logger.exception("Не удалось переслать заявку организатору")
+        return False
 
 
 async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
