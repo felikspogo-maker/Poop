@@ -7,6 +7,7 @@
 """
 
 import logging
+from datetime import datetime
 
 from telegram import (
     KeyboardButton,
@@ -36,7 +37,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Состояния диалога
-NAME, CITY, AGE, HEIGHT, MARITAL, PHONE, PHOTOS, CONFIRM = range(8)
+CONSENT, NAME, CITY, AGE, HEIGHT, MARITAL, PHONE, EXPERIENCE, PHOTOS, CONFIRM = range(10)
 
 # --- Клавиатуры ---
 MARITAL_KEYBOARD = ReplyKeyboardMarkup(
@@ -53,6 +54,12 @@ PHONE_KEYBOARD = ReplyKeyboardMarkup(
 
 CONFIRM_KEYBOARD = ReplyKeyboardMarkup(
     [["✅ Отправить заявку"], ["❌ Отменить"]],
+    resize_keyboard=True,
+    one_time_keyboard=True,
+)
+
+CONSENT_KEYBOARD = ReplyKeyboardMarkup(
+    [["✅ Согласна"], ["❌ Не согласна"]],
     resize_keyboard=True,
     one_time_keyboard=True,
 )
@@ -85,12 +92,39 @@ async def apply(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     context.user_data["photos"] = []
     await update.message.reply_text(
         "📝 Начинаем анкету!\n\n"
-        "В любой момент можно отменить командой /cancel.\n\n"
-        "1️⃣ Напишите вашу <b>Фамилию и Имя</b>:",
+        "Перед началом необходимо <b>согласие на обработку персональных данных</b>.\n\n"
+        "Отправляя заявку, вы даёте согласие на обработку ваших персональных данных "
+        "и фотографий организаторами конкурса "
+        f"«{config.CONTEST_NAME}» в целях участия в кастинге и конкурсе "
+        "(в соответствии с ФЗ-152 «О персональных данных»).\n\n"
+        "Вы согласны?",
         parse_mode=ParseMode.HTML,
+        reply_markup=CONSENT_KEYBOARD,
+    )
+    return CONSENT
+
+
+async def get_consent(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+    text = update.message.text.strip().lower()
+    if text.startswith("✅") or ("соглас" in text and "не" not in text):
+        context.user_data["consent"] = (
+            f"Дано {datetime.now().strftime('%d.%m.%Y %H:%M')}"
+        )
+        await update.message.reply_text(
+            "Спасибо! В любой момент можно отменить командой /cancel.\n\n"
+            "1️⃣ Напишите вашу <b>Фамилию и Имя</b>:",
+            parse_mode=ParseMode.HTML,
+            reply_markup=ReplyKeyboardRemove(),
+        )
+        return NAME
+
+    await update.message.reply_text(
+        "Без согласия на обработку персональных данных подать заявку нельзя. "
+        "Если передумаете — нажмите /apply.",
         reply_markup=ReplyKeyboardRemove(),
     )
-    return NAME
+    context.user_data.clear()
+    return ConversationHandler.END
 
 
 async def get_name(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
@@ -189,7 +223,18 @@ async def get_phone(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         return PHONE
     context.user_data["phone"] = phone
     await update.message.reply_text(
-        f"7️⃣ Пришлите <b>{config.MIN_PHOTOS}–{config.MAX_PHOTOS} фотографий</b> "
+        "7️⃣ Расскажите о вашем <b>опыте участия в конкурсах красоты</b>.\n"
+        "Если опыта нет — напишите «Нет».",
+        parse_mode=ParseMode.HTML,
+        reply_markup=ReplyKeyboardRemove(),
+    )
+    return EXPERIENCE
+
+
+async def get_experience(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+    context.user_data["experience"] = update.message.text.strip()
+    await update.message.reply_text(
+        f"8️⃣ Пришлите <b>{config.MIN_PHOTOS}–{config.MAX_PHOTOS} фотографий</b> "
         "хорошего профессионального качества.\n\n"
         "Отправляйте по одному фото. Когда закончите — нажмите /done.",
         parse_mode=ParseMode.HTML,
@@ -339,6 +384,7 @@ def build_application() -> Application:
     conv = ConversationHandler(
         entry_points=[CommandHandler("apply", apply)],
         states={
+            CONSENT: [MessageHandler(filters.TEXT & ~filters.COMMAND, get_consent)],
             NAME: [MessageHandler(filters.TEXT & ~filters.COMMAND, get_name)],
             CITY: [MessageHandler(filters.TEXT & ~filters.COMMAND, get_city)],
             AGE: [MessageHandler(filters.TEXT & ~filters.COMMAND, get_age)],
@@ -348,6 +394,7 @@ def build_application() -> Application:
                 MessageHandler(filters.CONTACT, get_phone),
                 MessageHandler(filters.TEXT & ~filters.COMMAND, get_phone),
             ],
+            EXPERIENCE: [MessageHandler(filters.TEXT & ~filters.COMMAND, get_experience)],
             PHOTOS: [
                 MessageHandler(filters.PHOTO, get_photo),
                 CommandHandler("done", photos_done),

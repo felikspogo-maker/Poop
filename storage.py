@@ -51,10 +51,13 @@ def format_application(data: dict) -> str:
         f"💍 Семейное положение: {data.get('marital', '—')}",
         f"📞 Телефон: {data.get('phone', '—')}",
         f"🏷 Категория: {data.get('category', '—')}",
+        f"🏆 Опыт участия в конкурсах: {data.get('experience', '—')}",
         f"📸 Фотографий: {data.get('photos_count', '—')}",
     ]
     if data.get("username"):
         lines.append(f"💬 Telegram: @{data['username']}")
     if data.get("telegram_id"):
         lines.append(f"🆔 Telegram ID: {data['telegram_id']}")
+    if data.get("consent"):
+        lines.append(f"✅ Согласие на обработку перс. данных: {data['consent']}")
     return "\n".join(lines)
