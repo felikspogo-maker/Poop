@@ -66,7 +66,8 @@ python3 -m venv venv
 
 ```bash
 cd /opt
-git clone https://github.com/felikspogo-maker/Poop.git abkhazia-booking-bot
+git clone -b claude/beauty-contest-telegram-bot-etabln \
+  https://github.com/felikspogo-maker/Poop.git abkhazia-booking-bot
 cd abkhazia-booking-bot/booking-bot
 python3 -m venv venv
 ./venv/bin/pip install -r requirements.txt

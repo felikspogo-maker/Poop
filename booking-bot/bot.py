@@ -73,11 +73,22 @@ CONFIRM_KEYBOARD = ReplyKeyboardMarkup(
     one_time_keyboard=True,
 )
 
+# Кнопки главного меню (постоянная клавиатура)
+BTN_BOOK = "🔑 Забронировать домик"
+BTN_PRICES = "💰 Цены"
+BTN_ABOUT = "🏡 О доме"
+BTN_BORDER = "🛂 Граница РФ–Абхазия"
+
+MAIN_MENU_KEYBOARD = ReplyKeyboardMarkup(
+    [[BTN_BOOK], [BTN_PRICES, BTN_ABOUT], [BTN_BORDER]],
+    resize_keyboard=True,
+)
+
 WELCOME = (
     f"🏡 Добро пожаловать в <b>{config.GUESTHOUSE_NAME}</b>!\n"
     f"📍 {config.ADDRESS}\n\n"
     "Здесь можно забронировать уютный домик у моря в Сухуме.\n\n"
-    "Команды:\n"
+    "Пользуйтесь кнопками меню внизу 👇 или командами:\n"
     "• /book — забронировать домик 🔑\n"
     "• /prices — цены 💰\n"
     "• /about — о доме и удобствах 🏡\n"
@@ -133,25 +144,29 @@ def format_booking(data: dict) -> str:
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_html(WELCOME)
+    await update.message.reply_html(WELCOME, reply_markup=MAIN_MENU_KEYBOARD)
 
 
 async def about(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_html(info.ABOUT_TEXT)
+    await update.message.reply_html(info.ABOUT_TEXT, reply_markup=MAIN_MENU_KEYBOARD)
 
 
 async def prices(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_html(pricing.price_list_text())
+    await update.message.reply_html(
+        pricing.price_list_text(), reply_markup=MAIN_MENU_KEYBOARD
+    )
 
 
 async def border(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_html(
-        info.BORDER_TEXT, link_preview_options=LinkPreviewOptions(is_disabled=True)
+        info.BORDER_TEXT,
+        link_preview_options=LinkPreviewOptions(is_disabled=True),
+        reply_markup=MAIN_MENU_KEYBOARD,
     )
 
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_html(WELCOME)
+    await update.message.reply_html(WELCOME, reply_markup=MAIN_MENU_KEYBOARD)
 
 
 # --- Диалог бронирования ---
@@ -388,13 +403,15 @@ async def get_screenshot(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
             "с вами для подтверждения.\n"
             f"📞 Связь: {config.PHONE_FOR_GUESTS}\n\n"
             "🛂 Обязательно посмотрите правила пересечения границы РФ–Абхазия "
-            "и советы путешественникам — команда /border\n\n"
-            "Хорошего отдыха! 🌊"
+            "и советы путешественникам — кнопка внизу 👇\n\n"
+            "Хорошего отдыха! 🌊",
+            reply_markup=MAIN_MENU_KEYBOARD,
         )
     else:
         await update.message.reply_text(
             "⚠️ Не удалось отправить бронь автоматически. Пожалуйста, "
-            f"позвоните менеджеру напрямую: {config.PHONE_FOR_GUESTS}"
+            f"позвоните менеджеру напрямую: {config.PHONE_FOR_GUESTS}",
+            reply_markup=MAIN_MENU_KEYBOARD,
         )
     context.user_data.clear()
     return ConversationHandler.END
@@ -403,17 +420,37 @@ async def get_screenshot(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
 async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     context.user_data.clear()
     await update.message.reply_text(
-        "Бронирование отменено. Начать заново — /book",
-        reply_markup=ReplyKeyboardRemove(),
+        "Бронирование отменено. Начать заново — кнопка внизу 👇",
+        reply_markup=MAIN_MENU_KEYBOARD,
     )
     return ConversationHandler.END
 
 
+async def _post_init(application: Application) -> None:
+    """Заполняет синее меню команд Telegram (кнопка «Меню» слева от поля ввода)."""
+    from telegram import BotCommand
+
+    await application.bot.set_my_commands(
+        [
+            BotCommand("book", "🔑 Забронировать домик"),
+            BotCommand("prices", "💰 Цены"),
+            BotCommand("about", "🏡 О доме"),
+            BotCommand("border", "🛂 Граница РФ–Абхазия"),
+            BotCommand("cancel", "❌ Отменить оформление"),
+        ]
+    )
+
+
 def build_application() -> Application:
-    application = Application.builder().token(config.BOT_TOKEN).build()
+    application = (
+        Application.builder().token(config.BOT_TOKEN).post_init(_post_init).build()
+    )
 
     conv = ConversationHandler(
-        entry_points=[CommandHandler("book", book)],
+        entry_points=[
+            CommandHandler("book", book),
+            MessageHandler(filters.Text([BTN_BOOK]), book),
+        ],
         states={
             CHECKIN: [MessageHandler(filters.TEXT & ~filters.COMMAND, get_checkin)],
             CHECKOUT: [MessageHandler(filters.TEXT & ~filters.COMMAND, get_checkout)],
@@ -441,6 +478,10 @@ def build_application() -> Application:
     application.add_handler(CommandHandler("about", about))
     application.add_handler(CommandHandler("prices", prices))
     application.add_handler(CommandHandler("border", border))
+    # Кнопки меню — регистрируются до диалога, чтобы работать в любой момент
+    application.add_handler(MessageHandler(filters.Text([BTN_PRICES]), prices))
+    application.add_handler(MessageHandler(filters.Text([BTN_ABOUT]), about))
+    application.add_handler(MessageHandler(filters.Text([BTN_BORDER]), border))
     application.add_handler(conv)
     return application
 
