@@ -78,9 +78,10 @@ BTN_BOOK = "🔑 Забронировать домик"
 BTN_PRICES = "💰 Цены"
 BTN_ABOUT = "🏡 О доме"
 BTN_BORDER = "🛂 Граница РФ–Абхазия"
+BTN_TIPS = "🗺 Советы путешественнику"
 
 MAIN_MENU_KEYBOARD = ReplyKeyboardMarkup(
-    [[BTN_BOOK], [BTN_PRICES, BTN_ABOUT], [BTN_BORDER]],
+    [[BTN_BOOK], [BTN_PRICES, BTN_ABOUT], [BTN_BORDER], [BTN_TIPS]],
     resize_keyboard=True,
 )
 
@@ -93,6 +94,7 @@ WELCOME = (
     "• /prices — цены 💰\n"
     "• /about — о доме и удобствах 🏡\n"
     "• /border — правила пересечения границы РФ–Абхазия 🛂\n"
+    "• /tips — куда съездить и памятка путешественнику 🗺\n"
     "• /cancel — отменить оформление\n\n"
     "Минимальный срок — 2 ночи. Для подтверждения брони вносится "
     "предоплата за 1 сутки."
@@ -160,6 +162,19 @@ async def prices(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 async def border(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_html(
         info.BORDER_TEXT,
+        link_preview_options=LinkPreviewOptions(is_disabled=True),
+        reply_markup=MAIN_MENU_KEYBOARD,
+    )
+
+
+async def tips(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Места (туристические и «для своих») + памятка путешественнику."""
+    await update.message.reply_html(
+        info.PLACES_TEXT,
+        link_preview_options=LinkPreviewOptions(is_disabled=True),
+    )
+    await update.message.reply_html(
+        info.MEMO_TEXT,
         link_preview_options=LinkPreviewOptions(is_disabled=True),
         reply_markup=MAIN_MENU_KEYBOARD,
     )
@@ -436,6 +451,7 @@ async def _post_init(application: Application) -> None:
             BotCommand("prices", "💰 Цены"),
             BotCommand("about", "🏡 О доме"),
             BotCommand("border", "🛂 Граница РФ–Абхазия"),
+            BotCommand("tips", "🗺 Советы путешественнику"),
             BotCommand("cancel", "❌ Отменить оформление"),
         ]
     )
@@ -478,10 +494,12 @@ def build_application() -> Application:
     application.add_handler(CommandHandler("about", about))
     application.add_handler(CommandHandler("prices", prices))
     application.add_handler(CommandHandler("border", border))
+    application.add_handler(CommandHandler("tips", tips))
     # Кнопки меню — регистрируются до диалога, чтобы работать в любой момент
     application.add_handler(MessageHandler(filters.Text([BTN_PRICES]), prices))
     application.add_handler(MessageHandler(filters.Text([BTN_ABOUT]), about))
     application.add_handler(MessageHandler(filters.Text([BTN_BORDER]), border))
+    application.add_handler(MessageHandler(filters.Text([BTN_TIPS]), tips))
     application.add_handler(conv)
     return application
 
