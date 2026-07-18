@@ -364,32 +364,42 @@ async def confirm(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
 
 
 async def _forward_to_admin(context, photos, body) -> bool:
-    """Пересылает заявку организатору. Возвращает True при успехе."""
-    try:
-        await context.bot.send_message(chat_id=config.ADMIN_CHAT_ID, text=body)
-        if photos:
-            media = [InputMediaPhoto(p) for p in photos[:10]]
-            await context.bot.send_media_group(chat_id=config.ADMIN_CHAT_ID, media=media)
-        return True
-    except Exception:
-        logger.exception("Не удалось переслать заявку организатору")
-        return False
+    """Пересылает заявку всем организаторам.
+
+    Возвращает True, если заявку получил хотя бы один из них.
+    """
+    delivered = False
+    for chat_id in config.ADMIN_CHAT_IDS:
+        try:
+            await context.bot.send_message(chat_id=chat_id, text=body)
+            if photos:
+                media = [InputMediaPhoto(p) for p in photos[:10]]
+                await context.bot.send_media_group(chat_id=chat_id, media=media)
+            delivered = True
+        except Exception:
+            logger.exception(
+                "Не удалось переслать заявку организатору %s", chat_id
+            )
+    return delivered
 
 
 async def _update_table(context, data) -> None:
-    """Дописывает участницу в Google-таблицу; при ошибке уведомляет организатора."""
+    """Дописывает участницу в Google-таблицу; при ошибке уведомляет организаторов."""
     if sheets_export.append_participant(data):
         return
-    try:
-        await context.bot.send_message(
-            chat_id=config.ADMIN_CHAT_ID,
-            text=(
-                "⚠️ Участницу не удалось добавить в Google-таблицу. "
-                "Проверьте настройки Google Sheets (см. логи бота)."
-            ),
-        )
-    except Exception:
-        logger.exception("Не удалось уведомить организатора об ошибке таблицы")
+    for chat_id in config.ADMIN_CHAT_IDS:
+        try:
+            await context.bot.send_message(
+                chat_id=chat_id,
+                text=(
+                    "⚠️ Участницу не удалось добавить в Google-таблицу. "
+                    "Проверьте настройки Google Sheets (см. логи бота)."
+                ),
+            )
+        except Exception:
+            logger.exception(
+                "Не удалось уведомить организатора %s об ошибке таблицы", chat_id
+            )
 
 
 async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
@@ -403,7 +413,7 @@ async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
 
 async def table_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Присылает организатору ссылку на Google-таблицу участниц."""
-    if update.effective_chat.id != config.ADMIN_CHAT_ID:
+    if update.effective_chat.id not in config.ADMIN_CHAT_IDS:
         return
     if not sheets_export.is_configured():
         await update.message.reply_text(

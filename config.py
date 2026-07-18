@@ -22,9 +22,25 @@ def _get_int(name: str, default: int | None = None) -> int | None:
 BOT_TOKEN: str = os.getenv("BOT_TOKEN", "").strip()
 
 # --- Приём заявок ---
-# ID личного чата организатора, куда бот пересылает готовые заявки.
-# Узнать можно, написав боту @userinfobot. Для группы ID отрицательный.
-ADMIN_CHAT_ID: int | None = _get_int("ADMIN_CHAT_ID")
+# ID чатов организаторов, куда бот пересылает готовые заявки.
+# Можно указать несколько через запятую: ADMIN_CHAT_ID=111111,222222
+# Узнать свой ID можно, написав боту @userinfobot.
+
+
+def _parse_ids(raw: str) -> list[int]:
+    ids: list[int] = []
+    for part in raw.replace(";", ",").replace(" ", ",").split(","):
+        part = part.strip()
+        if not part:
+            continue
+        try:
+            ids.append(int(part))
+        except ValueError:
+            continue
+    return ids
+
+
+ADMIN_CHAT_IDS: list[int] = _parse_ids(os.getenv("ADMIN_CHAT_ID", ""))
 
 # --- Параметры конкурса ---
 CONTEST_NAME = "Мисс и Миссис Россия Земля 2026"
@@ -59,8 +75,9 @@ def validate() -> None:
             "Не задан BOT_TOKEN. Создайте файл .env (см. .env.example) "
             "и укажите токен бота от @BotFather."
         )
-    if not ADMIN_CHAT_ID:
+    if not ADMIN_CHAT_IDS:
         raise RuntimeError(
             "Не задан ADMIN_CHAT_ID — некуда пересылать заявки. "
-            "Узнайте свой ID у @userinfobot и укажите его в .env."
+            "Узнайте свой ID у @userinfobot и укажите его в .env "
+            "(несколько получателей — через запятую)."
         )
