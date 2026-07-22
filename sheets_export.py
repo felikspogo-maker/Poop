@@ -9,6 +9,7 @@
 
 import logging
 import os
+import time
 
 import gspread
 from google.oauth2.service_account import Credentials
@@ -18,6 +19,23 @@ import config
 logger = logging.getLogger(__name__)
 
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
+
+# Автоповтор при временных сбоях Google (503/429/500/502/504).
+# Столько раз пробуем записать строку, с нарастающей паузой между попытками.
+RETRY_ATTEMPTS = 4
+RETRY_DELAYS = [2, 5, 10]  # секунды перед 2-й, 3-й и 4-й попытками
+RETRYABLE_CODES = {429, 500, 502, 503, 504}
+
+
+def _is_retryable(error: Exception) -> bool:
+    """True, если ошибка Google временная и есть смысл повторить попытку."""
+    if isinstance(error, gspread.exceptions.APIError):
+        try:
+            return error.response.status_code in RETRYABLE_CODES
+        except Exception:
+            return False
+    # сетевые обрывы (таймауты, разрывы соединения) тоже повторяем
+    return isinstance(error, (ConnectionError, TimeoutError, OSError))
 
 # Заголовки столбцов и соответствующие ключи из данных заявки
 COLUMNS: list[tuple[str, str]] = [
@@ -76,26 +94,47 @@ def _get_worksheet():
 
 
 def append_participant(data: dict) -> bool:
-    """Дописывает участницу в таблицу. Возвращает True при успехе."""
+    """Дописывает участницу в таблицу. Возвращает True при успехе.
+
+    При временных сбоях Google (503/429 и т.п.) повторяет попытку несколько
+    раз с нарастающей паузой, чтобы «моргание» сервиса не приводило к потере
+    строки.
+    """
+    global _worksheet
+
     if not is_configured():
         logger.warning("Google Sheets не настроен — участница не добавлена в таблицу.")
         return False
 
-    try:
-        ws = _get_worksheet()
-        username = data.get("username")
-        row = []
-        for _, key in COLUMNS:
-            if key == "username":
-                row.append(f"@{username}" if username else "")
-            else:
-                row.append(data.get(key, ""))
-        ws.append_row(row, value_input_option="USER_ENTERED")
-        logger.info("Участница добавлена в Google-таблицу")
-        return True
-    except Exception:
-        logger.exception("Не удалось добавить участницу в Google Sheets")
-        # сбрасываем кэш — при следующей заявке попробуем переподключиться
-        global _worksheet
-        _worksheet = None
-        return False
+    username = data.get("username")
+    row = []
+    for _, key in COLUMNS:
+        if key == "username":
+            row.append(f"@{username}" if username else "")
+        else:
+            row.append(data.get(key, ""))
+
+    for attempt in range(1, RETRY_ATTEMPTS + 1):
+        try:
+            ws = _get_worksheet()
+            ws.append_row(row, value_input_option="USER_ENTERED")
+            logger.info("Участница добавлена в Google-таблицу")
+            return True
+        except Exception as error:  # noqa: BLE001
+            # сбрасываем кэш листа — на следующей попытке переподключимся
+            _worksheet = None
+            if _is_retryable(error) and attempt < RETRY_ATTEMPTS:
+                delay = RETRY_DELAYS[attempt - 1]
+                logger.warning(
+                    "Google Sheets временно недоступен (попытка %d/%d): %s. "
+                    "Повтор через %d с.",
+                    attempt,
+                    RETRY_ATTEMPTS,
+                    error,
+                    delay,
+                )
+                time.sleep(delay)
+                continue
+            logger.exception("Не удалось добавить участницу в Google Sheets")
+            return False
+    return False
