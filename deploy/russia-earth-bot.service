@@ -1,0 +1,14 @@
+[Unit]
+Description=Telegram-бот «Мисс и Миссис Россия Земля 2026»
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/russia-earth-bot
+ExecStart=/opt/russia-earth-bot/venv/bin/python bot.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
