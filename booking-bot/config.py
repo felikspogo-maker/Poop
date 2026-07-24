@@ -66,9 +66,9 @@ CHECKOUT_TIME = "12:00"
 TOTAL_HOUSES = 3
 
 # --- Правила бронирования ---
-MIN_NIGHTS = 2          # минимальный срок — от двух ночей
-MAX_NIGHTS = 90         # разумный потолок, защита от опечаток в датах
-MAX_GUESTS = 15
+MIN_NIGHTS = 2               # минимальный срок — от двух ночей
+MAX_NIGHTS = 90             # разумный потолок, защита от опечаток в датах
+MAX_GUESTS_PER_HOUSE = 4    # максимум гостей на один домик
 
 # --- Реквизиты для предоплаты ---
 PAYMENT_DETAILS = os.getenv("PAYMENT_DETAILS", "").strip() or (

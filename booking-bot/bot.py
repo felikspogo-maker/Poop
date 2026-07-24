@@ -335,9 +335,12 @@ async def get_houses(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
             reply_markup=HOUSES_KEYBOARD,
         )
         return HOUSES
-    context.user_data["houses"] = int(text)
+    houses = int(text)
+    context.user_data["houses"] = houses
+    max_guests = houses * config.MAX_GUESTS_PER_HOUSE
     await update.message.reply_text(
-        "4️⃣ Сколько всего гостей приедет?",
+        f"4️⃣ Сколько всего гостей приедет? "
+        f"(до {config.MAX_GUESTS_PER_HOUSE} на домик — значит, максимум {max_guests})",
         reply_markup=ReplyKeyboardRemove(),
     )
     return GUESTS
@@ -345,8 +348,18 @@ async def get_houses(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
 
 async def get_guests(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     text = update.message.text.strip()
-    if not text.isdigit() or not (1 <= int(text) <= config.MAX_GUESTS):
+    houses = context.user_data.get("houses", 1)
+    max_guests = houses * config.MAX_GUESTS_PER_HOUSE
+    if not text.isdigit() or int(text) < 1:
         await update.message.reply_text("Введите число гостей, например 4:")
+        return GUESTS
+    if int(text) > max_guests:
+        await update.message.reply_text(
+            f"В один домик заселяется максимум {config.MAX_GUESTS_PER_HOUSE} гостя. "
+            f"Для {houses} домик(ов) это до {max_guests} гостей.\n"
+            "Введите число гостей ещё раз (или вернитесь и увеличьте число "
+            "домиков — /book):"
+        )
         return GUESTS
     context.user_data["guests"] = int(text)
     await update.message.reply_text(
