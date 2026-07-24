@@ -2,6 +2,9 @@
 .env
 credentials.json
 
+# Данные бота бронирования (фото домиков — per-deployment)
+house_photos.json
+
 # Python
 __pycache__/
 *.py[cod]

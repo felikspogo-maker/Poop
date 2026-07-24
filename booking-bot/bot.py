@@ -12,6 +12,7 @@ import logging
 from datetime import date, datetime, timedelta
 
 from telegram import (
+    InputMediaPhoto,
     KeyboardButton,
     LinkPreviewOptions,
     ReplyKeyboardMarkup,
@@ -30,6 +31,7 @@ from telegram.ext import (
 
 import config
 import info
+import photo_store
 import pricing
 import realty_calendar
 
@@ -75,15 +77,19 @@ CONFIRM_KEYBOARD = ReplyKeyboardMarkup(
 
 # Кнопки главного меню (постоянная клавиатура)
 BTN_BOOK = "🔑 Забронировать домик"
+BTN_PHOTOS = "📷 Фото домиков"
 BTN_PRICES = "💰 Цены"
 BTN_ABOUT = "🏡 О доме"
 BTN_BORDER = "🛂 Граница РФ–Абхазия"
 BTN_TIPS = "🗺 Советы путешественнику"
 
 MAIN_MENU_KEYBOARD = ReplyKeyboardMarkup(
-    [[BTN_BOOK], [BTN_PRICES, BTN_ABOUT], [BTN_BORDER], [BTN_TIPS]],
+    [[BTN_BOOK], [BTN_PHOTOS, BTN_PRICES], [BTN_ABOUT, BTN_BORDER], [BTN_TIPS]],
     resize_keyboard=True,
 )
+
+# Состояние админского режима загрузки фото
+ADDING_PHOTOS = 100
 
 WELCOME = (
     f"🏡 Добро пожаловать в <b>{config.GUESTHOUSE_NAME}</b>!\n"
@@ -91,6 +97,7 @@ WELCOME = (
     "Здесь можно забронировать уютный домик у моря в Сухуме.\n\n"
     "Пользуйтесь кнопками меню внизу 👇 или командами:\n"
     "• /book — забронировать домик 🔑\n"
+    "• /photos — фото домиков 📷\n"
     "• /prices — цены 💰\n"
     "• /about — о доме и удобствах 🏡\n"
     "• /border — правила пересечения границы РФ–Абхазия 🛂\n"
@@ -176,6 +183,80 @@ async def tips(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_html(
         info.MEMO_TEXT,
         link_preview_options=LinkPreviewOptions(is_disabled=True),
+        reply_markup=MAIN_MENU_KEYBOARD,
+    )
+
+
+async def show_photos(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Показывает гостю фотографии домиков (альбомом)."""
+    file_ids = photo_store.load()
+    if not file_ids:
+        await update.message.reply_text(
+            "📷 Фотографии домиков скоро появятся. "
+            f"Пока их можно запросить у менеджера: {config.PHONE_FOR_GUESTS}",
+            reply_markup=MAIN_MENU_KEYBOARD,
+        )
+        return
+    await update.message.reply_text("📷 Наши домики:")
+    for i in range(0, len(file_ids), 10):  # альбом — максимум 10 фото
+        media = [InputMediaPhoto(fid) for fid in file_ids[i : i + 10]]
+        try:
+            await context.bot.send_media_group(
+                chat_id=update.effective_chat.id, media=media
+            )
+        except Exception:
+            logger.exception("Не удалось отправить фото домиков")
+    await update.message.reply_text(
+        "Понравилось? Жмите «🔑 Забронировать домик» 🌊",
+        reply_markup=MAIN_MENU_KEYBOARD,
+    )
+
+
+# --- Админский режим: загрузка фотографий домиков ---
+
+
+def _is_admin(update: Update) -> bool:
+    return update.effective_chat.id in config.admin_ids()
+
+
+async def add_photos(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+    if not _is_admin(update):
+        return ConversationHandler.END
+    await update.message.reply_text(
+        "🖼 Режим добавления фото.\n\n"
+        "Пришлите фотографии домиков — по одной или альбомом. Каждая добавится "
+        "в галерею для гостей.\n\n"
+        "Когда закончите — /donephotos. Отмена — /cancel.\n"
+        f"Сейчас в галерее: {photo_store.count()} фото.",
+        reply_markup=ReplyKeyboardRemove(),
+    )
+    return ADDING_PHOTOS
+
+
+async def receive_admin_photo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+    file_id = update.message.photo[-1].file_id
+    total = photo_store.add(file_id)
+    await update.message.reply_text(
+        f"✅ Добавлено (всего в галерее: {total}). Присылайте ещё или /donephotos."
+    )
+    return ADDING_PHOTOS
+
+
+async def done_photos(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+    await update.message.reply_text(
+        f"Готово! В галерее {photo_store.count()} фото. "
+        f"Гости увидят их по кнопке «{BTN_PHOTOS}».",
+        reply_markup=MAIN_MENU_KEYBOARD,
+    )
+    return ConversationHandler.END
+
+
+async def clear_photos(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    if not _is_admin(update):
+        return
+    photo_store.clear()
+    await update.message.reply_text(
+        "🗑 Галерея фото очищена. Добавить заново — /addphotos",
         reply_markup=MAIN_MENU_KEYBOARD,
     )
 
@@ -448,6 +529,7 @@ async def _post_init(application: Application) -> None:
     await application.bot.set_my_commands(
         [
             BotCommand("book", "🔑 Забронировать домик"),
+            BotCommand("photos", "📷 Фото домиков"),
             BotCommand("prices", "💰 Цены"),
             BotCommand("about", "🏡 О доме"),
             BotCommand("border", "🛂 Граница РФ–Абхазия"),
@@ -489,17 +571,37 @@ def build_application() -> Application:
         allow_reentry=True,
     )
 
+    # Админский режим загрузки фото (только для админов/менеджера)
+    photos_conv = ConversationHandler(
+        entry_points=[CommandHandler("addphotos", add_photos)],
+        states={
+            ADDING_PHOTOS: [
+                MessageHandler(filters.PHOTO, receive_admin_photo),
+                CommandHandler("donephotos", done_photos),
+            ],
+        },
+        fallbacks=[
+            CommandHandler("cancel", done_photos),
+            CommandHandler("donephotos", done_photos),
+        ],
+        allow_reentry=True,
+    )
+
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("help", help_command))
     application.add_handler(CommandHandler("about", about))
     application.add_handler(CommandHandler("prices", prices))
     application.add_handler(CommandHandler("border", border))
     application.add_handler(CommandHandler("tips", tips))
+    application.add_handler(CommandHandler("photos", show_photos))
+    application.add_handler(CommandHandler("clearphotos", clear_photos))
     # Кнопки меню — регистрируются до диалога, чтобы работать в любой момент
+    application.add_handler(MessageHandler(filters.Text([BTN_PHOTOS]), show_photos))
     application.add_handler(MessageHandler(filters.Text([BTN_PRICES]), prices))
     application.add_handler(MessageHandler(filters.Text([BTN_ABOUT]), about))
     application.add_handler(MessageHandler(filters.Text([BTN_BORDER]), border))
     application.add_handler(MessageHandler(filters.Text([BTN_TIPS]), tips))
+    application.add_handler(photos_conv)
     application.add_handler(conv)
     return application
 

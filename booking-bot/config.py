@@ -25,6 +25,33 @@ BOT_TOKEN: str = os.getenv("BOT_TOKEN", "").strip()
 # Узнать: написать @userinfobot.
 OWNER_CHAT_ID: int | None = _get_int("OWNER_CHAT_ID")
 
+
+def _parse_ids(raw: str) -> list[int]:
+    ids: list[int] = []
+    for part in raw.replace(";", ",").replace(" ", ",").split(","):
+        part = part.strip()
+        if part:
+            try:
+                ids.append(int(part))
+            except ValueError:
+                continue
+    return ids
+
+
+# Кто может управлять фотографиями домиков (добавлять/удалять) — через запятую.
+# Менеджер (OWNER_CHAT_ID) тоже всегда может.
+ADMIN_IDS: list[int] = _parse_ids(os.getenv("ADMIN_IDS", ""))
+
+# Файл, где хранятся фото домиков (их file_id в Telegram).
+PHOTOS_FILE: str = os.getenv("PHOTOS_FILE", "house_photos.json").strip()
+
+
+def admin_ids() -> set[int]:
+    ids = set(ADMIN_IDS)
+    if OWNER_CHAT_ID:
+        ids.add(OWNER_CHAT_ID)
+    return ids
+
 # --- RealtyCalendar (появится позже) ---
 # API-токен RealtyCalendar. Пока пусто — брони уходят только менеджеру,
 # а в календарь их вносит менеджер вручную.
