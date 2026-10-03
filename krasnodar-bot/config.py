@@ -52,8 +52,9 @@ MIN_HEIGHT = 165
 CLOTHING_SIZES = ["40", "42", "44", "46"]
 MARITAL_OPTIONS = ["Не замужем", "Замужем", "Разведена"]
 
-PHOTOS_REQUIRED = 5
-VIDEO_REQUIRED = False   # True — без видео анкету отправить нельзя
+# Сколько фото/видео прислать (в любом сочетании: можно только фото,
+# можно часть заменить видео)
+MEDIA_REQUIRED = 5
 
 
 def categories_for_age(age: int) -> list[str]:

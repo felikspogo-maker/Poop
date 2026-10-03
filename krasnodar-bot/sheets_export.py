@@ -52,7 +52,7 @@ COLUMNS: list[tuple[str, str]] = [
     ("Telegram", "telegram"),
     ("Telegram ID", "telegram_id"),
     ("Фото, шт", "photos_count"),
-    ("Видео", "video_text"),
+    ("Видео, шт", "videos_count"),
     ("Согласие", "consent"),
 ]
 HEADER = [title for title, _ in COLUMNS]

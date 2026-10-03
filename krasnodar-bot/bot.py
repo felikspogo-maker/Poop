@@ -11,6 +11,7 @@ from datetime import date, datetime
 
 from telegram import (
     InputMediaPhoto,
+    InputMediaVideo,
     KeyboardButton,
     ReplyKeyboardMarkup,
     ReplyKeyboardRemove,
@@ -49,9 +50,8 @@ logger = logging.getLogger(__name__)
     PHONE,
     TELEGRAM,
     PHOTOS,
-    VIDEO,
     CONFIRM,
-) = range(15)
+) = range(14)
 
 # --- Кнопки ---
 BTN_APPLY = "📝 Подать анкету"
@@ -60,7 +60,6 @@ BTN_YES = "✅ Да"
 BTN_NO = "❌ Нет"
 BTN_AGREE = "✅ Согласна"
 BTN_DISAGREE = "❌ Не согласна"
-BTN_SKIP_VIDEO = "⏭ Пропустить видео"
 BTN_SEND = "✅ Отправить анкету"
 BTN_CANCEL = "❌ Отменить"
 
@@ -97,7 +96,7 @@ INFO_TEXT = (
     "<b>Требования:</b>\n"
     f"• рост от {config.MIN_HEIGHT} см\n"
     f"• размер одежды {config.CLOTHING_SIZES[0]}–{config.CLOTHING_SIZES[-1]}\n"
-    f"• {config.PHOTOS_REQUIRED} фотографий и видео-визитка\n\n"
+    f"• {config.MEDIA_REQUIRED} фото (часть можно заменить видео)\n\n"
     f"Чтобы подать анкету — нажмите «{BTN_APPLY}»"
     f"{_contact_line()}"
 )
@@ -121,8 +120,8 @@ def format_application(data: dict) -> str:
         f"🏆 Опыт участия: {data.get('experience', '—')}",
         f"📞 Телефон: {data.get('phone', '—')}",
         f"💬 Telegram: {data.get('telegram', '—')}",
-        f"📸 Фото: {len(data.get('photos', []))} шт",
-        f"🎬 Видео: {data.get('video_text', '—')}",
+        f"📸 Фото: {data.get('photos_count', 0)} шт",
+        f"🎬 Видео: {data.get('videos_count', 0)} шт",
     ]
     if data.get("telegram_id"):
         lines.append(f"🆔 Telegram ID: {data['telegram_id']}")
@@ -365,71 +364,55 @@ async def get_telegram(update: Update, context: ContextTypes.DEFAULT_TYPE) -> in
 
 
 async def _ask_photos(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-    context.user_data["photos"] = []
+    context.user_data["media"] = []
     await update.message.reply_html(
-        f"📸 Пришлите <b>{config.PHOTOS_REQUIRED} фотографий</b> хорошего качества — "
-        "по одной или альбомом.",
+        f"📸 Пришлите <b>{config.MEDIA_REQUIRED} фото или видео</b> хорошего качества — "
+        "по одному или альбомом. Можно только фото, а можно часть заменить видео 🎬",
         reply_markup=ReplyKeyboardRemove(),
     )
     return PHOTOS
 
 
-async def get_photo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-    photos: list[str] = context.user_data.setdefault("photos", [])
-    if len(photos) >= config.PHOTOS_REQUIRED:
-        return PHOTOS  # лишние фото из альбома игнорируем
-    photos.append(update.message.photo[-1].file_id)
-    left = config.PHOTOS_REQUIRED - len(photos)
-    if left > 0:
-        await update.message.reply_text(
-            f"📸 Принято {len(photos)}/{config.PHOTOS_REQUIRED}. Ещё {left}."
-        )
+async def get_media(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+    """Принимает фото или видео; после нужного количества — показывает итог."""
+    msg = update.message
+    media: list[tuple[str, str]] = context.user_data.setdefault("media", [])
+    if len(media) >= config.MEDIA_REQUIRED:
+        return PHOTOS  # лишнее из альбома игнорируем
+    if msg.photo:
+        media.append(("photo", msg.photo[-1].file_id))
+    elif msg.video:
+        media.append(("video", msg.video.file_id))
+    else:
         return PHOTOS
 
-    skip = [] if config.VIDEO_REQUIRED else [[BTN_SKIP_VIDEO]]
-    await update.message.reply_html(
-        f"✅ Все {config.PHOTOS_REQUIRED} фото получены!\n\n"
-        "🎬 Теперь пришлите <b>видео-визитку</b> (коротко о себе, 30–60 секунд).",
-        reply_markup=_kb(skip) if skip else ReplyKeyboardRemove(),
-    )
-    return VIDEO
+    left = config.MEDIA_REQUIRED - len(media)
+    if left > 0:
+        await msg.reply_text(f"✅ Принято {len(media)}/{config.MEDIA_REQUIRED}. Ещё {left}.")
+        return PHOTOS
 
-
-async def photos_other(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-    left = config.PHOTOS_REQUIRED - len(context.user_data.get("photos", []))
-    await update.message.reply_text(
-        f"Пришлите, пожалуйста, фотографию 📸 (осталось {left})."
-    )
-    return PHOTOS
-
-
-async def _ignore_extra_photo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-    """Лишние фото из альбома (больше нужного) просто пропускаем."""
-    return VIDEO
-
-
-async def get_video(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-    msg = update.message
-    if msg.video:
-        context.user_data["video"] = ("video", msg.video.file_id)
-    elif msg.video_note:
-        context.user_data["video"] = ("video_note", msg.video_note.file_id)
-    elif msg.document and (msg.document.mime_type or "").startswith("video/"):
-        context.user_data["video"] = ("document", msg.document.file_id)
-    elif msg.text == BTN_SKIP_VIDEO and not config.VIDEO_REQUIRED:
-        context.user_data["video"] = None
-    else:
-        await msg.reply_text("Пришлите, пожалуйста, видео 🎬")
-        return VIDEO
-
-    context.user_data["video_text"] = "есть" if context.user_data["video"] else "нет"
-    context.user_data["photos_count"] = len(context.user_data["photos"])
+    context.user_data["photos_count"] = sum(1 for k, _ in media if k == "photo")
+    context.user_data["videos_count"] = sum(1 for k, _ in media if k == "video")
     await msg.reply_text(
         "Проверьте анкету:\n\n"
         f"{format_application(context.user_data)}\n\n"
         "Всё верно?",
         reply_markup=CONFIRM_KB,
     )
+    return CONFIRM
+
+
+async def media_other(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+    left = config.MEDIA_REQUIRED - len(context.user_data.get("media", []))
+    await update.message.reply_text(
+        f"Пришлите, пожалуйста, фото 📸 или видео 🎬 (осталось {left}). "
+        "Видео отправляйте как видео, а не файлом."
+    )
+    return PHOTOS
+
+
+async def _ignore_extra_media(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+    """Лишние фото/видео из альбома (сверх нужного) пропускаем."""
     return CONFIRM
 
 
@@ -472,25 +455,21 @@ async def confirm(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
 
 
 async def _forward_to_admins(context: ContextTypes.DEFAULT_TYPE, data: dict) -> bool:
-    """Отправляет анкету, фото и видео всем организаторам. True — если хоть кому-то."""
+    """Отправляет анкету и альбом фото/видео всем организаторам.
+
+    True — если анкету получил хотя бы один из них.
+    """
     body = format_application(data)
-    video = data.get("video")
+    album = [
+        InputMediaPhoto(fid) if kind == "photo" else InputMediaVideo(fid)
+        for kind, fid in data.get("media", [])
+    ]
     delivered = False
     for chat_id in config.ADMIN_CHAT_IDS:
         try:
             await context.bot.send_message(chat_id=chat_id, text=body)
-            media = [InputMediaPhoto(fid) for fid in data.get("photos", [])]
-            if media:
-                await context.bot.send_media_group(chat_id=chat_id, media=media)
-            if video:
-                kind, file_id = video
-                caption = f"🎬 Видео-визитка: {data.get('name')}"
-                if kind == "video":
-                    await context.bot.send_video(chat_id=chat_id, video=file_id, caption=caption)
-                elif kind == "video_note":
-                    await context.bot.send_video_note(chat_id=chat_id, video_note=file_id)
-                else:
-                    await context.bot.send_document(chat_id=chat_id, document=file_id, caption=caption)
+            if album:
+                await context.bot.send_media_group(chat_id=chat_id, media=album)
             delivered = True
         except Exception:
             logger.exception("Не удалось отправить анкету организатору %s", chat_id)
@@ -551,17 +530,13 @@ def build_application() -> Application:
             ],
             TELEGRAM: [MessageHandler(text, get_telegram)],
             PHOTOS: [
-                MessageHandler(filters.PHOTO, get_photo),
-                MessageHandler(~filters.COMMAND, photos_other),
+                MessageHandler(filters.PHOTO | filters.VIDEO, get_media),
+                MessageHandler(~filters.COMMAND, media_other),
             ],
-            VIDEO: [
-                MessageHandler(
-                    filters.VIDEO | filters.VIDEO_NOTE | filters.Document.VIDEO | text,
-                    get_video,
-                ),
-                MessageHandler(filters.PHOTO, _ignore_extra_photo),
+            CONFIRM: [
+                MessageHandler(text, confirm),
+                MessageHandler(filters.PHOTO | filters.VIDEO, _ignore_extra_media),
             ],
-            CONFIRM: [MessageHandler(text, confirm)],
         },
         fallbacks=[CommandHandler("cancel", cancel)],
         allow_reentry=True,
