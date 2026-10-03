@@ -4,993 +4,880 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Мисс и Миссис Краснодарский край 2027</title>
-<meta name="description" content="Конкурс красоты «Мисс и Миссис Краснодарский край 2027». Категории «Юная Мисс», «Мисс», «Миссис». Приём заявок до 15 января 2027.">
-<meta name="theme-color" content="#5a0610">
+<meta name="description" content="Конкурс красоты «Мисс и Миссис Краснодарский край 2027». Категории «Юная Мисс», «Мисс», «Миссис». Приём анкет до 15 января 2027 года.">
+<meta name="theme-color" content="#3b050b">
 <meta property="og:title" content="Мисс и Миссис Краснодарский край 2027">
-<meta property="og:description" content="Конкурс красоты Кубани. Приём заявок до 15 января 2027 — подайте анкету через Telegram.">
+<meta property="og:description" content="Конкурс красоты Кубани. Приём анкет до 15 января 2027 года — через Telegram.">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%23e8c66a' d='M8 48 4 18l16 12 12-20 12 20 16-12-4 30z'/%3E%3Crect x='8' y='50' width='48' height='6' rx='2' fill='%23e8c66a'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%235b0a12'/%3E%3Cpath d='M10 33 8 17l9 7 7-11 7 11 9-7-2 16z' fill='none' stroke='%23c9a45c' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M11 37h26' stroke='%23c9a45c' stroke-width='2'/%3E%3C/svg%3E">
+<!-- Шрифты лежат рядом с сайтом — не зависят от внешних серверов -->
+<link rel="preload" href="fonts/PlayfairDisplay-normal-cyrillic-73961b.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/PlayfairDisplay-italic-cyrillic-711017.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<script>document.documentElement.classList.add("js");</script>
 <style>
-/* ================================================================
-   Палитра: глубокий красный + золото
-   ================================================================ */
+/* =================================================================
+   ДИЗАЙН-СИСТЕМА
+   Идея: сцена конкурса + глянцевый журнал.
+   Красный бархат — основной цвет, золото — только тонкие акценты.
+   ================================================================= */
 :root {
-  --red-950: #2a0207;
-  --red-900: #3e040c;
-  --red-800: #5a0610;
-  --red-700: #7a0a18;
-  --red-600: #9b1022;
-  --red-500: #c0182d;
-  --red-400: #e0344a;
-  --gold-100: #fbf1d0;
-  --gold-200: #f3dc98;
-  --gold-300: #e8c66a;
-  --gold-400: #d4a843;
-  --gold-500: #b88a2a;
-  --gold-600: #8f6a1c;
-  --ink: #fff6ea;
-  --ink-soft: rgba(255, 240, 222, .78);
-  --ink-mute: rgba(255, 240, 222, .55);
-  --gold-grad: linear-gradient(115deg, #8f6a1c 0%, #e8c66a 22%, #fff3c4 38%, #d4a843 55%, #f3dc98 72%, #b88a2a 100%);
-  --serif: "Cormorant Garamond", "Times New Roman", serif;
-  --sans: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --ease-out: cubic-bezier(.16, 1, .3, 1);
-  --radius: 22px;
-  --gutter: max(16px, env(safe-area-inset-left));
+  --wine-deep: #3b050b;
+  --wine: #5b0a12;
+  --crimson: #8e1222;
+  --scarlet: #b3182b;
+  --gold: #c9a45c;
+  --gold-soft: #e3cc97;
+  --cream: #f3e7d3;
+  --cream-dim: rgba(243, 231, 211, .7);
+  --cream-mute: rgba(243, 231, 211, .46);
+  --line: rgba(201, 164, 92, .38);
+
+  --display: "Playfair Display", "Times New Roman", serif;
+  --text: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --pad: clamp(16px, 4vw, 56px);
+  --wrap: 1320px;
+  --drape: 11vw;             /* сколько занавеса остаётся видно по краям сцены */
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
 body {
-  margin: 0;
-  background: var(--red-900);
-  color: var(--ink);
-  font-family: var(--sans);
-  font-weight: 400;
-  line-height: 1.65;
-  overflow-x: clip;
-  -webkit-font-smoothing: antialiased;
+  margin: 0; background: var(--wine); color: var(--cream);
+  font-family: var(--text); font-weight: 400; font-size: 16px; line-height: 1.7;
+  overflow-x: clip; -webkit-font-smoothing: antialiased;
 }
-img { max-width: 100%; display: block; }
+img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
-button { font: inherit; }
-::selection { background: var(--gold-300); color: var(--red-900); }
+button { font: inherit; color: inherit; }
+::selection { background: var(--gold); color: var(--wine-deep); }
+:focus-visible { outline: 1px solid var(--gold-soft); outline-offset: 4px; }
 
-.container { width: min(1180px, 100% - 2 * var(--gutter)); margin-inline: auto; }
-
-/* Золотой переливающийся текст */
-.gold-text {
-  background: var(--gold-grad);
-  background-size: 250% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: shimmer 7s linear infinite;
-}
-@keyframes shimmer { to { background-position: -250% 0; } }
-
-/* ================================================================
-   Прелоадер
-   ================================================================ */
-.preloader {
-  position: fixed; inset: 0; z-index: 1000;
-  display: grid; place-items: center;
-  background: radial-gradient(circle at 50% 45%, var(--red-700), var(--red-950) 70%);
-  transition: opacity .9s var(--ease-out), visibility .9s;
-}
-.preloader.is-done { opacity: 0; visibility: hidden; }
-.preloader__inner { text-align: center; }
-.preloader__crown { width: 84px; height: 84px; }
-.preloader__crown path, .preloader__crown rect {
-  fill: none; stroke: var(--gold-300); stroke-width: 1.6;
-  stroke-dasharray: 220; stroke-dashoffset: 220;
-  animation: draw 1.4s var(--ease-out) forwards;
-}
-.preloader__line {
-  width: 140px; height: 1px; margin: 18px auto 0;
-  background: var(--gold-grad); transform-origin: left;
-  transform: scaleX(0); animation: grow 1.2s .2s var(--ease-out) forwards;
-}
-@keyframes draw { to { stroke-dashoffset: 0; } }
-@keyframes grow { to { transform: scaleX(1); } }
-
-/* ================================================================
-   Прогресс прокрутки и навигация
-   ================================================================ */
-.progress {
-  position: fixed; top: 0; left: 0; z-index: 60;
-  height: 3px; width: 100%;
-  background: var(--gold-grad);
-  transform-origin: left; transform: scaleX(0);
-  box-shadow: 0 0 12px rgba(232, 198, 106, .7);
+/* Плёночное зерно поверх всего сайта — единая «глянцевая» фактура */
+body::after {
+  content: ""; position: fixed; inset: -50%; z-index: 90; pointer-events: none; opacity: .07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-.nav {
-  position: fixed; inset: 0 0 auto 0; z-index: 50;
-  transition: background .5s, backdrop-filter .5s, padding .5s, box-shadow .5s;
-  padding: 22px 0;
-}
-.nav.is-scrolled {
-  background: rgba(42, 2, 7, .72);
-  backdrop-filter: blur(14px) saturate(1.3);
-  -webkit-backdrop-filter: blur(14px) saturate(1.3);
-  padding: 12px 0;
-  box-shadow: 0 1px 0 rgba(232, 198, 106, .25);
-}
-.nav__row { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-.brand { display: flex; align-items: center; gap: 10px; font-family: var(--serif); font-weight: 700; font-size: 1.2rem; letter-spacing: .02em; line-height: 1.1; }
-.brand svg { width: 30px; height: 30px; flex: none; filter: drop-shadow(0 0 8px rgba(232, 198, 106, .5)); }
-.brand small { display: block; font-family: var(--sans); font-weight: 500; font-size: .62rem; letter-spacing: .28em; text-transform: uppercase; color: var(--gold-300); }
-.nav__links { display: flex; gap: 30px; list-style: none; margin: 0; padding: 0; font-size: .82rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; }
-.nav__links a { position: relative; padding: 6px 0; color: var(--ink-soft); transition: color .3s; }
-.nav__links a::after {
-  content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 100%;
-  background: var(--gold-300); transform: scaleX(0); transform-origin: right;
-  transition: transform .5s var(--ease-out);
-}
-.nav__links a:hover { color: var(--gold-200); }
-.nav__links a:hover::after { transform: scaleX(1); transform-origin: left; }
+.wrap { width: min(var(--wrap), 100% - 2 * var(--pad)); margin-inline: auto; }
 
-.burger { display: none; width: 44px; height: 44px; border: 1px solid rgba(232, 198, 106, .45); border-radius: 50%; background: transparent; cursor: pointer; position: relative; }
-.burger span { position: absolute; left: 12px; right: 12px; height: 1.5px; background: var(--gold-200); transition: transform .4s var(--ease-out), opacity .3s; }
-.burger span:nth-child(1) { top: 16px; } .burger span:nth-child(2) { top: 21px; } .burger span:nth-child(3) { top: 26px; }
-.nav.is-open .burger span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
-.nav.is-open .burger span:nth-child(2) { opacity: 0; }
-.nav.is-open .burger span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+/* ---------- Типографика ---------- */
+.label {
+  font-family: var(--text); font-weight: 600; font-size: .72rem;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--gold);
+}
+.h2 {
+  margin: 0; font-family: var(--display); font-weight: 400;
+  font-size: clamp(2.6rem, 7.2vw, 7rem); line-height: 1; letter-spacing: -.02em;
+}
+.h2 em, .display em { font-style: italic; color: var(--gold-soft); }
+.lead { font-size: clamp(1.02rem, 1.3vw, 1.15rem); color: var(--cream-dim); font-weight: 300; max-width: 34em; }
 
-/* ================================================================
-   Кнопки
-   ================================================================ */
+/* Разбивка на слова для анимаций */
+.w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .14em; margin-bottom: -.14em; }
+.wi { display: inline-block; will-change: transform; }
+
+/* ---------- Линия (единственный декоративный элемент) ---------- */
+.rule { display: block; height: 1px; width: 100%; background: var(--line); transform-origin: left; }
+
+/* ---------- Кнопка (одна на весь сайт) ---------- */
 .btn {
-  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-  padding: 17px 34px; border-radius: 999px;
-  font-weight: 600; font-size: .86rem; letter-spacing: .14em; text-transform: uppercase;
-  overflow: hidden; isolation: isolate; cursor: pointer; border: 0;
-  transition: transform .5s var(--ease-out), box-shadow .5s var(--ease-out);
-  -webkit-tap-highlight-color: transparent;
+  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 16px;
+  height: 58px; padding: 0 30px; overflow: hidden; isolation: isolate; cursor: pointer;
+  font-family: var(--text); font-weight: 600; font-size: .76rem; letter-spacing: .18em; text-transform: uppercase;
+  border: 1px solid var(--gold); background: var(--gold); color: var(--wine-deep);
+  transition: color .6s cubic-bezier(.7, 0, .2, 1);
 }
-.btn--gold {
-  color: var(--red-900);
-  background: var(--gold-grad); background-size: 220% 100%;
-  box-shadow: 0 10px 30px -8px rgba(232, 198, 106, .55), inset 0 1px 0 rgba(255, 255, 255, .5);
-  animation: shimmer 6s linear infinite;
+.btn::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; background: var(--wine-deep);
+  transform: translateY(101%); transition: transform .6s cubic-bezier(.7, 0, .2, 1);
 }
-.btn--gold::before {
-  content: ""; position: absolute; inset: 0; z-index: -1;
-  background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, .75) 50%, transparent 70%);
-  transform: translateX(-120%); transition: transform .9s var(--ease-out);
-}
-.btn--gold:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -10px rgba(232, 198, 106, .75); }
-.btn--gold:hover::before { transform: translateX(120%); }
-.btn--ghost { color: var(--gold-100); border: 1px solid rgba(232, 198, 106, .55); background: rgba(255, 255, 255, .02); }
-.btn--ghost:hover { background: rgba(232, 198, 106, .12); transform: translateY(-3px); }
-.btn svg { width: 18px; height: 18px; }
-.btn--sm { padding: 12px 22px; font-size: .74rem; }
+.btn:hover { color: var(--gold-soft); }
+.btn:hover::before { transform: none; }
+.btn svg { width: 22px; height: 10px; transition: transform .6s cubic-bezier(.7, 0, .2, 1); }
+.btn:hover svg { transform: translateX(6px); }
+.btn--line { background: transparent; color: var(--cream); border-color: var(--line); }
+.btn--line::before { background: var(--gold); }
+.btn--line:hover { color: var(--wine-deep); }
+.btn--sm { height: 46px; padding: 0 22px; font-size: .7rem; }
 
-/* ================================================================
-   Hero
-   ================================================================ */
+.textlink { display: inline-flex; align-items: center; gap: 12px; font-size: .76rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--cream); }
+.textlink span { position: relative; }
+.textlink span::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px; background: var(--gold); transform-origin: right; transition: transform .6s cubic-bezier(.7, 0, .2, 1); }
+.textlink:hover span::after { transform: scaleX(0); }
+
+/* ---------- Знак (корона тонкой линией) ---------- */
+.mark { width: 34px; height: 24px; color: var(--gold); flex: none; }
+
+/* =================================================================
+   БАРХАТНЫЙ ЗАНАВЕС
+   ================================================================= */
+.drape {
+  position: absolute; top: 0; bottom: 0; width: 50.5%; z-index: 5; pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, .35), transparent 18%, transparent 82%, rgba(0, 0, 0, .35)),
+    repeating-linear-gradient(90deg,
+      rgba(0, 0, 0, .42) 0, rgba(0, 0, 0, .1) 1.4%, rgba(255, 210, 200, .07) 2.6%,
+      rgba(0, 0, 0, .12) 3.8%, rgba(0, 0, 0, .46) 5.2%),
+    linear-gradient(180deg, #8f1220 0%, #6d0b17 45%, #3e050c 100%);
+  box-shadow: 0 0 60px rgba(0, 0, 0, .55);
+  will-change: transform;
+}
+.drape::after { /* золотая бахрома снизу */
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 14px;
+  background:
+    linear-gradient(var(--gold), var(--gold)) top / 100% 2px no-repeat,
+    repeating-linear-gradient(90deg, rgba(201, 164, 92, .85) 0 1.5px, transparent 1.5px 5px);
+  -webkit-mask: linear-gradient(#000, rgba(0, 0, 0, .3));
+          mask: linear-gradient(#000, rgba(0, 0, 0, .3));
+}
+.drape--l { left: 0; }
+.drape--r { right: 0; transform: scaleX(-1); }
+/* Без анимаций (нет JS / GSAP / «уменьшить движение») — занавес сразу открыт */
+html:not(.js) .drape--l, .static .drape--l { transform: translateX(calc(-100% + var(--drape))); }
+html:not(.js) .drape--r, .static .drape--r { transform: scaleX(-1) translateX(calc(-100% + var(--drape))); }
+
+/* =================================================================
+   НАВИГАЦИЯ
+   ================================================================= */
+.nav {
+  position: fixed; inset: 0 0 auto; z-index: 60; padding: 22px 0;
+  transition: transform .7s cubic-bezier(.7, 0, .2, 1), background .5s, padding .5s;
+}
+.nav.is-solid { background: rgba(59, 5, 11, .88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 12px 0; box-shadow: 0 1px 0 var(--line); }
+.nav.is-hidden { transform: translateY(-110%); }
+.nav__row { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.brand { display: flex; align-items: center; gap: 14px; line-height: 1.05; }
+.brand b { display: block; font-family: var(--display); font-weight: 500; font-size: 1.12rem; letter-spacing: .01em; }
+.brand small { display: block; margin-top: 3px; font-size: .6rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
+.nav__links { display: flex; gap: 34px; margin: 0; padding: 0; list-style: none; }
+.nav__links a { font-size: .72rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--cream-dim); transition: color .3s; }
+.nav__links a:hover { color: var(--gold-soft); }
+.nav__links .num { display: none; }
+.burger { display: none; width: 46px; height: 46px; border: 1px solid var(--line); background: transparent; cursor: pointer; position: relative; }
+.burger i { position: absolute; left: 13px; right: 13px; height: 1px; background: var(--cream); transition: transform .6s cubic-bezier(.7, 0, .2, 1); }
+.burger i:first-child { top: 19px; } .burger i:last-child { top: 26px; }
+.nav.is-open .burger i:first-child { transform: translateY(3.5px) rotate(45deg); }
+.nav.is-open .burger i:last-child { transform: translateY(-3.5px) rotate(-45deg); }
+
+/* =================================================================
+   1. СЦЕНА (первый экран)
+   ================================================================= */
 .hero {
-  position: relative; min-height: 100svh; display: grid; place-items: center;
-  padding: 130px 0 90px; overflow: hidden; text-align: center;
+  position: relative; min-height: 100svh; overflow: hidden;
+  display: grid; grid-template-rows: 1fr auto;
   background:
-    radial-gradient(ellipse 80% 60% at 50% 30%, rgba(224, 52, 74, .45), transparent 65%),
-    radial-gradient(ellipse 60% 50% at 15% 85%, rgba(155, 16, 34, .7), transparent 70%),
-    radial-gradient(ellipse 60% 50% at 85% 80%, rgba(122, 10, 24, .8), transparent 70%),
-    linear-gradient(180deg, var(--red-800), var(--red-900) 70%);
+    radial-gradient(ellipse 46% 62% at var(--sx, 50%) -6%, rgba(255, 228, 200, .2), transparent 70%),
+    radial-gradient(ellipse 70% 30% at 50% 108%, rgba(179, 24, 43, .55), transparent 70%),
+    linear-gradient(180deg, var(--wine-deep), var(--wine) 60%, #4a0810);
 }
-.hero::after { /* виньетка */
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(ellipse at center, transparent 45%, rgba(20, 0, 3, .65));
+.hero__inner {
+  position: relative; z-index: 2; display: grid; align-content: center; justify-items: center; text-align: center;
+  padding: 140px calc(var(--drape) + 12px) 40px;
 }
-#sparkles { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
-.hero__rays {
-  position: absolute; left: 50%; top: 42%; width: 160vmax; height: 160vmax; z-index: 0;
-  transform: translate(-50%, -50%);
-  background: repeating-conic-gradient(from 0deg, rgba(232, 198, 106, .07) 0deg 4deg, transparent 4deg 18deg);
-  -webkit-mask: radial-gradient(circle, #000 0%, transparent 45%);
-          mask: radial-gradient(circle, #000 0%, transparent 45%);
-  animation: spin 120s linear infinite;
+.hero__meta { display: flex; align-items: center; gap: 18px; }
+.hero__meta .rule { width: 46px; }
+.display {
+  margin: 34px 0 0; font-family: var(--display); font-weight: 400;
+  font-size: clamp(2.5rem, 9.4vw, 10.5rem); line-height: .92; letter-spacing: -.035em;
 }
-@keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
-.hero__content { position: relative; z-index: 2; will-change: transform, opacity; }
-.hero__crown { display: block; width: clamp(70px, 10vw, 110px); height: clamp(70px, 10vw, 110px); margin: 0 auto 22px; filter: drop-shadow(0 0 22px rgba(232, 198, 106, .55)); animation: float 6s ease-in-out infinite; }
-@keyframes float { 50% { transform: translateY(-10px); } }
-.eyebrow { display: inline-flex; align-items: center; gap: 14px; font-size: .78rem; font-weight: 600; letter-spacing: .38em; text-transform: uppercase; color: var(--gold-200); }
-.eyebrow::before, .eyebrow::after { content: ""; width: 38px; height: 1px; background: var(--gold-grad); }
-.hero h1 {
-  margin: 20px 0 8px;
-  font-family: var(--serif); font-weight: 600;
-  font-size: clamp(2rem, 8.2vw, 6.4rem); line-height: .98; letter-spacing: -.01em;
-}
-.hero h1 .line { display: block; overflow: hidden; padding-bottom: .08em; }
-.hero h1 .line > span { display: inline-block; transform: translateY(105%); transition: transform 1.3s var(--ease-out); }
-.is-loaded .hero h1 .line > span { transform: none; }
-.is-loaded .hero h1 .line:nth-child(2) > span { transition-delay: .12s; }
-.is-loaded .hero h1 .line:nth-child(3) > span { transition-delay: .24s; }
-.hero__year {
-  display: block; font-family: var(--serif); font-style: italic; font-weight: 600;
-  font-size: clamp(1.7rem, 4vw, 3rem); margin-top: 6px;
-}
-.hero__lead { max-width: 620px; margin: 22px auto 0; font-size: clamp(1rem, 1.5vw, 1.15rem); color: var(--ink-soft); font-weight: 300; }
-.hero__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 38px; }
-.hero .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 1.2s var(--ease-out), transform 1.2s var(--ease-out); }
-.is-loaded .hero .fade-in { opacity: 1; transform: none; }
-.is-loaded .hero .fade-in.d1 { transition-delay: .45s; }
-.is-loaded .hero .fade-in.d2 { transition-delay: .6s; }
-.is-loaded .hero .fade-in.d3 { transition-delay: .75s; }
-.is-loaded .hero .fade-in.d4 { transition-delay: .9s; }
+.display .ln { display: block; overflow: hidden; padding-bottom: .1em; margin-bottom: -.06em; }
+.display .ln > span { display: inline-block; }
+.display .ln--sm { font-size: .5em; letter-spacing: -.02em; margin-top: .18em; }
+.hero__lead { margin: 34px auto 0; text-align: center; }
+.hero__actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 22px 34px; margin-top: 40px; }
 
-/* Таймер */
-.countdown { display: flex; justify-content: center; gap: clamp(8px, 2vw, 18px); margin-top: 40px; }
-.countdown__cell {
-  min-width: clamp(68px, 15vw, 96px); padding: 14px 8px 10px; border-radius: 16px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .02));
-  border: 1px solid rgba(232, 198, 106, .35);
-  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-}
-.countdown__num { display: block; font-family: var(--serif); font-weight: 700; font-size: clamp(1.8rem, 4.5vw, 2.8rem); line-height: 1; font-variant-numeric: tabular-nums; }
-.countdown__lbl { display: block; margin-top: 6px; font-size: .62rem; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-mute); }
-.countdown__title { margin-top: 34px; font-size: .74rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold-200); }
+.hero__bar { position: relative; z-index: 6; padding: 0 var(--pad) 26px; }
+.hero__bar .rule { margin-bottom: 20px; }
+.bar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; font-size: .7rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--cream-mute); }
+.bar > :last-child { justify-self: end; }
+.countdown { display: flex; align-items: baseline; gap: 14px; color: var(--cream); }
+.countdown .cd-title { margin-right: 6px; color: var(--gold); }
+.countdown b { font-family: var(--display); font-weight: 400; font-size: 1.55rem; letter-spacing: 0; font-variant-numeric: lining-nums tabular-nums; }
+.countdown small { font-size: .62rem; color: var(--cream-mute); margin-left: 3px; }
 
-.scroll-hint { position: absolute; left: 50%; bottom: 26px; z-index: 2; transform: translateX(-50%); display: grid; justify-items: center; gap: 8px; font-size: .62rem; letter-spacing: .3em; text-transform: uppercase; color: var(--ink-mute); }
-.scroll-hint i { width: 1px; height: 46px; background: linear-gradient(var(--gold-300), transparent); position: relative; overflow: hidden; }
-.scroll-hint i::after { content: ""; position: absolute; left: 0; top: -100%; width: 1px; height: 50%; background: var(--gold-100); animation: drip 2.2s var(--ease-out) infinite; }
-@keyframes drip { to { top: 150%; } }
+/* Заставка поверх закрытого занавеса */
+.intro { position: absolute; inset: 0; z-index: 7; display: grid; place-items: center; text-align: center; pointer-events: none; }
+.intro .mark { width: 64px; height: 44px; margin: 0 auto 18px; }
+.intro p { margin: 0; font-family: var(--display); font-size: clamp(1.3rem, 3vw, 2rem); font-style: italic; }
+.intro .label { display: block; margin-top: 10px; }
+html:not(.js) .intro, .static .intro { display: none; }
 
-/* ================================================================
-   Бегущая строка
-   ================================================================ */
-/* Обёртка обрезает края наклонной ленты, чтобы страница не уезжала вбок */
-.marquee-wrap { position: relative; z-index: 3; overflow: hidden; margin: -60px 0; padding: 32px 0; pointer-events: none; }
-.marquee {
-  overflow: hidden;
-  background: var(--gold-grad); background-size: 200% 100%;
-  color: var(--red-900); padding: 16px 0;
-  transform: rotate(-1.6deg) scale(1.04);
-  box-shadow: 0 14px 40px -10px rgba(0, 0, 0, .5);
-}
-.marquee__track { display: flex; width: max-content; animation: marquee 32s linear infinite; }
-.marquee__track span { display: inline-flex; align-items: center; gap: 28px; padding-right: 28px; font-family: var(--serif); font-weight: 700; font-size: clamp(1.15rem, 2.4vw, 1.6rem); letter-spacing: .04em; white-space: nowrap; }
-.marquee__track span::after { content: "✦"; font-size: .8em; }
-@keyframes marquee { to { transform: translateX(-50%); } }
+/* =================================================================
+   СЕКЦИИ
+   ================================================================= */
+.sec { position: relative; padding: clamp(90px, 11vw, 150px) 0; overflow-x: clip; }
+.sec--deep { background: var(--wine-deep); }
+.sec-head { display: grid; grid-template-columns: auto auto 1fr; align-items: center; gap: 18px; margin-bottom: clamp(36px, 5vw, 64px); }
+.sec-head .num { font-family: var(--display); font-style: italic; font-size: 1.1rem; color: var(--gold); }
 
-/* ================================================================
-   Секции
-   ================================================================ */
-section { position: relative; }
-.section { overflow-x: clip; } /* декор (рамки, значки) не раздвигает страницу вбок */
-.section { padding: clamp(90px, 13vw, 160px) 0; }
-.section--dark { background: linear-gradient(180deg, var(--red-950), var(--red-900)); }
-.section--rich {
+/* 01 — О конкурсе */
+.statement { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(1.7rem, 3.7vw, 3.6rem); line-height: 1.16; letter-spacing: -.015em; }
+.statement em { font-style: italic; color: var(--gold-soft); }
+.about { display: grid; grid-template-columns: 5fr 6fr; gap: clamp(40px, 7vw, 120px); align-items: end; margin-top: clamp(70px, 9vw, 130px); }
+.photo { position: relative; overflow: hidden; background: var(--crimson); }
+.photo__in { position: absolute; inset: -12% 0; }
+.photo__in img { width: 100%; height: 100%; object-fit: cover; }
+.ph { /* заглушка вместо фото — в той же бархатной гамме */
+  width: 100%; height: 100%; display: grid; place-items: center; align-content: center; gap: 14px; text-align: center;
   background:
-    radial-gradient(ellipse 70% 50% at 100% 0%, rgba(192, 24, 45, .45), transparent 60%),
-    radial-gradient(ellipse 60% 50% at 0% 100%, rgba(155, 16, 34, .5), transparent 60%),
-    var(--red-800);
+    radial-gradient(ellipse 60% 45% at 50% 30%, rgba(255, 220, 200, .14), transparent 70%),
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, .18) 0, rgba(255, 255, 255, .025) 3%, rgba(0, 0, 0, .18) 6%),
+    linear-gradient(180deg, #7a0e19, #44060d);
 }
-.section-head { text-align: center; max-width: 760px; margin: 0 auto clamp(48px, 7vw, 80px); }
-.section-head h2 {
-  margin: 16px 0 0; font-family: var(--serif); font-weight: 600;
-  font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.05;
-}
-.section-head p { margin: 18px auto 0; color: var(--ink-soft); font-weight: 300; font-size: 1.05rem; }
-.ornament { display: block; width: 120px; height: 18px; margin: 22px auto 0; }
+.ph .mark { width: 54px; height: 38px; opacity: .85; }
+.ph span { font-size: .62rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--cream-mute); }
+.about .photo { aspect-ratio: 4 / 5; }
+.about .photo::after { content: ""; position: absolute; inset: 14px; border: 1px solid rgba(227, 204, 151, .35); pointer-events: none; }
+.about__text p { margin: 0 0 18px; color: var(--cream-dim); font-weight: 300; }
+.facts { margin-top: 44px; }
+.fact { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 20px; padding: 18px 0; position: relative; }
+.fact .rule { position: absolute; left: 0; top: 0; }
+.fact b { font-family: var(--display); font-weight: 400; font-size: clamp(2.2rem, 4vw, 3.4rem); line-height: 1; letter-spacing: -.02em; }
+.fact__lbl { font-size: .7rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--cream-mute); text-align: right; }
 
-/* Анимации появления при прокрутке */
-[data-reveal] {
-  opacity: 0;
-  transition: opacity 1.1s var(--ease-out), transform 1.1s var(--ease-out), filter 1.1s var(--ease-out);
-  transition-delay: calc(var(--d, 0) * 110ms);
+/* 02 — Категории */
+.cats { margin-top: clamp(50px, 7vw, 90px); }
+.cat { position: relative; display: grid; grid-template-columns: 90px 1fr auto; align-items: center; gap: 24px 32px; padding: clamp(26px, 3.4vw, 44px) 0; isolation: isolate; }
+.cat > .rule { position: absolute; left: 0; top: 0; }
+.cats > .rule { margin-top: 0; }
+.cat::before { content: ""; position: absolute; inset: 0 calc(50% - 50vw); z-index: -1; background: var(--crimson); transform: scaleY(0); transform-origin: bottom; transition: transform .7s cubic-bezier(.7, 0, .2, 1); }
+.cat__idx { font-family: var(--display); font-style: italic; font-size: 1.3rem; color: var(--gold); }
+.cat__name { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(2.4rem, 6.4vw, 6rem); line-height: 1; letter-spacing: -.025em; transition: transform .7s cubic-bezier(.7, 0, .2, 1); }
+.cat__age { font-family: var(--display); font-size: clamp(1.3rem, 2.2vw, 2rem); color: var(--gold-soft); white-space: nowrap; }
+.cat__age small { font-family: var(--text); font-size: .7rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--cream-mute); margin-left: 8px; }
+.cat__desc { grid-column: 2 / -1; margin: -6px 0 0; max-width: 38em; color: var(--cream-dim); font-weight: 300; }
+@media (hover: hover) {
+  .cat:hover::before { transform: none; transform-origin: top; }
+  .cat:hover .cat__name { transform: translateX(18px); font-style: italic; }
 }
-[data-reveal="up"]    { transform: translateY(50px); }
-[data-reveal="left"]  { transform: translateX(-60px); }
-[data-reveal="right"] { transform: translateX(60px); }
-[data-reveal="zoom"]  { transform: scale(.88); filter: blur(6px); }
-[data-reveal="blur"]  { filter: blur(14px); transform: translateY(20px); }
-[data-reveal].is-in { opacity: 1; transform: none; filter: none; }
 
-/* О конкурсе */
-.about { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(40px, 6vw, 90px); align-items: center; }
-.about__visual { position: relative; aspect-ratio: 4 / 5; }
-.frame {
-  position: absolute; inset: 0; border-radius: 240px 240px var(--radius) var(--radius); overflow: hidden;
+/* 03 — Требования */
+.reqs-grid { display: grid; grid-template-columns: 4fr 7fr; gap: clamp(40px, 7vw, 120px); align-items: start; }
+.reqs-grid .h2 { position: sticky; top: 120px; }
+.req { position: relative; display: grid; grid-template-columns: 1fr 1.25fr; gap: 20px; align-items: baseline; padding: 24px 0; }
+.req .rule { position: absolute; left: 0; top: 0; }
+.req dt { font-size: .72rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--cream-mute); }
+.req dd { margin: 0; font-family: var(--display); font-size: clamp(1.5rem, 2.6vw, 2.3rem); line-height: 1.15; }
+.req dd small { display: block; margin-top: 6px; font-family: var(--text); font-size: .9rem; color: var(--cream-dim); font-weight: 300; }
+
+/* 04 — Как подать (горизонтальная сцена на компьютере) */
+.howto { position: relative; background: var(--wine); overflow: hidden; }
+.howto__head { padding-top: clamp(80px, 9vw, 130px); }
+.track { display: flex; gap: clamp(20px, 3vw, 40px); padding: clamp(36px, 5vh, 70px) var(--pad) clamp(90px, 11vw, 150px); width: max-content; }
+.step { position: relative; width: min(470px, 78vw); padding: 36px 34px 38px; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(0, 0, 0, .14), transparent); display: grid; align-content: space-between; min-height: clamp(320px, 50vh, 440px); }
+.step__n { font-family: var(--display); font-weight: 400; font-size: clamp(6rem, 11vw, 9.5rem); line-height: .8; letter-spacing: -.05em; color: transparent; -webkit-text-stroke: 1px var(--gold); }
+.step h3 { margin: 0 0 12px; font-family: var(--display); font-weight: 400; font-size: 2rem; line-height: 1.1; }
+.step p { margin: 0; color: var(--cream-dim); font-weight: 300; }
+.step--cta { border-color: var(--gold); background: var(--crimson); }
+.step--cta h3 { font-size: 2.4rem; }
+.step--cta h3 em { color: var(--gold-soft); }
+
+/* 05 — Галерея */
+.gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px, 2vw, 28px); margin-top: clamp(50px, 7vw, 90px); align-items: start; }
+.gcol { display: grid; gap: clamp(14px, 2vw, 28px); }
+.gcol:nth-child(2) { margin-top: 18%; }
+.gcol:nth-child(3) { margin-top: 6%; }
+.gitem { position: relative; display: block; width: 100%; padding: 0; border: 0; cursor: zoom-in; background: var(--crimson); overflow: hidden; }
+.gitem .photo__in { inset: -10% 0; transition: transform 1.2s cubic-bezier(.16, 1, .3, 1); }
+.gitem:hover .photo__in { transform: scale(1.05); }
+.gitem figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 18px 16px; text-align: left; font-size: .68rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--cream); background: linear-gradient(transparent, rgba(30, 2, 6, .8)); }
+.gallery-note { margin-top: 34px; text-align: center; color: var(--cream-mute); font-size: .85rem; }
+
+/* Финал — занавес снова */
+.finale { position: relative; overflow: hidden; min-height: 100svh; display: grid; place-items: center; text-align: center;
   background:
-    radial-gradient(circle at 50% 35%, rgba(232, 198, 106, .35), transparent 55%),
-    linear-gradient(160deg, var(--red-500), var(--red-800) 60%, var(--red-950));
-  box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .7);
+    radial-gradient(ellipse 40% 60% at 50% 0%, rgba(255, 228, 200, .16), transparent 70%),
+    radial-gradient(ellipse 70% 40% at 50% 100%, rgba(179, 24, 43, .5), transparent 70%),
+    var(--wine-deep);
 }
-.frame img { width: 100%; height: 100%; object-fit: cover; }
-.frame__ph { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 24px; }
-.frame__ph svg { width: 42%; opacity: .9; filter: drop-shadow(0 0 30px rgba(232, 198, 106, .6)); }
-.frame__ph em { display: block; margin-top: 14px; font-family: var(--serif); font-size: 1.15rem; color: var(--gold-200); }
-.about__ring {
-  position: absolute; inset: -18px; border-radius: 260px 260px 34px 34px;
-  border: 1px solid rgba(232, 198, 106, .5); pointer-events: none;
-}
-.about__badge {
-  position: absolute; right: -14px; bottom: 12%; z-index: 2;
-  width: 130px; height: 130px; border-radius: 50%; display: grid; place-items: center; text-align: center;
-  background: var(--gold-grad); background-size: 200% 100%; color: var(--red-900);
-  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, .6);
-  animation: shimmer 6s linear infinite;
-}
-.about__badge svg { position: absolute; inset: 0; width: 100%; height: 100%; animation: spin-badge 22s linear infinite; }
-.about__badge text { font-size: 8.4px; letter-spacing: 2.6px; font-weight: 700; fill: var(--red-900); font-family: var(--sans); }
-.about__badge b { font-family: var(--serif); font-size: 2rem; line-height: 1; }
-@keyframes spin-badge { to { transform: rotate(360deg); } }
-.about__text h3 { font-family: var(--serif); font-size: clamp(1.9rem, 3.4vw, 2.8rem); font-weight: 600; line-height: 1.1; margin: 14px 0 22px; }
-.about__text p { color: var(--ink-soft); font-weight: 300; margin: 0 0 16px; }
-.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 34px; }
-.stat { padding: 20px 14px; border-radius: 18px; text-align: center; border: 1px solid rgba(232, 198, 106, .3); background: rgba(255, 255, 255, .03); }
-.stat b { display: block; font-family: var(--serif); font-size: clamp(2rem, 3.6vw, 2.8rem); line-height: 1; }
-.stat span { display: block; margin-top: 8px; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-mute); }
-
-/* Категории */
-.cats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; perspective: 1400px; }
-.cat {
-  position: relative; padding: 46px 32px 38px; border-radius: var(--radius); text-align: center;
-  background: linear-gradient(170deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .02) 55%), var(--red-800);
-  transform-style: preserve-3d; transition: transform .7s var(--ease-out), box-shadow .7s var(--ease-out);
-  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .8);
-}
-.cat::before { /* золотая рамка-градиент */
-  content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1.2px;
-  background: conic-gradient(from var(--angle, 0deg), var(--gold-600), var(--gold-200), var(--gold-500), var(--red-500), var(--gold-300), var(--gold-600));
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor; mask-composite: exclude;
-  animation: rotate-border 8s linear infinite;
-}
-@property --angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
-@keyframes rotate-border { to { --angle: 360deg; } }
-.cat:hover { box-shadow: 0 40px 80px -30px rgba(232, 198, 106, .35); }
-.cat__icon { width: 76px; height: 76px; margin: 0 auto 22px; display: grid; place-items: center; border-radius: 50%; background: radial-gradient(circle, rgba(232, 198, 106, .25), transparent 70%); transform: translateZ(40px); }
-.cat__icon svg { width: 46px; height: 46px; }
-.cat h3 { font-family: var(--serif); font-size: 2rem; font-weight: 600; margin: 0; transform: translateZ(30px); }
-.cat__age { display: inline-block; margin: 14px 0 18px; padding: 6px 18px; border-radius: 999px; font-weight: 600; font-size: .82rem; letter-spacing: .14em; color: var(--red-900); background: var(--gold-grad); background-size: 200% 100%; transform: translateZ(25px); }
-.cat p { margin: 0; color: var(--ink-soft); font-weight: 300; font-size: .95rem; transform: translateZ(15px); }
-
-/* Требования */
-.reqs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
-.req { padding: 30px 18px; border-radius: var(--radius); text-align: center; border: 1px solid rgba(232, 198, 106, .22); background: rgba(255, 255, 255, .025); transition: transform .6s var(--ease-out), background .6s, border-color .6s; }
-.req:hover { transform: translateY(-8px); background: rgba(232, 198, 106, .07); border-color: rgba(232, 198, 106, .55); }
-.req svg { width: 40px; height: 40px; margin: 0 auto 16px; stroke: var(--gold-300); }
-.req b { display: block; font-family: var(--serif); font-size: 1.55rem; line-height: 1.1; }
-.req span { display: block; margin-top: 8px; font-size: .82rem; color: var(--ink-mute); }
-
-/* Шаги */
-.steps { position: relative; max-width: 860px; margin: 0 auto; }
-.steps__line { position: absolute; left: 31px; top: 10px; bottom: 10px; width: 2px; background: rgba(232, 198, 106, .18); }
-.steps__line i { position: absolute; inset: 0; background: var(--gold-grad); transform-origin: top; transform: scaleY(0); box-shadow: 0 0 14px rgba(232, 198, 106, .7); }
-.step { position: relative; display: grid; grid-template-columns: 64px 1fr; gap: 28px; padding: 18px 0 38px; }
-.step__num { position: relative; z-index: 1; width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; font-family: var(--serif); font-size: 1.7rem; font-weight: 700; color: var(--red-900); background: var(--gold-grad); background-size: 200% 100%; box-shadow: 0 0 0 8px var(--red-900), 0 10px 26px -6px rgba(232, 198, 106, .6); }
-.section--rich .step__num { box-shadow: 0 0 0 8px var(--red-800), 0 10px 26px -6px rgba(232, 198, 106, .6); }
-.step h3 { margin: 10px 0 6px; font-family: var(--serif); font-size: 1.75rem; font-weight: 600; }
-.step p { margin: 0; color: var(--ink-soft); font-weight: 300; }
-.steps__cta { text-align: center; margin-top: 18px; }
-
-/* Галерея */
-.gallery { columns: 3 280px; column-gap: 18px; }
-.gallery__item {
-  position: relative; display: block; width: 100%; margin: 0 0 18px; padding: 0; border: 0;
-  border-radius: 18px; overflow: hidden; cursor: zoom-in; break-inside: avoid; background: var(--red-800);
-  box-shadow: 0 24px 50px -24px rgba(0, 0, 0, .8);
-}
-.gallery__item img, .gallery__item .gph { width: 100%; transition: transform 1.2s var(--ease-out), filter 1.2s var(--ease-out); }
-.gallery__item:hover img, .gallery__item:hover .gph { transform: scale(1.07); }
-.gallery__item::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px rgba(232, 198, 106, .25); pointer-events: none; transition: box-shadow .6s; }
-.gallery__item:hover::after { box-shadow: inset 0 0 0 2px rgba(232, 198, 106, .8); }
-.gallery__cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 18px 16px; text-align: left; font-size: .82rem; letter-spacing: .08em; color: var(--gold-100); background: linear-gradient(transparent, rgba(30, 0, 4, .85)); transform: translateY(100%); transition: transform .7s var(--ease-out); }
-.gallery__item:hover .gallery__cap, .gallery__item:focus-visible .gallery__cap { transform: none; }
-.gph { display: grid; place-items: center; align-content: center; gap: 10px; background: radial-gradient(circle at 50% 40%, rgba(232, 198, 106, .28), transparent 60%), linear-gradient(160deg, var(--red-600), var(--red-900)); color: var(--gold-200); font-family: var(--serif); font-size: 1.05rem; font-style: italic; }
-.gph svg { width: 54px; height: 54px; opacity: .85; }
-.gallery-note { text-align: center; margin-top: 26px; color: var(--ink-mute); font-size: .85rem; }
-
-.lightbox { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 24px; background: rgba(20, 0, 3, .92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); opacity: 0; visibility: hidden; transition: opacity .5s var(--ease-out), visibility .5s; }
-.lightbox.is-open { opacity: 1; visibility: visible; }
-.lightbox__fig { margin: 0; max-width: min(1000px, 100%); text-align: center; transform: scale(.92); transition: transform .6s var(--ease-out); }
-.lightbox.is-open .lightbox__fig { transform: none; }
-.lightbox__media { max-height: 78vh; border-radius: 16px; overflow: hidden; box-shadow: 0 30px 80px rgba(0, 0, 0, .7); }
-.lightbox__media img { max-height: 78vh; width: auto; margin: 0 auto; }
-.lightbox__media .gph { width: min(520px, 86vw); aspect-ratio: 4 / 5; }
-.lightbox__cap { margin-top: 14px; color: var(--gold-100); font-family: var(--serif); font-size: 1.2rem; }
-.lightbox__btn { position: absolute; width: 52px; height: 52px; border-radius: 50%; border: 1px solid rgba(232, 198, 106, .5); background: rgba(255, 255, 255, .04); color: var(--gold-100); font-size: 1.5rem; cursor: pointer; display: grid; place-items: center; transition: background .3s; }
-.lightbox__btn:hover { background: rgba(232, 198, 106, .18); }
-.lightbox__close { top: 18px; right: 18px; }
-.lightbox__prev { left: 18px; top: 50%; transform: translateY(-50%); }
-.lightbox__next { right: 18px; top: 50%; transform: translateY(-50%); }
-
-/* Большой призыв */
-.cta {
-  position: relative; overflow: hidden; text-align: center;
-  padding: clamp(100px, 15vw, 180px) 0;
-  background: radial-gradient(ellipse 70% 70% at 50% 50%, var(--red-500), var(--red-800) 55%, var(--red-950));
-}
-.cta__crown { position: absolute; left: 50%; top: 50%; width: min(720px, 120vw); transform: translate(-50%, -50%); opacity: .08; pointer-events: none; will-change: transform; }
-.cta h2 { position: relative; margin: 18px 0 0; font-family: var(--serif); font-weight: 600; font-size: clamp(2.6rem, 7vw, 5.6rem); line-height: 1; }
-.cta p { position: relative; max-width: 560px; margin: 24px auto 40px; color: var(--ink-soft); font-weight: 300; font-size: 1.1rem; }
-.cta .btn { font-size: .95rem; padding: 21px 44px; }
-.pulse { animation: pulse 2.6s ease-out infinite; }
-@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(232, 198, 106, .55), 0 14px 34px -10px rgba(232, 198, 106, .7); } 70%, 100% { box-shadow: 0 0 0 26px rgba(232, 198, 106, 0), 0 14px 34px -10px rgba(232, 198, 106, .7); } }
+.finale__inner { position: relative; z-index: 6; padding: 120px calc(var(--drape) + 12px); }
+.finale .display { font-size: clamp(2.8rem, 9vw, 9.5rem); margin-top: 26px; }
+.finale .lead { margin: 30px auto 0; text-align: center; }
+.finale .btn { margin-top: 42px; }
+.finale .countdown { justify-content: center; margin-top: 46px; flex-wrap: wrap; row-gap: 6px; }
 
 /* Подвал */
-.footer { padding: 70px 0 40px; background: var(--red-950); border-top: 1px solid rgba(232, 198, 106, .2); }
-.footer__row { display: flex; flex-wrap: wrap; gap: 30px; align-items: center; justify-content: space-between; }
-.socials { display: flex; gap: 12px; flex-wrap: wrap; }
-.socials a { display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 999px; border: 1px solid rgba(232, 198, 106, .35); font-size: .85rem; color: var(--gold-100); transition: background .3s, transform .4s var(--ease-out); }
-.socials a:hover { background: rgba(232, 198, 106, .12); transform: translateY(-2px); }
-.socials svg { width: 18px; height: 18px; fill: var(--gold-300); }
-.footer__copy { margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(232, 198, 106, .12); font-size: .78rem; color: var(--ink-mute); display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; }
+.footer { position: relative; z-index: 6; background: var(--wine-deep); padding: 70px 0 34px; }
+.footer__top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 30px; padding-bottom: 40px; }
+.contacts { display: flex; flex-wrap: wrap; gap: 14px 34px; }
+.footer__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 30px; padding-top: 24px; font-size: .74rem; color: var(--cream-mute); }
 
-/* Плавающая кнопка на телефоне */
-.fab { position: fixed; left: 50%; bottom: max(16px, env(safe-area-inset-bottom)); z-index: 40; transform: translate(-50%, 140%); transition: transform .7s var(--ease-out); display: none; }
-.fab.is-shown { transform: translate(-50%, 0); }
+/* Нижняя кнопка на телефоне */
+.mbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 55; display: none; padding: 12px var(--pad) max(12px, env(safe-area-inset-bottom)); background: rgba(59, 5, 11, .92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 -1px 0 var(--line); transform: translateY(105%); transition: transform .6s cubic-bezier(.7, 0, .2, 1); }
+.mbar.is-shown { transform: none; }
+.mbar .btn { width: 100%; }
 
-/* ================================================================
-   Адаптив
-   ================================================================ */
-@media (max-width: 1080px) {
-  .reqs { grid-template-columns: repeat(3, 1fr); }
-}
-@media (max-width: 900px) {
+/* Просмотр фото */
+.lightbox { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 70px var(--pad); background: rgba(30, 2, 6, .96); opacity: 0; visibility: hidden; transition: opacity .5s, visibility .5s; }
+.lightbox.is-open { opacity: 1; visibility: visible; }
+.lightbox figure { margin: 0; text-align: center; }
+.lb-media { width: min(560px, 82vw); aspect-ratio: 4 / 5; position: relative; overflow: hidden; background: var(--crimson); }
+.lb-media img { width: 100%; height: 100%; object-fit: contain; background: #1e0206; }
+.lightbox figcaption { margin-top: 16px; font-size: .7rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--cream-dim); }
+.lb-btn { position: absolute; width: 50px; height: 50px; border: 1px solid var(--line); background: transparent; cursor: pointer; display: grid; place-items: center; transition: background .4s, border-color .4s; }
+.lb-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--wine-deep); }
+.lb-btn svg { width: 18px; height: 18px; }
+.lb-close { top: 18px; right: 18px; }
+.lb-prev { left: 18px; top: 50%; margin-top: -25px; }
+.lb-next { right: 18px; top: 50%; margin-top: -25px; }
+
+/* =================================================================
+   АДАПТИВ
+   ================================================================= */
+@media (max-width: 1023px) {
+  :root { --drape: 6vw; }
   .nav__links {
-    position: fixed; inset: 0; z-index: -1; flex-direction: column; align-items: center; justify-content: center; gap: 30px;
-    font-size: 1.05rem; background: rgba(30, 0, 4, .96); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-    opacity: 0; visibility: hidden; transition: opacity .5s var(--ease-out), visibility .5s;
+    position: fixed; inset: 0; z-index: -1; flex-direction: column; justify-content: center; gap: 6px;
+    padding: 0 var(--pad); background: var(--wine-deep);
+    clip-path: inset(0 0 100% 0); transition: clip-path .8s cubic-bezier(.7, 0, .2, 1);
   }
-  .nav.is-open .nav__links { opacity: 1; visibility: visible; }
+  .nav.is-open .nav__links { clip-path: inset(0); }
+  .nav__links li { border-bottom: 1px solid var(--line); }
+  .nav__links a { display: flex; align-items: baseline; gap: 18px; padding: 14px 0; font-family: var(--display); font-size: clamp(2rem, 8vw, 3rem); font-weight: 400; letter-spacing: -.01em; text-transform: none; color: var(--cream); }
+  .nav__links .num { display: inline; font-size: 1rem; font-style: italic; color: var(--gold); }
   .burger { display: block; }
   .nav__cta { display: none; }
-  .about { grid-template-columns: 1fr; }
-  .about__visual { max-width: 420px; width: calc(100% - 40px); margin: 0 auto; }
-  .cats { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
-  .fab { display: block; }
+  .about, .reqs-grid { grid-template-columns: 1fr; }
+  .reqs-grid .h2 { position: static; }
+  .about .photo { max-width: 460px; }
+  /* шаги — вертикально, без горизонтальной прокрутки */
+  .track { width: auto; flex-direction: column; padding-top: 40px; }
+  .step { width: 100%; min-height: 0; gap: 34px; }
+  .mbar { display: block; }
+  .footer { padding-bottom: 100px; }
 }
-@media (max-width: 600px) {
-  .reqs { grid-template-columns: repeat(2, 1fr); }
-  .reqs .req:last-child { grid-column: 1 / -1; }
-  .stats { gap: 8px; }
-  .stat { padding: 16px 6px; }
-  .about__badge { width: 104px; height: 104px; right: -6px; }
-  .about__badge b { font-size: 1.6rem; }
-  .step { grid-template-columns: 52px 1fr; gap: 18px; }
-  .step__num { width: 52px; height: 52px; font-size: 1.4rem; }
-  .steps__line { left: 25px; }
-  .lightbox__prev, .lightbox__next { top: auto; bottom: 22px; transform: none; }
-  .lightbox__prev { left: calc(50% - 64px); } .lightbox__next { right: calc(50% - 64px); }
-  .hero__actions .btn { width: 100%; max-width: 340px; }
-  .eyebrow { letter-spacing: .24em; gap: 10px; font-size: .72rem; }
-  .scroll-hint { display: none; }
-  .countdown__lbl { letter-spacing: .12em; font-size: .58rem; }
-  .eyebrow::before, .eyebrow::after { width: 22px; }
+@media (max-width: 640px) {
+  .bar { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+  .bar > :first-child, .bar > :last-child { display: none; }
+  .countdown { gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .countdown .cd-title { width: 100%; text-align: center; margin: 0 0 2px; }
+  .countdown b { font-size: 1.35rem; }
+  .cat { grid-template-columns: 1fr auto; }
+  .cat__idx { grid-column: 1 / -1; }
+  .cat__desc { grid-column: 1 / -1; margin: 0; }
+  .req { grid-template-columns: 1fr; gap: 6px; }
+  .gallery { grid-template-columns: repeat(2, 1fr); }
+  .gcol:nth-child(2) { margin-top: 22%; }
+  .hero__actions { flex-direction: column; }
+  .hero__actions .btn { width: 100%; max-width: 330px; }
+  .fact__lbl { max-width: 9em; }
 }
 
-/* Для тех, у кого в системе отключены анимации */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
-  html { scroll-behavior: auto; }
-  [data-reveal] { opacity: 1; transform: none; filter: none; }
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
 </style>
 </head>
 <body>
 
-<!-- Значок короны (переиспользуется через <use>) -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <linearGradient id="g-gold" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#8f6a1c"/><stop offset=".3" stop-color="#e8c66a"/>
-      <stop offset=".5" stop-color="#fff3c4"/><stop offset=".7" stop-color="#d4a843"/><stop offset="1" stop-color="#b88a2a"/>
-    </linearGradient>
-    <symbol id="crown" viewBox="0 0 64 64">
-      <path d="M8 46 4 17l15 11 13-20 13 20 15-11-4 29z" fill="url(#g-gold)"/>
-      <rect x="8" y="49" width="48" height="6" rx="2" fill="url(#g-gold)"/>
-      <circle cx="4" cy="16" r="3" fill="url(#g-gold)"/><circle cx="32" cy="7" r="3.4" fill="url(#g-gold)"/><circle cx="60" cy="16" r="3" fill="url(#g-gold)"/>
-      <circle cx="32" cy="36" r="4" fill="#c0182d"/><circle cx="19" cy="38" r="2.6" fill="#c0182d"/><circle cx="45" cy="38" r="2.6" fill="#c0182d"/>
-    </symbol>
-    <symbol id="ornament" viewBox="0 0 120 18">
-      <path d="M0 9h46M74 9h46" stroke="url(#g-gold)" stroke-width="1"/>
-      <path d="M60 1l5 8-5 8-5-8z" fill="url(#g-gold)"/>
-      <circle cx="49" cy="9" r="2" fill="url(#g-gold)"/><circle cx="71" cy="9" r="2" fill="url(#g-gold)"/>
-    </symbol>
-  </defs>
+  <symbol id="crown" viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round">
+    <path d="M6 25 3.5 8l10.5 8L24 3l10 13 10.5-8L42 25z"/><path d="M7 29.5h34"/>
+    <circle cx="3.5" cy="7" r="1.4"/><circle cx="24" cy="2.2" r="1.4"/><circle cx="44.5" cy="7" r="1.4"/>
+  </symbol>
+  <symbol id="arrow" viewBox="0 0 22 10" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 5h21M16 .5 21 5l-5 4.5"/></symbol>
 </svg>
 
-<div class="preloader" id="preloader" aria-hidden="true">
-  <div class="preloader__inner">
-    <svg class="preloader__crown" viewBox="0 0 64 64"><path d="M8 46 4 17l15 11 13-20 13 20 15-11-4 29z"/><rect x="8" y="49" width="48" height="6" rx="2"/></svg>
-    <div class="preloader__line"></div>
-  </div>
-</div>
-
-<div class="progress" id="progress"></div>
-
 <header class="nav" id="nav">
-  <div class="container nav__row">
-    <a href="#top" class="brand" aria-label="На главную">
-      <svg><use href="#crown"/></svg>
-      <span>Мисс &amp; Миссис<small>Краснодарский край</small></span>
+  <div class="wrap nav__row">
+    <a href="#top" class="brand" data-scroll aria-label="Наверх">
+      <svg class="mark"><use href="#crown"/></svg>
+      <span><b>Мисс &amp; Миссис</b><small>Краснодарский край</small></span>
     </a>
     <ul class="nav__links" id="navLinks">
-      <li><a href="#about">О конкурсе</a></li>
-      <li><a href="#categories">Категории</a></li>
-      <li><a href="#requirements">Требования</a></li>
-      <li><a href="#gallery">Галерея</a></li>
-      <li><a href="#contacts">Контакты</a></li>
+      <li><a href="#about" data-scroll><span class="num">01</span>О конкурсе</a></li>
+      <li><a href="#categories" data-scroll><span class="num">02</span>Категории</a></li>
+      <li><a href="#requirements" data-scroll><span class="num">03</span>Требования</a></li>
+      <li><a href="#how" data-scroll><span class="num">04</span>Заявка</a></li>
+      <li><a href="#gallery" data-scroll><span class="num">05</span>Галерея</a></li>
     </ul>
-    <a class="btn btn--gold btn--sm nav__cta js-bot" href="#" target="_blank" rel="noopener">Подать заявку</a>
-    <button class="burger" id="burger" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+    <a class="btn btn--sm nav__cta js-bot" href="#" target="_blank" rel="noopener">Подать анкету</a>
+    <button class="burger" id="burger" aria-label="Меню" aria-expanded="false"><i></i><i></i></button>
   </div>
 </header>
 
 <main id="top">
 
-  <!-- ================= HERO ================= -->
+  <!-- ============ СЦЕНА ============ -->
   <section class="hero" id="hero">
-    <div class="hero__rays" aria-hidden="true"></div>
-    <canvas id="sparkles" aria-hidden="true"></canvas>
-    <div class="container hero__content" id="heroContent">
-      <svg class="hero__crown fade-in" aria-hidden="true"><use href="#crown"/></svg>
-      <div class="eyebrow fade-in d1">Конкурс красоты Кубани</div>
-      <h1>
-        <span class="line"><span>Мисс&nbsp;и&nbsp;Миссис</span></span>
-        <span class="line"><span class="gold-text">Краснодарский край</span></span>
-        <span class="line"><span class="hero__year gold-text">сезон 2027</span></span>
+    <div class="drape drape--l" data-drape="l"></div>
+    <div class="drape drape--r" data-drape="r"></div>
+    <div class="intro" id="intro" aria-hidden="true">
+      <div>
+        <svg class="mark"><use href="#crown"/></svg>
+        <p>Мисс и Миссис</p>
+        <span class="label">Краснодарский край · 2027</span>
+      </div>
+    </div>
+
+    <div class="hero__inner" id="heroInner">
+      <div class="hero__meta label" data-hero>
+        <span class="rule"></span><span>Конкурс красоты · Сезон 2027</span><span class="rule"></span>
+      </div>
+      <h1 class="display">
+        <span class="ln"><span>Мисс <em>и</em> Миссис</span></span>
+        <span class="ln"><span>Краснодарский</span></span>
+        <span class="ln"><span><em>край</em></span></span>
       </h1>
-      <p class="hero__lead fade-in d2">Сцена, корона и вдохновение — для самых ярких девушек и женщин Кубани. Покажи свою красоту, характер и талант.</p>
-      <div class="hero__actions fade-in d3">
-        <a class="btn btn--gold js-bot" href="#" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.6 18.7 19.7c-.2 1-.9 1.3-1.7.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.8-7.9c.4-.3-.1-.5-.6-.2L6.6 13.6 2 12.2c-1-.3-1-1 .2-1.5L20.5 3.6c.9-.3 1.6.2 1.4 1z"/></svg>
-          Подать заявку
-        </a>
-        <a class="btn btn--ghost" href="#about">Узнать больше</a>
-      </div>
-      <div class="fade-in d4">
-        <div class="countdown__title" id="cdTitle">До окончания приёма заявок</div>
-        <div class="countdown" id="countdown" role="timer" aria-live="off">
-          <div class="countdown__cell"><span class="countdown__num gold-text" data-cd="d">00</span><span class="countdown__lbl">дней</span></div>
-          <div class="countdown__cell"><span class="countdown__num gold-text" data-cd="h">00</span><span class="countdown__lbl">часов</span></div>
-          <div class="countdown__cell"><span class="countdown__num gold-text" data-cd="m">00</span><span class="countdown__lbl">минут</span></div>
-          <div class="countdown__cell"><span class="countdown__num gold-text" data-cd="s">00</span><span class="countdown__lbl">секунд</span></div>
-        </div>
+      <p class="lead hero__lead" data-hero>Сцена, корона и свет софитов — для самых ярких девушек и женщин Кубани. Анкеты принимаются до 15 января 2027 года.</p>
+      <div class="hero__actions" data-hero>
+        <a class="btn js-bot" href="#" target="_blank" rel="noopener">Подать анкету <svg><use href="#arrow"/></svg></a>
+        <a class="textlink" href="#about" data-scroll><span>О конкурсе</span></a>
       </div>
     </div>
-    <div class="scroll-hint" aria-hidden="true">Листайте<i></i></div>
+
+    <div class="hero__bar" data-hero>
+      <span class="rule"></span>
+      <div class="bar">
+        <span>Telegram-бот</span>
+        <div class="countdown" data-countdown>
+          <span class="cd-title">До закрытия приёма</span>
+          <span><b data-cd="d">00</b><small>дн</small></span>
+          <span><b data-cd="h">00</b><small>ч</small></span>
+          <span><b data-cd="m">00</b><small>мин</small></span>
+          <span><b data-cd="s">00</b><small>с</small></span>
+        </div>
+        <span>Листайте ↓</span>
+      </div>
+    </div>
   </section>
 
-  <div class="marquee-wrap" aria-hidden="true">
-    <div class="marquee">
-      <div class="marquee__track">
-        <span>Красота</span><span>Грация</span><span>Уверенность</span><span>Кубань</span><span>Сезон 2027</span><span>Твоя корона</span>
-        <span>Красота</span><span>Грация</span><span>Уверенность</span><span>Кубань</span><span>Сезон 2027</span><span>Твоя корона</span>
-      </div>
-    </div>
-  </div>
+  <!-- ============ 01. О КОНКУРСЕ ============ -->
+  <section class="sec sec--deep" id="about">
+    <div class="wrap">
+      <div class="sec-head"><span class="num">01</span><span class="label">О конкурсе</span><span class="rule" data-rule></span></div>
+      <p class="statement" data-scrub>«Мисс и Миссис Краснодарский край» — это сцена, на которой Кубань знакомится со своими самыми яркими девушками и женщинами. Здесь ценят <em>красоту, характер и умение вдохновлять.</em></p>
 
-  <!-- ================= О КОНКУРСЕ ================= -->
-  <section class="section section--dark" id="about">
-    <div class="container about">
-      <div class="about__visual" data-reveal="left">
-        <div class="about__ring"></div>
-        <div class="frame" data-parallax="0.06">
-          <!-- Замените на настоящее фото: <img src="images/about.jpg" alt="..."> -->
-          <div class="frame__ph"><div><svg><use href="#crown"/></svg><em>Здесь будет фото победительницы</em></div></div>
+      <div class="about">
+        <div class="photo" data-photo>
+          <div class="photo__in" data-parallax>
+            <div class="ph" id="aboutPhoto"><svg class="mark"><use href="#crown"/></svg><span>Фото победительницы</span></div>
+          </div>
         </div>
-        <div class="about__badge">
-          <svg viewBox="0 0 100 100" aria-hidden="true">
-            <defs><path id="circlePath" d="M50 50m-38 0a38 38 0 1 1 76 0a38 38 0 1 1-76 0"/></defs>
-            <text><textPath href="#circlePath">МИСС И МИССИС • КРАСНОДАРСКИЙ КРАЙ •</textPath></text>
-          </svg>
-          <b>2027</b>
-        </div>
-      </div>
-      <div class="about__text">
-        <div class="eyebrow" data-reveal="up">О конкурсе</div>
-        <h3 data-reveal="up" style="--d:1">Больше, чем конкурс красоты — <span class="gold-text">путь к своей короне</span></h3>
-        <p data-reveal="up" style="--d:2">«Мисс и Миссис Краснодарский край» — региональный конкурс, который объединяет девушек и женщин со всей Кубани. Здесь ценят не только внешность, но и характер, уверенность, обаяние и умение вдохновлять.</p>
-        <p data-reveal="up" style="--d:3">Участниц ждут подготовка с профессионалами, фотосессии, репетиции, новые знакомства и яркий финал на большой сцене. Это шанс открыть себя заново — и, возможно, примерить корону.</p>
-        <div class="stats" data-reveal="up" style="--d:4">
-          <div class="stat"><b class="gold-text" data-count="3">0</b><span>категории</span></div>
-          <div class="stat"><b class="gold-text"><span data-count="14">0</span>–<span data-count="45">0</span></b><span>лет участницам</span></div>
-          <div class="stat"><b class="gold-text" data-count="165" data-suffix="+">0</b><span>см рост</span></div>
+        <div class="about__text">
+          <p data-fade>Участниц ждут подготовка с профессионалами, фотосессии, репетиции, новые знакомства и финал на большой сцене. Это возможность открыть себя заново — и, может быть, примерить корону.</p>
+          <p data-fade>Конкурс проходит в трёх категориях: для юных участниц, для девушек и для женщин. Каждая история здесь — особенная.</p>
+          <div class="facts">
+            <div class="fact"><span class="rule" data-rule></span><b data-count="3">3</b><span class="fact__lbl">категории</span></div>
+            <div class="fact"><span class="rule" data-rule></span><b><span data-count="14">14</span>–<span data-count="45">45</span></b><span class="fact__lbl">лет — возраст участниц</span></div>
+            <div class="fact"><span class="rule" data-rule></span><b><span data-count="165">165</span>+</b><span class="fact__lbl">см — рост</span></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ================= КАТЕГОРИИ ================= -->
-  <section class="section section--rich" id="categories">
-    <div class="container">
-      <div class="section-head">
-        <div class="eyebrow" data-reveal="up">Категории</div>
-        <h2 data-reveal="up" style="--d:1">Три короны — <span class="gold-text">три истории</span></h2>
-        <svg class="ornament" data-reveal="zoom" style="--d:2"><use href="#ornament"/></svg>
-      </div>
+  <!-- ============ 02. КАТЕГОРИИ ============ -->
+  <section class="sec" id="categories">
+    <div class="wrap">
+      <div class="sec-head"><span class="num">02</span><span class="label">Категории</span><span class="rule" data-rule></span></div>
+      <h2 class="h2" data-split>Три короны — <em>три истории</em></h2>
       <div class="cats">
-        <article class="cat js-tilt" data-reveal="up" style="--d:0">
-          <div class="cat__icon"><svg><use href="#crown"/></svg></div>
-          <h3 class="gold-text">Юная Мисс</h3>
-          <div class="cat__age">14–17 лет</div>
-          <p>Для юных участниц, которые делают первые шаги на сцене и мечтают о большом будущем.</p>
+        <article class="cat">
+          <span class="rule" data-rule></span>
+          <span class="cat__idx">I</span>
+          <h3 class="cat__name" data-split>Юная Мисс</h3>
+          <span class="cat__age" data-fade>14–17<small>лет</small></span>
+          <p class="cat__desc" data-fade>Для юных участниц, которые делают первые шаги на сцене и мечтают о большом будущем.</p>
         </article>
-        <article class="cat js-tilt" data-reveal="up" style="--d:1">
-          <div class="cat__icon"><svg><use href="#crown"/></svg></div>
-          <h3 class="gold-text">Мисс</h3>
-          <div class="cat__age">18–35 лет</div>
-          <p>Для девушек, готовых показать красоту, стиль и характер — и заявить о себе на всю Кубань.</p>
+        <article class="cat">
+          <span class="rule" data-rule></span>
+          <span class="cat__idx">II</span>
+          <h3 class="cat__name" data-split>Мисс</h3>
+          <span class="cat__age" data-fade>18–35<small>лет</small></span>
+          <p class="cat__desc" data-fade>Для девушек, готовых показать красоту, стиль и характер — и заявить о себе на всю Кубань.</p>
         </article>
-        <article class="cat js-tilt" data-reveal="up" style="--d:2">
-          <div class="cat__icon"><svg><use href="#crown"/></svg></div>
-          <h3 class="gold-text">Миссис</h3>
-          <div class="cat__age">20–45 лет</div>
-          <p>Для женщин, которые совмещают семью, карьеру и красоту — и вдохновляют своим примером.</p>
+        <article class="cat">
+          <span class="rule" data-rule></span>
+          <span class="cat__idx">III</span>
+          <h3 class="cat__name" data-split>Миссис</h3>
+          <span class="cat__age" data-fade>20–45<small>лет</small></span>
+          <p class="cat__desc" data-fade>Для женщин, которые совмещают семью, работу и красоту — и вдохновляют своим примером.</p>
         </article>
+        <span class="rule" data-rule></span>
       </div>
     </div>
   </section>
 
-  <!-- ================= ТРЕБОВАНИЯ ================= -->
-  <section class="section section--dark" id="requirements">
-    <div class="container">
-      <div class="section-head">
-        <div class="eyebrow" data-reveal="up">Требования</div>
-        <h2 data-reveal="up" style="--d:1">Кто может <span class="gold-text">участвовать</span></h2>
-        <svg class="ornament" data-reveal="zoom" style="--d:2"><use href="#ornament"/></svg>
-      </div>
-      <div class="reqs">
-        <div class="req" data-reveal="zoom" style="--d:0">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
-          <b class="gold-text">Кубань</b><span>жительницы Краснодарского края</span>
-        </div>
-        <div class="req" data-reveal="zoom" style="--d:1">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-          <b class="gold-text">14–45</b><span>лет — возраст участниц</span>
-        </div>
-        <div class="req" data-reveal="zoom" style="--d:2">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M8 7l4-4 4 4M8 17l4 4 4-4"/></svg>
-          <b class="gold-text">от 165 см</b><span>рост участницы</span>
-        </div>
-        <div class="req" data-reveal="zoom" style="--d:3">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3 4 6l2 4 2-1v12h8V9l2 1 2-4-4-3c-.5 1.6-2 2.5-4 2.5S8.5 4.6 8 3z"/></svg>
-          <b class="gold-text">40–46</b><span>размер одежды</span>
-        </div>
-        <div class="req" data-reveal="zoom" style="--d:4">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="3"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>
-          <b class="gold-text">5 фото</b><span>или видео — в любом сочетании</span>
-        </div>
+  <!-- ============ 03. ТРЕБОВАНИЯ ============ -->
+  <section class="sec sec--deep" id="requirements">
+    <div class="wrap">
+      <div class="sec-head"><span class="num">03</span><span class="label">Требования</span><span class="rule" data-rule></span></div>
+      <div class="reqs-grid">
+        <h2 class="h2" data-split>Кто может <em>участвовать</em></h2>
+        <dl style="margin:0">
+          <div class="req"><span class="rule" data-rule></span><dt data-fade>Проживание</dt><dd data-fade>Краснодарский край<small>Конкурс только для жительниц края</small></dd></div>
+          <div class="req"><span class="rule" data-rule></span><dt data-fade>Возраст</dt><dd data-fade>14–45 лет<small>Категория определяется по возрасту</small></dd></div>
+          <div class="req"><span class="rule" data-rule></span><dt data-fade>Рост</dt><dd data-fade>от 165 см</dd></div>
+          <div class="req"><span class="rule" data-rule></span><dt data-fade>Размер одежды</dt><dd data-fade>40–46</dd></div>
+          <div class="req"><span class="rule" data-rule></span><dt data-fade>Материалы</dt><dd data-fade>5 фото или видео<small>В любом сочетании, хорошего качества</small></dd></div>
+          <div class="req"><span class="rule" data-rule></span><dt data-fade>Приём анкет</dt><dd data-fade>до 15 января 2027</dd></div>
+        </dl>
       </div>
     </div>
   </section>
 
-  <!-- ================= КАК ПОДАТЬ ЗАЯВКУ ================= -->
-  <section class="section section--rich" id="how">
-    <div class="container">
-      <div class="section-head">
-        <div class="eyebrow" data-reveal="up">Как подать заявку</div>
-        <h2 data-reveal="up" style="--d:1">Четыре шага <span class="gold-text">до сцены</span></h2>
-        <p data-reveal="up" style="--d:2">Анкета заполняется в Telegram-боте и занимает около пяти минут. Приём заявок — до 15 января 2027 года.</p>
-      </div>
-      <div class="steps" id="steps">
-        <div class="steps__line"><i id="stepsLine"></i></div>
-        <div class="step" data-reveal="right" style="--d:0"><div class="step__num">1</div><div><h3>Откройте бота</h3><p>Нажмите «Подать заявку» — откроется официальный Telegram-бот конкурса.</p></div></div>
-        <div class="step" data-reveal="right" style="--d:1"><div class="step__num">2</div><div><h3>Заполните анкету</h3><p>ФИО, город, возраст, рост, размер, семейное положение и опыт — бот подскажет на каждом шаге.</p></div></div>
-        <div class="step" data-reveal="right" style="--d:2"><div class="step__num">3</div><div><h3>Пришлите 5 фото</h3><p>Хорошего качества: портрет и в полный рост. Часть фото можно заменить видео.</p></div></div>
-        <div class="step" data-reveal="right" style="--d:3"><div class="step__num">4</div><div><h3>Ждите приглашения</h3><p>Организаторы рассмотрят анкету и свяжутся с вами по телефону или в Telegram.</p></div></div>
-        <div class="steps__cta" data-reveal="up"><a class="btn btn--gold js-bot" href="#" target="_blank" rel="noopener">Заполнить анкету</a></div>
-      </div>
+  <!-- ============ 04. КАК ПОДАТЬ ============ -->
+  <section class="howto" id="how">
+    <div class="wrap howto__head">
+      <div class="sec-head"><span class="num">04</span><span class="label">Как подать анкету</span><span class="rule" data-rule></span></div>
+      <h2 class="h2" data-split>Четыре шага <em>до сцены</em></h2>
+    </div>
+    <div class="track" id="track">
+      <div class="step"><span class="step__n">01</span><div><h3>Откройте бота</h3><p>Нажмите «Подать анкету» — откроется официальный Telegram-бот конкурса.</p></div></div>
+      <div class="step"><span class="step__n">02</span><div><h3>Заполните анкету</h3><p>ФИО, город, возраст, рост, размер, семейное положение и опыт — бот подскажет на каждом шаге.</p></div></div>
+      <div class="step"><span class="step__n">03</span><div><h3>Пришлите 5 фото</h3><p>Портрет и в полный рост, хорошего качества. Часть фото можно заменить видео.</p></div></div>
+      <div class="step"><span class="step__n">04</span><div><h3>Ждите приглашения</h3><p>Организаторы рассмотрят анкету и свяжутся с вами по телефону или в Telegram.</p></div></div>
+      <div class="step step--cta"><svg class="mark" style="width:64px;height:44px"><use href="#crown"/></svg><div><h3>Анкета занимает <em>5 минут</em></h3><p style="margin-bottom:28px">Приём открыт до 15 января 2027 года.</p><a class="btn js-bot" href="#" target="_blank" rel="noopener">Подать анкету <svg><use href="#arrow"/></svg></a></div></div>
     </div>
   </section>
 
-  <!-- ================= ГАЛЕРЕЯ ================= -->
-  <section class="section section--dark" id="gallery">
-    <div class="container">
-      <div class="section-head">
-        <div class="eyebrow" data-reveal="up">Галерея</div>
-        <h2 data-reveal="up" style="--d:1">Яркие моменты <span class="gold-text">прошлых лет</span></h2>
-        <svg class="ornament" data-reveal="zoom" style="--d:2"><use href="#ornament"/></svg>
-      </div>
-      <div class="gallery" id="gallery-grid"></div>
+  <!-- ============ 05. ГАЛЕРЕЯ ============ -->
+  <section class="sec sec--deep" id="gallery">
+    <div class="wrap">
+      <div class="sec-head"><span class="num">05</span><span class="label">Галерея</span><span class="rule" data-rule></span></div>
+      <h2 class="h2" data-split>Сезоны, которые <em>запомнились</em></h2>
+      <div class="gallery" id="galleryGrid"></div>
       <p class="gallery-note" id="galleryNote">Фотографии прошлых сезонов скоро появятся здесь.</p>
     </div>
   </section>
 
-  <!-- ================= ПРИЗЫВ ================= -->
-  <section class="cta">
-    <svg class="cta__crown" id="ctaCrown" aria-hidden="true"><use href="#crown"/></svg>
-    <div class="container">
-      <div class="eyebrow" data-reveal="up">Сезон 2027</div>
-      <h2 data-reveal="blur" style="--d:1">Твоя корона <span class="gold-text">ждёт</span></h2>
-      <p data-reveal="up" style="--d:2">Не откладывай мечту — приём заявок открыт до 15 января 2027 года.</p>
-      <div data-reveal="zoom" style="--d:3"><a class="btn btn--gold pulse js-bot" href="#" target="_blank" rel="noopener">Подать заявку в Telegram</a></div>
+  <!-- ============ ФИНАЛ ============ -->
+  <section class="finale" id="finale">
+    <div class="drape drape--l" data-fdrape="l"></div>
+    <div class="drape drape--r" data-fdrape="r"></div>
+    <div class="finale__inner">
+      <span class="label" data-fade>Сезон 2027 · приём открыт</span>
+      <h2 class="display" data-split>Твоя корона <em>ждёт</em></h2>
+      <p class="lead" data-fade>Не откладывай мечту на следующий год. Заполни анкету в Telegram — это займёт всего несколько минут.</p>
+      <div data-fade><a class="btn js-bot" href="#" target="_blank" rel="noopener">Подать анкету <svg><use href="#arrow"/></svg></a></div>
+      <div class="countdown" data-countdown data-fade>
+        <span class="cd-title label">До закрытия приёма</span>
+        <span><b data-cd="d">00</b><small>дн</small></span>
+        <span><b data-cd="h">00</b><small>ч</small></span>
+        <span><b data-cd="m">00</b><small>мин</small></span>
+        <span><b data-cd="s">00</b><small>с</small></span>
+      </div>
     </div>
   </section>
 </main>
 
 <footer class="footer" id="contacts">
-  <div class="container">
-    <div class="footer__row">
-      <a href="#top" class="brand"><svg><use href="#crown"/></svg><span>Мисс &amp; Миссис<small>Краснодарский край 2027</small></span></a>
-      <div class="socials" id="socials"></div>
+  <div class="wrap">
+    <div class="footer__top">
+      <a href="#top" class="brand" data-scroll><svg class="mark"><use href="#crown"/></svg><span><b>Мисс &amp; Миссис</b><small>Краснодарский край · 2027</small></span></a>
+      <div class="contacts" id="contacts-list"></div>
     </div>
-    <div class="footer__copy">
+    <span class="rule"></span>
+    <div class="footer__bottom">
       <span>© <span id="year"></span> Мисс и Миссис Краснодарский край</span>
-      <span>Приём заявок — через Telegram-бота конкурса</span>
+      <span>Анкеты принимаются через Telegram-бота конкурса</span>
     </div>
   </div>
 </footer>
 
-<a class="btn btn--gold fab js-bot" id="fab" href="#" target="_blank" rel="noopener">Подать заявку</a>
+<div class="mbar" id="mbar"><a class="btn js-bot" href="#" target="_blank" rel="noopener">Подать анкету <svg><use href="#arrow"/></svg></a></div>
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр фото">
-  <button class="lightbox__btn lightbox__close" id="lbClose" aria-label="Закрыть">×</button>
-  <button class="lightbox__btn lightbox__prev" id="lbPrev" aria-label="Предыдущее">‹</button>
-  <figure class="lightbox__fig"><div class="lightbox__media" id="lbMedia"></div><figcaption class="lightbox__cap" id="lbCap"></figcaption></figure>
-  <button class="lightbox__btn lightbox__next" id="lbNext" aria-label="Следующее">›</button>
+  <button class="lb-btn lb-close" id="lbClose" aria-label="Закрыть"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2 2l14 14M16 2 2 16"/></svg></button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Предыдущее"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2 5 9l7 7"/></svg></button>
+  <figure><div class="lb-media" id="lbMedia"></div><figcaption id="lbCap"></figcaption></figure>
+  <button class="lb-btn lb-next" id="lbNext" aria-label="Следующее"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.2"><path d="m6 2 7 7-7 7"/></svg></button>
 </div>
 
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/lenis.min.js"></script>
 <script>
 /* =================================================================
    НАСТРОЙКИ САЙТА — всё, что меняется, здесь
    ================================================================= */
 const SITE = {
   botUrl: "https://t.me/msmrs_krasnodarskiykray_bot",
-  deadline: "2027-01-15T23:59:59+03:00",       // конец приёма заявок (МСК)
+  deadline: "2027-01-15T23:59:59+03:00",   // конец приёма анкет (МСК)
+
+  aboutPhoto: "",                          // напр. "images/about.jpg"
 
   // Контакты в подвале. Пустые не показываются.
   contacts: {
     telegram: "https://t.me/msmrs_krasnodarskiykray_bot",
-    instagram: "",   // напр. "https://instagram.com/..."
-    vk: "",          // напр. "https://vk.com/..."
-    phone: "",       // напр. "+7 900 000-00-00"
+    instagram: "",
+    vk: "",
+    phone: "",
   },
 
-  // Галерея прошлых лет: положите фото в папку images/ и пропишите здесь.
-  // Пока список пуст — показываются красивые заглушки.
+  // Галерея прошлых лет. Пока пусто — показываются заглушки.
   gallery: [
     // { src: "images/2025-1.jpg", caption: "Финал 2025" },
   ],
 };
 
 /* ================================================================= */
-const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const isTouch = matchMedia("(hover: none)").matches;
+(function () {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const hasGsap = !!(window.gsap && window.ScrollTrigger);
+  if (!hasGsap || reduce) document.documentElement.classList.add("static");
 
-// Ссылки на бота
-document.querySelectorAll(".js-bot").forEach(a => a.href = SITE.botUrl);
-document.getElementById("year").textContent = new Date().getFullYear();
+  /* ---------- Контент из настроек ---------- */
+  $$(".js-bot").forEach(a => (a.href = SITE.botUrl));
+  $("#year").textContent = new Date().getFullYear();
+  if (SITE.aboutPhoto) $("#aboutPhoto").outerHTML = `<img src="${SITE.aboutPhoto}" alt="Победительница конкурса">`;
 
-// Прелоадер
-window.addEventListener("load", () => {
-  setTimeout(() => {
-    document.getElementById("preloader").classList.add("is-done");
-    document.body.classList.add("is-loaded");
-  }, reduceMotion ? 0 : 1100);
-});
-// страховка, если load задержится (шрифты, медленная сеть)
-setTimeout(() => {
-  document.getElementById("preloader").classList.add("is-done");
-  document.body.classList.add("is-loaded");
-}, 3500);
-
-/* ---------- Навигация ---------- */
-const nav = document.getElementById("nav");
-const burger = document.getElementById("burger");
-burger.addEventListener("click", () => {
-  const open = nav.classList.toggle("is-open");
-  burger.setAttribute("aria-expanded", open);
-  document.body.style.overflow = open ? "hidden" : "";
-});
-document.querySelectorAll("#navLinks a").forEach(a => a.addEventListener("click", () => {
-  nav.classList.remove("is-open"); burger.setAttribute("aria-expanded", false); document.body.style.overflow = "";
-}));
-
-/* ---------- Прокрутка: прогресс, шапка, параллакс, линия шагов ---------- */
-const progress = document.getElementById("progress");
-const heroContent = document.getElementById("heroContent");
-const heroEl = document.getElementById("hero");
-const fab = document.getElementById("fab");
-const stepsEl = document.getElementById("steps");
-const stepsLine = document.getElementById("stepsLine");
-const ctaCrown = document.getElementById("ctaCrown");
-const parallaxEls = [...document.querySelectorAll("[data-parallax]")];
-let ticking = false;
-
-function onScroll() {
-  const y = scrollY, vh = innerHeight;
-  const max = document.documentElement.scrollHeight - vh;
-  progress.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
-  nav.classList.toggle("is-scrolled", y > 40);
-  fab.classList.toggle("is-shown", y > vh * 0.9 && y < max - 300);
-
-  if (!reduceMotion) {
-    // Hero: содержимое уезжает медленнее и растворяется
-    const h = heroEl.offsetHeight;
-    if (y < h) {
-      const p = y / h;
-      heroContent.style.transform = `translateY(${y * 0.35}px) scale(${1 - p * 0.08})`;
-      heroContent.style.opacity = String(1 - p * 1.1);
-    }
-    parallaxEls.forEach(el => {
-      const r = el.getBoundingClientRect();
-      const offset = (r.top + r.height / 2 - vh / 2) * parseFloat(el.dataset.parallax);
-      el.style.transform = `translateY(${offset}px)`;
-    });
-    const cr = ctaCrown.parentElement.getBoundingClientRect();
-    if (cr.bottom > 0 && cr.top < vh) {
-      const t = (vh - cr.top) / (vh + cr.height);
-      ctaCrown.style.transform = `translate(-50%, -50%) rotate(${(t - .5) * 16}deg) scale(${0.85 + t * 0.3})`;
-    }
-  }
-  // Золотая линия шагов прорисовывается по мере прокрутки
-  const sr = stepsEl.getBoundingClientRect();
-  const sp = Math.min(1, Math.max(0, (vh * 0.75 - sr.top) / sr.height));
-  stepsLine.style.transform = `scaleY(${sp})`;
-  ticking = false;
-}
-addEventListener("scroll", () => { if (!ticking) { requestAnimationFrame(onScroll); ticking = true; } }, { passive: true });
-addEventListener("resize", onScroll);
-onScroll();
-
-/* ---------- Появление элементов ---------- */
-const revealObs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("is-in"); revealObs.unobserve(e.target); } });
-}, { threshold: 0.15, rootMargin: "0px 0px -6% 0px" });
-document.querySelectorAll("[data-reveal]").forEach(el => revealObs.observe(el));
-
-/* ---------- Счётчики ---------- */
-const countObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    const el = e.target, target = +el.dataset.count, suffix = el.dataset.suffix || "";
-    const dur = reduceMotion ? 1 : 1800, t0 = performance.now();
-    (function tick(now) {
-      const p = Math.min(1, (now - t0) / dur), eased = 1 - Math.pow(1 - p, 4);
-      el.textContent = Math.round(target * eased) + (p === 1 ? suffix : "");
-      if (p < 1) requestAnimationFrame(tick);
-    })(t0);
-    countObs.unobserve(el);
+  const contactLabels = { telegram: "Telegram-бот", instagram: "Instagram", vk: "ВКонтакте" };
+  Object.entries(SITE.contacts).forEach(([k, v]) => {
+    if (!v) return;
+    const a = document.createElement("a");
+    a.className = "textlink";
+    a.innerHTML = `<span>${contactLabels[k] || v}</span>`;
+    a.href = k === "phone" ? "tel:" + v.replace(/[^\d+]/g, "") : v;
+    if (k !== "phone") { a.target = "_blank"; a.rel = "noopener"; }
+    $("#contacts-list").appendChild(a);
   });
-}, { threshold: 0.6 });
-document.querySelectorAll("[data-count]").forEach(el => countObs.observe(el));
 
-/* ---------- 3D-наклон карточек (только мышь) ---------- */
-if (!isTouch && !reduceMotion) {
-  document.querySelectorAll(".js-tilt").forEach(card => {
-    card.addEventListener("mousemove", e => {
-      const r = card.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
-      card.style.transform = `rotateY(${x * 14}deg) rotateX(${-y * 14}deg) translateY(-6px)`;
-    });
-    card.addEventListener("mouseleave", () => card.style.transform = "");
+  /* ---------- Галерея ---------- */
+  const items = SITE.gallery.length ? SITE.gallery : Array.from({ length: 7 }, () => ({ src: "", caption: "" }));
+  const ratios = ["4/5", "3/4", "1/1", "4/5", "2/3", "3/4", "4/5"];
+  const nCols = innerWidth <= 640 ? 2 : 3;
+  const cols = Array.from({ length: nCols }, () => { const c = document.createElement("div"); c.className = "gcol"; $("#galleryGrid").appendChild(c); return c; });
+  const phHtml = '<div class="ph"><svg class="mark"><use href="#crown"/></svg><span>Фото сезона</span></div>';
+  items.forEach((it, i) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "gitem"; b.setAttribute("data-photo", "");
+    b.style.aspectRatio = ratios[i % ratios.length];
+    b.setAttribute("aria-label", it.caption || "Открыть фото");
+    b.innerHTML = `<div class="photo__in" data-parallax>${it.src ? `<img src="${it.src}" alt="${it.caption || ""}" loading="lazy">` : phHtml}</div>` +
+      (it.caption ? `<figcaption>${it.caption}</figcaption>` : "");
+    b.addEventListener("click", () => openLb(i));
+    cols[i % nCols].appendChild(b);
   });
-}
+  if (SITE.gallery.length) $("#galleryNote").remove();
 
-/* ---------- Таймер ---------- */
-const deadline = new Date(SITE.deadline).getTime();
-const cdNums = { d: 0, h: 0, m: 0, s: 0 };
-document.querySelectorAll("[data-cd]").forEach(el => cdNums[el.dataset.cd] = el);
-function tickCountdown() {
-  let diff = Math.max(0, deadline - Date.now());
-  if (diff === 0) {
-    document.getElementById("cdTitle").textContent = "Приём заявок завершён — до встречи на финале!";
-    document.getElementById("countdown").style.display = "none";
-    return;
+  /* ---------- Таймер ---------- */
+  const deadline = new Date(SITE.deadline).getTime();
+  function tick() {
+    let diff = Math.max(0, deadline - Date.now());
+    const parts = { d: Math.floor(diff / 864e5), h: Math.floor(diff / 36e5) % 24, m: Math.floor(diff / 6e4) % 60, s: Math.floor(diff / 1e3) % 60 };
+    $$("[data-countdown]").forEach(cd => {
+      if (diff === 0) { cd.innerHTML = '<span class="cd-title">Приём анкет завершён — до встречи на финале</span>'; return; }
+      $$("[data-cd]", cd).forEach(el => (el.textContent = String(parts[el.dataset.cd]).padStart(2, "0")));
+    });
+    if (diff === 0) clearInterval(timer);
   }
-  const d = Math.floor(diff / 864e5); diff -= d * 864e5;
-  const h = Math.floor(diff / 36e5); diff -= h * 36e5;
-  const m = Math.floor(diff / 6e4); diff -= m * 6e4;
-  const s = Math.floor(diff / 1e3);
-  cdNums.d.textContent = String(d).padStart(2, "0");
-  cdNums.h.textContent = String(h).padStart(2, "0");
-  cdNums.m.textContent = String(m).padStart(2, "0");
-  cdNums.s.textContent = String(s).padStart(2, "0");
-}
-tickCountdown(); setInterval(tickCountdown, 1000);
+  const timer = setInterval(tick, 1000); tick();
 
-/* ---------- Золотые искры в Hero ---------- */
-(function sparkles() {
-  if (reduceMotion) return;
-  const cv = document.getElementById("sparkles"), ctx = cv.getContext("2d");
-  let W, H, dpr, parts = [], visible = true;
-  const count = () => Math.round(Math.min(110, (innerWidth * innerHeight) / 14000));
-  function resize() {
-    dpr = Math.min(2, devicePixelRatio || 1);
-    W = cv.clientWidth; H = cv.clientHeight;
-    cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    parts = Array.from({ length: count() }, () => spawn(true));
+  /* ---------- Плавная прокрутка ---------- */
+  let lenis = null;
+  if (hasGsap && window.Lenis && !reduce) {
+    lenis = new Lenis({ lerp: 0.085, smoothWheel: true });
+    lenis.on("scroll", ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
   }
-  function spawn(anywhere) {
-    return {
-      x: Math.random() * W, y: anywhere ? Math.random() * H : H + 10,
-      r: Math.random() * 1.8 + .4, vy: -(Math.random() * .45 + .12), vx: (Math.random() - .5) * .25,
-      tw: Math.random() * Math.PI * 2, tws: Math.random() * .04 + .015, star: Math.random() < .12,
+  const stopScroll = () => { lenis ? lenis.stop() : (document.body.style.overflow = "hidden"); };
+  const startScroll = () => { lenis ? lenis.start() : (document.body.style.overflow = ""); };
+
+  /* ---------- Меню и навигация ---------- */
+  const nav = $("#nav"), burger = $("#burger");
+  function setMenu(open) {
+    nav.classList.toggle("is-open", open);
+    burger.setAttribute("aria-expanded", open);
+    open ? stopScroll() : startScroll();
+  }
+  burger.addEventListener("click", () => setMenu(!nav.classList.contains("is-open")));
+  $$("[data-scroll]").forEach(a => a.addEventListener("click", e => {
+    const id = a.getAttribute("href");
+    const target = id === "#top" ? 0 : $(id);
+    if (target === null) return;
+    e.preventDefault();
+    setMenu(false);
+    if (lenis) lenis.scrollTo(target, { offset: id === "#top" ? 0 : -40, duration: 1.6 });
+    else (id === "#top" ? scrollTo({ top: 0, behavior: "smooth" }) : target.scrollIntoView({ behavior: "smooth" }));
+  }));
+
+  // Шапка: прячется при прокрутке вниз, появляется при прокрутке вверх
+  const mbar = $("#mbar"), hero = $("#hero");
+  let lastY = 0;
+  function onScroll() {
+    const y = scrollY, heroH = hero.offsetHeight;
+    nav.classList.toggle("is-solid", y > heroH * 0.85);
+    if (!nav.classList.contains("is-open")) nav.classList.toggle("is-hidden", y > heroH && y > lastY + 2);
+    if (y < lastY - 2) nav.classList.remove("is-hidden");
+    const nearEnd = y + innerHeight > document.documentElement.scrollHeight - 260;
+    mbar.classList.toggle("is-shown", y > heroH * 0.9 && !nearEnd);
+    lastY = y;
+  }
+  addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+  // Софит на сцене следует за мышью
+  if (matchMedia("(hover: hover)").matches && !reduce) {
+    hero.addEventListener("mousemove", e => hero.style.setProperty("--sx", (e.clientX / innerWidth * 100).toFixed(1) + "%"));
+  }
+
+  /* ---------- Просмотр фото ---------- */
+  const lb = $("#lightbox"); let lbI = 0;
+  function renderLb() {
+    const it = items[lbI];
+    $("#lbMedia").innerHTML = it.src ? `<img src="${it.src}" alt="${it.caption || ""}">` : phHtml;
+    $("#lbCap").textContent = it.caption || `Фото ${lbI + 1} из ${items.length}`;
+  }
+  function openLb(i) { lbI = i; renderLb(); lb.classList.add("is-open"); stopScroll(); }
+  function closeLb() { lb.classList.remove("is-open"); startScroll(); }
+  const stepLb = d => { lbI = (lbI + d + items.length) % items.length; renderLb(); };
+  $("#lbClose").onclick = closeLb; $("#lbPrev").onclick = () => stepLb(-1); $("#lbNext").onclick = () => stepLb(1);
+  lb.addEventListener("click", e => { if (e.target === lb) closeLb(); });
+  addEventListener("keydown", e => {
+    if (e.key === "Escape") { closeLb(); setMenu(false); }
+    if (!lb.classList.contains("is-open")) return;
+    if (e.key === "ArrowLeft") stepLb(-1); if (e.key === "ArrowRight") stepLb(1);
+  });
+  let tx = 0;
+  lb.addEventListener("touchstart", e => (tx = e.touches[0].clientX), { passive: true });
+  lb.addEventListener("touchend", e => { const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) stepLb(dx < 0 ? 1 : -1); });
+
+  /* =================================================================
+     АНИМАЦИИ (GSAP). Без GSAP или при «уменьшить движение» сайт
+     просто показывается целиком, без эффектов.
+     ================================================================= */
+  if (!hasGsap || reduce) return;
+  gsap.registerPlugin(ScrollTrigger);
+  const E = "expo.out";
+
+  // Разбивка заголовков на слова (с сохранением <em>)
+  function splitWords(el) {
+    const walk = node => {
+      [...node.childNodes].forEach(n => {
+        if (n.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(part => {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(" ")); return; }
+            const w = document.createElement("span"); w.className = "w";
+            const wi = document.createElement("span"); wi.className = "wi"; wi.textContent = part;
+            w.appendChild(wi); frag.appendChild(w);
+          });
+          n.replaceWith(frag);
+        } else if (n.nodeType === 1) walk(n);
+      });
     };
+    walk(el);
+    return $$(".wi", el);
   }
-  function star(x, y, r, a) {
-    ctx.save(); ctx.translate(x, y); ctx.globalAlpha = a; ctx.fillStyle = "#fff3c4";
-    ctx.beginPath();
-    for (let i = 0; i < 4; i++) { ctx.rotate(Math.PI / 2); ctx.lineTo(0, r * 4); ctx.lineTo(r * .6, r * .6); }
-    ctx.fill(); ctx.restore();
+
+  /* ---------- Занавес и первый экран ---------- */
+  const drapeL = $("[data-drape=l]"), drapeR = $("[data-drape=r]");
+  // насколько сдвинуть половинку занавеса, чтобы по краю осталось var(--drape)
+  const openShift = () => {
+    const visible = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--drape")) / 100 * innerWidth;
+    return -(1 - visible / drapeL.offsetWidth) * 100;
+  };
+  const seen = (() => { try { return sessionStorage.getItem("introSeen") === "1"; } catch (e) { return false; } })();
+  try { sessionStorage.setItem("introSeen", "1"); } catch (e) {}
+
+  const heroLines = $$(".display .ln > span", hero);
+  gsap.set(heroLines, { yPercent: 110 });
+  gsap.set("[data-hero]", { autoAlpha: 0, y: 24 });
+  gsap.set(nav, { autoAlpha: 0 });
+  if (seen) gsap.set("#intro", { autoAlpha: 0 });
+  else { gsap.set("#intro > div > *", { autoAlpha: 0, y: 14 }); }
+
+  // Если страницу открыли уже прокрученной (обновление) — заставку пропускаем
+  const startedScrolled = scrollY > 10;
+  if (!startedScrolled) stopScroll();
+  const intro = gsap.timeline({ defaults: { ease: E }, onComplete: startScroll });
+  if (!seen) {
+    intro.to("#intro > div > *", { autoAlpha: 1, y: 0, duration: 1, stagger: .12 })
+         .to("#intro", { autoAlpha: 0, duration: .6, ease: "power2.in" }, "+=.6");
   }
-  function frame() {
-    if (visible && !document.hidden) {
-      ctx.clearRect(0, 0, W, H);
-      for (const p of parts) {
-        p.x += p.vx; p.y += p.vy; p.tw += p.tws;
-        if (p.y < -10) Object.assign(p, spawn(false));
-        const a = .35 + Math.sin(p.tw) * .35;
-        if (p.star) { star(p.x, p.y, p.r, Math.max(0, a)); continue; }
-        const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4);
-        g.addColorStop(0, `rgba(255,236,170,${Math.max(0, a)})`); g.addColorStop(1, "rgba(232,198,106,0)");
-        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(p.x, p.y, p.r * 4, 0, Math.PI * 2); ctx.fill();
-      }
-    }
-    requestAnimationFrame(frame);
-  }
-  new IntersectionObserver(([e]) => visible = e.isIntersecting).observe(cv);
-  addEventListener("resize", resize); resize(); frame();
+  intro
+    .addLabel("open")
+    .to(drapeL, { xPercent: openShift, duration: seen ? 1.4 : 2.2, ease: "expo.inOut" }, "open")
+    .to(drapeR, { xPercent: () => -openShift(), duration: seen ? 1.4 : 2.2, ease: "expo.inOut" }, "open")
+    .to(heroLines, { yPercent: 0, duration: 1.6, stagger: .11 }, seen ? "open+=.5" : "open+=1.1")
+    .to("[data-hero]", { autoAlpha: 1, y: 0, duration: 1.4, stagger: .12 }, "<.35")
+    .to(nav, { autoAlpha: 1, duration: 1 }, "<");
+
+  // При прокрутке занавес раздвигается полностью, сцена уходит вглубь
+  intro.eventCallback("onComplete", () => {
+    startScroll();
+    ScrollTrigger.create({
+      trigger: hero, start: "top top", end: "bottom top", scrub: true,
+      animation: gsap.timeline()
+        .fromTo(drapeL, { xPercent: openShift }, { xPercent: -100, ease: "none" }, 0)
+        .fromTo(drapeR, { xPercent: () => -openShift() }, { xPercent: 100, ease: "none" }, 0)
+        .to("#heroInner", { yPercent: 18, autoAlpha: 0, scale: .96, ease: "none" }, 0),
+      invalidateOnRefresh: true,
+    });
+  });
+  if (startedScrolled) intro.progress(1);
+  addEventListener("resize", () => { if (intro.progress() === 1 && scrollY < 5) { gsap.set(drapeL, { xPercent: openShift() }); gsap.set(drapeR, { xPercent: -openShift() }); } });
+
+  /* ---------- Общие эффекты при прокрутке ---------- */
+  // Заголовки: слова выезжают из-под маски
+  $$("[data-split]").forEach(el => {
+    const words = splitWords(el);
+    gsap.from(words, { yPercent: 110, duration: 1.5, ease: E, stagger: .06, scrollTrigger: { trigger: el, start: "top 85%" } });
+  });
+
+  // Тонкие линии прорисовываются слева направо
+  $$("[data-rule]").forEach(el => gsap.from(el, { scaleX: 0, duration: 1.6, ease: E, scrollTrigger: { trigger: el, start: "top 92%" } }));
+
+  // Тексты проявляются снизу
+  $$("[data-fade]").forEach(el => gsap.from(el, { y: 34, autoAlpha: 0, duration: 1.4, ease: E, scrollTrigger: { trigger: el, start: "top 90%" } }));
+
+  // Главное утверждение «загорается» слово за словом по мере прокрутки
+  $$("[data-scrub]").forEach(el => {
+    const words = splitWords(el);
+    gsap.fromTo(words, { opacity: .16 }, { opacity: 1, ease: "none", stagger: .1, scrollTrigger: { trigger: el, start: "top 80%", end: "bottom 45%", scrub: true } });
+  });
+
+  // Фото: открываются «шторкой» снизу вверх + параллакс внутри рамки
+  $$("[data-photo]").forEach(el => {
+    gsap.fromTo(el, { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 1.6, ease: "expo.inOut", scrollTrigger: { trigger: el, start: "top 88%" } });
+    const inner = $("[data-parallax]", el);
+    if (inner) gsap.fromTo(inner, { yPercent: -8 }, { yPercent: 8, ease: "none", scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true } });
+  });
+
+  // Счётчики
+  $$("[data-count]").forEach(el => {
+    const obj = { v: 0 }, target = +el.dataset.count;
+    el.textContent = "0";
+    gsap.to(obj, { v: target, duration: 2, ease: "power3.out", onUpdate: () => (el.textContent = Math.round(obj.v)), scrollTrigger: { trigger: el, start: "top 90%" } });
+  });
+
+  // Колонки галереи плывут с разной скоростью
+  $$(".gcol").forEach((c, i) => gsap.to(c, { yPercent: [-6, 6, -3][i], ease: "none", scrollTrigger: { trigger: "#galleryGrid", start: "top bottom", end: "bottom top", scrub: true } }));
+
+  /* ---------- Шаги: горизонтальная сцена на компьютере ---------- */
+  const mm = gsap.matchMedia();
+  mm.add("(min-width: 1024px)", () => {
+    const track = $("#track");
+    const dist = () => track.scrollWidth - innerWidth;
+    gsap.to(track, {
+      x: () => -dist(), ease: "none",
+      scrollTrigger: { trigger: "#how", start: "top top", end: () => "+=" + dist(), scrub: 1, pin: true, invalidateOnRefresh: true, anticipatePin: 1 },
+    });
+  });
+  mm.add("(max-width: 1023px)", () => {
+    $$(".step").forEach(s => gsap.from(s, { y: 50, autoAlpha: 0, duration: 1.3, ease: E, scrollTrigger: { trigger: s, start: "top 88%" } }));
+  });
+
+  /* ---------- Финал: занавес сходится, обрамляя призыв ---------- */
+  const fl = $("[data-fdrape=l]"), fr = $("[data-fdrape=r]");
+  gsap.timeline({ scrollTrigger: { trigger: "#finale", start: "top bottom", end: "top top", scrub: 1, invalidateOnRefresh: true } })
+    .fromTo(fl, { xPercent: -100 }, { xPercent: openShift, ease: "none" }, 0)
+    .fromTo(fr, { xPercent: 100 }, { xPercent: () => -openShift(), ease: "none" }, 0);
+
+  // Шрифты и картинки меняют высоту блоков — пересчитать точки срабатывания
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => ScrollTrigger.refresh());
+  addEventListener("load", () => ScrollTrigger.refresh());
 })();
-
-/* ---------- Галерея и просмотр ---------- */
-const grid = document.getElementById("gallery-grid");
-const crownSvg = '<svg><use href="#crown"/></svg>';
-const items = SITE.gallery.length ? SITE.gallery : Array.from({ length: 6 }, (_, i) => ({ src: "", caption: "Фото прошлых лет" }));
-const ratios = ["4/5", "1/1", "3/4", "4/5", "1/1", "3/4", "4/5", "2/3"];
-items.forEach((it, i) => {
-  const b = document.createElement("button");
-  b.className = "gallery__item"; b.type = "button";
-  b.setAttribute("data-reveal", "zoom"); b.style.setProperty("--d", i % 3);
-  b.setAttribute("aria-label", it.caption || "Открыть фото");
-  b.innerHTML = it.src
-    ? `<img src="${it.src}" alt="${it.caption || ""}" loading="lazy">`
-    : `<div class="gph" style="aspect-ratio:${ratios[i % ratios.length]}">${crownSvg}<span>Скоро здесь будет фото</span></div>`;
-  if (it.caption) b.insertAdjacentHTML("beforeend", `<span class="gallery__cap">${it.caption}</span>`);
-  b.addEventListener("click", () => openLb(i));
-  grid.appendChild(b); revealObs.observe(b);
-});
-if (SITE.gallery.length) document.getElementById("galleryNote").remove();
-
-const lb = document.getElementById("lightbox"), lbMedia = document.getElementById("lbMedia"), lbCap = document.getElementById("lbCap");
-let lbIndex = 0;
-function renderLb() {
-  const it = items[lbIndex];
-  lbMedia.innerHTML = it.src ? `<img src="${it.src}" alt="${it.caption || ""}">` : `<div class="gph">${crownSvg}<span>Скоро здесь будет фото</span></div>`;
-  lbCap.textContent = it.caption || "";
-}
-function openLb(i) { lbIndex = i; renderLb(); lb.classList.add("is-open"); document.body.style.overflow = "hidden"; }
-function closeLb() { lb.classList.remove("is-open"); document.body.style.overflow = ""; }
-function stepLb(d) { lbIndex = (lbIndex + d + items.length) % items.length; renderLb(); }
-document.getElementById("lbClose").onclick = closeLb;
-document.getElementById("lbPrev").onclick = () => stepLb(-1);
-document.getElementById("lbNext").onclick = () => stepLb(1);
-lb.addEventListener("click", e => { if (e.target === lb) closeLb(); });
-addEventListener("keydown", e => {
-  if (!lb.classList.contains("is-open")) return;
-  if (e.key === "Escape") closeLb(); if (e.key === "ArrowLeft") stepLb(-1); if (e.key === "ArrowRight") stepLb(1);
-});
-let tx = 0;
-lb.addEventListener("touchstart", e => tx = e.touches[0].clientX, { passive: true });
-lb.addEventListener("touchend", e => { const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) stepLb(dx < 0 ? 1 : -1); });
-
-/* ---------- Контакты ---------- */
-const icons = {
-  telegram: '<svg viewBox="0 0 24 24"><path d="M21.9 4.6 18.7 19.7c-.2 1-.9 1.3-1.7.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.8-7.9c.4-.3-.1-.5-.6-.2L6.6 13.6 2 12.2c-1-.3-1-1 .2-1.5L20.5 3.6c.9-.3 1.6.2 1.4 1z"/></svg>',
-  instagram: '<svg viewBox="0 0 24 24"><path d="M12 7.3a4.7 4.7 0 1 0 0 9.4 4.7 4.7 0 0 0 0-9.4zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm6-7.9a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM12 4.6c2.4 0 2.7 0 3.6.1 2.4.1 3.6 1.3 3.7 3.7v7.2c-.1 2.4-1.3 3.6-3.7 3.7H8.4c-2.4-.1-3.6-1.3-3.7-3.7V8.4c.1-2.4 1.3-3.6 3.7-3.7.9-.1 1.2-.1 3.6-.1zM12 3c-2.4 0-2.7 0-3.7.1C5 3.2 3.2 5 3.1 8.3 3 9.3 3 9.6 3 12s0 2.7.1 3.7c.1 3.3 1.9 5.1 5.2 5.2 1 .1 1.3.1 3.7.1s2.7 0 3.7-.1c3.3-.1 5.1-1.9 5.2-5.2.1-1 .1-1.3.1-3.7s0-2.7-.1-3.7c-.1-3.3-1.9-5.1-5.2-5.2C14.7 3 14.4 3 12 3z"/></svg>',
-  vk: '<svg viewBox="0 0 24 24"><path d="M12.8 17.5C6.8 17.5 3.4 13.4 3.3 6.6h3c.1 5 2.3 7.1 4 7.5V6.6h2.8v4.3c1.7-.2 3.5-2.1 4.1-4.3h2.8c-.5 2.6-2.4 4.5-3.8 5.3 1.4.6 3.6 2.4 4.4 5.6h-3.1c-.6-2.1-2.3-3.7-4.4-3.9v3.9z"/></svg>',
-  phone: '<svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg>',
-};
-const labels = { telegram: "Telegram-бот", instagram: "Instagram", vk: "ВКонтакте", phone: "" };
-const socials = document.getElementById("socials");
-Object.entries(SITE.contacts).forEach(([k, v]) => {
-  if (!v) return;
-  const a = document.createElement("a");
-  a.href = k === "phone" ? "tel:" + v.replace(/[^\d+]/g, "") : v;
-  if (k !== "phone") { a.target = "_blank"; a.rel = "noopener"; }
-  a.innerHTML = icons[k] + (labels[k] || v);
-  socials.appendChild(a);
-});
 </script>
 </body>
 </html>
