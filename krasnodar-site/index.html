@@ -170,7 +170,7 @@ h2 { font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.08; }
 /* О конкурсе */
 .about { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(40px, 7vw, 110px); align-items: center; }
 .about__photo { position: relative; aspect-ratio: 4 / 5; }
-.about__photo .reveal { position: absolute; inset: 0; overflow: hidden; border-radius: 220px 220px 2px 2px; }
+.about__photo > .reveal:first-child { position: absolute; inset: 0; overflow: hidden; border-radius: 220px 220px 2px 2px; }
 .about__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 30%; }
 .about__photo::before { /* тонкая золотая арка со смещением */
   content: ""; position: absolute; inset: 22px -22px -22px 22px; border: 1px solid var(--line); border-radius: 220px 220px 2px 2px;
@@ -181,7 +181,7 @@ h2 { font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.08; }
 
 /* Категории — три фото-панели */
 .block--next { padding-top: 0; }
-.ruled { padding-top: clamp(60px, 7vw, 100px); border-top: 1px solid var(--line); }
+.ruled { padding-top: 0; }
 .cats-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px 40px; margin-bottom: 44px; }
 .cats-head p { margin: 0; max-width: 26em; color: var(--cream-soft); }
 .cats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
@@ -269,8 +269,118 @@ h2 { font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.08; }
 .faq details[open] summary::after { transform: rotate(45deg); background: rgba(142, 21, 39, .08); }
 .faq details p { margin: -6px 0 24px; max-width: 36em; color: rgba(90, 11, 23, .8); }
 
+/* =================================================================
+   НАПОЛНЕННОСТЬ: бархат, свет, искры, орнамент, слои
+   ================================================================= */
+/* Зерно, как у бархата и плёнки, — поверх всей страницы */
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: 90; pointer-events: none; opacity: .07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .92 0 0 0 0 .85 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+/* Красные секции — не плоская заливка, а бархат с мягким светом софитов */
+.block:not(.block--cream), .facts {
+  position: relative; overflow: clip;
+  background:
+    radial-gradient(ellipse 50% 40% at 15% 30%, rgba(176, 30, 52, .4), transparent 70%),
+    radial-gradient(ellipse 45% 40% at 90% 70%, rgba(25, 0, 5, .35), transparent 70%),
+    radial-gradient(ellipse 35% 30% at 80% 25%, rgba(210, 176, 122, .07), transparent 70%),
+    var(--wine);
+}
+#perks, #terms {
+  background:
+    radial-gradient(ellipse 50% 40% at 85% 30%, rgba(176, 30, 52, .4), transparent 70%),
+    radial-gradient(ellipse 45% 40% at 10% 70%, rgba(25, 0, 5, .35), transparent 70%),
+    radial-gradient(ellipse 35% 30% at 20% 25%, rgba(210, 176, 122, .07), transparent 70%),
+    var(--wine);
+}
+.block--cream { position: relative; overflow: clip;
+  background: radial-gradient(ellipse 60% 60% at 100% 0%, rgba(210, 176, 122, .28), transparent 70%), radial-gradient(ellipse 50% 50% at 0% 100%, rgba(142, 21, 39, .07), transparent 70%), var(--cream); }
+.block > .wrap { position: relative; z-index: 1; }
+
+/* Свет софита в первом экране */
+.hero::before { content: ""; position: absolute; z-index: 1; pointer-events: none; left: -10%; top: -30%; width: 75%; height: 120%;
+  background: radial-gradient(ellipse at 40% 30%, rgba(255, 214, 190, .16), transparent 60%); }
+
+/* Огромные контурные слова на фоне */
+.bgword { position: absolute; z-index: 0; pointer-events: none; white-space: nowrap; line-height: .8;
+  font-family: var(--display); font-size: clamp(9rem, 24vw, 22rem); color: transparent;
+  -webkit-text-stroke: 1px rgba(210, 176, 122, .16); }
+.block--cream .bgword { -webkit-text-stroke-color: rgba(142, 21, 39, .1); }
+
+/* Орнамент-разделитель с короной */
+.orn { display: flex; align-items: center; gap: 20px; color: var(--gold); margin-bottom: clamp(44px, 5vw, 72px); }
+.orn i { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--line) 30%, rgba(210, 176, 122, .55)); }
+.orn i:last-child { transform: scaleX(-1); }
+.orn svg { width: 34px; height: 24px; flex: none; }
+.orn::before, .orn::after { content: "✦"; font-size: .6rem; color: var(--gold); order: 0; }
+.orn::before { order: -1; } .orn::after { order: 5; }
+
+/* Золотые искры */
+.spark { position: absolute; z-index: 2; pointer-events: none; width: var(--s); height: var(--s);
+  background: radial-gradient(circle, #fff3d6 0%, #e7c98f 40%, rgba(210, 176, 122, 0) 72%);
+  clip-path: polygon(50% 0, 58% 42%, 100% 50%, 58% 58%, 50% 100%, 42% 58%, 0 50%, 42% 42%);
+  opacity: 0; animation: twinkle var(--t) ease-in-out var(--d) infinite; }
+.spark--dot { clip-path: none; border-radius: 50%; }
+@keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(.4) rotate(0); } 50% { opacity: var(--o); transform: scale(1) rotate(45deg); } }
+
+/* Круглая печать сезона, медленно вращается */
+.seal { position: absolute; z-index: 3; width: clamp(110px, 11vw, 150px); aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle, var(--wine) 0 56%, var(--wine-deep) 57%); border: 1px solid rgba(210, 176, 122, .5);
+  box-shadow: 0 18px 40px -16px rgba(0, 0, 0, .7); color: var(--gold); display: grid; place-items: center; }
+.seal__ring { position: absolute; inset: 6px; animation: spin 28s linear infinite; }
+.seal__ring text { font: 500 8.6px var(--text); letter-spacing: .2em; text-transform: uppercase; fill: var(--cream); }
+.seal > svg:last-child { width: 36%; height: auto; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* О конкурсе — коллаж из фото */
+.about__photo { margin-bottom: 40px; }
+.about__small { position: absolute; z-index: 2; right: -14%; bottom: -40px; width: 46%; aspect-ratio: 4 / 5; overflow: hidden;
+  border: 7px solid var(--wine); outline: 1px solid rgba(210, 176, 122, .55); box-shadow: 0 30px 50px -20px rgba(0, 0, 0, .7); }
+.about__small img { width: 100%; height: 100%; object-fit: cover; }
+.about .seal { left: -34px; top: 16%; }
+
+/* Лента из фото */
+.strip { position: relative; overflow: hidden; padding: 26px 0; background: var(--wine-deep);
+  border-block: 1px solid var(--line); }
+.strip::before, .strip::after { content: ""; position: absolute; z-index: 2; top: 0; bottom: 0; width: 12%; pointer-events: none; }
+.strip::before { left: 0; background: linear-gradient(90deg, var(--wine-deep), transparent); }
+.strip::after { right: 0; background: linear-gradient(-90deg, var(--wine-deep), transparent); }
+.strip__track { display: flex; gap: 14px; width: max-content; animation: marquee 70s linear infinite; }
+.strip__item { position: relative; flex: none; height: clamp(180px, 20vw, 280px); overflow: hidden; border-radius: 2px; }
+.strip__item img { height: 100%; width: auto; }
+.strip__item:nth-child(odd) { margin-top: 18px; }
+.strip__word { flex: none; align-self: center; padding: 0 18px; font-family: var(--display); font-size: clamp(1.6rem, 2.6vw, 2.4rem); color: var(--gold); white-space: nowrap; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* Что ждёт — карточки и наложенная плашка */
+.perk { padding: 26px 24px 24px; border: 1px solid rgba(210, 176, 122, .22); border-radius: 2px;
+  background: linear-gradient(160deg, rgba(244, 233, 220, .07), rgba(244, 233, 220, 0) 65%); transition: border-color .4s, background .4s, transform .5s var(--ease); }
+@media (hover: hover) { .perk:hover { border-color: rgba(210, 176, 122, .6); transform: translateY(-4px); } }
+.perk svg { width: 50px; height: 50px; padding: 11px; border: 1px solid rgba(210, 176, 122, .45); border-radius: 50%; margin-bottom: 16px; }
+.perks__list { gap: 16px; }
+.perks__note { position: absolute; z-index: 3; left: -18%; bottom: 12%; padding: 22px 26px; background: var(--cream); color: var(--wine); box-shadow: 0 24px 50px -18px rgba(0, 0, 0, .7); }
+.perks__note b { display: block; font-family: var(--display); font-weight: 400; font-size: 1.9rem; line-height: 1.1; color: var(--red); }
+.perks__note span { font: 500 .72rem/1.4 var(--text); letter-spacing: .2em; text-transform: uppercase; }
+
+/* Условия — рамка с золотыми уголками */
+.terms__panel { position: relative; margin-top: 8px; padding: 10px clamp(18px, 3vw, 34px); border: 1px solid rgba(210, 176, 122, .22);
+  background: linear-gradient(160deg, rgba(244, 233, 220, .06), rgba(244, 233, 220, 0) 60%); }
+.terms__panel::before, .terms__panel::after { content: ""; position: absolute; width: 26px; height: 26px; border: 1px solid var(--gold); }
+.terms__panel::before { top: -5px; left: -5px; border-right: 0; border-bottom: 0; }
+.terms__panel::after { bottom: -5px; right: -5px; border-left: 0; border-top: 0; }
+.terms__panel .term:first-child { border-top: 0; } .terms__panel .term:last-child { border-bottom: 0; }
+.terms__photo { overflow: visible; }
+.terms__photo .seal { right: -30px; bottom: -30px; }
+
+/* Шаги — номера в кругах, соединённые линией */
+.steps li { border-top: 0; padding-top: 0; position: relative; }
+.steps li::before { content: "0" counter(s); display: grid; place-items: center; width: 74px; height: 74px; border-radius: 50%;
+  border: 1px solid rgba(142, 21, 39, .35); background: var(--cream); font-size: 1.7rem; position: relative; z-index: 1; margin-bottom: 22px; }
+.steps li::after { content: ""; position: absolute; top: 37px; left: 74px; right: -32px; height: 1px; background: linear-gradient(90deg, rgba(142, 21, 39, .35), rgba(142, 21, 39, .1)); }
+.steps li:last-child::after { display: none; }
+
 /* Финал */
-.finale { position: relative; overflow: hidden; min-height: 92svh; display: grid; align-items: center; text-align: center; background: var(--wine-deep); }
+.finale { position: relative; isolation: isolate; overflow: hidden; min-height: 92svh; display: grid; align-items: center; text-align: center; background: var(--wine-deep); }
 .finale__photo { position: absolute; inset: 0; }
 .finale__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
 .finale__photo::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(90, 11, 23, .74), rgba(66, 7, 15, .94)); }
@@ -315,11 +425,19 @@ h2 { font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.08; }
   .about__photo { max-width: 440px; width: calc(100% - 22px); }
   .terms__photo { max-width: 520px; }
   .steps { grid-template-columns: repeat(2, 1fr); row-gap: 40px; }
+  .steps li:nth-child(2)::after { display: none; }
+  .perks__note { left: -10px; }
   .mbar { display: block; }
   .footer { padding-bottom: 100px; }
 }
 @media (max-width: 760px) {
   body { font-size: 16.5px; }
+  .about__small { right: -4px; width: 42%; bottom: -30px; }
+  .about .seal { left: -10px; top: 8%; }
+  .perks__note { left: -10px; bottom: 8%; padding: 16px 20px; }
+  .perks__note b { font-size: 1.5rem; }
+  .terms__photo .seal { right: -6px; bottom: -24px; }
+  .steps li::after { display: none; }
   .hero { align-items: end; }
   .hero__photo img { object-position: 50% 20%; }
   .hero__photo::after { background: linear-gradient(0deg, rgba(90, 11, 23, .98) 0%, rgba(90, 11, 23, .9) 48%, rgba(90, 11, 23, .4) 72%, rgba(66, 7, 15, .7) 100%); }
@@ -369,7 +487,7 @@ h2 { font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.08; }
 
 <main id="top">
   <!-- Первый экран -->
-  <section class="hero">
+  <section class="hero" data-sparks="26">
     <picture class="hero__photo tone">
       <source media="(max-width: 760px)" srcset="images/hero-mobile.jpg">
       <img src="images/hero.jpg" alt="Девушка в красном вечернем платье на фоне сверкающей стены" fetchpriority="high">
@@ -402,10 +520,16 @@ h2 { font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.08; }
     </div>
   </section>
 
+  <!-- Лента из фото -->
+  <div class="strip" aria-hidden="true"><div class="strip__track"><div class="strip__item tone"><img src="images/g1.jpg" alt="" loading="lazy"></div><div class="strip__item tone"><img src="images/cat-miss.jpg" alt="" loading="lazy"></div><div class="strip__item tone"><img src="images/g5.jpg" alt="" loading="lazy"></div><span class="strip__word">✦ Красота ✦</span><div class="strip__item tone"><img src="images/g2.jpg" alt="" loading="lazy"></div><div class="strip__item tone"><img src="images/cat-young.jpg" alt="" loading="lazy"></div><div class="strip__item tone"><img src="images/g6.jpg" alt="" loading="lazy"></div><span class="strip__word">✦ Характер ✦</span><div class="strip__item tone"><img src="images/g4.jpg" alt="" loading="lazy"></div><div class="strip__item tone"><img src="images/cat-mrs.jpg" alt="" loading="lazy"></div><div class="strip__item tone"><img src="images/g8.jpg" alt="" loading="lazy"></div><span class="strip__word">✦ Сцена ✦</span><div class="strip__item tone"><img src="images/g3.jpg" alt="" loading="lazy"></div><div class="strip__item tone"><img src="images/g1.jpg" alt="" loading="lazy"></div><div class="strip__item tone"><img src="images/cat-miss.jpg" alt="" loading="lazy"></div><div class="strip__item tone"><img src="images/g5.jpg" alt="" loading="lazy"></div><span class="strip__word">✦ Красота ✦</span><div class="strip__item tone"><img src="images/g2.jpg" alt="" loading="lazy"></div><div class="strip__item tone"><img src="images/cat-young.jpg" alt="" loading="lazy"></div><div class="strip__item tone"><img src="images/g6.jpg" alt="" loading="lazy"></div><span class="strip__word">✦ Характер ✦</span><div class="strip__item tone"><img src="images/g4.jpg" alt="" loading="lazy"></div><div class="strip__item tone"><img src="images/cat-mrs.jpg" alt="" loading="lazy"></div><div class="strip__item tone"><img src="images/g8.jpg" alt="" loading="lazy"></div><span class="strip__word">✦ Сцена ✦</span><div class="strip__item tone"><img src="images/g3.jpg" alt="" loading="lazy"></div></div></div>
+
   <!-- О конкурсе -->
   <section class="block" id="about">
+    <span class="bgword" style="right:-3vw;top:4%" aria-hidden="true">Мисс</span>
     <div class="wrap about">
-      <div class="about__photo"><div class="reveal tone"><img src="images/about.jpg" alt="Портрет девушки с красной помадой" loading="lazy"></div></div>
+      <div class="about__photo"><div class="reveal tone"><img src="images/about.jpg" alt="Портрет девушки с красной помадой" loading="lazy"></div>
+        <div class="about__small reveal tone"><img src="images/g7.jpg" alt="" loading="lazy"></div>
+        <div class="seal" aria-hidden="true"><svg class="seal__ring" viewBox="0 0 120 120"><defs><path id="sealPath1" d="M60,60 m-47,0 a47,47 0 1,1 94,0 a47,47 0 1,1 -94,0"/></defs><text><textPath href="#sealPath1" textLength="290">Мисс и Миссис ✦ сезон 2027 ✦ Мисс и Миссис ✦ сезон 2027 ✦</textPath></text></svg><svg viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M6 25 3.5 8l10.5 8L24 3l10 13 10.5-8L42 25z"/><path d="M7 29.5h34"/></svg></div></div>
       <div>
         <span class="kicker">О конкурсе</span>
         <h2>Красота, характер и большая сцена</h2>
@@ -421,7 +545,8 @@ h2 { font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.08; }
 
   <!-- Что ждёт участниц -->
   <section class="block block--next" id="perks">
-    <div class="wrap perks ruled">
+    <div class="wrap"><div class="orn" aria-hidden="true"><i></i><svg viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M6 25 3.5 8l10.5 8L24 3l10 13 10.5-8L42 25z"/><path d="M7 29.5h34"/></svg><i></i></div></div>
+    <div class="wrap perks">
       <div>
         <span class="kicker">Что ждёт участниц</span>
         <h2>Больше, чем конкурс красоты</h2>
@@ -435,14 +560,17 @@ h2 { font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.08; }
           <li class="perk"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 24 3.5 9l7 6L16 5l5.5 10 7-6L27 24z"/><path d="M5.5 28h21"/></svg><h3>Титул и корона</h3><p>Победительницы каждой категории получают титул сезона 2027.</p></li>
         </ul>
       </div>
-      <div class="perks__photo"><div class="reveal tone"><img src="images/perks.jpg" alt="Девушка в пышном светлом платье среди высокой травы" loading="lazy"></div></div>
+      <div class="perks__photo"><div class="reveal tone"><img src="images/perks.jpg" alt="Девушка в пышном светлом платье среди высокой травы" loading="lazy"></div>
+        <div class="perks__note"><span>Приём анкет</span><b>до 15 января</b><span>2027 года</span></div></div>
     </div>
   </section>
 
   <!-- Категории -->
   <section class="block block--next" id="categories">
+    <span class="bgword" style="left:-2vw;bottom:-4%" aria-hidden="true">2027</span>
     <div class="wrap">
-      <div class="cats-head ruled">
+      <div class="orn" aria-hidden="true"><i></i><svg viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M6 25 3.5 8l10.5 8L24 3l10 13 10.5-8L42 25z"/><path d="M7 29.5h34"/></svg><i></i></div>
+      <div class="cats-head">
         <div><span class="kicker">Категории</span><h2>Три категории</h2></div>
         <p>Категорию бот предложит сам по вашему возрасту. В 20–35 лет можно выбрать между «Мисс» и «Миссис».</p>
       </div>
@@ -465,7 +593,7 @@ h2 { font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.08; }
 
 
   <!-- Девиз -->
-  <section class="motto" aria-label="Девиз конкурса">
+  <section class="motto" aria-label="Девиз конкурса" data-sparks="18">
     <div class="motto__photo"><img src="images/rose.jpg" alt="" loading="lazy" id="mottoImg"></div>
     <div class="wrap motto__inner">
       <blockquote>Корона — это не только красота. Это <em>характер, уверенность</em> и смелость выйти на сцену.</blockquote>
@@ -474,12 +602,13 @@ h2 { font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.08; }
 
   <!-- Условия -->
   <section class="block" id="terms">
+    <span class="bgword" style="right:-4vw;top:-2%" aria-hidden="true">Корона</span>
     <div class="wrap terms">
-      <div class="terms__photo"><div class="reveal"><img src="images/tiara.jpg" alt="Диадема на красном фоне" loading="lazy"></div></div>
+      <div class="terms__photo"><div class="reveal"><img src="images/tiara.jpg" alt="Диадема на красном фоне" loading="lazy"></div><div class="seal" aria-hidden="true"><svg class="seal__ring" viewBox="0 0 120 120"><defs><path id="sealPath2" d="M60,60 m-47,0 a47,47 0 1,1 94,0 a47,47 0 1,1 -94,0"/></defs><text><textPath href="#sealPath2" textLength="290">Мисс и Миссис ✦ сезон 2027 ✦ Мисс и Миссис ✦ сезон 2027 ✦</textPath></text></svg><svg viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M6 25 3.5 8l10.5 8L24 3l10 13 10.5-8L42 25z"/><path d="M7 29.5h34"/></svg></div></div>
       <div>
         <span class="kicker">Условия</span>
         <h2>Кто может участвовать</h2>
-        <dl>
+        <dl class="terms__panel">
           <div class="term"><dt>Откуда</dt><dd>Из любого города и региона</dd></div>
           <div class="term"><dt>Возраст</dt><dd>От 14 до 45 лет</dd></div>
           <div class="term"><dt>Рост</dt><dd>От 165 см</dd></div>
@@ -493,6 +622,7 @@ h2 { font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.08; }
 
   <!-- Как подать -->
   <section class="block block--cream" id="how">
+    <span class="bgword" style="right:-3vw;top:2%" aria-hidden="true">Анкета</span>
     <div class="wrap">
       <div class="steps-head">
         <span class="kicker">Как участвовать</span>
@@ -514,7 +644,7 @@ h2 { font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.08; }
 
   <!-- Галерея -->
   <section class="block" id="gallery">
-    <div class="wrap">
+    <div class="wrap"><div class="orn" aria-hidden="true"><i></i><svg viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M6 25 3.5 8l10.5 8L24 3l10 13 10.5-8L42 25z"/><path d="M7 29.5h34"/></svg><i></i></div>
       <div class="gallery-head">
         <div><span class="kicker">Фото</span><h2>Галерея</h2></div>
         <p>Нажмите на фото, чтобы посмотреть его целиком.</p>
@@ -535,6 +665,7 @@ h2 { font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.08; }
 
   <!-- Частые вопросы -->
   <section class="block block--cream" id="faq">
+    <span class="bgword" style="left:-3vw;bottom:-6%" aria-hidden="true">Вопросы</span>
     <div class="wrap faq">
       <div class="faq__aside">
         <span class="kicker">Вопросы</span>
@@ -554,7 +685,7 @@ h2 { font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.08; }
   </section>
 
   <!-- Финал -->
-  <section class="finale">
+  <section class="finale" data-sparks="22">
     <div class="finale__photo tone"><img src="images/cta.jpg" alt="" loading="lazy"></div>
     <div class="wrap finale__inner">
       <h2>Твоя корона ждёт</h2>
@@ -657,6 +788,17 @@ const SITE = {
     mbar.classList.toggle("is-shown", y > h * .8 && y + innerHeight < document.documentElement.scrollHeight - 300);
     lastY = y;
   };
+  // Золотые искры
+  if (!reduce) $$("[data-sparks]").forEach(sec => {
+    for (let i = 0; i < +sec.dataset.sparks; i++) {
+      const sp = document.createElement("i"), big = Math.random() < .35;
+      sp.className = "spark" + (big ? "" : " spark--dot");
+      sp.style.cssText = `left:${Math.random() * 100}%;top:${Math.random() * 100}%;--s:${big ? 10 + Math.random() * 14 : 3 + Math.random() * 4}px;--t:${2.4 + Math.random() * 3}s;--d:${-Math.random() * 5}s;--o:${.5 + Math.random() * .5}`;
+      sp.setAttribute("aria-hidden", "true");
+      sec.appendChild(sp);
+    }
+  });
+
   // Роза в блоке-девизе медленно сдвигается при прокрутке
   const motto = $(".motto"), mottoImg = $("#mottoImg");
   const parallax = () => {
