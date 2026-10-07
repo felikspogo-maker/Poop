@@ -5,33 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Мисс и Миссис Краснодарский край 2027</title>
 <meta name="description" content="Конкурс красоты «Мисс и Миссис Краснодарский край 2027». Категории «Юная Мисс», «Мисс», «Миссис». Анкеты принимаем до 15 января 2027 года.">
-<meta name="theme-color" content="#42070f">
+<meta name="theme-color" content="#0e0103">
 <meta property="og:title" content="Мисс и Миссис Краснодарский край 2027">
 <meta property="og:description" content="Конкурс красоты для девушек и женщин от 14 до 45 лет. Анкеты принимаем до 15 января 2027 года через Telegram.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="images/hero.jpg">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='8' fill='%235a0b17'/%3E%3Cpath d='M10 33 8 17l9 7 7-11 7 11 9-7-2 16z' fill='none' stroke='%23d2b07a' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta property="og:image" content="images/stage.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='8' fill='%230e0103'/%3E%3Cpath d='M10 33 8 17l9 7 7-11 7 11 9-7-2 16z' fill='none' stroke='%23d2b07a' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preload" href="fonts/Prata-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="images/hero.jpg" as="image" media="(min-width: 761px)">
-<link rel="preload" href="images/hero-mobile.jpg" as="image" media="(max-width: 760px)">
+<link rel="preload" href="images/stage.jpg" as="image">
 <link rel="stylesheet" href="fonts/fonts.css">
 <script>document.documentElement.classList.add("js");</script>
 <style>
-/* Одна палитра: винно-красный фон, сливочный текст, золото только в тонких деталях.
-   Шрифты: Prata (заголовки, «журнальная» антиква) + Jost (текст). */
+/* =================================================================
+   «СЦЕНА»: чёрная сцена, луч софита, винно-красный и золото.
+   Шрифты: Prata (заголовки) + Jost (текст).
+   ================================================================= */
 :root {
-  --wine: #5a0b17;        /* основной фон */
-  --wine-deep: #42070f;   /* подвал, шапка, затемнения */
-  --red: #8e1527;         /* лента, акценты */
-  --cream: #f4e9dc;       /* текст, кнопки, светлый блок */
-  --cream-soft: rgba(244, 233, 220, .84);
-  --gold: #d2b07a;        /* подписи, номера, линии */
-  --line: rgba(210, 176, 122, .3);
+  --black: #0e0103;
+  --black-2: #170307;
+  --wine: #5a0b17;
+  --red: #b3172c;
+  --cream: #f4e9dc;
+  --muted: rgba(244, 233, 220, .66);
+  --line: rgba(244, 233, 220, .16);
+  --gold: #d2b07a;
 
   --display: "Prata", "Times New Roman", serif;
   --text: "Jost", system-ui, -apple-system, "Segoe UI", sans-serif;
-
-  --gutter: clamp(18px, 4.5vw, 64px);
+  --gutter: clamp(18px, 3.4vw, 48px);
   --ease: cubic-bezier(.22, 1, .36, 1);
 }
 
@@ -40,282 +41,307 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-stopped { overflow: hidden; }
 body {
-  margin: 0; background: var(--wine); color: var(--cream);
-  font: 400 17.5px/1.65 var(--text); overflow-x: clip;
+  margin: 0; background: var(--black); color: var(--cream);
+  font: 400 17px/1.65 var(--text); overflow-x: clip;
   -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
 }
 img { display: block; max-width: 100%; }
 a { color: inherit; }
-::selection { background: var(--gold); color: var(--wine-deep); }
+button { font: inherit; color: inherit; }
+::selection { background: var(--gold); color: var(--black); }
 :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.wrap { width: min(1340px, 100% - 2 * var(--gutter)); margin-inline: auto; }
 
-.wrap { width: min(1240px, 100% - 2 * var(--gutter)); margin-inline: auto; }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; letter-spacing: -.01em; }
+h2 { font-size: clamp(2.6rem, 6.2vw, 6rem); line-height: 1; }
+.kicker { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; font: 500 .74rem/1.2 var(--text); letter-spacing: .28em; text-transform: uppercase; color: var(--gold); }
+.kicker::before { content: ""; width: 34px; height: 1px; background: currentColor; }
+.lead { max-width: 30em; color: var(--muted); font-size: 1.05rem; }
 
-/* ---------- Типографика ---------- */
-h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; letter-spacing: -.005em; }
-h2 { font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.08; }
-.kicker { display: block; margin-bottom: 20px; font: 500 .74rem/1.2 var(--text); letter-spacing: .24em; text-transform: uppercase; color: var(--gold); }
-.prose { max-width: 33em; color: var(--cream-soft); }
-.prose p { margin: 0 0 1em; }
+/* Разбивка текста на слова и буквы для анимаций */
+.sw { display: inline-block; overflow: hidden; vertical-align: top; padding: .12em 0 .16em; margin: -.12em 0 -.16em; }
+.sc, .swi { display: inline-block; }
+.mani .sw { overflow: visible; }
 
-/* Все фото в одном винном тоне — холодные блёстки и серый камень не спорят с красным */
-.tone img { filter: saturate(.9) contrast(1.04); }
-.tone::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: var(--red); mix-blend-mode: color; opacity: .34; }
+/* Фото в одном винном тоне */
+.tone { position: relative; }
+.tone::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: #9e1428; mix-blend-mode: color; opacity: .26; }
+
+/* Зерно сцены поверх всего */
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: 150; pointer-events: none; opacity: .06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .92 0 0 0 0 .85 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
 
 /* ---------- Кнопки ---------- */
 .btn {
-  display: inline-flex; align-items: center; justify-content: center; min-height: 54px; padding: 0 34px;
-  border-radius: 2px; font: 500 .8rem/1 var(--text); letter-spacing: .16em; text-transform: uppercase; text-decoration: none;
-  background: var(--cream); color: var(--wine);
-  transition: background .35s, color .35s, transform .4s var(--ease);
+  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 58px; padding: 0 34px;
+  overflow: hidden; border: 0; border-radius: 2px; cursor: pointer; text-decoration: none; isolation: isolate;
+  font: 500 .78rem/1 var(--text); letter-spacing: .26em; text-transform: uppercase;
+  background: var(--red); color: var(--cream); transition: color .5s;
 }
-.btn:hover { background: var(--gold); color: var(--wine-deep); }
-.btn:active { transform: translateY(1px); }
-.btn--wine { background: var(--wine); color: var(--cream); }
-.btn--wine:hover { background: var(--red); color: var(--cream); }
-.link { font-weight: 400; text-underline-offset: 7px; text-decoration-thickness: 1px; text-decoration-color: var(--gold); }
-.link:hover { color: var(--gold); }
+.btn::before { /* золотая заливка снизу при наведении */
+  content: ""; position: absolute; inset: 0; z-index: -1; background: var(--gold);
+  transform: translateY(101%); transition: transform .6s var(--ease);
+}
+.btn:hover::before { transform: none; }
+.btn:hover { color: var(--black); }
+.btn span { display: inline-block; transition: transform .6s var(--ease); }
+.btn:hover span { transform: translateX(5px); }
 
 /* =================================================================
-   ШАПКА
+   ЗАНАВЕС ПРИ ЗАГРУЗКЕ
    ================================================================= */
-.nav { position: fixed; inset: 0 0 auto; z-index: 50; transition: background .5s, box-shadow .5s, transform .6s var(--ease); }
-.nav.is-solid { background: rgba(66, 7, 15, .94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 1px 0 var(--line); }
+.intro { position: fixed; inset: 0; z-index: 200; display: none; pointer-events: none; }
+.js .intro { display: block; }
+.intro__half {
+  position: absolute; top: 0; bottom: 0; width: 50.5%;
+  background:
+    linear-gradient(0deg, rgba(0, 0, 0, .55), transparent 45%),
+    repeating-linear-gradient(90deg, #36050c 0, #67101d 2.6vw, #8f172a 4vw, #67101d 5.4vw, #36050c 8vw);
+}
+.intro__half--l { left: 0; }
+.intro__half--r { right: 0; }
+.intro__half--r .intro__fold { transform: scaleX(-1); }
+.intro__half::after { content: ""; position: absolute; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, #f3d9a2, var(--gold) 40%, #7a5a2a); box-shadow: 0 0 24px rgba(210, 176, 122, .6); }
+.intro__half--l::after { right: 0; }
+.intro__half--r::after { left: 0; }
+.intro__inner { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 22px; z-index: 2; }
+.intro__crown { width: 92px; height: 62px; color: var(--gold); }
+.intro__crown path { stroke-dasharray: 160; stroke-dashoffset: 160; }
+.intro__name { font: 400 1.5rem/1 var(--display); letter-spacing: .04em; opacity: 0; transform: translateY(14px); }
+
+/* =================================================================
+   ШАПКА, ПРОГРЕСС, КУРСОР
+   ================================================================= */
+.progress { position: fixed; top: 0; left: 0; right: 0; z-index: 60; height: 2px; background: linear-gradient(90deg, var(--red), var(--gold)); transform: scaleX(0); transform-origin: 0 50%; }
+.nav { position: fixed; inset: 0 0 auto; z-index: 50; transition: background .5s, transform .7s var(--ease); }
+.nav.is-solid { background: rgba(14, 1, 3, .82); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
 .nav.is-hidden { transform: translateY(-100%); }
-.nav__row { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 76px; }
-.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; font-family: var(--display); font-size: 1.25rem; line-height: 1; white-space: nowrap; }
+.nav__row { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 78px; }
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; font: 400 1.25rem/1 var(--display); white-space: nowrap; }
 .logo svg { width: 28px; height: 20px; color: var(--gold); flex: none; }
-.nav__links { display: flex; gap: 30px; margin: 0; padding: 0; list-style: none; font-size: .95rem; }
-.nav__links a { text-decoration: none; color: var(--cream-soft); transition: color .3s; }
-.nav__links a:hover { color: var(--gold); }
-.nav .btn { min-height: 44px; padding: 0 22px; font-size: .72rem; }
-.burger { display: none; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line); background: transparent; color: var(--cream); cursor: pointer; position: relative; }
-.burger i { position: absolute; left: 14px; right: 14px; height: 1.5px; background: currentColor; transition: transform .5s var(--ease); }
-.burger i:first-child { top: 19px; } .burger i:last-child { top: 26px; }
+.nav__links { display: flex; gap: 34px; margin: 0; padding: 0; list-style: none; font: 500 .72rem/1 var(--text); letter-spacing: .24em; text-transform: uppercase; }
+.nav__links a { position: relative; text-decoration: none; color: var(--muted); transition: color .3s; }
+.nav__links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -8px; height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: right; transition: transform .5s var(--ease); }
+.nav__links a:hover { color: var(--cream); }
+.nav__links a:hover::after { transform: scaleX(1); transform-origin: left; }
+.nav .btn { min-height: 44px; padding: 0 22px; font-size: .68rem; }
+.burger { display: none; position: relative; width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--line); background: transparent; cursor: pointer; }
+.burger i { position: absolute; left: 15px; right: 15px; height: 1.5px; background: var(--cream); transition: transform .5s var(--ease); }
+.burger i:first-child { top: 20px; } .burger i:last-child { top: 27px; }
 .nav.is-open .burger i:first-child { transform: translateY(3.5px) rotate(45deg); }
 .nav.is-open .burger i:last-child { transform: translateY(-3.5px) rotate(-45deg); }
 
+.cursor, .cursor-ring { position: fixed; top: 0; left: 0; z-index: 180; pointer-events: none; border-radius: 50%; display: none; opacity: 0; transition: opacity .4s; }
+.cursor-on .cursor, .cursor-on .cursor-ring { opacity: 1; }
+.has-cursor .cursor, .has-cursor .cursor-ring { display: block; }
+.cursor { width: 6px; height: 6px; margin: -3px 0 0 -3px; background: var(--gold); }
+.cursor-ring { width: 42px; height: 42px; margin: -21px 0 0 -21px; border: 1px solid rgba(210, 176, 122, .6);
+  transition: width .45s var(--ease), height .45s var(--ease), margin .45s var(--ease), background .45s, border-color .45s; }
+.has-cursor .cursor-ring { display: grid; place-items: center; }
+.cursor-ring.is-link { width: 70px; height: 70px; margin: -35px 0 0 -35px; border-color: var(--gold); }
+.cursor-ring.is-view { width: 96px; height: 96px; margin: -48px 0 0 -48px; background: var(--gold); border-color: var(--gold); }
+.cursor-ring b { opacity: 0; font: 500 .58rem/1 var(--text); letter-spacing: .18em; text-transform: uppercase; color: var(--black); transition: opacity .3s; }
+.cursor-ring.is-view b { opacity: 1; }
+
 /* =================================================================
-   ПЕРВЫЙ ЭКРАН: фото + лента победительницы
+   ПЕРВЫЙ ЭКРАН — СЦЕНА
    ================================================================= */
-.hero { position: relative; min-height: 100svh; overflow: hidden; display: grid; align-items: center; background: var(--wine-deep); }
-.hero__photo { position: absolute; inset: 0; }
-.hero__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 78% 30%; }
-.hero__photo::after { /* затемнение слева, чтобы читался текст */
-  content: ""; position: absolute; inset: 0;
-  background:
-    linear-gradient(90deg, rgba(90, 11, 23, .96) 0%, rgba(90, 11, 23, .86) 34%, rgba(90, 11, 23, .3) 64%, rgba(90, 11, 23, .08) 82%),
-    linear-gradient(0deg, rgba(66, 7, 15, .75), transparent 34%),
-    linear-gradient(180deg, rgba(66, 7, 15, .7), transparent 20%);
-}
-.hero__text { position: relative; z-index: 2; padding: 130px 0 210px; }
-.hero h1 { font-size: clamp(2.8rem, 6.4vw, 6.2rem); line-height: 1.02; max-width: 10em; }
-.hero h1 span { display: block; }
-.hero h1 .region { color: var(--gold); }
-.hero__lead { margin: 26px 0 0; max-width: 29em; font-size: 1.1rem; color: var(--cream-soft); }
-.hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 30px; margin-top: 36px; }
-.hero__note { margin-top: 26px; font-size: .95rem; color: var(--cream-soft); }
+.stage { position: relative; height: 100svh; min-height: 640px; overflow: hidden;
+  background: radial-gradient(ellipse 70% 40% at 50% 104%, rgba(150, 18, 38, .6), transparent 70%), var(--black); }
+.beam-wrap { position: absolute; z-index: 1; left: 50%; top: -12%; width: min(130vh, 1300px); height: 128%; margin-left: calc(min(130vh, 1300px) / -2); transform-origin: 50% 0; pointer-events: none; }
+.beam { position: absolute; inset: 0; filter: blur(8px);
+  background: conic-gradient(at 50% 0, transparent 0 162deg, rgba(255, 226, 200, .14) 171deg, rgba(255, 238, 220, .3) 180deg, rgba(255, 226, 200, .14) 189deg, transparent 198deg); }
+.dust { position: absolute; inset: 0; width: 100%; height: 100%;
+  -webkit-mask-image: conic-gradient(at 50% 0, transparent 0 164deg, #000 172deg 188deg, transparent 196deg);
+          mask-image: conic-gradient(at 50% 0, transparent 0 164deg, #000 172deg 188deg, transparent 196deg); }
+.floor { position: absolute; z-index: 1; left: 5%; right: 5%; bottom: -60px; height: 200px; border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(255, 220, 195, .2), transparent 65%); pointer-events: none; }
+.bigword { position: absolute; z-index: 1; margin: 0; white-space: nowrap; pointer-events: none; user-select: none;
+  font: 400 clamp(6rem, 21vw, 22rem)/.8 var(--display); letter-spacing: -.05em; text-transform: uppercase; }
+.bigword--fill { left: -1.5vw; top: 15vh; color: var(--cream); }
+.bigword--line { right: -2vw; top: 42vh; font-size: clamp(5rem, 16.5vw, 17rem); color: transparent; -webkit-text-stroke: 1.4px var(--gold); }
+.arch { position: absolute; z-index: 2; left: 50%; bottom: 0; width: clamp(260px, 28vw, 430px); height: min(78svh, 780px); margin-left: calc(clamp(260px, 28vw, 430px) / -2);
+  border-radius: 999px 999px 0 0; overflow: hidden; box-shadow: 0 0 0 1px rgba(210, 176, 122, .55), 0 0 0 14px var(--black), 0 0 0 15px rgba(210, 176, 122, .25); }
+.arch img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; }
+.arch::before { content: ""; position: absolute; inset: 0; z-index: 2; background: linear-gradient(0deg, rgba(14, 1, 3, .7), transparent 35%); }
+.hero__info { position: absolute; z-index: 3; left: var(--gutter); bottom: clamp(30px, 6vh, 64px); max-width: 330px; }
+.hero__tag { margin: 0; font: 400 clamp(1.7rem, 2.6vw, 2.4rem)/1.12 var(--display); color: var(--gold); }
+.hero__note { margin: 14px 0 22px; font: 500 .72rem/1.7 var(--text); letter-spacing: .24em; text-transform: uppercase; }
 .hero__note b { font-weight: 500; color: var(--gold); }
-
-/* Атласная лента — в той же гамме, что и сайт */
-.sash {
-  position: absolute; z-index: 3; left: -8%; right: -8%; bottom: 9%;
-  height: clamp(50px, 5.4vw, 70px); transform: rotate(-4.5deg); transform-origin: center;
-  display: flex; align-items: center; overflow: hidden; pointer-events: none;
-  background: linear-gradient(180deg, #4a0911 0%, #7a1221 26%, #a31b30 50%, #7a1221 74%, #4a0911 100%);
-  box-shadow: 0 22px 40px -14px rgba(0, 0, 0, .6);
-}
-.sash::before { /* золотые кромки */
-  content: ""; position: absolute; inset: 6px 0; border-top: 1px solid var(--gold); border-bottom: 1px solid var(--gold); opacity: .85;
-}
-.sash::after { /* блик атласа */
-  content: ""; position: absolute; top: 0; bottom: 0; width: 30%; left: -40%;
-  background: linear-gradient(100deg, transparent, rgba(255, 230, 210, .22), transparent);
-}
-.sash__text {
-  display: flex; gap: 2.2em; white-space: nowrap; padding-left: 4%;
-  font-family: var(--display); font-size: clamp(.9rem, 1.3vw, 1.15rem); letter-spacing: .2em; text-transform: uppercase;
-  color: var(--cream); text-shadow: 0 1px 0 rgba(0, 0, 0, .35);
-}
-.sash__text span::after { content: "✦"; font-size: .7em; margin-left: 2.2em; vertical-align: .1em; color: var(--gold); }
-
-/* Анимация загрузки — единственная «постановочная» */
-.js .hero__photo img { transform: scale(1.08); opacity: 0; transition: transform 2.4s var(--ease), opacity 1.2s ease; }
-.js .hero h1 span, .js .hero .kicker, .js .hero__lead, .js .hero__actions, .js .hero__note { opacity: 0; transform: translateY(18px); transition: opacity 1.1s var(--ease), transform 1.1s var(--ease); }
-.js .sash { clip-path: inset(0 100% 0 0); transition: clip-path 1.6s cubic-bezier(.65, 0, .25, 1) 1.1s; }
-.ready .hero__photo img { transform: none; opacity: 1; }
-.ready .hero h1 span, .ready .hero .kicker, .ready .hero__lead, .ready .hero__actions, .ready .hero__note { opacity: 1; transform: none; }
-.ready .hero h1 span:nth-child(1) { transition-delay: .08s; }
-.ready .hero h1 span:nth-child(2) { transition-delay: .2s; }
-.ready .hero__lead { transition-delay: .36s; }
-.ready .hero__actions { transition-delay: .48s; }
-.ready .hero__note { transition-delay: .6s; }
-.ready .sash { clip-path: inset(0 0 0 0); }
-.ready .sash::after { animation: sheen 2.2s ease 2.5s both; }
-@keyframes sheen { to { left: 110%; } }
+.hero__meta { position: absolute; z-index: 3; right: var(--gutter); bottom: clamp(30px, 6vh, 64px); text-align: right; font: 500 .72rem/2 var(--text); letter-spacing: .28em; text-transform: uppercase; color: var(--muted); }
+.hero__meta b { display: block; font: 400 2.6rem/1 var(--display); letter-spacing: 0; color: var(--cream); margin-bottom: 8px; }
 
 /* =================================================================
-   СЕКЦИИ
+   ЛЕНТЫ
    ================================================================= */
-.block { padding: clamp(72px, 8.5vw, 120px) 0; }
-.block--cream { background: var(--cream); color: var(--wine); }
-.block--cream .kicker { color: var(--red); }
-
-/* Раскрытие фото при прокрутке (только фото, не текст) */
-.js .reveal { clip-path: inset(12% 0 12% 0); transition: clip-path 1.4s var(--ease); }
-.js .reveal img { transform: scale(1.12); transition: transform 1.8s var(--ease); }
-.js .reveal.is-in { clip-path: inset(0 0 0 0); }
-.js .reveal.is-in img { transform: none; }
-
-/* О конкурсе */
-.about { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(40px, 7vw, 110px); align-items: center; }
-.about__photo { position: relative; aspect-ratio: 4 / 5; }
-.about__photo > .reveal:first-child { position: absolute; inset: 0; overflow: hidden; border-radius: 220px 220px 2px 2px; }
-.about__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 30%; }
-.about__photo::before { /* тонкая золотая арка со смещением */
-  content: ""; position: absolute; inset: 22px -22px -22px 22px; border: 1px solid var(--line); border-radius: 220px 220px 2px 2px;
-}
-.about h2 { margin-bottom: 26px; }
-.deadline { margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 1rem; color: var(--cream-soft); }
-.deadline strong { display: block; font-family: var(--display); font-weight: 400; font-size: clamp(1.6rem, 2.6vw, 2.1rem); line-height: 1.2; color: var(--gold); }
-
-/* Категории — три фото-панели */
-.block--next { padding-top: 0; }
-.ruled { padding-top: 0; }
-.cats-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px 40px; margin-bottom: 44px; }
-.cats-head p { margin: 0; max-width: 26em; color: var(--cream-soft); }
-.cats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.cat { position: relative; aspect-ratio: 3 / 4.3; overflow: hidden; border-radius: 2px; background: var(--wine-deep); }
-.cat .reveal { position: absolute; inset: 0; overflow: hidden; }
-.cat img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
-.cat__cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 110px 28px 28px; background: linear-gradient(transparent, rgba(66, 7, 15, .94) 70%); }
-.cat h3 { font-size: clamp(1.9rem, 2.8vw, 2.5rem); line-height: 1.05; color: var(--cream); }
-.cat__age { margin-top: 10px; font: 500 .78rem/1 var(--text); letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
-.cat__cap p { margin: 12px 0 0; font-size: .97rem; line-height: 1.55; color: var(--cream-soft); }
-@media (hover: hover) { .cat:hover img { transform: scale(1.05); } }
-
-/* Условия — диадема тонируется в цвет сайта */
-.terms { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(40px, 6vw, 96px); align-items: center; }
-.terms__photo { position: relative; aspect-ratio: 1 / 1.05; overflow: hidden; border-radius: 2px; background: var(--red); }
-.terms__photo .reveal { position: absolute; inset: 0; overflow: hidden; background: var(--red); }
-.terms__photo img { width: 100%; height: 100%; object-fit: cover; mix-blend-mode: luminosity; filter: brightness(.62) contrast(1.35); }
-.terms h2 { margin-bottom: 30px; }
-.terms dl { margin: 0; }
-.term { display: grid; grid-template-columns: 12em 1fr; gap: 6px 24px; align-items: baseline; padding: 17px 0; border-top: 1px solid var(--line); }
-.term:last-child { border-bottom: 1px solid var(--line); }
-.term dt { color: var(--cream-soft); }
-.term dd { margin: 0; font-family: var(--display); font-size: 1.3rem; line-height: 1.3; color: var(--cream); }
-
-/* Как подать анкету — светлый блок, настоящая последовательность, поэтому с номерами */
-.steps-head { max-width: 640px; margin-bottom: 54px; }
-.steps-head p { margin: 18px 0 0; color: rgba(90, 11, 23, .78); }
-.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin: 0; padding: 0; list-style: none; counter-reset: s; }
-.steps li { counter-increment: s; padding-top: 22px; border-top: 1px solid rgba(90, 11, 23, .25); }
-.steps li::before { content: "0" counter(s); display: block; font-family: var(--display); font-size: 2.6rem; line-height: 1; color: var(--red); margin-bottom: 18px; }
-.steps h3 { font-size: 1.5rem; line-height: 1.2; margin-bottom: 10px; }
-.steps p { margin: 0; font-size: 1rem; line-height: 1.6; color: rgba(90, 11, 23, .78); }
-.steps-cta { margin-top: 56px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; }
-.steps-cta span { color: rgba(90, 11, 23, .7); font-size: .97rem; }
-
-/* Галерея — мозаика */
-.gallery-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 12px 40px; margin-bottom: 40px; }
-.gallery-head p { margin: 0; max-width: 28em; color: var(--cream-soft); }
-.mosaic { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: clamp(150px, 17vw, 240px); gap: 12px;
-  grid-template-areas: "a b c c" "a d e f" "g g e h"; }
-.tile { position: relative; overflow: hidden; border-radius: 2px; background: var(--wine-deep); padding: 0; border: 0; cursor: zoom-in; }
-.tile .reveal { position: absolute; inset: 0; overflow: hidden; }
-.tile img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
-@media (hover: hover) { .tile:hover img { transform: scale(1.05); } }
-.t1 { grid-area: a; } .t2 { grid-area: b; } .t3 { grid-area: c; } .t4 { grid-area: d; } .t5 { grid-area: e; } .t6 { grid-area: f; } .t7 { grid-area: g; } .t8 { grid-area: h; }
-
-/* Коротко в цифрах — сразу под первым экраном */
-.facts { border-bottom: 1px solid var(--line); }
-.facts__row { display: grid; grid-template-columns: repeat(4, 1fr); }
-.fact { padding: clamp(34px, 4vw, 54px) clamp(14px, 2vw, 30px); text-align: center; }
-.fact + .fact { border-left: 1px solid var(--line); }
-.fact b { display: block; font-family: var(--display); font-weight: 400; font-size: clamp(2.4rem, 4vw, 3.6rem); line-height: 1; color: var(--cream); }
-.fact span { display: block; margin-top: 12px; font-size: .95rem; line-height: 1.4; color: var(--cream-soft); }
-
-/* Что ждёт участниц */
-.perks { display: grid; grid-template-columns: 1.35fr 1fr; gap: clamp(40px, 6vw, 96px); align-items: center; }
-.perks h2 { margin-bottom: 18px; }
-.perks__lead { margin: 0 0 40px; max-width: 30em; color: var(--cream-soft); }
-.perks__list { display: grid; grid-template-columns: 1fr 1fr; gap: 34px 40px; margin: 0; padding: 0; list-style: none; }
-.perk svg { width: 34px; height: 34px; color: var(--gold); margin-bottom: 14px; }
-.perk h3 { font-size: 1.35rem; line-height: 1.2; margin-bottom: 6px; }
-.perk p { margin: 0; font-size: .97rem; line-height: 1.55; color: var(--cream-soft); }
-.perks__photo { position: relative; aspect-ratio: 2 / 3; }
-.perks__photo .reveal { position: absolute; inset: 0; overflow: hidden; border-radius: 2px; }
-.perks__photo img { width: 100%; height: 100%; object-fit: cover; }
-.perks__photo::before { content: ""; position: absolute; inset: -18px 18px 18px -18px; border: 1px solid var(--line); }
-
-/* Девиз — роза на чёрном, фото медленно сдвигается при прокрутке */
-.motto { position: relative; overflow: hidden; min-height: 78svh; display: grid; align-items: center; background: #1c0306; }
-.motto__photo { position: absolute; inset: -12% 0; }
-.motto__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 70% 50%; will-change: transform; }
-.motto__photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(28, 3, 6, .92) 0%, rgba(28, 3, 6, .7) 45%, rgba(28, 3, 6, .1) 80%); }
-.motto__inner { position: relative; z-index: 2; padding: 120px 0; }
-.motto blockquote { margin: 0; max-width: 15em; font-family: var(--display); font-size: clamp(2rem, 4.2vw, 3.6rem); line-height: 1.15; color: var(--cream); }
-.motto blockquote em { font-style: normal; color: var(--gold); }
-
-/* Частые вопросы */
-.faq { display: grid; grid-template-columns: 1fr 1.6fr; gap: clamp(40px, 6vw, 96px); align-items: start; }
-.faq__aside p { margin: 18px 0 28px; color: rgba(90, 11, 23, .78); }
-.faq details { border-top: 1px solid rgba(90, 11, 23, .22); }
-.faq details:last-child { border-bottom: 1px solid rgba(90, 11, 23, .22); }
-.faq summary { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 22px 0; cursor: pointer; list-style: none; font-family: var(--display); font-size: clamp(1.15rem, 1.7vw, 1.4rem); line-height: 1.3; }
-.faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: "+"; flex: none; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(90, 11, 23, .3); display: grid; place-items: center; font: 300 1.3rem/1 var(--text); color: var(--red); transition: transform .4s var(--ease), background .3s; }
-.faq details[open] summary::after { transform: rotate(45deg); background: rgba(142, 21, 39, .08); }
-.faq details p { margin: -6px 0 24px; max-width: 36em; color: rgba(90, 11, 23, .8); }
+.ribbons { position: relative; height: clamp(150px, 16vw, 230px); overflow: hidden; background: var(--black); }
+.rb { position: absolute; left: -5%; right: -5%; top: 50%; display: flex; align-items: center; height: clamp(54px, 5.4vw, 76px); margin-top: calc(clamp(54px, 5.4vw, 76px) / -2); overflow: hidden; }
+.rb--a { z-index: 2; transform: rotate(-3deg); background: linear-gradient(180deg, #4a0911, #8a1426 30%, #ad1d33 50%, #8a1426 70%, #4a0911); box-shadow: 0 20px 40px -14px rgba(0, 0, 0, .8); }
+.rb--a::before { content: ""; position: absolute; inset: 6px 0; border-block: 1px solid var(--gold); opacity: .8; pointer-events: none; }
+.rb--b { transform: rotate(2.4deg); }
+.rb__track { display: flex; flex: none; white-space: nowrap; will-change: transform; }
+.rb__track span { padding: 0 .9em; font: 400 clamp(1.1rem, 1.9vw, 1.7rem)/1 var(--display); letter-spacing: .14em; text-transform: uppercase; }
+.rb--a span { color: var(--cream); }
+.rb--a span:nth-child(even) { color: var(--gold); }
+.rb--b span { color: transparent; -webkit-text-stroke: 1px rgba(210, 176, 122, .55); font-size: clamp(1.6rem, 3vw, 2.8rem); }
 
 /* =================================================================
-   НАПОЛНЕННОСТЬ: бархат, свет, искры, орнамент, слои
+   О КОНКУРСЕ — МАНИФЕСТ
    ================================================================= */
-/* Зерно, как у бархата и плёнки, — поверх всей страницы */
-body::after {
-  content: ""; position: fixed; inset: 0; z-index: 90; pointer-events: none; opacity: .07;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .92 0 0 0 0 .85 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-/* Красные секции — не плоская заливка, а бархат с мягким светом софитов */
-.block:not(.block--cream), .facts {
-  position: relative; overflow: clip;
-  background:
-    radial-gradient(ellipse 50% 40% at 15% 30%, rgba(176, 30, 52, .4), transparent 70%),
-    radial-gradient(ellipse 45% 40% at 90% 70%, rgba(25, 0, 5, .35), transparent 70%),
-    radial-gradient(ellipse 35% 30% at 80% 25%, rgba(210, 176, 122, .07), transparent 70%),
-    var(--wine);
-}
-#perks, #terms {
-  background:
-    radial-gradient(ellipse 50% 40% at 85% 30%, rgba(176, 30, 52, .4), transparent 70%),
-    radial-gradient(ellipse 45% 40% at 10% 70%, rgba(25, 0, 5, .35), transparent 70%),
-    radial-gradient(ellipse 35% 30% at 20% 25%, rgba(210, 176, 122, .07), transparent 70%),
-    var(--wine);
-}
-.block--cream { position: relative; overflow: clip;
-  background: radial-gradient(ellipse 60% 60% at 100% 0%, rgba(210, 176, 122, .28), transparent 70%), radial-gradient(ellipse 50% 50% at 0% 100%, rgba(142, 21, 39, .07), transparent 70%), var(--cream); }
-.block > .wrap { position: relative; z-index: 1; }
+.manifesto { position: relative; padding: clamp(110px, 16vh, 200px) 0; overflow: clip; }
+.mani { position: relative; z-index: 2; margin: 0; max-width: 17em; font: 400 clamp(2rem, 4.6vw, 4.4rem)/1.16 var(--display); }
+.mani em { font-style: normal; color: var(--gold); }
+.mani-photo { position: absolute; z-index: 1; overflow: hidden; border-radius: 2px; box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .8); }
+.mani-photo img { width: 100%; height: 100%; object-fit: cover; }
+.mani-photo--1 { right: 6vw; top: 12%; width: clamp(150px, 17vw, 260px); aspect-ratio: 3 / 4; }
+.mani-photo--2 { right: 22vw; bottom: 8%; width: clamp(130px, 13vw, 210px); aspect-ratio: 4 / 5; }
+.mani-foot { position: relative; z-index: 2; display: grid; grid-template-columns: auto 1fr; gap: 24px 60px; align-items: end; margin-top: clamp(50px, 8vw, 100px); max-width: 860px; }
+.mani-foot strong { display: block; font: 400 clamp(1.8rem, 3vw, 2.6rem)/1.1 var(--display); color: var(--gold); white-space: nowrap; }
+.mani-foot small { display: block; margin-top: 8px; font: 500 .7rem/1.4 var(--text); letter-spacing: .24em; text-transform: uppercase; color: var(--muted); }
+.mani-foot p { margin: 0; color: var(--muted); max-width: 30em; }
 
-/* Свет софита в первом экране */
-.hero::before { content: ""; position: absolute; z-index: 1; pointer-events: none; left: -10%; top: -30%; width: 75%; height: 120%;
-  background: radial-gradient(ellipse at 40% 30%, rgba(255, 214, 190, .16), transparent 60%); }
+/* =================================================================
+   КАТЕГОРИИ — БОЛЬШОЙ СПИСОК
+   ================================================================= */
+.cats { padding: clamp(80px, 10vw, 140px) 0; }
+.cats__head { display: flex; justify-content: space-between; align-items: end; gap: 20px 40px; flex-wrap: wrap; margin-bottom: clamp(40px, 5vw, 70px); }
+.cats__hint { font: 500 .72rem/1 var(--text); letter-spacing: .26em; text-transform: uppercase; color: var(--gold); }
+.cat { position: relative; display: grid; grid-template-columns: 90px 1fr auto; align-items: center; column-gap: 20px; padding: clamp(14px, 1.8vw, 26px) 0; isolation: isolate; }
+.cat__line { position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--line); transform-origin: 0 50%; }
+.cat__line--b { top: auto; bottom: 0; }
+.cat::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(179, 23, 44, .5), rgba(179, 23, 44, .12) 55%, transparent 80%);
+  transform: scaleX(0); transform-origin: 0 50%; transition: transform .8s var(--ease); }
+.cat__num { font: 500 .8rem/1 var(--text); letter-spacing: .26em; color: var(--gold); padding-left: 6px; }
+.cat h3 { font-size: clamp(3rem, 10vw, 9.4rem); line-height: 1; color: rgba(244, 233, 220, .2); transition: color .6s var(--ease), transform .8s var(--ease); }
+.cat__age { align-self: start; margin-top: clamp(14px, 2vw, 30px); font: 400 clamp(1.3rem, 2.4vw, 2.2rem)/1 var(--display); color: rgba(244, 233, 220, .45); transition: color .6s; padding-right: 6px; text-align: right; }
+.cat__age small { display: block; margin-top: 8px; font: 500 .64rem/1 var(--text); letter-spacing: .24em; text-transform: uppercase; }
+.cat__desc { position: absolute; right: 6px; bottom: clamp(10px, 1.2vw, 18px); width: min(310px, 28%); margin: 0; text-align: right; font-size: .92rem; line-height: 1.5; color: var(--muted); opacity: 0; transform: translateY(8px); transition: opacity .6s, transform .6s var(--ease); }
+.cat__thumb { display: none; }
+.cat.is-on::before { transform: scaleX(1); }
+.cat.is-on h3 { color: var(--cream); transform: translateX(14px); }
+.cat.is-on .cat__age { color: var(--gold); }
+.cat.is-on .cat__desc { opacity: 1; transform: none; }
+.cat-float { position: fixed; top: 0; left: 0; z-index: 40; width: clamp(220px, 19vw, 300px); aspect-ratio: 3 / 4; pointer-events: none; opacity: 0; transform: scale(.6);
+  translate: -50% -50%; box-shadow: 0 40px 80px -20px rgba(0, 0, 0, .9); }
+.cat-float__in { position: absolute; inset: 0; overflow: hidden; border-radius: 2px; }
+.cat-float img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; clip-path: inset(100% 0 0 0); transition: clip-path .7s var(--ease); }
+.cat-float img.is-on { clip-path: inset(0 0 0 0); }
 
-/* Огромные контурные слова на фоне */
-.bgword { position: absolute; z-index: 0; pointer-events: none; white-space: nowrap; line-height: .8;
-  font-family: var(--display); font-size: clamp(9rem, 24vw, 22rem); color: transparent;
-  -webkit-text-stroke: 1px rgba(210, 176, 122, .16); }
-.block--cream .bgword { -webkit-text-stroke-color: rgba(142, 21, 39, .1); }
+/* =================================================================
+   ЧТО ЖДЁТ — ГОРИЗОНТАЛЬНАЯ ПРОКРУТКА
+   ================================================================= */
+.perks { position: relative; overflow: hidden; background: radial-gradient(ellipse 60% 50% at 20% 50%, rgba(120, 14, 30, .35), transparent 70%), var(--black-2); }
+.hs__track { display: flex; align-items: center; gap: clamp(30px, 4vw, 70px); width: max-content; height: 100svh; padding: 0 var(--gutter); }
+.hs__intro { flex: none; width: min(480px, 36vw); }
+.hs__intro .lead { margin: 24px 0 30px; }
+.hs__hint { display: inline-flex; align-items: center; gap: 14px; font: 500 .72rem/1 var(--text); letter-spacing: .26em; text-transform: uppercase; color: var(--gold); }
+.hs__hint i { width: 60px; height: 1px; background: var(--gold); position: relative; overflow: hidden; }
+.hs__hint i::after { content: ""; position: absolute; inset: 0; background: var(--cream); animation: hint 2s var(--ease) infinite; }
+@keyframes hint { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+.panel { position: relative; flex: none; width: clamp(300px, 27vw, 420px); }
+.panel:nth-child(odd) { margin-top: 12vh; }
+.panel:nth-child(even) { margin-bottom: 12vh; }
+.panel__num { position: absolute; z-index: 2; top: -.55em; left: -.1em; font: 400 clamp(5rem, 9vw, 8.5rem)/1 var(--display); color: transparent; -webkit-text-stroke: 1px var(--gold); pointer-events: none; }
+.panel__img { position: relative; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 2px; background: var(--wine); }
+.panel__img img { position: absolute; top: 0; left: -10%; width: 120%; max-width: none; height: 100%; object-fit: cover; }
+.panel__img--tiara img { mix-blend-mode: luminosity; filter: brightness(.7) contrast(1.3); }
+.panel h3 { margin: 22px 0 8px; font-size: clamp(1.5rem, 2vw, 2rem); line-height: 1.15; }
+.panel p { margin: 0; color: var(--muted); font-size: .98rem; max-width: 24em; }
+.hs__end { flex: none; width: min(460px, 34vw); padding-right: 6vw; }
+.hs__end h3 { font-size: clamp(2.2rem, 3.6vw, 3.4rem); line-height: 1.05; margin-bottom: 26px; }
+.hs__end h3 em { font-style: normal; color: var(--gold); }
+.hs__bar { position: absolute; left: var(--gutter); right: var(--gutter); bottom: 34px; display: flex; align-items: center; gap: 20px; font: 500 .72rem/1 var(--text); letter-spacing: .24em; color: var(--muted); }
+.hs__bar i { flex: 1; height: 1px; background: var(--line); position: relative; }
+.hs__bar i b { position: absolute; inset: 0; background: var(--gold); transform: scaleX(0); transform-origin: 0 50%; }
 
-/* Орнамент-разделитель с короной */
-.orn { display: flex; align-items: center; gap: 20px; color: var(--gold); margin-bottom: clamp(44px, 5vw, 72px); }
-.orn i { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--line) 30%, rgba(210, 176, 122, .55)); }
-.orn i:last-child { transform: scaleX(-1); }
-.orn svg { width: 34px; height: 24px; flex: none; }
-.orn::before, .orn::after { content: "✦"; font-size: .6rem; color: var(--gold); order: 0; }
-.orn::before { order: -1; } .orn::after { order: 5; }
+/* =================================================================
+   УСЛОВИЯ — ЦИФРЫ
+   ================================================================= */
+.terms { padding: clamp(90px, 12vw, 160px) 0; }
+.terms__head { display: flex; justify-content: space-between; align-items: end; gap: 20px 40px; flex-wrap: wrap; margin-bottom: clamp(40px, 5vw, 70px); }
+.terms__head .lead { margin: 0; }
+.specs { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.spec { position: relative; isolation: isolate; padding: clamp(28px, 3.4vw, 52px); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden;
+  min-height: clamp(200px, 19vw, 280px); display: flex; flex-direction: column; justify-content: space-between; }
+.spec::before { /* свет, который идёт за курсором */
+  content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0; transition: opacity .5s;
+  background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), rgba(179, 23, 44, .35), transparent 65%); }
+.spec:hover::before { opacity: 1; }
+.spec__label { font: 500 .72rem/1.4 var(--text); letter-spacing: .24em; text-transform: uppercase; color: var(--gold); }
+.spec__value { margin-top: 30px; font: 400 clamp(3rem, 6vw, 5.6rem)/.95 var(--display); white-space: nowrap; }
+.spec__value--word { font-size: clamp(2.6rem, 4.4vw, 4.2rem); }
+.spec__value small { font-size: .32em; color: var(--muted); margin-left: .25em; letter-spacing: 0; }
+.spec__note { margin: 12px 0 0; color: var(--muted); font-size: .95rem; }
 
-/* Золотые искры */
+/* =================================================================
+   КАК ПОДАТЬ — ЛИНИЯ ШАГОВ
+   ================================================================= */
+.how { padding: clamp(90px, 12vw, 160px) 0; background: radial-gradient(ellipse 50% 60% at 85% 40%, rgba(120, 14, 30, .3), transparent 70%), var(--black-2); }
+.how__grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(40px, 7vw, 120px); align-items: start; }
+.how__aside { position: sticky; top: 22vh; }
+.how__aside .lead { margin: 24px 0 34px; }
+.tl { position: relative; margin: 0; padding: 0; list-style: none; }
+.tl__line { position: absolute; left: 36px; top: 36px; bottom: 36px; width: 1px; background: var(--line); }
+.tl__fill { position: absolute; inset: 0; background: linear-gradient(180deg, var(--gold), var(--red)); transform: scaleY(0); transform-origin: 50% 0; }
+.step { position: relative; display: grid; grid-template-columns: 72px 1fr; gap: 30px; padding-bottom: clamp(60px, 9vh, 110px); opacity: .32; transition: opacity .8s var(--ease); }
+.step:last-child { padding-bottom: 0; }
+.step__dot { position: relative; z-index: 1; display: grid; place-items: center; width: 72px; height: 72px; border-radius: 50%; border: 1px solid var(--line); background: var(--black-2);
+  font: 400 1.5rem/1 var(--display); transition: border-color .8s, box-shadow .8s, color .8s; }
+.step h3 { font-size: clamp(1.7rem, 2.6vw, 2.4rem); line-height: 1.15; margin: 12px 0 10px; }
+.step p { margin: 0; color: var(--muted); max-width: 28em; }
+.step.is-on { opacity: 1; }
+.step.is-on .step__dot { border-color: var(--gold); color: var(--gold); box-shadow: 0 0 0 8px rgba(210, 176, 122, .08), 0 0 40px rgba(179, 23, 44, .55); }
+
+/* =================================================================
+   ГАЛЕРЕЯ — КОЛОННЫ С ПАРАЛЛАКСОМ
+   ================================================================= */
+.gallery { position: relative; padding: clamp(90px, 12vw, 160px) 0 clamp(120px, 14vw, 200px); overflow: clip; }
+.gallery__head { text-align: center; margin-bottom: clamp(50px, 7vw, 100px); }
+.gallery__head .kicker { justify-content: center; }
+.gallery__head .kicker::after { content: ""; width: 34px; height: 1px; background: currentColor; }
+.gallery__head .lead { margin: 20px auto 0; }
+.gcols { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 1.6vw, 26px); align-items: start; }
+.gcol { display: grid; gap: clamp(12px, 1.6vw, 26px); }
+.gcol:nth-child(2) { margin-top: 14vh; }
+.tile { position: relative; display: block; width: 100%; padding: 0; border: 0; overflow: hidden; border-radius: 2px; background: var(--wine); cursor: zoom-in; }
+.has-cursor .tile { cursor: none; }
+.tile img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s var(--ease); }
+.tile--tall { aspect-ratio: 3 / 4; } .tile--wide { aspect-ratio: 4 / 3; } .tile--sq { aspect-ratio: 1; }
+@media (hover: hover) { .tile:hover img { transform: scale(1.06); } }
+
+/* =================================================================
+   ВОПРОСЫ
+   ================================================================= */
+.faq { padding: clamp(90px, 12vw, 160px) 0; }
+.faq__grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: clamp(40px, 7vw, 120px); align-items: start; }
+.faq__aside .lead { margin: 24px 0 0; }
+.qa { border-top: 1px solid var(--line); }
+.qa:last-child { border-bottom: 1px solid var(--line); }
+.qa__q { display: flex; width: 100%; justify-content: space-between; align-items: center; gap: 24px; padding: 26px 0; background: none; border: 0; cursor: pointer; text-align: left;
+  font: 400 clamp(1.15rem, 1.8vw, 1.5rem)/1.3 var(--display); transition: color .4s; }
+.qa__q:hover { color: var(--gold); }
+.qa__icon { position: relative; flex: none; width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line); transition: transform .6s var(--ease), border-color .4s, background .4s; }
+.qa__icon::before, .qa__icon::after { content: ""; position: absolute; left: 50%; top: 50%; width: 14px; height: 1px; margin-left: -7px; background: var(--gold); }
+.qa__icon::after { transform: rotate(90deg); }
+.qa.is-open .qa__icon { transform: rotate(135deg); border-color: var(--gold); background: rgba(179, 23, 44, .3); }
+.qa__a { overflow: hidden; }
+.js .qa__a { height: 0; }
+.qa__a p { margin: 0 0 26px; max-width: 36em; color: var(--muted); }
+
+/* =================================================================
+   ФИНАЛ
+   ================================================================= */
+.finale { position: relative; min-height: 100svh; display: grid; place-items: center; text-align: center; overflow: hidden;
+  background: radial-gradient(ellipse 60% 45% at 50% 100%, rgba(150, 18, 38, .55), transparent 70%), var(--black); }
+.finale .beam-wrap { top: -10%; }
+.finale__in { position: relative; z-index: 3; padding: 120px var(--gutter); }
+.finale__crown { display: block; width: clamp(80px, 9vw, 120px); height: auto; margin: 0 auto 30px; color: var(--gold); }
+.finale__crown path { stroke-dasharray: 160; }
+.finale h2 { font-size: clamp(3.2rem, 10vw, 10rem); line-height: .95; }
+.finale p { margin: 26px auto 40px; max-width: 30em; color: var(--muted); }
 .spark { position: absolute; z-index: 2; pointer-events: none; width: var(--s); height: var(--s);
   background: radial-gradient(circle, #fff3d6 0%, #e7c98f 40%, rgba(210, 176, 122, 0) 72%);
   clip-path: polygon(50% 0, 58% 42%, 100% 50%, 58% 58%, 50% 100%, 42% 58%, 0 50%, 42% 42%);
@@ -323,82 +349,18 @@ body::after {
 .spark--dot { clip-path: none; border-radius: 50%; }
 @keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(.4) rotate(0); } 50% { opacity: var(--o); transform: scale(1) rotate(45deg); } }
 
-/* Круглая печать сезона, медленно вращается */
-.seal { position: absolute; z-index: 3; width: clamp(110px, 11vw, 150px); aspect-ratio: 1; border-radius: 50%;
-  background: radial-gradient(circle, var(--wine) 0 56%, var(--wine-deep) 57%); border: 1px solid rgba(210, 176, 122, .5);
-  box-shadow: 0 18px 40px -16px rgba(0, 0, 0, .7); color: var(--gold); display: grid; place-items: center; }
-.seal__ring { position: absolute; inset: 6px; animation: spin 28s linear infinite; }
-.seal__ring text { font: 500 8.6px var(--text); letter-spacing: .2em; text-transform: uppercase; fill: var(--cream); }
-.seal > svg:last-child { width: 36%; height: auto; }
-@keyframes spin { to { transform: rotate(360deg); } }
-
-/* О конкурсе — коллаж из фото */
-.about__photo { margin-bottom: 40px; }
-.about__small { position: absolute; z-index: 2; right: -14%; bottom: -40px; width: 46%; aspect-ratio: 4 / 5; overflow: hidden;
-  border: 7px solid var(--wine); outline: 1px solid rgba(210, 176, 122, .55); box-shadow: 0 30px 50px -20px rgba(0, 0, 0, .7); }
-.about__small img { width: 100%; height: 100%; object-fit: cover; }
-.about .seal { left: -34px; top: 16%; }
-
-/* Лента из фото */
-.strip { position: relative; overflow: hidden; padding: 26px 0; background: var(--wine-deep);
-  border-block: 1px solid var(--line); }
-.strip::before, .strip::after { content: ""; position: absolute; z-index: 2; top: 0; bottom: 0; width: 12%; pointer-events: none; }
-.strip::before { left: 0; background: linear-gradient(90deg, var(--wine-deep), transparent); }
-.strip::after { right: 0; background: linear-gradient(-90deg, var(--wine-deep), transparent); }
-.strip__track { display: flex; gap: 14px; width: max-content; animation: marquee 70s linear infinite; }
-.strip__item { position: relative; flex: none; height: clamp(180px, 20vw, 280px); overflow: hidden; border-radius: 2px; }
-.strip__item img { height: 100%; width: auto; }
-.strip__item:nth-child(odd) { margin-top: 18px; }
-.strip__word { flex: none; align-self: center; padding: 0 18px; font-family: var(--display); font-size: clamp(1.6rem, 2.6vw, 2.4rem); color: var(--gold); white-space: nowrap; }
-@keyframes marquee { to { transform: translateX(-50%); } }
-
-/* Что ждёт — карточки и наложенная плашка */
-.perk { padding: 26px 24px 24px; border: 1px solid rgba(210, 176, 122, .22); border-radius: 2px;
-  background: linear-gradient(160deg, rgba(244, 233, 220, .07), rgba(244, 233, 220, 0) 65%); transition: border-color .4s, background .4s, transform .5s var(--ease); }
-@media (hover: hover) { .perk:hover { border-color: rgba(210, 176, 122, .6); transform: translateY(-4px); } }
-.perk svg { width: 50px; height: 50px; padding: 11px; border: 1px solid rgba(210, 176, 122, .45); border-radius: 50%; margin-bottom: 16px; }
-.perks__list { gap: 16px; }
-.perks__note { position: absolute; z-index: 3; left: -18%; bottom: 12%; padding: 22px 26px; background: var(--cream); color: var(--wine); box-shadow: 0 24px 50px -18px rgba(0, 0, 0, .7); }
-.perks__note b { display: block; font-family: var(--display); font-weight: 400; font-size: 1.9rem; line-height: 1.1; color: var(--red); }
-.perks__note span { font: 500 .72rem/1.4 var(--text); letter-spacing: .2em; text-transform: uppercase; }
-
-/* Условия — рамка с золотыми уголками */
-.terms__panel { position: relative; margin-top: 8px; padding: 10px clamp(18px, 3vw, 34px); border: 1px solid rgba(210, 176, 122, .22);
-  background: linear-gradient(160deg, rgba(244, 233, 220, .06), rgba(244, 233, 220, 0) 60%); }
-.terms__panel::before, .terms__panel::after { content: ""; position: absolute; width: 26px; height: 26px; border: 1px solid var(--gold); }
-.terms__panel::before { top: -5px; left: -5px; border-right: 0; border-bottom: 0; }
-.terms__panel::after { bottom: -5px; right: -5px; border-left: 0; border-top: 0; }
-.terms__panel .term:first-child { border-top: 0; } .terms__panel .term:last-child { border-bottom: 0; }
-.terms__photo { overflow: visible; }
-.terms__photo .seal { right: -30px; bottom: -30px; }
-
-/* Шаги — номера в кругах, соединённые линией */
-.steps li { border-top: 0; padding-top: 0; position: relative; }
-.steps li::before { content: "0" counter(s); display: grid; place-items: center; width: 74px; height: 74px; border-radius: 50%;
-  border: 1px solid rgba(142, 21, 39, .35); background: var(--cream); font-size: 1.7rem; position: relative; z-index: 1; margin-bottom: 22px; }
-.steps li::after { content: ""; position: absolute; top: 37px; left: 74px; right: -32px; height: 1px; background: linear-gradient(90deg, rgba(142, 21, 39, .35), rgba(142, 21, 39, .1)); }
-.steps li:last-child::after { display: none; }
-
-/* Финал */
-.finale { position: relative; isolation: isolate; overflow: hidden; min-height: 92svh; display: grid; align-items: center; text-align: center; background: var(--wine-deep); }
-.finale__photo { position: absolute; inset: 0; }
-.finale__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
-.finale__photo::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(90, 11, 23, .74), rgba(66, 7, 15, .94)); }
-.finale__inner { position: relative; z-index: 2; padding: 100px 0; }
-.finale h2 { font-size: clamp(2.6rem, 6.4vw, 5.8rem); }
-.finale p { margin: 22px auto 38px; max-width: 30em; color: var(--cream-soft); }
-
 /* Подвал */
-.footer { background: var(--wine-deep); padding: 56px 0 34px; font-size: .95rem; color: var(--cream-soft); }
+.footer { padding: 56px 0 34px; border-top: 1px solid var(--line); font-size: .95rem; color: var(--muted); }
 .footer__row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; }
 .footer__links { display: flex; flex-wrap: wrap; gap: 14px 28px; }
+.footer__links a { text-underline-offset: 6px; text-decoration-color: var(--gold); }
 .footer__copy { margin-top: 34px; padding-top: 22px; border-top: 1px solid var(--line); font-size: .85rem; }
 
 /* Просмотр фото */
-.lightbox { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 64px var(--gutter); background: rgba(40, 4, 9, .96); opacity: 0; visibility: hidden; transition: opacity .4s, visibility .4s; }
+.lightbox { position: fixed; inset: 0; z-index: 170; display: grid; place-items: center; padding: 64px var(--gutter); background: rgba(8, 0, 2, .96); opacity: 0; visibility: hidden; transition: opacity .4s, visibility .4s; }
 .lightbox.is-open { opacity: 1; visibility: visible; }
 .lightbox img { max-height: 84vh; width: auto; border-radius: 2px; }
-.lb-btn { position: absolute; width: 50px; height: 50px; border-radius: 50%; border: 1px solid var(--line); background: rgba(66, 7, 15, .6); color: var(--cream); font-size: 1.4rem; cursor: pointer; display: grid; place-items: center; }
+.lb-btn { position: absolute; width: 50px; height: 50px; border-radius: 50%; border: 1px solid var(--line); background: rgba(14, 1, 3, .6); font-size: 1.4rem; cursor: pointer; display: grid; place-items: center; }
 .lb-btn:hover { background: var(--red); }
 .lb-close { top: 16px; right: 16px; }
 .lb-prev { left: 16px; top: 50%; margin-top: -25px; } .lb-next { right: 16px; top: 50%; margin-top: -25px; }
@@ -406,64 +368,78 @@ body::after {
 /* Кнопка внизу экрана на телефоне */
 .mbar { position: fixed; left: 12px; right: 12px; bottom: max(12px, env(safe-area-inset-bottom)); z-index: 45; display: none; transform: translateY(160%); transition: transform .6s var(--ease); }
 .mbar.is-shown { transform: none; }
-.mbar .btn { width: 100%; background: var(--gold); color: var(--wine-deep); box-shadow: 0 10px 30px -10px rgba(0, 0, 0, .6); } /* видна и на красном, и на светлом блоке */
+.mbar .btn { width: 100%; box-shadow: 0 14px 34px -10px rgba(0, 0, 0, .8); }
 
 /* =================================================================
    АДАПТИВ
    ================================================================= */
 @media (max-width: 1000px) {
-  .nav__links { position: fixed; inset: 0; z-index: -1; flex-direction: column; justify-content: center; align-items: center; gap: 26px; background: var(--wine-deep); font-family: var(--display); font-size: 1.8rem; opacity: 0; visibility: hidden; transition: opacity .4s, visibility .4s; }
+  .nav__links { position: fixed; inset: 0; z-index: -1; flex-direction: column; justify-content: center; align-items: center; gap: 30px; background: var(--black); font: 400 2rem/1 var(--display); letter-spacing: 0; text-transform: none; opacity: 0; visibility: hidden; transition: opacity .5s, visibility .5s; }
   .nav.is-open .nav__links { opacity: 1; visibility: visible; }
   .nav__links a { color: var(--cream); }
   .burger { display: block; }
   .nav .btn { display: none; }
-  .about, .terms, .perks, .faq { grid-template-columns: 1fr; }
-  .perks__photo { max-width: 420px; margin-left: 18px; }
-  .facts__row { grid-template-columns: repeat(2, 1fr); }
-  .fact:nth-child(3) { border-left: 0; }
-  .fact:nth-child(n+3) { border-top: 1px solid var(--line); }
-  .about__photo { max-width: 440px; width: calc(100% - 22px); }
-  .terms__photo { max-width: 520px; }
-  .steps { grid-template-columns: repeat(2, 1fr); row-gap: 40px; }
-  .steps li:nth-child(2)::after { display: none; }
-  .perks__note { left: -10px; }
   .mbar { display: block; }
-  .footer { padding-bottom: 100px; }
+  .footer { padding-bottom: 110px; }
+  .how__grid, .faq__grid { grid-template-columns: 1fr; }
+  .how__aside { position: static; }
+  .specs { grid-template-columns: repeat(2, 1fr); }
+  /* горизонтальная прокрутка превращается в обычный список */
+  .hs__track { flex-direction: column; align-items: stretch; width: auto; height: auto; padding: clamp(80px, 12vw, 120px) var(--gutter); gap: 80px; }
+  .hs__intro, .hs__end, .panel { width: 100%; max-width: 560px; }
+  .panel:nth-child(odd), .panel:nth-child(even) { margin: 0; }
+  .hs__hint, .hs__bar { display: none; }
+  .hs__end { padding-right: 0; }
 }
 @media (max-width: 760px) {
   body { font-size: 16.5px; }
-  .about__small { right: -4px; width: 42%; bottom: -30px; }
-  .about .seal { left: -10px; top: 8%; }
-  .perks__note { left: -10px; bottom: 8%; padding: 16px 20px; }
-  .perks__note b { font-size: 1.5rem; }
-  .terms__photo .seal { right: -6px; bottom: -24px; }
-  .steps li::after { display: none; }
-  .hero { align-items: end; }
-  .hero__photo img { object-position: 50% 20%; }
-  .hero__photo::after { background: linear-gradient(0deg, rgba(90, 11, 23, .98) 0%, rgba(90, 11, 23, .9) 48%, rgba(90, 11, 23, .4) 72%, rgba(66, 7, 15, .7) 100%); }
-  .hero__text { padding: 0 0 118px; }
-  .hero h1 { font-size: clamp(2.3rem, 10.6vw, 3.3rem); }
-  .hero__lead { font-size: 1rem; margin-top: 18px; }
-  .hero__actions { margin-top: 26px; }
-  .hero__actions .btn { width: 100%; }
-  .sash { bottom: 30px; left: -12%; right: -12%; transform: rotate(-5deg); }
-  .cats { grid-template-columns: 1fr; }
-  .cat { aspect-ratio: 4 / 4.6; }
-  .term { grid-template-columns: 1fr; padding: 14px 0; }
-  .term dd { font-size: 1.2rem; }
-  .steps { grid-template-columns: 1fr; }
-  .perks__list { grid-template-columns: 1fr; gap: 28px; }
-  .motto__photo::after { background: linear-gradient(0deg, rgba(28, 3, 6, .94) 10%, rgba(28, 3, 6, .55) 60%, rgba(28, 3, 6, .3)); }
-  .motto { align-items: end; }
-  .mosaic { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 46vw; grid-template-areas: "a b" "a d" "c c" "e f" "e h" "g g"; }
+  .bigword { font-size: 29vw; }
+  .bigword--fill { top: 13svh; left: -3vw; }
+  .bigword--line { top: 31svh; font-size: 24vw; }
+  .arch { width: 64vw; height: 60svh; margin-left: -32vw; }
+  .stage::after { content: ""; position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; height: 52%; background: linear-gradient(0deg, var(--black) 18%, rgba(14, 1, 3, .7) 55%, transparent); pointer-events: none; }
+  .hero__info { right: var(--gutter); max-width: none; bottom: 26px; }
+  .hero__info .btn { width: 100%; }
+  .hero__meta { display: none; }
+  .mani-photo--1 { position: relative; right: auto; top: auto; float: right; width: 40vw; margin: 0 var(--gutter) 18px 18px; }
+  .mani-photo--2 { display: none; }
+  .mani { font-size: clamp(1.75rem, 8vw, 2.4rem); }
+  .mani-foot { grid-template-columns: 1fr; }
+  .cat { grid-template-columns: 34px 1fr auto; column-gap: 12px; }
+  .cat h3 { font-size: 13vw; }
+  .cat__desc { position: static; grid-column: 1 / -1; width: auto; margin-top: 6px; text-align: left; }
+  .cat__thumb { display: block; grid-column: 1 / -1; margin-top: 16px; aspect-ratio: 16 / 10; overflow: hidden; border-radius: 2px; }
+  .cat__thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .cats__hint { display: none; }
+  .specs { grid-template-columns: 1fr; }
+  .spec { min-height: 0; }
+  .gcols { grid-template-columns: repeat(2, 1fr); }
+  .gcol:nth-child(3) { display: none; }
+  .gcol:nth-child(2) { margin-top: 8vh; }
+  .step { grid-template-columns: 56px 1fr; gap: 20px; }
+  .step__dot { width: 56px; height: 56px; font-size: 1.2rem; }
+  .tl__line { left: 28px; top: 28px; }
 }
-
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; transition-delay: 0s !important; }
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
 }
 </style>
 </head>
 <body>
+
+<!-- Занавес при загрузке -->
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="intro__half intro__half--l"></div>
+  <div class="intro__half intro__half--r"></div>
+  <div class="intro__inner">
+    <svg class="intro__crown" viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"><path d="M6 25 3.5 8l10.5 8L24 3l10 13 10.5-8L42 25z"/><path d="M7 29.5h34"/></svg>
+    <div class="intro__name">Мисс и Миссис</div>
+  </div>
+</div>
+
+<div class="progress" id="progress"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"><b>Смотреть</b></div>
 
 <header class="nav" id="nav">
   <div class="wrap nav__row">
@@ -473,224 +449,212 @@ body::after {
     </a>
     <ul class="nav__links" id="navLinks">
       <li><a href="#about" data-scroll>О конкурсе</a></li>
-      <li><a href="#perks" data-scroll>Что ждёт</a></li>
       <li><a href="#categories" data-scroll>Категории</a></li>
+      <li><a href="#perks" data-scroll>Что ждёт</a></li>
       <li><a href="#terms" data-scroll>Условия</a></li>
-      <li><a href="#how" data-scroll>Как подать</a></li>
       <li><a href="#gallery" data-scroll>Галерея</a></li>
       <li><a href="#faq" data-scroll>Вопросы</a></li>
     </ul>
-    <a class="btn js-bot" href="#" target="_blank" rel="noopener">Подать анкету</a>
+    <a class="btn js-bot magnetic" href="#" target="_blank" rel="noopener">Подать анкету</a>
     <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="navLinks"><i></i><i></i></button>
   </div>
 </header>
 
 <main id="top">
-  <!-- Первый экран -->
-  <section class="hero" data-sparks="26">
-    <picture class="hero__photo tone">
-      <source media="(max-width: 760px)" srcset="images/hero-mobile.jpg">
-      <img src="images/hero.jpg" alt="Девушка в красном вечернем платье на фоне сверкающей стены" fetchpriority="high">
-    </picture>
-    <div class="wrap hero__text">
-      <span class="kicker">Конкурс красоты · сезон 2027</span>
-      <h1><span>Мисс и Миссис</span><span class="region">Краснодарский край</span></h1>
-      <p class="hero__lead">Для девушек и женщин от 14 до 45 лет. Сцена, подготовка с профессионалами и большой финал сезона 2027.</p>
-      <div class="hero__actions">
-        <a class="btn js-bot" href="#" target="_blank" rel="noopener">Подать анкету</a>
-        <a class="link" href="#how" data-scroll>Как участвовать</a>
-      </div>
-      <p class="hero__note">Анкеты принимаем до 15 января 2027 года, <b data-days>осталось немного</b></p>
+
+  <!-- Первый экран: сцена -->
+  <section class="stage" id="stage">
+    <h1 class="sr">Мисс и Миссис Краснодарский край 2027 — конкурс красоты</h1>
+    <div class="beam-wrap" id="beam"><div class="beam"></div><canvas class="dust" id="dust"></canvas></div>
+    <div class="floor"></div>
+    <p class="bigword bigword--fill" aria-hidden="true" data-split="chars">Мисс</p>
+    <p class="bigword bigword--line" aria-hidden="true" data-split="chars">Миссис</p>
+    <div class="arch tone" id="arch"><img src="images/stage.jpg" alt="Девушка в красном платье на фоне сверкающей стены" fetchpriority="high"></div>
+    <div class="hero__info" id="heroInfo">
+      <span class="kicker">Краснодарский край · 2027</span>
+      <p class="hero__tag">Свет софитов ждёт тебя</p>
+      <p class="hero__note">Анкеты до 15 января 2027<br><b data-days>скоро финиш</b></p>
+      <a class="btn js-bot magnetic" href="#" target="_blank" rel="noopener">Выйти на сцену <span>→</span></a>
     </div>
-    <div class="sash" aria-hidden="true">
-      <div class="sash__text">
-        <span>Мисс и Миссис Краснодарский край 2027</span><span>Мисс и Миссис Краснодарский край 2027</span><span>Мисс и Миссис Краснодарский край 2027</span>
-      </div>
-    </div>
+    <div class="hero__meta" id="heroMeta"><b>14–45</b>лет<br>3 категории<br>любой город и регион</div>
   </section>
 
+  <!-- Ленты -->
+  <div class="ribbons" aria-hidden="true">
+    <div class="rb rb--b"><div class="rb__track"><span>Красота</span><span>Характер</span><span>Уверенность</span><span>Сцена</span><span>Красота</span><span>Характер</span><span>Уверенность</span><span>Сцена</span></div></div>
+    <div class="rb rb--a"><div class="rb__track"><span>Мисс и Миссис</span><span>✦</span><span>Краснодарский край</span><span>✦</span><span>Сезон 2027</span><span>✦</span><span>Мисс и Миссис</span><span>✦</span><span>Краснодарский край</span><span>✦</span><span>Сезон 2027</span><span>✦</span></div></div>
+  </div>
 
-  <!-- Коротко в цифрах -->
-  <section class="facts" aria-label="Коротко о конкурсе">
-    <div class="wrap facts__row">
-      <div class="fact"><b>3</b><span>категории участниц</span></div>
-      <div class="fact"><b>14–45</b><span>лет — возраст участниц</span></div>
-      <div class="fact"><b>5</b><span>минут на анкету в Telegram</span></div>
-      <div class="fact"><b data-days-num>—</b><span data-days-label>дней до конца приёма анкет</span></div>
-    </div>
-  </section>
-
-  <!-- Лента из фото -->
-  <div class="strip" aria-hidden="true"><div class="strip__track"><div class="strip__item tone"><img src="images/g1.jpg" alt="" loading="lazy"></div><div class="strip__item tone"><img src="images/cat-miss.jpg" alt="" loading="lazy"></div><div class="strip__item tone"><img src="images/g5.jpg" alt="" loading="lazy"></div><span class="strip__word">✦ Красота ✦</span><div class="strip__item tone"><img src="images/g2.jpg" alt="" loading="lazy"></div><div class="strip__item tone"><img src="images/cat-young.jpg" alt="" loading="lazy"></div><div class="strip__item tone"><img src="images/g6.jpg" alt="" loading="lazy"></div><span class="strip__word">✦ Характер ✦</span><div class="strip__item tone"><img src="images/g4.jpg" alt="" loading="lazy"></div><div class="strip__item tone"><img src="images/cat-mrs.jpg" alt="" loading="lazy"></div><div class="strip__item tone"><img src="images/g8.jpg" alt="" loading="lazy"></div><span class="strip__word">✦ Сцена ✦</span><div class="strip__item tone"><img src="images/g3.jpg" alt="" loading="lazy"></div><div class="strip__item tone"><img src="images/g1.jpg" alt="" loading="lazy"></div><div class="strip__item tone"><img src="images/cat-miss.jpg" alt="" loading="lazy"></div><div class="strip__item tone"><img src="images/g5.jpg" alt="" loading="lazy"></div><span class="strip__word">✦ Красота ✦</span><div class="strip__item tone"><img src="images/g2.jpg" alt="" loading="lazy"></div><div class="strip__item tone"><img src="images/cat-young.jpg" alt="" loading="lazy"></div><div class="strip__item tone"><img src="images/g6.jpg" alt="" loading="lazy"></div><span class="strip__word">✦ Характер ✦</span><div class="strip__item tone"><img src="images/g4.jpg" alt="" loading="lazy"></div><div class="strip__item tone"><img src="images/cat-mrs.jpg" alt="" loading="lazy"></div><div class="strip__item tone"><img src="images/g8.jpg" alt="" loading="lazy"></div><span class="strip__word">✦ Сцена ✦</span><div class="strip__item tone"><img src="images/g3.jpg" alt="" loading="lazy"></div></div></div>
-
-  <!-- О конкурсе -->
-  <section class="block" id="about">
-    <span class="bgword" style="right:-3vw;top:4%" aria-hidden="true">Мисс</span>
-    <div class="wrap about">
-      <div class="about__photo"><div class="reveal tone"><img src="images/about.jpg" alt="Портрет девушки с красной помадой" loading="lazy"></div>
-        <div class="about__small reveal tone"><img src="images/g7.jpg" alt="" loading="lazy"></div>
-        <div class="seal" aria-hidden="true"><svg class="seal__ring" viewBox="0 0 120 120"><defs><path id="sealPath1" d="M60,60 m-47,0 a47,47 0 1,1 94,0 a47,47 0 1,1 -94,0"/></defs><text><textPath href="#sealPath1" textLength="290">Мисс и Миссис ✦ сезон 2027 ✦ Мисс и Миссис ✦ сезон 2027 ✦</textPath></text></svg><svg viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M6 25 3.5 8l10.5 8L24 3l10 13 10.5-8L42 25z"/><path d="M7 29.5h34"/></svg></div></div>
-      <div>
-        <span class="kicker">О конкурсе</span>
-        <h2>Красота, характер и большая сцена</h2>
-        <div class="prose" style="margin-top:26px">
-          <p>На конкурсе «Мисс и Миссис Краснодарский край» ценят не только красоту, но и характер, уверенность и умение вдохновлять. Участвовать могут девушки и женщины из любого города и региона.</p>
-          <p>Участниц ждут фотосессии, репетиции с хореографами и стилистами, новые знакомства и финальное шоу на большой сцене.</p>
-        </div>
-        <p class="deadline"><strong>до 15 января 2027</strong>принимаем анкеты на новый сезон</p>
+  <!-- О конкурсе — манифест -->
+  <section class="manifesto" id="about">
+    <div class="mani-photo mani-photo--1 tone" data-speed="-14"><img src="images/about.jpg" alt="Портрет девушки с красной помадой" loading="lazy"></div>
+    <div class="mani-photo mani-photo--2 tone" data-speed="12"><img src="images/rose.jpg" alt="" loading="lazy"></div>
+    <div class="wrap">
+      <span class="kicker" data-r>О конкурсе</span>
+      <p class="mani" id="mani">Сцена ждёт тех, кто умеет <em>светиться.</em> «Мисс и Миссис Краснодарский край» — конкурс, где ценят <em>красоту, характер и уверенность.</em> Участвовать могут девушки и женщины от 14 до 45 лет из любого города и региона.</p>
+      <div class="mani-foot">
+        <div data-r><strong>до 15 января 2027</strong><small>приём анкет</small></div>
+        <p data-r>Участниц ждут фотосессии, репетиции с хореографами и стилистами, новые знакомства и финальное шоу на большой сцене.</p>
       </div>
-    </div>
-  </section>
-
-
-  <!-- Что ждёт участниц -->
-  <section class="block block--next" id="perks">
-    <div class="wrap"><div class="orn" aria-hidden="true"><i></i><svg viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M6 25 3.5 8l10.5 8L24 3l10 13 10.5-8L42 25z"/><path d="M7 29.5h34"/></svg><i></i></div></div>
-    <div class="wrap perks">
-      <div>
-        <span class="kicker">Что ждёт участниц</span>
-        <h2>Больше, чем конкурс красоты</h2>
-        <p class="perks__lead">Несколько месяцев подготовки с командой профессионалов, а в конце — большой финал на сцене.</p>
-        <ul class="perks__list">
-          <li class="perk"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h5l2.5-3h9L23 10h5v15H4z"/><circle cx="16" cy="17" r="5"/></svg><h3>Фотосессии</h3><p>Профессиональные съёмки в образах конкурса.</p></li>
-          <li class="perk"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="17" cy="5.5" r="2.5"/><path d="M17 8v9l-5 9M17 17l5 9M11 12l6-2 6 4"/></svg><h3>Репетиции с хореографом</h3><p>Учимся держаться на сцене, красиво двигаться и позировать.</p></li>
-          <li class="perk"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l1.5 6h5L20 4M13.5 10 9 28h14l-4.5-18"/><path d="M12 4c1.5 1.5 6.5 1.5 8 0"/></svg><h3>Работа со стилистами</h3><p>Подбор образов и платьев для выходов на сцену.</p></li>
-          <li class="perk"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="4"/><circle cx="22" cy="12" r="3.2"/><path d="M3 26c0-5 3.6-8 8-8s8 3 8 8M19 19.5c1-.6 2-.9 3-.9 3.5 0 6 2.4 6 7"/></svg><h3>Новые знакомства</h3><p>Участницы из разных городов и команда конкурса.</p></li>
-          <li class="perk"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3 9 21M16 3l7 18M4 21h24v4H4z"/><path d="M13 13h6"/></svg><h3>Финальное шоу</h3><p>Выход на большую сцену перед зрителями и жюри.</p></li>
-          <li class="perk"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 24 3.5 9l7 6L16 5l5.5 10 7-6L27 24z"/><path d="M5.5 28h21"/></svg><h3>Титул и корона</h3><p>Победительницы каждой категории получают титул сезона 2027.</p></li>
-        </ul>
-      </div>
-      <div class="perks__photo"><div class="reveal tone"><img src="images/perks.jpg" alt="Девушка в пышном светлом платье среди высокой травы" loading="lazy"></div>
-        <div class="perks__note"><span>Приём анкет</span><b>до 15 января</b><span>2027 года</span></div></div>
     </div>
   </section>
 
   <!-- Категории -->
-  <section class="block block--next" id="categories">
-    <span class="bgword" style="left:-2vw;bottom:-4%" aria-hidden="true">2027</span>
+  <section class="cats" id="categories">
     <div class="wrap">
-      <div class="orn" aria-hidden="true"><i></i><svg viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M6 25 3.5 8l10.5 8L24 3l10 13 10.5-8L42 25z"/><path d="M7 29.5h34"/></svg><i></i></div>
-      <div class="cats-head">
-        <div><span class="kicker">Категории</span><h2>Три категории</h2></div>
-        <p>Категорию бот предложит сам по вашему возрасту. В 20–35 лет можно выбрать между «Мисс» и «Миссис».</p>
+      <div class="cats__head">
+        <div><span class="kicker" data-r>Категории</span><h2 data-split="chars">Три короны</h2></div>
+        <span class="cats__hint" data-r>Наведите на категорию</span>
       </div>
-      <div class="cats">
-        <article class="cat">
-          <div class="reveal tone"><img src="images/cat-young.jpg" alt="Юная девушка в блестящем жакете" loading="lazy"></div>
-          <div class="cat__cap"><h3>Юная Мисс</h3><div class="cat__age">14–17 лет</div><p>Для тех, кто делает первые шаги на сцене.</p></div>
+      <div class="cats__list" id="catList">
+        <article class="cat" data-img="0">
+          <i class="cat__line"></i>
+          <span class="cat__num">I</span>
+          <h3 data-split="chars">Юная Мисс</h3>
+          <span class="cat__age">14–17<small>лет</small></span>
+          <p class="cat__desc">Для тех, кто делает первые шаги на сцене. Согласие на участие даёт родитель.</p>
+          <div class="cat__thumb tone"><img src="images/cat-young.jpg" alt="" loading="lazy"></div>
         </article>
-        <article class="cat">
-          <div class="reveal tone"><img src="images/cat-miss.jpg" alt="Девушка в красном платье" loading="lazy"></div>
-          <div class="cat__cap"><h3>Мисс</h3><div class="cat__age">18–35 лет</div><p>Для девушек, готовых заявить о себе.</p></div>
+        <article class="cat" data-img="1">
+          <i class="cat__line"></i>
+          <span class="cat__num">II</span>
+          <h3 data-split="chars">Мисс</h3>
+          <span class="cat__age">18–35<small>лет</small></span>
+          <p class="cat__desc">Для девушек, готовых заявить о себе. В 20–35 лет можно выбрать между «Мисс» и «Миссис».</p>
+          <div class="cat__thumb tone"><img src="images/cat-miss.jpg" alt="" loading="lazy"></div>
         </article>
-        <article class="cat">
-          <div class="reveal tone"><img src="images/cat-mrs.jpg" alt="Женщина в вечернем платье цвета шампань" loading="lazy"></div>
-          <div class="cat__cap"><h3>Миссис</h3><div class="cat__age">20–45 лет</div><p>Для женщин, которые вдохновляют своим примером.</p></div>
+        <article class="cat" data-img="2">
+          <i class="cat__line"></i><i class="cat__line cat__line--b"></i>
+          <span class="cat__num">III</span>
+          <h3 data-split="chars">Миссис</h3>
+          <span class="cat__age">20–45<small>лет</small></span>
+          <p class="cat__desc">Для женщин, которые вдохновляют своим примером.</p>
+          <div class="cat__thumb tone"><img src="images/cat-mrs.jpg" alt="" loading="lazy"></div>
         </article>
       </div>
     </div>
+    <div class="cat-float" id="catFloat" aria-hidden="true"><div class="cat-float__in tone">
+      <img src="images/cat-young.jpg" alt=""><img src="images/cat-miss.jpg" alt=""><img src="images/cat-mrs.jpg" alt="">
+    </div></div>
   </section>
 
-
-  <!-- Девиз -->
-  <section class="motto" aria-label="Девиз конкурса" data-sparks="18">
-    <div class="motto__photo"><img src="images/rose.jpg" alt="" loading="lazy" id="mottoImg"></div>
-    <div class="wrap motto__inner">
-      <blockquote>Корона — это не только красота. Это <em>характер, уверенность</em> и смелость выйти на сцену.</blockquote>
+  <!-- Что ждёт участниц — горизонтальная прокрутка -->
+  <section class="perks" id="perks">
+    <div class="hs__track" id="hsTrack">
+      <div class="hs__intro">
+        <span class="kicker" data-r>Что ждёт участниц</span>
+        <h2 data-split="chars">Больше, чем конкурс</h2>
+        <p class="lead" data-r>Несколько месяцев подготовки с командой профессионалов, а в конце — большой финал на сцене.</p>
+        <span class="hs__hint">Листайте <i></i></span>
+      </div>
+      <article class="panel"><span class="panel__num">01</span><div class="panel__img tone"><img src="images/g4.jpg" alt="Девушка в красном среди блёсток" loading="lazy"></div><h3>Фотосессии</h3><p>Профессиональные съёмки в образах конкурса.</p></article>
+      <article class="panel"><span class="panel__num">02</span><div class="panel__img tone"><img src="images/g1.jpg" alt="Девушка в красном платье у сверкающей стены" loading="lazy"></div><h3>Репетиции с хореографом</h3><p>Учимся держаться на сцене, красиво двигаться и позировать.</p></article>
+      <article class="panel"><span class="panel__num">03</span><div class="panel__img tone"><img src="images/g6.jpg" alt="Девушка в вечернем платье с букетом" loading="lazy"></div><h3>Работа со стилистами</h3><p>Подбор образов и платьев для выходов на сцену.</p></article>
+      <article class="panel"><span class="panel__num">04</span><div class="panel__img tone"><img src="images/g3.jpg" alt="Девушка в пышном вечернем платье" loading="lazy"></div><h3>Новые знакомства</h3><p>Участницы из разных городов и команда конкурса.</p></article>
+      <article class="panel"><span class="panel__num">05</span><div class="panel__img tone"><img src="images/cta.jpg" alt="Девушка в красном платье со спины" loading="lazy"></div><h3>Финальное шоу</h3><p>Выход на большую сцену перед зрителями и жюри.</p></article>
+      <article class="panel"><span class="panel__num">06</span><div class="panel__img panel__img--tiara"><img src="images/tiara.jpg" alt="Диадема" loading="lazy"></div><h3>Титул и корона</h3><p>Победительницы каждой категории получают титул сезона 2027.</p></article>
+      <div class="hs__end">
+        <h3>Твой выход — <em>следующий</em></h3>
+        <a class="btn js-bot magnetic" href="#" target="_blank" rel="noopener">Подать анкету <span>→</span></a>
+      </div>
     </div>
+    <div class="hs__bar" aria-hidden="true"><span id="hsCount">01</span><i><b id="hsFill"></b></i><span>06</span></div>
   </section>
 
   <!-- Условия -->
-  <section class="block" id="terms">
-    <span class="bgword" style="right:-4vw;top:-2%" aria-hidden="true">Корона</span>
-    <div class="wrap terms">
-      <div class="terms__photo"><div class="reveal"><img src="images/tiara.jpg" alt="Диадема на красном фоне" loading="lazy"></div><div class="seal" aria-hidden="true"><svg class="seal__ring" viewBox="0 0 120 120"><defs><path id="sealPath2" d="M60,60 m-47,0 a47,47 0 1,1 94,0 a47,47 0 1,1 -94,0"/></defs><text><textPath href="#sealPath2" textLength="290">Мисс и Миссис ✦ сезон 2027 ✦ Мисс и Миссис ✦ сезон 2027 ✦</textPath></text></svg><svg viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M6 25 3.5 8l10.5 8L24 3l10 13 10.5-8L42 25z"/><path d="M7 29.5h34"/></svg></div></div>
-      <div>
-        <span class="kicker">Условия</span>
-        <h2>Кто может участвовать</h2>
-        <dl class="terms__panel">
-          <div class="term"><dt>Откуда</dt><dd>Из любого города и региона</dd></div>
-          <div class="term"><dt>Возраст</dt><dd>От 14 до 45 лет</dd></div>
-          <div class="term"><dt>Рост</dt><dd>От 165 см</dd></div>
-          <div class="term"><dt>Размер одежды</dt><dd>С 40 по 46</dd></div>
-          <div class="term"><dt>Что прислать</dt><dd>5 фото или видео в любом сочетании</dd></div>
-          <div class="term"><dt>Семейное положение</dt><dd>Любое</dd></div>
-        </dl>
+  <section class="terms" id="terms">
+    <div class="wrap">
+      <div class="terms__head">
+        <div><span class="kicker" data-r>Условия</span><h2 data-split="chars">Кто может участвовать</h2></div>
+        <p class="lead" data-r>Опыт в конкурсах не нужен — если его нет, так и напишите в анкете.</p>
+      </div>
+      <div class="specs" id="specs">
+        <div class="spec"><span class="spec__label">Возраст</span><div class="spec__value"><span data-to="14">14</span>–<span data-to="45">45</span><small>лет</small></div></div>
+        <div class="spec"><span class="spec__label">Рост</span><div class="spec__value"><small style="margin:0 .25em 0 0">от</small><span data-to="165">165</span><small>см</small></div></div>
+        <div class="spec"><span class="spec__label">Размер одежды</span><div class="spec__value"><span data-to="40">40</span>–<span data-to="46">46</span></div></div>
+        <div class="spec"><span class="spec__label">Что прислать</span><div><div class="spec__value"><span data-to="5">5</span><small>фото или видео</small></div><p class="spec__note">Портрет и в полный рост, в любом сочетании</p></div></div>
+        <div class="spec"><span class="spec__label">Откуда</span><div><div class="spec__value spec__value--word">Любой<small>город</small></div><p class="spec__note">Участвовать можно из любого региона</p></div></div>
+        <div class="spec"><span class="spec__label">Семейное положение</span><div><div class="spec__value spec__value--word">Любое</div><p class="spec__note">Замужем — категория «Миссис»</p></div></div>
       </div>
     </div>
   </section>
 
   <!-- Как подать -->
-  <section class="block block--cream" id="how">
-    <span class="bgword" style="right:-3vw;top:2%" aria-hidden="true">Анкета</span>
-    <div class="wrap">
-      <div class="steps-head">
-        <span class="kicker">Как участвовать</span>
-        <h2>Как подать анкету</h2>
-        <p>Анкета заполняется в Telegram-боте конкурса и занимает около пяти минут.</p>
+  <section class="how" id="how">
+    <div class="wrap how__grid">
+      <div class="how__aside">
+        <span class="kicker" data-r>Как участвовать</span>
+        <h2 data-split="chars">Как подать анкету</h2>
+        <p class="lead" data-r>Анкета заполняется в Telegram-боте конкурса и занимает около пяти минут.</p>
+        <div data-r><a class="btn js-bot magnetic" href="#" target="_blank" rel="noopener">Открыть бота <span>→</span></a></div>
       </div>
-      <ol class="steps">
-        <li><h3>Откройте бота</h3><p>Нажмите «Подать анкету», и откроется Telegram-бот конкурса.</p></li>
-        <li><h3>Ответьте на вопросы</h3><p>Имя, город, возраст, рост, размер одежды и опыт участия в конкурсах.</p></li>
-        <li><h3>Пришлите 5 фото</h3><p>Портрет и фото в полный рост. Часть фото можно заменить видео.</p></li>
-        <li><h3>Ждите звонка</h3><p>Организаторы посмотрят анкету и свяжутся с вами по телефону или в Telegram.</p></li>
-      </ol>
-      <div class="steps-cta">
-        <a class="btn btn--wine js-bot" href="#" target="_blank" rel="noopener">Подать анкету</a>
-        <span>Откроется в Telegram</span>
+      <div class="tl" id="tl">
+        <span class="tl__line" aria-hidden="true"><i class="tl__fill" id="tlFill"></i></span>
+        <ol style="margin:0;padding:0;list-style:none">
+          <li class="step"><span class="step__dot">01</span><div><h3>Откройте бота</h3><p>Нажмите «Подать анкету» — откроется Telegram-бот конкурса.</p></div></li>
+          <li class="step"><span class="step__dot">02</span><div><h3>Ответьте на вопросы</h3><p>Имя, город, возраст, рост, размер одежды и опыт участия в конкурсах.</p></div></li>
+          <li class="step"><span class="step__dot">03</span><div><h3>Пришлите 5 фото</h3><p>Портрет и фото в полный рост. Часть фото можно заменить видео.</p></div></li>
+          <li class="step"><span class="step__dot">04</span><div><h3>Ждите звонка</h3><p>Организаторы посмотрят анкету и свяжутся с вами по телефону или в Telegram.</p></div></li>
+        </ol>
       </div>
     </div>
   </section>
 
   <!-- Галерея -->
-  <section class="block" id="gallery">
-    <div class="wrap"><div class="orn" aria-hidden="true"><i></i><svg viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M6 25 3.5 8l10.5 8L24 3l10 13 10.5-8L42 25z"/><path d="M7 29.5h34"/></svg><i></i></div>
-      <div class="gallery-head">
-        <div><span class="kicker">Фото</span><h2>Галерея</h2></div>
-        <p>Нажмите на фото, чтобы посмотреть его целиком.</p>
+  <section class="gallery" id="gallery">
+    <div class="wrap">
+      <div class="gallery__head">
+        <span class="kicker" data-r>Фото</span>
+        <h2 data-split="chars">Галерея</h2>
+        <p class="lead" data-r>Нажмите на фото, чтобы посмотреть его целиком.</p>
       </div>
-      <div class="mosaic" id="mosaic">
-        <button class="tile t1" type="button" data-full="images/g1.jpg"><div class="reveal tone"><img src="images/g1.jpg" alt="Девушка в красном платье у сверкающей стены" loading="lazy"></div></button>
-        <button class="tile t2" type="button" data-full="images/g2.jpg"><div class="reveal tone"><img src="images/g2.jpg" alt="Портрет девушки через плечо" loading="lazy"></div></button>
-        <button class="tile t3" type="button" data-full="images/g3.jpg"><div class="reveal tone"><img src="images/g3.jpg" alt="Девушка в пышном вечернем платье у резной стены" loading="lazy"></div></button>
-        <button class="tile t4" type="button" data-full="images/g4.jpg"><div class="reveal tone"><img src="images/g4.jpg" alt="Девушка в красном среди блёсток" loading="lazy"></div></button>
-        <button class="tile t5" type="button" data-full="images/g5.jpg"><div class="reveal tone"><img src="images/g5.jpg" alt="Девушка в платье цвета шампань" loading="lazy"></div></button>
-        <button class="tile t6" type="button" data-full="images/g6.jpg"><div class="reveal tone"><img src="images/g6.jpg" alt="Девушка в вечернем платье с букетом" loading="lazy"></div></button>
-        <button class="tile t7" type="button" data-full="images/g7.jpg"><div class="reveal tone"><img src="images/g7.jpg" alt="Девушка в бордовом платье в профиль" loading="lazy"></div></button>
-        <button class="tile t8" type="button" data-full="images/g8.jpg"><div class="reveal tone"><img src="images/g8.jpg" alt="Девушка в красном платье, руки над головой" loading="lazy"></div></button>
+      <div class="gcols" id="gcols">
+        <div class="gcol" data-col="-8">
+          <button class="tile tile--tall tone" type="button" data-full="images/g1.jpg"><img src="images/g1.jpg" alt="Девушка в красном платье у сверкающей стены" loading="lazy"></button>
+          <button class="tile tile--wide tone" type="button" data-full="images/g5.jpg"><img src="images/g5.jpg" alt="Девушка в платье цвета шампань" loading="lazy"></button>
+          <button class="tile tile--tall tone" type="button" data-full="images/about.jpg"><img src="images/about.jpg" alt="Портрет девушки с красной помадой" loading="lazy"></button>
+        </div>
+        <div class="gcol" data-col="8">
+          <button class="tile tile--sq tone" type="button" data-full="images/g2.jpg"><img src="images/g2.jpg" alt="Портрет девушки через плечо" loading="lazy"></button>
+          <button class="tile tile--tall tone" type="button" data-full="images/g6.jpg"><img src="images/g6.jpg" alt="Девушка в вечернем платье с букетом" loading="lazy"></button>
+          <button class="tile tile--wide tone" type="button" data-full="images/g7.jpg"><img src="images/g7.jpg" alt="Девушка в бордовом платье в профиль" loading="lazy"></button>
+        </div>
+        <div class="gcol" data-col="-16">
+          <button class="tile tile--wide tone" type="button" data-full="images/g3.jpg"><img src="images/g3.jpg" alt="Девушка в пышном вечернем платье у резной стены" loading="lazy"></button>
+          <button class="tile tile--tall tone" type="button" data-full="images/g4.jpg"><img src="images/g4.jpg" alt="Девушка в красном среди блёсток" loading="lazy"></button>
+          <button class="tile tile--sq tone" type="button" data-full="images/g8.jpg"><img src="images/g8.jpg" alt="Девушка в красном платье, руки над головой" loading="lazy"></button>
+        </div>
       </div>
     </div>
   </section>
 
-
-  <!-- Частые вопросы -->
-  <section class="block block--cream" id="faq">
-    <span class="bgword" style="left:-3vw;bottom:-6%" aria-hidden="true">Вопросы</span>
-    <div class="wrap faq">
+  <!-- Вопросы -->
+  <section class="faq" id="faq">
+    <div class="wrap faq__grid">
       <div class="faq__aside">
-        <span class="kicker">Вопросы</span>
-        <h2>Частые вопросы</h2>
-        <p>Не нашли ответ? Начните анкету — бот подскажет на каждом шаге.</p>
-        <a class="btn btn--wine js-bot" href="#" target="_blank" rel="noopener">Подать анкету</a>
+        <span class="kicker" data-r>Вопросы</span>
+        <h2 data-split="chars">Частые вопросы</h2>
+        <p class="lead" data-r>Не нашли ответ? Начните анкету — бот подскажет на каждом шаге.</p>
       </div>
-      <div>
-        <details><summary>Нужен ли опыт участия в конкурсах?</summary><p>Нет. В анкете есть вопрос об опыте, но если его нет — так и напишите. Участвовать можно с нуля.</p></details>
-        <details><summary>Я живу не в Краснодарском крае. Можно участвовать?</summary><p>Да, анкету может подать участница из любого города и региона.</p></details>
-        <details><summary>Мне меньше 18 лет. Что нужно?</summary><p>Для вас категория «Юная Мисс» — от 14 до 17 лет. Согласие на обработку данных даёт родитель или законный представитель.</p></details>
-        <details><summary>Я замужем. В какую категорию подавать?</summary><p>«Миссис» — от 20 до 45 лет. Если вам от 20 до 35, бот предложит выбрать между «Мисс» и «Миссис».</p></details>
-        <details><summary>Какие фото прислать?</summary><p>Пять фото или видео в любом сочетании: портрет и фото в полный рост. Видео можно прислать вместо части фото.</p></details>
-        <details><summary>Что будет после отправки анкеты?</summary><p>Организаторы посмотрят анкету и свяжутся с вами по телефону или в Telegram.</p></details>
+      <div id="faqList">
+        <div class="qa" data-r><button class="qa__q" type="button" aria-expanded="false">Нужен ли опыт участия в конкурсах?<i class="qa__icon"></i></button><div class="qa__a"><p>Нет. В анкете есть вопрос об опыте, но если его нет — так и напишите. Участвовать можно с нуля.</p></div></div>
+        <div class="qa" data-r><button class="qa__q" type="button" aria-expanded="false">Я живу не в Краснодарском крае. Можно участвовать?<i class="qa__icon"></i></button><div class="qa__a"><p>Да, анкету может подать участница из любого города и региона.</p></div></div>
+        <div class="qa" data-r><button class="qa__q" type="button" aria-expanded="false">Мне меньше 18 лет. Что нужно?<i class="qa__icon"></i></button><div class="qa__a"><p>Для вас категория «Юная Мисс» — от 14 до 17 лет. Согласие на обработку данных даёт родитель или законный представитель.</p></div></div>
+        <div class="qa" data-r><button class="qa__q" type="button" aria-expanded="false">Я замужем. В какую категорию подавать?<i class="qa__icon"></i></button><div class="qa__a"><p>«Миссис» — от 20 до 45 лет. Если вам от 20 до 35, бот предложит выбрать между «Мисс» и «Миссис».</p></div></div>
+        <div class="qa" data-r><button class="qa__q" type="button" aria-expanded="false">Какие фото прислать?<i class="qa__icon"></i></button><div class="qa__a"><p>Пять фото или видео в любом сочетании: портрет и фото в полный рост. Видео можно прислать вместо части фото.</p></div></div>
+        <div class="qa" data-r><button class="qa__q" type="button" aria-expanded="false">Что будет после отправки анкеты?<i class="qa__icon"></i></button><div class="qa__a"><p>Организаторы посмотрят анкету и свяжутся с вами по телефону или в Telegram.</p></div></div>
       </div>
     </div>
   </section>
 
   <!-- Финал -->
-  <section class="finale" data-sparks="22">
-    <div class="finale__photo tone"><img src="images/cta.jpg" alt="" loading="lazy"></div>
-    <div class="wrap finale__inner">
-      <h2>Твоя корона ждёт</h2>
-      <p>Заполните анкету в Telegram. Это займёт около пяти минут, а организаторы ответят сами.</p>
-      <a class="btn js-bot" href="#" target="_blank" rel="noopener">Подать анкету</a>
+  <section class="finale" id="finale" data-sparks="26">
+    <div class="beam-wrap"><div class="beam"></div></div>
+    <div class="finale__in">
+      <svg class="finale__crown" id="finaleCrown" viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round" aria-hidden="true"><path d="M6 25 3.5 8l10.5 8L24 3l10 13 10.5-8L42 25z"/><path d="M7 29.5h34"/></svg>
+      <h2 data-split="chars">Твоя корона ждёт</h2>
+      <p data-r>Заполните анкету в Telegram. Это займёт около пяти минут, а организаторы ответят сами.</p>
+      <div data-r><a class="btn js-bot magnetic" href="#" target="_blank" rel="noopener">Подать анкету <span>→</span></a></div>
     </div>
   </section>
 </main>
@@ -717,6 +681,8 @@ body::after {
   <button class="lb-btn lb-next" id="lbNext" aria-label="Следующее фото">›</button>
 </div>
 
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
 <script src="vendor/lenis.min.js"></script>
 <script>
 /* Настройки сайта */
@@ -735,39 +701,42 @@ const SITE = {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const fine = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const gsap = window.gsap && window.ScrollTrigger ? window.gsap : null;
+  const intro = $("#intro");
+  const hideIntro = () => intro && (intro.style.display = "none");
+  setTimeout(hideIntro, 6000); // страховка: занавес не останется висеть ни при каких ошибках
 
+  /* ---------- Общее: ссылки, дни, контакты ---------- */
   $$(".js-bot").forEach(a => (a.href = SITE.botUrl));
   $("#year").textContent = new Date().getFullYear();
   Object.entries(SITE.contacts).forEach(([name, v]) => {
     if (!v) return;
     const a = document.createElement("a");
-    a.className = "link"; a.textContent = name === "Телефон" ? v : name;
+    a.textContent = name === "Телефон" ? v : name;
     a.href = name === "Телефон" ? "tel:" + v.replace(/[^\d+]/g, "") : v;
     if (name !== "Телефон") { a.target = "_blank"; a.rel = "noopener"; }
     $("#contacts").appendChild(a);
   });
-
-  // Сколько дней осталось — живым текстом, без таймера-табло
   const days = Math.ceil((new Date(SITE.deadline) - Date.now()) / 864e5);
   const plural = n => (n % 10 === 1 && n % 100 !== 11) ? "день" : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) ? "дня" : "дней";
   $("[data-days]").textContent = days > 0 ? `осталось ${days} ${plural(days)}` : "приём анкет завершён";
-  $("[data-days-num]").textContent = Math.max(days, 0);
-  $("[data-days-label]").textContent = days > 0 ? `${plural(days)} до конца приёма анкет` : "приём анкет завершён";
 
-  // Загрузка: фото, заголовок, лента
-  const go = () => document.documentElement.classList.add("ready");
-  const heroImg = $(".hero__photo img");
-  if (heroImg.complete) requestAnimationFrame(go); else { heroImg.addEventListener("load", go); setTimeout(go, 1800); }
-
-  // Плавная прокрутка
+  /* ---------- Плавная прокрутка ---------- */
   let lenis = null;
   if (window.Lenis && !reduce) {
-    lenis = new Lenis({ lerp: .09 });
-    (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
+    lenis = new Lenis({ lerp: .085 });
+    if (gsap) {
+      lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add(t => lenis.raf(t * 1000));
+      gsap.ticker.lagSmoothing(0);
+    } else {
+      (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
+    }
   }
   const lock = on => lenis ? (on ? lenis.stop() : lenis.start()) : (document.body.style.overflow = on ? "hidden" : "");
 
-  // Меню
+  /* ---------- Меню и якоря ---------- */
   const nav = $("#nav"), burger = $("#burger");
   const setMenu = open => { nav.classList.toggle("is-open", open); burger.setAttribute("aria-expanded", open); burger.setAttribute("aria-label", open ? "Закрыть меню" : "Открыть меню"); lock(open); };
   burger.addEventListener("click", () => setMenu(!nav.classList.contains("is-open")));
@@ -775,47 +744,34 @@ const SITE = {
     const id = a.getAttribute("href"), t = id === "#top" ? 0 : $(id);
     if (t === null) return;
     e.preventDefault(); setMenu(false);
-    lenis ? lenis.scrollTo(t, { offset: -70 }) : (t === 0 ? scrollTo({ top: 0, behavior: "smooth" }) : t.scrollIntoView({ behavior: "smooth" }));
+    lenis ? lenis.scrollTo(t, { offset: 0, duration: 1.6 }) : (t === 0 ? scrollTo({ top: 0, behavior: "smooth" }) : t.scrollIntoView({ behavior: "smooth" }));
   }));
 
-  // Шапка и нижняя кнопка
-  const hero = $(".hero"), mbar = $("#mbar"); let lastY = 0;
+  /* ---------- Шапка и нижняя кнопка ---------- */
+  const stage = $("#stage"), mbar = $("#mbar"); let lastY = 0;
   const onScroll = () => {
-    const y = scrollY, h = hero.offsetHeight;
+    const y = scrollY, h = stage.offsetHeight;
     nav.classList.toggle("is-solid", y > 40);
     if (!nav.classList.contains("is-open")) nav.classList.toggle("is-hidden", y > h && y > lastY + 4);
     if (y < lastY - 4) nav.classList.remove("is-hidden");
-    mbar.classList.toggle("is-shown", y > h * .8 && y + innerHeight < document.documentElement.scrollHeight - 300);
+    mbar.classList.toggle("is-shown", y > h * .8 && y + innerHeight < document.documentElement.scrollHeight - 400);
     lastY = y;
   };
-  // Золотые искры
-  if (!reduce) $$("[data-sparks]").forEach(sec => {
-    for (let i = 0; i < +sec.dataset.sparks; i++) {
-      const sp = document.createElement("i"), big = Math.random() < .35;
-      sp.className = "spark" + (big ? "" : " spark--dot");
-      sp.style.cssText = `left:${Math.random() * 100}%;top:${Math.random() * 100}%;--s:${big ? 10 + Math.random() * 14 : 3 + Math.random() * 4}px;--t:${2.4 + Math.random() * 3}s;--d:${-Math.random() * 5}s;--o:${.5 + Math.random() * .5}`;
-      sp.setAttribute("aria-hidden", "true");
-      sec.appendChild(sp);
-    }
+  addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+  /* ---------- Вопросы ---------- */
+  $$(".qa").forEach(qa => {
+    const q = $(".qa__q", qa), a = $(".qa__a", qa);
+    q.addEventListener("click", () => {
+      const open = !qa.classList.contains("is-open");
+      qa.classList.toggle("is-open", open); q.setAttribute("aria-expanded", open);
+      if (gsap && !reduce) gsap.to(a, { height: open ? "auto" : 0, duration: .7, ease: "expo.out", onComplete: () => ScrollTrigger.refresh() });
+      else a.style.height = open ? "auto" : "0";
+    });
   });
 
-  // Роза в блоке-девизе медленно сдвигается при прокрутке
-  const motto = $(".motto"), mottoImg = $("#mottoImg");
-  const parallax = () => {
-    if (reduce) return;
-    const r = motto.getBoundingClientRect();
-    if (r.bottom < 0 || r.top > innerHeight) return;
-    const p = (r.top + r.height / 2 - innerHeight / 2) / innerHeight; // от -1 до 1
-    mottoImg.style.transform = `translateY(${p * -8}%)`;
-  };
-  addEventListener("scroll", () => { onScroll(); parallax(); }, { passive: true }); onScroll(); parallax();
-
-  // Раскрытие фото при прокрутке
-  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); } }), { threshold: .2 });
-  $$(".reveal").forEach(el => reduce ? el.classList.add("is-in") : io.observe(el));
-
-  // Просмотр фото
-  const tiles = $$("#mosaic .tile"), lb = $("#lightbox"), lbImg = $("#lbImg"); let cur = 0;
+  /* ---------- Просмотр фото ---------- */
+  const tiles = $$("#gcols .tile"), lb = $("#lightbox"), lbImg = $("#lbImg"); let cur = 0;
   const show = i => { cur = (i + tiles.length) % tiles.length; const t = tiles[cur]; lbImg.src = t.dataset.full; lbImg.alt = $("img", t).alt; };
   const openLb = i => { show(i); lb.classList.add("is-open"); lock(true); $("#lbClose").focus(); };
   const closeLb = () => { lb.classList.remove("is-open"); lock(false); tiles[cur].focus(); };
@@ -830,6 +786,264 @@ const SITE = {
   let tx = 0;
   lb.addEventListener("touchstart", e => (tx = e.touches[0].clientX), { passive: true });
   lb.addEventListener("touchend", e => { const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1)); });
+
+  /* ---------- Подсветка ячеек условий за курсором ---------- */
+  $$(".spec").forEach(c => c.addEventListener("pointermove", e => {
+    const r = c.getBoundingClientRect();
+    c.style.setProperty("--mx", e.clientX - r.left + "px"); c.style.setProperty("--my", e.clientY - r.top + "px");
+  }));
+
+  // Без анимаций (библиотека не загрузилась или включено «уменьшить движение») — всё уже на месте
+  if (!gsap || reduce) {
+    hideIntro();
+    $$(".step, .cat").forEach(s => s.classList.add("is-on"));
+    return;
+  }
+
+  /* =================================================================
+     АНИМАЦИИ
+     ================================================================= */
+  gsap.registerPlugin(ScrollTrigger);
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  scrollTo(0, 0);
+
+  // Разбивка текста на буквы или слова (выделения <em> сохраняются)
+  const split = (el, mode) => {
+    const label = el.textContent.replace(/\s+/g, " ").trim();
+    const units = [];
+    const walk = (src, dst) => [...src.childNodes].forEach(n => {
+      if (n.nodeType === 3) {
+        n.textContent.split(/(\s+)/).forEach(part => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { dst.appendChild(document.createTextNode(" ")); return; }
+          const w = document.createElement("span"); w.className = "sw"; w.setAttribute("aria-hidden", "true");
+          if (mode === "chars") [...part].forEach(ch => { const c = document.createElement("span"); c.className = "sc"; c.textContent = ch; w.appendChild(c); units.push(c); });
+          else { const i = document.createElement("span"); i.className = "swi"; i.textContent = part; w.appendChild(i); units.push(i); }
+          dst.appendChild(w);
+        });
+      } else if (n.nodeType === 1) { const c = n.cloneNode(false); dst.appendChild(c); walk(n, c); }
+    });
+    const tmp = document.createElement("div"); walk(el, tmp);
+    el.textContent = ""; while (tmp.firstChild) el.appendChild(tmp.firstChild);
+    if (!el.hasAttribute("aria-hidden")) el.setAttribute("aria-label", label);
+    return units;
+  };
+  const chars = new Map();
+  $$("[data-split]").forEach(el => chars.set(el, split(el, el.dataset.split)));
+  const maniWords = split($("#mani"), "words");
+
+  /* ---------- Занавес и выход на сцену ---------- */
+  const w1 = chars.get($(".bigword--fill")), w2 = chars.get($(".bigword--line"));
+  const heroBits = [...$$("#heroInfo > *"), $("#heroMeta")];
+  gsap.set("#arch", { clipPath: "inset(100% 0% 0% 0% round 999px 999px 0px 0px)" });
+  gsap.set("#arch img", { scale: 1.35 });
+  gsap.set([...w1, ...w2], { yPercent: 118 });
+  gsap.set("#beam", { opacity: 0 });
+  gsap.set(heroBits, { y: 30, opacity: 0 });
+  gsap.set(nav, { yPercent: -100 });
+  lenis && lenis.stop();
+
+  let seen = false;
+  try { seen = sessionStorage.getItem("introSeen") === "1"; sessionStorage.setItem("introSeen", "1"); } catch (e) {}
+  const tl = gsap.timeline({ defaults: { ease: "expo.out" }, onComplete: () => { lenis && lenis.start(); gsap.set(nav, { clearProps: "transform" }); } });
+  if (!seen) {
+    tl.to(".intro__crown path", { strokeDashoffset: 0, duration: 1.2, ease: "power2.inOut", stagger: .15 })
+      .to(".intro__name", { opacity: 1, y: 0, duration: .9 }, "-=.5")
+      .to(".intro__inner", { opacity: 0, y: -10, duration: .45, ease: "power2.in" }, "+=.2");
+  } else {
+    gsap.set(".intro__inner", { opacity: 0 });
+  }
+  tl.addLabel("open")
+    .to(".intro__half--l", { xPercent: -101, duration: 1.5, ease: "power4.inOut" }, "open")
+    .to(".intro__half--r", { xPercent: 101, duration: 1.5, ease: "power4.inOut" }, "open")
+    .set(intro, { display: "none" })
+    // софит «зажигается» с мерцанием
+    .to("#beam", { keyframes: [{ opacity: .6, duration: .07 }, { opacity: .1, duration: .1 }, { opacity: .85, duration: .06 }, { opacity: .25, duration: .14 }, { opacity: 1, duration: .7 }], ease: "none" }, "open+=.55")
+    .to("#arch", { clipPath: "inset(0% 0% 0% 0% round 999px 999px 0px 0px)", duration: 1.8, ease: "expo.inOut" }, "open+=.35")
+    .to("#arch img", { scale: 1, duration: 2.6 }, "open+=.5")
+    .to(w1, { yPercent: 0, duration: 1.5, stagger: .07 }, "open+=.7")
+    .to(w2, { yPercent: 0, duration: 1.5, stagger: .06 }, "open+=.9")
+    .to(heroBits, { y: 0, opacity: 1, duration: 1.2, stagger: .09 }, "open+=1.3")
+    .to(nav, { yPercent: 0, duration: 1.2 }, "open+=1.5");
+
+  /* ---------- Сцена: луч за курсором, пыль, прокрутка ---------- */
+  const beamRot = gsap.quickTo("#beam", "rotation", { duration: 1.6, ease: "power3.out" });
+  if (fine) stage.addEventListener("pointermove", e => beamRot((e.clientX / innerWidth - .5) * -16));
+
+  const canvas = $("#dust"), ctx = canvas.getContext("2d");
+  let dustOn = true, parts = [], cw = 0, ch = 0;
+  const dpr = Math.min(devicePixelRatio || 1, 2);
+  const resizeDust = () => {
+    cw = canvas.clientWidth; ch = canvas.clientHeight;
+    canvas.width = cw * dpr; canvas.height = ch * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const n = innerWidth < 760 ? 45 : 100;
+    parts = Array.from({ length: n }, () => ({ x: cw / 2 + (Math.random() - .5) * cw * .5, y: Math.random() * ch, r: .5 + Math.random() * 1.6, vy: -.08 - Math.random() * .3, vx: (Math.random() - .5) * .15, p: Math.random() * 6.28 }));
+  };
+  resizeDust(); addEventListener("resize", resizeDust);
+  new IntersectionObserver(es => (dustOn = es[0].isIntersecting)).observe(stage);
+  gsap.ticker.add(() => {
+    if (!dustOn) return;
+    ctx.clearRect(0, 0, cw, ch);
+    ctx.fillStyle = "#ffe9cf";
+    for (const d of parts) {
+      d.x += d.vx; d.y += d.vy; d.p += .03;
+      if (d.y < -5) { d.y = ch + 5; d.x = cw / 2 + (Math.random() - .5) * cw * .5; }
+      ctx.globalAlpha = .45 + Math.sin(d.p) * .35;
+      ctx.beginPath(); ctx.arc(d.x, d.y, d.r, 0, 6.283); ctx.fill();
+    }
+  });
+
+  gsap.timeline({ scrollTrigger: { trigger: stage, start: "top top", end: "bottom top", scrub: true } })
+    .to(".bigword--fill", { xPercent: -22 }, 0)
+    .to(".bigword--line", { xPercent: 16 }, 0)
+    .to("#arch", { yPercent: 14, scale: .9, transformOrigin: "50% 100%" }, 0)
+    .to(["#heroInfo", "#heroMeta"], { y: -80, autoAlpha: 0 }, 0);
+
+  /* ---------- Ленты: скорость зависит от прокрутки ---------- */
+  const tracks = $$(".rb__track").map((el, i) => {
+    el.innerHTML += el.innerHTML; // дубль для бесшовного повтора
+    return { el, x: i ? -el.scrollWidth / 4 : 0, sign: i ? 1 : -1 };
+  });
+  let boost = 0, dir = 1;
+  ScrollTrigger.create({ start: 0, end: "max", onUpdate: s => { dir = s.direction; boost = Math.min(Math.abs(s.getVelocity()) / 160, 14); } });
+  gsap.ticker.add(() => {
+    boost *= .93;
+    tracks.forEach(t => {
+      const half = t.el.scrollWidth / 2;
+      t.x += (.7 + boost) * dir * t.sign;
+      if (t.x <= -half) t.x += half;
+      if (t.x > 0) t.x -= half;
+      t.el.style.transform = `translate3d(${t.x}px,0,0) skewX(${-boost * .6 * dir}deg)`;
+    });
+  });
+
+  /* ---------- Заголовки и появление элементов ---------- */
+  chars.forEach((units, el) => {
+    if (el.closest(".stage") || el.closest(".cat")) return;
+    gsap.from(units, { yPercent: 115, duration: 1.3, ease: "expo.out", stagger: .025,
+      scrollTrigger: { trigger: el, start: "top 88%" } });
+  });
+  gsap.set("[data-r]", { autoAlpha: 0, y: 40 });
+  ScrollTrigger.batch("[data-r]", {
+    start: "top 92%",
+    onEnter: els => gsap.to(els, { y: 0, autoAlpha: 1, duration: 1.1, ease: "expo.out", stagger: .1, overwrite: true }),
+  });
+
+  /* ---------- Манифест: слова загораются по мере прокрутки ---------- */
+  gsap.fromTo(maniWords, { opacity: .12 }, { opacity: 1, ease: "none", stagger: .05,
+    scrollTrigger: { trigger: "#mani", start: "top 78%", end: "bottom 42%", scrub: .6 } });
+  $$("[data-speed]").forEach(el => gsap.to(el, { yPercent: +el.dataset.speed * 3, ease: "none",
+    scrollTrigger: { trigger: "#about", start: "top bottom", end: "bottom top", scrub: true } }));
+  $$(".mani-photo img").forEach(im => gsap.from(im, { scale: 1.4, duration: 2, ease: "expo.out", scrollTrigger: { trigger: im, start: "top 88%" } }));
+
+  /* ---------- Категории ---------- */
+  const cats = $$(".cat"), float = $("#catFloat"), fimgs = $$("img", float);
+  cats.forEach(c => {
+    const st = { trigger: c, start: "top 88%" };
+    gsap.from($$(".cat__line", c), { scaleX: 0, duration: 1.6, ease: "expo.inOut", scrollTrigger: st });
+    gsap.from(chars.get($("h3", c)), { yPercent: 115, duration: 1.3, ease: "expo.out", stagger: .03, delay: .15, scrollTrigger: st });
+    gsap.from([$(".cat__num", c), $(".cat__age", c)], { opacity: 0, y: 20, duration: 1, delay: .3, scrollTrigger: st });
+    const th = $(".cat__thumb", c);
+    if (getComputedStyle(th).display !== "none") gsap.from(th, { clipPath: "inset(0% 0% 100% 0%)", duration: 1.4, ease: "expo.inOut", scrollTrigger: { trigger: th, start: "top 90%" } });
+  });
+  if (fine) {
+    const fx = gsap.quickTo(float, "x", { duration: .7, ease: "power3.out" }), fy = gsap.quickTo(float, "y", { duration: .7, ease: "power3.out" });
+    const fr = gsap.quickTo(float, "rotation", { duration: .9, ease: "power3.out" });
+    let px = 0;
+    const list = $("#catList");
+    list.addEventListener("pointermove", e => { fx(e.clientX); fy(e.clientY); fr(gsap.utils.clamp(-12, 12, (e.clientX - px) * .6)); px = e.clientX; });
+    cats.forEach(c => c.addEventListener("pointerenter", e => {
+      cats.forEach(o => o.classList.toggle("is-on", o === c));
+      fimgs.forEach((im, i) => im.classList.toggle("is-on", i === +c.dataset.img));
+      gsap.set(float, { x: e.clientX, y: e.clientY });
+      gsap.to(float, { opacity: 1, scale: 1, duration: .6, ease: "expo.out" });
+    }));
+    list.addEventListener("pointerleave", () => { cats.forEach(o => o.classList.remove("is-on")); gsap.to(float, { opacity: 0, scale: .6, duration: .5, ease: "power3.out" }); });
+  } else {
+    // на телефоне строка загорается, когда доходит до середины экрана
+    cats.forEach(c => ScrollTrigger.create({ trigger: c, start: "top 62%", end: "bottom 38%", toggleClass: "is-on" }));
+  }
+
+  /* ---------- Что ждёт: горизонтальная прокрутка на широком экране ---------- */
+  const mm = gsap.matchMedia();
+  mm.add("(min-width: 1001px)", () => {
+    const track = $("#hsTrack"), panels = $$(".panel", track);
+    const dist = () => track.scrollWidth - innerWidth;
+    const hs = gsap.to(track, { x: () => -dist(), ease: "none",
+      scrollTrigger: { trigger: "#perks", start: "top top", end: () => "+=" + dist(), pin: true, scrub: 1, invalidateOnRefresh: true, anticipatePin: 1,
+        onUpdate: s => { gsap.set("#hsFill", { scaleX: s.progress }); $("#hsCount").textContent = String(Math.min(6, 1 + Math.floor(s.progress * 6))).padStart(2, "0"); } } });
+    panels.forEach(p => {
+      gsap.fromTo($(".panel__img img", p), { xPercent: -7 }, { xPercent: 7, ease: "none", scrollTrigger: { trigger: p, containerAnimation: hs, start: "left right", end: "right left", scrub: true } });
+      gsap.from($(".panel__img", p), { clipPath: "inset(0% 0% 0% 100%)", duration: 1.4, ease: "expo.inOut", scrollTrigger: { trigger: p, containerAnimation: hs, start: "left 95%" } });
+      gsap.from($(".panel__num", p), { xPercent: 60, opacity: 0, duration: 1.4, ease: "expo.out", scrollTrigger: { trigger: p, containerAnimation: hs, start: "left 88%" } });
+      gsap.from([$("h3", p), $("p", p)], { y: 30, opacity: 0, duration: 1, stagger: .08, ease: "expo.out", scrollTrigger: { trigger: p, containerAnimation: hs, start: "left 85%" } });
+    });
+  });
+  mm.add("(max-width: 1000px)", () => {
+    $$(".panel").forEach(p => {
+      gsap.from($(".panel__img", p), { clipPath: "inset(100% 0% 0% 0%)", duration: 1.4, ease: "expo.inOut", scrollTrigger: { trigger: p, start: "top 85%" } });
+      gsap.from([$(".panel__num", p), $("h3", p), $("p", p)], { y: 30, opacity: 0, duration: 1, stagger: .08, ease: "expo.out", scrollTrigger: { trigger: p, start: "top 75%" } });
+    });
+  });
+
+  /* ---------- Условия: ячейки и счётчики ---------- */
+  gsap.from(".spec", { opacity: 0, y: 40, duration: 1.1, ease: "expo.out", stagger: .08, scrollTrigger: { trigger: "#specs", start: "top 85%" } });
+  $$("[data-to]").forEach(n => {
+    const to = +n.dataset.to, o = { v: 0 };
+    n.textContent = "0";
+    gsap.to(o, { v: to, duration: 2.2, ease: "power3.out", scrollTrigger: { trigger: n, start: "top 90%" }, onUpdate: () => (n.textContent = Math.round(o.v)) });
+  });
+
+  /* ---------- Как подать: линия заполняется, шаги загораются ---------- */
+  gsap.to("#tlFill", { scaleY: 1, ease: "none", scrollTrigger: { trigger: "#tl", start: "top 62%", end: "bottom 62%", scrub: .5 } });
+  $$(".step").forEach(s => ScrollTrigger.create({ trigger: s, start: "top 64%", onEnter: () => s.classList.add("is-on"), onLeaveBack: () => s.classList.remove("is-on") }));
+
+  /* ---------- Галерея: колонны с разной скоростью ---------- */
+  mm.add("(min-width: 761px)", () => {
+    $$(".gcol").forEach(c => gsap.to(c, { yPercent: +c.dataset.col, ease: "none", scrollTrigger: { trigger: "#gcols", start: "top bottom", end: "bottom top", scrub: true } }));
+  });
+  $$(".tile").forEach(t => {
+    gsap.from(t, { clipPath: "inset(100% 0% 0% 0%)", duration: 1.5, ease: "expo.inOut", scrollTrigger: { trigger: t, start: "top 95%" } });
+    gsap.from($("img", t), { scale: 1.3, duration: 2, ease: "expo.out", scrollTrigger: { trigger: t, start: "top 95%" } });
+  });
+
+  /* ---------- Финал: корона рисуется, искры ---------- */
+  const fin = $("#finale");
+  gsap.fromTo("#finaleCrown path", { strokeDashoffset: 160 }, { strokeDashoffset: 0, duration: 2.2, ease: "power2.inOut", stagger: .25, scrollTrigger: { trigger: fin, start: "top 65%" } });
+  gsap.from($(".beam-wrap", fin), { opacity: 0, duration: 2.4, ease: "power2.out", scrollTrigger: { trigger: fin, start: "top 65%" } });
+  for (let i = 0; i < +fin.dataset.sparks; i++) {
+    const sp = document.createElement("i"), big = Math.random() < .35;
+    sp.className = "spark" + (big ? "" : " spark--dot");
+    sp.style.cssText = `left:${Math.random() * 100}%;top:${Math.random() * 100}%;--s:${big ? 10 + Math.random() * 14 : 3 + Math.random() * 4}px;--t:${2.4 + Math.random() * 3}s;--d:${-Math.random() * 5}s;--o:${.5 + Math.random() * .5}`;
+    fin.appendChild(sp);
+  }
+
+  /* ---------- Прогресс прокрутки ---------- */
+  gsap.to("#progress", { scaleX: 1, ease: "none", scrollTrigger: { start: 0, end: "max", scrub: .3 } });
+
+  /* ---------- Курсор и магнитные кнопки (только мышь) ---------- */
+  if (fine) {
+    document.documentElement.classList.add("has-cursor");
+    const ring = $("#cursorRing");
+    const cx = gsap.quickTo("#cursor", "x", { duration: .12 }), cy = gsap.quickTo("#cursor", "y", { duration: .12 });
+    const rx = gsap.quickTo(ring, "x", { duration: .5, ease: "power3.out" }), ry = gsap.quickTo(ring, "y", { duration: .5, ease: "power3.out" });
+    addEventListener("pointermove", e => { cx(e.clientX); cy(e.clientY); rx(e.clientX); ry(e.clientY); document.documentElement.classList.add("cursor-on"); });
+    document.addEventListener("pointerleave", () => document.documentElement.classList.remove("cursor-on"));
+    document.addEventListener("pointerover", e => {
+      const t = e.target;
+      ring.classList.toggle("is-view", !!t.closest(".tile"));
+      ring.classList.toggle("is-link", !t.closest(".tile") && !!t.closest("a, button"));
+    });
+    $$(".magnetic").forEach(b => {
+      const mx = gsap.quickTo(b, "x", { duration: .6, ease: "power3.out" }), my = gsap.quickTo(b, "y", { duration: .6, ease: "power3.out" });
+      b.addEventListener("pointermove", e => { const r = b.getBoundingClientRect(); mx((e.clientX - r.left - r.width / 2) * .3); my((e.clientY - r.top - r.height / 2) * .4); });
+      b.addEventListener("pointerleave", () => gsap.to(b, { x: 0, y: 0, duration: 1, ease: "elastic.out(1, .4)" }));
+    });
+  }
+
+  // Пересчёт после загрузки шрифтов и картинок
+  document.fonts && document.fonts.ready.then(() => ScrollTrigger.refresh());
+  addEventListener("load", () => ScrollTrigger.refresh());
 })();
 </script>
 </body>
