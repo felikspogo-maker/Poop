@@ -5,29 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Мисс и Миссис Краснодарский край 2027</title>
 <meta name="description" content="Конкурс красоты «Мисс и Миссис Краснодарский край 2027». Категории «Юная Мисс», «Мисс», «Миссис». Анкеты принимаем до 15 января 2027 года.">
-<meta name="theme-color" content="#4a0812">
+<meta name="theme-color" content="#42070f">
 <meta property="og:title" content="Мисс и Миссис Краснодарский край 2027">
-<meta property="og:description" content="Конкурс красоты Кубани. Анкеты принимаем до 15 января 2027 года через Telegram.">
+<meta property="og:description" content="Конкурс красоты для девушек и женщин от 14 до 45 лет. Анкеты принимаем до 15 января 2027 года через Telegram.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="images/hero.jpg">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='8' fill='%237b0f1e'/%3E%3Cpath d='M10 33 8 17l9 7 7-11 7 11 9-7-2 16z' fill='none' stroke='%23e9d3a4' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E">
-<link rel="preload" href="fonts/CormorantGaramond-normal-300-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='8' fill='%235a0b17'/%3E%3Cpath d='M10 33 8 17l9 7 7-11 7 11 9-7-2 16z' fill='none' stroke='%23d2b07a' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preload" href="fonts/Prata-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="images/hero.jpg" as="image" media="(min-width: 761px)">
 <link rel="preload" href="images/hero-mobile.jpg" as="image" media="(max-width: 760px)">
 <link rel="stylesheet" href="fonts/fonts.css">
 <script>document.documentElement.classList.add("js");</script>
 <style>
+/* Одна палитра: винно-красный фон, сливочный текст, золото только в тонких деталях.
+   Шрифты: Prata (заголовки, «журнальная» антиква) + Jost (текст). */
 :root {
-  --garnet: #7b0f1e;      /* основной красный */
-  --burgundy: #4a0812;    /* глубокий фон */
-  --scarlet: #b4182c;     /* блик на ленте */
-  --gold: #c59b4e;
-  --champagne: #e9d3a4;
-  --ivory: #f7eee3;
-  --ivory-soft: rgba(247, 238, 227, .78);
+  --wine: #5a0b17;        /* основной фон */
+  --wine-deep: #42070f;   /* подвал, шапка, затемнения */
+  --red: #8e1527;         /* лента, акценты */
+  --cream: #f4e9dc;       /* текст, кнопки, светлый блок */
+  --cream-soft: rgba(244, 233, 220, .84);
+  --gold: #d2b07a;        /* подписи, номера, линии */
+  --line: rgba(210, 176, 122, .3);
 
-  --serif: "Cormorant Garamond", "Times New Roman", serif;
-  --sans: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --display: "Prata", "Times New Roman", serif;
+  --text: "Jost", system-ui, -apple-system, "Segoe UI", sans-serif;
 
   --gutter: clamp(18px, 4.5vw, 64px);
   --ease: cubic-bezier(.22, 1, .36, 1);
@@ -38,50 +40,56 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-stopped { overflow: hidden; }
 body {
-  margin: 0; background: var(--garnet); color: var(--ivory);
-  font: 300 17px/1.7 var(--sans); overflow-x: clip;
-  -webkit-font-smoothing: antialiased;
+  margin: 0; background: var(--wine); color: var(--cream);
+  font: 400 17.5px/1.65 var(--text); overflow-x: clip;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
 }
 img { display: block; max-width: 100%; }
 a { color: inherit; }
-::selection { background: var(--champagne); color: var(--burgundy); }
-:focus-visible { outline: 2px solid var(--champagne); outline-offset: 3px; }
+::selection { background: var(--gold); color: var(--wine-deep); }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 
 .wrap { width: min(1240px, 100% - 2 * var(--gutter)); margin-inline: auto; }
 
 /* ---------- Типографика ---------- */
-h1, h2, h3 { font-family: var(--serif); font-weight: 300; margin: 0; letter-spacing: -.01em; }
-h2 { font-size: clamp(2.4rem, 5.4vw, 4.6rem); line-height: 1.02; }
-.prose { max-width: 34em; color: var(--ivory-soft); }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; letter-spacing: -.005em; }
+h2 { font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.08; }
+.kicker { display: block; margin-bottom: 20px; font: 500 .74rem/1.2 var(--text); letter-spacing: .24em; text-transform: uppercase; color: var(--gold); }
+.prose { max-width: 33em; color: var(--cream-soft); }
 .prose p { margin: 0 0 1em; }
+
+/* Все фото в одном винном тоне — холодные блёстки и серый камень не спорят с красным */
+.tone img { filter: saturate(.9) contrast(1.04); }
+.tone::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: var(--red); mix-blend-mode: color; opacity: .34; }
 
 /* ---------- Кнопки ---------- */
 .btn {
-  display: inline-flex; align-items: center; justify-content: center; min-height: 56px; padding: 0 34px;
-  border-radius: 999px; font: 500 .95rem/1 var(--sans); letter-spacing: .02em; text-decoration: none;
-  background: linear-gradient(180deg, #f0dcab, var(--gold)); color: var(--burgundy);
-  box-shadow: 0 10px 28px -12px rgba(0, 0, 0, .55);
-  transition: transform .4s var(--ease), box-shadow .4s var(--ease), filter .4s;
+  display: inline-flex; align-items: center; justify-content: center; min-height: 54px; padding: 0 34px;
+  border-radius: 2px; font: 500 .8rem/1 var(--text); letter-spacing: .16em; text-transform: uppercase; text-decoration: none;
+  background: var(--cream); color: var(--wine);
+  transition: background .35s, color .35s, transform .4s var(--ease);
 }
-.btn:hover { transform: translateY(-2px); filter: brightness(1.06); box-shadow: 0 16px 34px -12px rgba(0, 0, 0, .6); }
-.btn:active { transform: translateY(0); }
-.link { font-weight: 400; text-underline-offset: 6px; text-decoration-thickness: 1px; text-decoration-color: var(--gold); }
-.link:hover { color: var(--champagne); }
+.btn:hover { background: var(--gold); color: var(--wine-deep); }
+.btn:active { transform: translateY(1px); }
+.btn--wine { background: var(--wine); color: var(--cream); }
+.btn--wine:hover { background: var(--red); color: var(--cream); }
+.link { font-weight: 400; text-underline-offset: 7px; text-decoration-thickness: 1px; text-decoration-color: var(--gold); }
+.link:hover { color: var(--gold); }
 
 /* =================================================================
    ШАПКА
    ================================================================= */
 .nav { position: fixed; inset: 0 0 auto; z-index: 50; transition: background .5s, box-shadow .5s, transform .6s var(--ease); }
-.nav.is-solid { background: rgba(74, 8, 18, .92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 1px 0 rgba(233, 211, 164, .18); }
+.nav.is-solid { background: rgba(66, 7, 15, .94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 1px 0 var(--line); }
 .nav.is-hidden { transform: translateY(-100%); }
 .nav__row { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 76px; }
-.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; font-family: var(--serif); font-size: 1.4rem; line-height: 1; white-space: nowrap; }
-.logo svg { width: 30px; height: 22px; color: var(--champagne); flex: none; }
-.nav__links { display: flex; gap: 30px; margin: 0; padding: 0; list-style: none; font-size: .9rem; }
-.nav__links a { text-decoration: none; color: var(--ivory-soft); transition: color .3s; }
-.nav__links a:hover { color: var(--champagne); }
-.nav .btn { min-height: 44px; padding: 0 22px; font-size: .85rem; }
-.burger { display: none; width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(233, 211, 164, .4); background: transparent; color: var(--ivory); cursor: pointer; position: relative; }
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; font-family: var(--display); font-size: 1.25rem; line-height: 1; white-space: nowrap; }
+.logo svg { width: 28px; height: 20px; color: var(--gold); flex: none; }
+.nav__links { display: flex; gap: 30px; margin: 0; padding: 0; list-style: none; font-size: .95rem; }
+.nav__links a { text-decoration: none; color: var(--cream-soft); transition: color .3s; }
+.nav__links a:hover { color: var(--gold); }
+.nav .btn { min-height: 44px; padding: 0 22px; font-size: .72rem; }
+.burger { display: none; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line); background: transparent; color: var(--cream); cursor: pointer; position: relative; }
 .burger i { position: absolute; left: 14px; right: 14px; height: 1.5px; background: currentColor; transition: transform .5s var(--ease); }
 .burger i:first-child { top: 19px; } .burger i:last-child { top: 26px; }
 .nav.is-open .burger i:first-child { transform: translateY(3.5px) rotate(45deg); }
@@ -90,59 +98,58 @@ h2 { font-size: clamp(2.4rem, 5.4vw, 4.6rem); line-height: 1.02; }
 /* =================================================================
    ПЕРВЫЙ ЭКРАН: фото + лента победительницы
    ================================================================= */
-.hero { position: relative; min-height: 100svh; overflow: hidden; display: grid; align-items: center; background: var(--burgundy); }
+.hero { position: relative; min-height: 100svh; overflow: hidden; display: grid; align-items: center; background: var(--wine-deep); }
 .hero__photo { position: absolute; inset: 0; }
 .hero__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 78% 30%; }
 .hero__photo::after { /* затемнение слева, чтобы читался текст */
   content: ""; position: absolute; inset: 0;
   background:
-    linear-gradient(90deg, rgba(74, 8, 18, .94) 0%, rgba(74, 8, 18, .78) 32%, rgba(74, 8, 18, .2) 62%, rgba(74, 8, 18, 0) 80%),
-    linear-gradient(0deg, rgba(74, 8, 18, .7), transparent 34%),
-    linear-gradient(180deg, rgba(74, 8, 18, .75), transparent 20%);
+    linear-gradient(90deg, rgba(90, 11, 23, .96) 0%, rgba(90, 11, 23, .86) 34%, rgba(90, 11, 23, .3) 64%, rgba(90, 11, 23, .08) 82%),
+    linear-gradient(0deg, rgba(66, 7, 15, .75), transparent 34%),
+    linear-gradient(180deg, rgba(66, 7, 15, .7), transparent 20%);
 }
 .hero__text { position: relative; z-index: 2; padding: 130px 0 210px; }
-.hero h1 { font-size: clamp(3rem, 7.4vw, 7.2rem); line-height: .94; max-width: 9.5em; }
+.hero h1 { font-size: clamp(2.8rem, 6.4vw, 6.2rem); line-height: 1.02; max-width: 10em; }
 .hero h1 span { display: block; }
-.hero h1 .region { font-style: italic; color: var(--champagne); }
-.hero__lead { margin: 28px 0 0; max-width: 30em; font-size: 1.08rem; color: var(--ivory-soft); }
+.hero h1 .region { color: var(--gold); }
+.hero__lead { margin: 26px 0 0; max-width: 29em; font-size: 1.1rem; color: var(--cream-soft); }
 .hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 30px; margin-top: 36px; }
-.hero__note { margin-top: 26px; font-size: .92rem; color: var(--ivory-soft); }
-.hero__note b { font-weight: 500; color: var(--champagne); }
+.hero__note { margin-top: 26px; font-size: .95rem; color: var(--cream-soft); }
+.hero__note b { font-weight: 500; color: var(--gold); }
 
-/* Атласная лента */
+/* Атласная лента — в той же гамме, что и сайт */
 .sash {
   position: absolute; z-index: 3; left: -8%; right: -8%; bottom: 9%;
-  height: clamp(54px, 6vw, 76px); transform: rotate(-4.5deg); transform-origin: center;
+  height: clamp(50px, 5.4vw, 70px); transform: rotate(-4.5deg); transform-origin: center;
   display: flex; align-items: center; overflow: hidden; pointer-events: none;
-  background:
-    linear-gradient(180deg,
-      #6d0b18 0%, #a3172a 22%, #d23a4f 44%, #e85a6c 50%, #c32539 58%, #8f1222 82%, #650a16 100%);
-  box-shadow: 0 22px 40px -14px rgba(0, 0, 0, .65);
+  background: linear-gradient(180deg, #4a0911 0%, #7a1221 26%, #a31b30 50%, #7a1221 74%, #4a0911 100%);
+  box-shadow: 0 22px 40px -14px rgba(0, 0, 0, .6);
 }
 .sash::before { /* золотые кромки */
-  content: ""; position: absolute; inset: 7px 0; border-top: 1px solid var(--gold); border-bottom: 1px solid var(--gold); opacity: .9;
+  content: ""; position: absolute; inset: 6px 0; border-top: 1px solid var(--gold); border-bottom: 1px solid var(--gold); opacity: .85;
 }
 .sash::after { /* блик атласа */
   content: ""; position: absolute; top: 0; bottom: 0; width: 30%; left: -40%;
-  background: linear-gradient(100deg, transparent, rgba(255, 235, 220, .35), transparent);
+  background: linear-gradient(100deg, transparent, rgba(255, 230, 210, .22), transparent);
 }
 .sash__text {
-  display: flex; gap: 1.6em; white-space: nowrap; padding-left: 4%;
-  font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(1.15rem, 1.9vw, 1.7rem);
-  color: var(--champagne); text-shadow: 0 1px 0 rgba(0, 0, 0, .35);
+  display: flex; gap: 2.2em; white-space: nowrap; padding-left: 4%;
+  font-family: var(--display); font-size: clamp(.9rem, 1.3vw, 1.15rem); letter-spacing: .2em; text-transform: uppercase;
+  color: var(--cream); text-shadow: 0 1px 0 rgba(0, 0, 0, .35);
 }
-.sash__text span::after { content: "✦"; font-style: normal; font-size: .55em; margin-left: 1.6em; vertical-align: middle; color: var(--gold); }
+.sash__text span::after { content: "✦"; font-size: .7em; margin-left: 2.2em; vertical-align: .1em; color: var(--gold); }
 
 /* Анимация загрузки — единственная «постановочная» */
 .js .hero__photo img { transform: scale(1.08); opacity: 0; transition: transform 2.4s var(--ease), opacity 1.2s ease; }
-.js .hero h1 span, .js .hero__lead, .js .hero__actions, .js .hero__note { opacity: 0; transform: translateY(18px); transition: opacity 1.1s var(--ease), transform 1.1s var(--ease); }
+.js .hero h1 span, .js .hero .kicker, .js .hero__lead, .js .hero__actions, .js .hero__note { opacity: 0; transform: translateY(18px); transition: opacity 1.1s var(--ease), transform 1.1s var(--ease); }
 .js .sash { clip-path: inset(0 100% 0 0); transition: clip-path 1.6s cubic-bezier(.65, 0, .25, 1) 1.1s; }
 .ready .hero__photo img { transform: none; opacity: 1; }
-.ready .hero h1 span, .ready .hero__lead, .ready .hero__actions, .ready .hero__note { opacity: 1; transform: none; }
-.ready .hero h1 span:nth-child(2) { transition-delay: .12s; }
-.ready .hero__lead { transition-delay: .3s; }
-.ready .hero__actions { transition-delay: .42s; }
-.ready .hero__note { transition-delay: .54s; }
+.ready .hero h1 span, .ready .hero .kicker, .ready .hero__lead, .ready .hero__actions, .ready .hero__note { opacity: 1; transform: none; }
+.ready .hero h1 span:nth-child(1) { transition-delay: .08s; }
+.ready .hero h1 span:nth-child(2) { transition-delay: .2s; }
+.ready .hero__lead { transition-delay: .36s; }
+.ready .hero__actions { transition-delay: .48s; }
+.ready .hero__note { transition-delay: .6s; }
 .ready .sash { clip-path: inset(0 0 0 0); }
 .ready .sash::after { animation: sheen 2.2s ease 2.5s both; }
 @keyframes sheen { to { left: 110%; } }
@@ -151,7 +158,8 @@ h2 { font-size: clamp(2.4rem, 5.4vw, 4.6rem); line-height: 1.02; }
    СЕКЦИИ
    ================================================================= */
 .block { padding: clamp(80px, 10vw, 140px) 0; }
-.block--deep { background: var(--burgundy); }
+.block--cream { background: var(--cream); color: var(--wine); }
+.block--cream .kicker { color: var(--red); }
 
 /* Раскрытие фото при прокрутке (только фото, не текст) */
 .js .reveal { clip-path: inset(12% 0 12% 0); transition: clip-path 1.4s var(--ease); }
@@ -162,98 +170,100 @@ h2 { font-size: clamp(2.4rem, 5.4vw, 4.6rem); line-height: 1.02; }
 /* О конкурсе */
 .about { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(40px, 7vw, 110px); align-items: center; }
 .about__photo { position: relative; aspect-ratio: 4 / 5; }
-.about__photo .reveal { position: absolute; inset: 0; overflow: hidden; border-radius: 220px 220px 4px 4px; }
+.about__photo .reveal { position: absolute; inset: 0; overflow: hidden; border-radius: 220px 220px 2px 2px; }
 .about__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 30%; }
 .about__photo::before { /* тонкая золотая арка со смещением */
-  content: ""; position: absolute; inset: 22px -22px -22px 22px; border: 1px solid rgba(197, 155, 78, .55); border-radius: 220px 220px 4px 4px;
+  content: ""; position: absolute; inset: 22px -22px -22px 22px; border: 1px solid var(--line); border-radius: 220px 220px 2px 2px;
 }
 .about h2 { margin-bottom: 26px; }
-.deadline { margin-top: 30px; padding-top: 24px; border-top: 1px solid rgba(233, 211, 164, .22); font-size: 1rem; color: var(--ivory-soft); }
-.deadline strong { display: block; font-family: var(--serif); font-weight: 400; font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.1; color: var(--champagne); }
+.deadline { margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 1rem; color: var(--cream-soft); }
+.deadline strong { display: block; font-family: var(--display); font-weight: 400; font-size: clamp(1.6rem, 2.6vw, 2.1rem); line-height: 1.2; color: var(--gold); }
 
 /* Категории — три фото-панели */
+.block--next { padding-top: 0; }
+.ruled { padding-top: clamp(60px, 7vw, 100px); border-top: 1px solid var(--line); }
 .cats-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px 40px; margin-bottom: 44px; }
-.cats-head p { margin: 0; max-width: 26em; color: var(--ivory-soft); }
+.cats-head p { margin: 0; max-width: 26em; color: var(--cream-soft); }
 .cats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.cat { position: relative; aspect-ratio: 3 / 4.3; overflow: hidden; border-radius: 4px; background: var(--burgundy); }
+.cat { position: relative; aspect-ratio: 3 / 4.3; overflow: hidden; border-radius: 2px; background: var(--wine-deep); }
 .cat .reveal { position: absolute; inset: 0; overflow: hidden; }
 .cat img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
-.cat__cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 90px 28px 26px; background: linear-gradient(transparent, rgba(58, 5, 14, .92)); }
-.cat h3 { font-style: italic; font-size: clamp(2.2rem, 3.4vw, 3rem); line-height: 1; color: var(--ivory); }
-.cat__age { margin-top: 8px; font-family: var(--serif); font-size: 1.35rem; color: var(--champagne); }
-.cat__cap p { margin: 10px 0 0; font-size: .92rem; line-height: 1.55; color: var(--ivory-soft); }
+.cat__cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 110px 28px 28px; background: linear-gradient(transparent, rgba(66, 7, 15, .94) 70%); }
+.cat h3 { font-size: clamp(1.9rem, 2.8vw, 2.5rem); line-height: 1.05; color: var(--cream); }
+.cat__age { margin-top: 10px; font: 500 .78rem/1 var(--text); letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
+.cat__cap p { margin: 12px 0 0; font-size: .97rem; line-height: 1.55; color: var(--cream-soft); }
 @media (hover: hover) { .cat:hover img { transform: scale(1.05); } }
 
-/* Условия — диадема на красном сливается с фоном страницы */
+/* Условия — диадема тонируется в цвет сайта */
 .terms { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(40px, 6vw, 96px); align-items: center; }
-.terms__photo { position: relative; aspect-ratio: 1 / 1.05; overflow: hidden; border-radius: 4px; }
-.terms__photo .reveal { position: absolute; inset: 0; overflow: hidden; }
-.terms__photo img { width: 100%; height: 100%; object-fit: cover; }
+.terms__photo { position: relative; aspect-ratio: 1 / 1.05; overflow: hidden; border-radius: 2px; background: var(--red); }
+.terms__photo .reveal { position: absolute; inset: 0; overflow: hidden; background: var(--red); }
+.terms__photo img { width: 100%; height: 100%; object-fit: cover; mix-blend-mode: luminosity; filter: brightness(.62) contrast(1.35); }
 .terms h2 { margin-bottom: 30px; }
 .terms dl { margin: 0; }
-.term { display: grid; grid-template-columns: 13em 1fr; gap: 6px 24px; padding: 16px 0; border-top: 1px solid rgba(233, 211, 164, .2); }
-.term:last-child { border-bottom: 1px solid rgba(233, 211, 164, .2); }
-.term dt { color: var(--ivory-soft); }
-.term dd { margin: 0; font-family: var(--serif); font-size: 1.45rem; line-height: 1.25; color: var(--ivory); }
+.term { display: grid; grid-template-columns: 12em 1fr; gap: 6px 24px; align-items: baseline; padding: 17px 0; border-top: 1px solid var(--line); }
+.term:last-child { border-bottom: 1px solid var(--line); }
+.term dt { color: var(--cream-soft); }
+.term dd { margin: 0; font-family: var(--display); font-size: 1.3rem; line-height: 1.3; color: var(--cream); }
 
-/* Как подать анкету — настоящая последовательность, поэтому с номерами */
-.steps-head { max-width: 640px; margin-bottom: 50px; }
-.steps-head p { margin: 18px 0 0; color: var(--ivory-soft); }
-.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin: 0; padding: 0; list-style: none; counter-reset: s; }
-.steps li { counter-increment: s; padding-top: 22px; border-top: 1px solid rgba(197, 155, 78, .5); }
-.steps li::before { content: counter(s); display: block; font-family: var(--serif); font-weight: 300; font-size: 4rem; line-height: 1; color: var(--gold); margin-bottom: 14px; }
-.steps h3 { font-size: 1.7rem; line-height: 1.15; margin-bottom: 8px; }
-.steps p { margin: 0; font-size: .95rem; line-height: 1.6; color: var(--ivory-soft); }
-.steps-cta { margin-top: 52px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; }
-.steps-cta span { color: var(--ivory-soft); font-size: .95rem; }
+/* Как подать анкету — светлый блок, настоящая последовательность, поэтому с номерами */
+.steps-head { max-width: 640px; margin-bottom: 54px; }
+.steps-head p { margin: 18px 0 0; color: rgba(90, 11, 23, .78); }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin: 0; padding: 0; list-style: none; counter-reset: s; }
+.steps li { counter-increment: s; padding-top: 22px; border-top: 1px solid rgba(90, 11, 23, .25); }
+.steps li::before { content: "0" counter(s); display: block; font-family: var(--display); font-size: 2.6rem; line-height: 1; color: var(--red); margin-bottom: 18px; }
+.steps h3 { font-size: 1.5rem; line-height: 1.2; margin-bottom: 10px; }
+.steps p { margin: 0; font-size: 1rem; line-height: 1.6; color: rgba(90, 11, 23, .78); }
+.steps-cta { margin-top: 56px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; }
+.steps-cta span { color: rgba(90, 11, 23, .7); font-size: .97rem; }
 
 /* Галерея — мозаика */
 .gallery-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 12px 40px; margin-bottom: 40px; }
-.gallery-head p { margin: 0; max-width: 28em; color: var(--ivory-soft); }
+.gallery-head p { margin: 0; max-width: 28em; color: var(--cream-soft); }
 .mosaic { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: clamp(150px, 17vw, 240px); gap: 12px;
   grid-template-areas: "a b c c" "a d e f" "g g e h"; }
-.tile { position: relative; overflow: hidden; border-radius: 4px; background: var(--burgundy); padding: 0; border: 0; cursor: zoom-in; }
+.tile { position: relative; overflow: hidden; border-radius: 2px; background: var(--wine-deep); padding: 0; border: 0; cursor: zoom-in; }
 .tile .reveal { position: absolute; inset: 0; overflow: hidden; }
 .tile img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
 @media (hover: hover) { .tile:hover img { transform: scale(1.05); } }
 .t1 { grid-area: a; } .t2 { grid-area: b; } .t3 { grid-area: c; } .t4 { grid-area: d; } .t5 { grid-area: e; } .t6 { grid-area: f; } .t7 { grid-area: g; } .t8 { grid-area: h; }
 
 /* Финал */
-.finale { position: relative; overflow: hidden; min-height: 92svh; display: grid; align-items: center; text-align: center; }
+.finale { position: relative; overflow: hidden; min-height: 92svh; display: grid; align-items: center; text-align: center; background: var(--wine-deep); }
 .finale__photo { position: absolute; inset: 0; }
 .finale__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
-.finale__photo::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(74, 8, 18, .72), rgba(74, 8, 18, .93)); }
+.finale__photo::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(90, 11, 23, .74), rgba(66, 7, 15, .94)); }
 .finale__inner { position: relative; z-index: 2; padding: 100px 0; }
-.finale h2 { font-size: clamp(2.8rem, 7vw, 6.4rem); }
-.finale p { margin: 22px auto 36px; max-width: 30em; color: var(--ivory-soft); }
+.finale h2 { font-size: clamp(2.6rem, 6.4vw, 5.8rem); }
+.finale p { margin: 22px auto 38px; max-width: 30em; color: var(--cream-soft); }
 
 /* Подвал */
-.footer { background: var(--burgundy); padding: 56px 0 34px; font-size: .92rem; color: var(--ivory-soft); }
+.footer { background: var(--wine-deep); padding: 56px 0 34px; font-size: .95rem; color: var(--cream-soft); }
 .footer__row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; }
 .footer__links { display: flex; flex-wrap: wrap; gap: 14px 28px; }
-.footer__copy { margin-top: 34px; padding-top: 22px; border-top: 1px solid rgba(233, 211, 164, .16); font-size: .82rem; }
+.footer__copy { margin-top: 34px; padding-top: 22px; border-top: 1px solid var(--line); font-size: .85rem; }
 
 /* Просмотр фото */
-.lightbox { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 64px var(--gutter); background: rgba(40, 3, 9, .96); opacity: 0; visibility: hidden; transition: opacity .4s, visibility .4s; }
+.lightbox { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 64px var(--gutter); background: rgba(40, 4, 9, .96); opacity: 0; visibility: hidden; transition: opacity .4s, visibility .4s; }
 .lightbox.is-open { opacity: 1; visibility: visible; }
-.lightbox img { max-height: 84vh; width: auto; border-radius: 4px; }
-.lb-btn { position: absolute; width: 50px; height: 50px; border-radius: 50%; border: 1px solid rgba(233, 211, 164, .45); background: rgba(74, 8, 18, .6); color: var(--ivory); font-size: 1.4rem; cursor: pointer; display: grid; place-items: center; }
-.lb-btn:hover { background: var(--garnet); }
+.lightbox img { max-height: 84vh; width: auto; border-radius: 2px; }
+.lb-btn { position: absolute; width: 50px; height: 50px; border-radius: 50%; border: 1px solid var(--line); background: rgba(66, 7, 15, .6); color: var(--cream); font-size: 1.4rem; cursor: pointer; display: grid; place-items: center; }
+.lb-btn:hover { background: var(--red); }
 .lb-close { top: 16px; right: 16px; }
 .lb-prev { left: 16px; top: 50%; margin-top: -25px; } .lb-next { right: 16px; top: 50%; margin-top: -25px; }
 
 /* Кнопка внизу экрана на телефоне */
 .mbar { position: fixed; left: 12px; right: 12px; bottom: max(12px, env(safe-area-inset-bottom)); z-index: 45; display: none; transform: translateY(160%); transition: transform .6s var(--ease); }
 .mbar.is-shown { transform: none; }
-.mbar .btn { width: 100%; }
+.mbar .btn { width: 100%; background: var(--gold); color: var(--wine-deep); box-shadow: 0 10px 30px -10px rgba(0, 0, 0, .6); } /* видна и на красном, и на светлом блоке */
 
 /* =================================================================
    АДАПТИВ
    ================================================================= */
 @media (max-width: 1000px) {
-  .nav__links { position: fixed; inset: 0; z-index: -1; flex-direction: column; justify-content: center; align-items: center; gap: 26px; background: var(--burgundy); font-family: var(--serif); font-size: 2rem; opacity: 0; visibility: hidden; transition: opacity .4s, visibility .4s; }
+  .nav__links { position: fixed; inset: 0; z-index: -1; flex-direction: column; justify-content: center; align-items: center; gap: 26px; background: var(--wine-deep); font-family: var(--display); font-size: 1.8rem; opacity: 0; visibility: hidden; transition: opacity .4s, visibility .4s; }
   .nav.is-open .nav__links { opacity: 1; visibility: visible; }
-  .nav__links a { color: var(--ivory); }
+  .nav__links a { color: var(--cream); }
   .burger { display: block; }
   .nav .btn { display: none; }
   .about, .terms { grid-template-columns: 1fr; }
@@ -264,11 +274,12 @@ h2 { font-size: clamp(2.4rem, 5.4vw, 4.6rem); line-height: 1.02; }
   .footer { padding-bottom: 100px; }
 }
 @media (max-width: 760px) {
+  body { font-size: 16.5px; }
   .hero { align-items: end; }
   .hero__photo img { object-position: 50% 20%; }
-  .hero__photo::after { background: linear-gradient(0deg, rgba(74, 8, 18, .97) 0%, rgba(74, 8, 18, .86) 38%, rgba(74, 8, 18, .1) 70%, rgba(74, 8, 18, .25) 100%); }
+  .hero__photo::after { background: linear-gradient(0deg, rgba(90, 11, 23, .98) 0%, rgba(90, 11, 23, .9) 48%, rgba(90, 11, 23, .4) 72%, rgba(66, 7, 15, .7) 100%); }
   .hero__text { padding: 0 0 118px; }
-  .hero h1 { font-size: clamp(2.6rem, 12vw, 3.6rem); }
+  .hero h1 { font-size: clamp(2.3rem, 10.6vw, 3.3rem); }
   .hero__lead { font-size: 1rem; margin-top: 18px; }
   .hero__actions { margin-top: 26px; }
   .hero__actions .btn { width: 100%; }
@@ -276,7 +287,7 @@ h2 { font-size: clamp(2.4rem, 5.4vw, 4.6rem); line-height: 1.02; }
   .cats { grid-template-columns: 1fr; }
   .cat { aspect-ratio: 4 / 4.6; }
   .term { grid-template-columns: 1fr; padding: 14px 0; }
-  .term dd { font-size: 1.3rem; }
+  .term dd { font-size: 1.2rem; }
   .steps { grid-template-columns: 1fr; }
   .mosaic { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 46vw; grid-template-areas: "a b" "a d" "c c" "e f" "e h" "g g"; }
 }
@@ -309,13 +320,14 @@ h2 { font-size: clamp(2.4rem, 5.4vw, 4.6rem); line-height: 1.02; }
 <main id="top">
   <!-- Первый экран -->
   <section class="hero">
-    <picture class="hero__photo">
+    <picture class="hero__photo tone">
       <source media="(max-width: 760px)" srcset="images/hero-mobile.jpg">
       <img src="images/hero.jpg" alt="Девушка в красном вечернем платье на фоне сверкающей стены" fetchpriority="high">
     </picture>
     <div class="wrap hero__text">
+      <span class="kicker">Конкурс красоты · сезон 2027</span>
       <h1><span>Мисс и Миссис</span><span class="region">Краснодарский край</span></h1>
-      <p class="hero__lead">Конкурс красоты для девушек и женщин Кубани от 14 до 45 лет. Сцена, подготовка с профессионалами и большой финал сезона 2027.</p>
+      <p class="hero__lead">Для девушек и женщин от 14 до 45 лет. Сцена, подготовка с профессионалами и большой финал сезона 2027.</p>
       <div class="hero__actions">
         <a class="btn js-bot" href="#" target="_blank" rel="noopener">Подать анкету</a>
         <a class="link" href="#how" data-scroll>Как участвовать</a>
@@ -330,13 +342,14 @@ h2 { font-size: clamp(2.4rem, 5.4vw, 4.6rem); line-height: 1.02; }
   </section>
 
   <!-- О конкурсе -->
-  <section class="block block--deep" id="about">
+  <section class="block" id="about">
     <div class="wrap about">
-      <div class="about__photo"><div class="reveal"><img src="images/about.jpg" alt="Портрет девушки с красной помадой" loading="lazy"></div></div>
+      <div class="about__photo"><div class="reveal tone"><img src="images/about.jpg" alt="Портрет девушки с красной помадой" loading="lazy"></div></div>
       <div>
-        <h2>Конкурс, где Кубань знакомится со своими героинями</h2>
+        <span class="kicker">О конкурсе</span>
+        <h2>Красота, характер и большая сцена</h2>
         <div class="prose" style="margin-top:26px">
-          <p>«Мисс и Миссис Краснодарский край» объединяет девушек и женщин со всего края. Здесь ценят не только красоту, но и характер, уверенность и умение вдохновлять.</p>
+          <p>На конкурсе «Мисс и Миссис Краснодарский край» ценят не только красоту, но и характер, уверенность и умение вдохновлять. Участвовать могут девушки и женщины из любого города и региона.</p>
           <p>Участниц ждут фотосессии, репетиции с хореографами и стилистами, новые знакомства и финальное шоу на большой сцене.</p>
         </div>
         <p class="deadline"><strong>до 15 января 2027</strong>принимаем анкеты на новый сезон</p>
@@ -345,23 +358,23 @@ h2 { font-size: clamp(2.4rem, 5.4vw, 4.6rem); line-height: 1.02; }
   </section>
 
   <!-- Категории -->
-  <section class="block" id="categories">
+  <section class="block block--next" id="categories">
     <div class="wrap">
-      <div class="cats-head">
-        <h2>Три категории</h2>
+      <div class="cats-head ruled">
+        <div><span class="kicker">Категории</span><h2>Три категории</h2></div>
         <p>Категорию бот предложит сам по вашему возрасту. В 20–35 лет можно выбрать между «Мисс» и «Миссис».</p>
       </div>
       <div class="cats">
         <article class="cat">
-          <div class="reveal"><img src="images/cat-young.jpg" alt="Юная девушка в блестящем жакете" loading="lazy"></div>
+          <div class="reveal tone"><img src="images/cat-young.jpg" alt="Юная девушка в блестящем жакете" loading="lazy"></div>
           <div class="cat__cap"><h3>Юная Мисс</h3><div class="cat__age">14–17 лет</div><p>Для тех, кто делает первые шаги на сцене.</p></div>
         </article>
         <article class="cat">
-          <div class="reveal"><img src="images/cat-miss.jpg" alt="Девушка в красном платье" loading="lazy"></div>
-          <div class="cat__cap"><h3>Мисс</h3><div class="cat__age">18–35 лет</div><p>Для девушек, готовых заявить о себе на всю Кубань.</p></div>
+          <div class="reveal tone"><img src="images/cat-miss.jpg" alt="Девушка в красном платье" loading="lazy"></div>
+          <div class="cat__cap"><h3>Мисс</h3><div class="cat__age">18–35 лет</div><p>Для девушек, готовых заявить о себе.</p></div>
         </article>
         <article class="cat">
-          <div class="reveal"><img src="images/cat-mrs.jpg" alt="Женщина в вечернем платье цвета шампань" loading="lazy"></div>
+          <div class="reveal tone"><img src="images/cat-mrs.jpg" alt="Женщина в вечернем платье цвета шампань" loading="lazy"></div>
           <div class="cat__cap"><h3>Миссис</h3><div class="cat__age">20–45 лет</div><p>Для женщин, которые вдохновляют своим примером.</p></div>
         </article>
       </div>
@@ -369,13 +382,14 @@ h2 { font-size: clamp(2.4rem, 5.4vw, 4.6rem); line-height: 1.02; }
   </section>
 
   <!-- Условия -->
-  <section class="block block--deep" id="terms">
-    <div class="wrap terms">
+  <section class="block block--next" id="terms">
+    <div class="wrap terms ruled">
       <div class="terms__photo"><div class="reveal"><img src="images/tiara.jpg" alt="Диадема на красном фоне" loading="lazy"></div></div>
       <div>
+        <span class="kicker">Условия</span>
         <h2>Кто может участвовать</h2>
         <dl>
-          <div class="term"><dt>Где живёте</dt><dd>В Краснодарском крае</dd></div>
+          <div class="term"><dt>Откуда</dt><dd>Из любого города и региона</dd></div>
           <div class="term"><dt>Возраст</dt><dd>От 14 до 45 лет</dd></div>
           <div class="term"><dt>Рост</dt><dd>От 165 см</dd></div>
           <div class="term"><dt>Размер одежды</dt><dd>С 40 по 46</dd></div>
@@ -387,9 +401,10 @@ h2 { font-size: clamp(2.4rem, 5.4vw, 4.6rem); line-height: 1.02; }
   </section>
 
   <!-- Как подать -->
-  <section class="block" id="how">
+  <section class="block block--cream" id="how">
     <div class="wrap">
       <div class="steps-head">
+        <span class="kicker">Как участвовать</span>
         <h2>Как подать анкету</h2>
         <p>Анкета заполняется в Telegram-боте конкурса и занимает около пяти минут.</p>
       </div>
@@ -400,35 +415,35 @@ h2 { font-size: clamp(2.4rem, 5.4vw, 4.6rem); line-height: 1.02; }
         <li><h3>Ждите звонка</h3><p>Организаторы посмотрят анкету и свяжутся с вами по телефону или в Telegram.</p></li>
       </ol>
       <div class="steps-cta">
-        <a class="btn js-bot" href="#" target="_blank" rel="noopener">Подать анкету</a>
+        <a class="btn btn--wine js-bot" href="#" target="_blank" rel="noopener">Подать анкету</a>
         <span>Откроется в Telegram</span>
       </div>
     </div>
   </section>
 
   <!-- Галерея -->
-  <section class="block block--deep" id="gallery">
+  <section class="block" id="gallery">
     <div class="wrap">
       <div class="gallery-head">
-        <h2>Галерея</h2>
+        <div><span class="kicker">Фото</span><h2>Галерея</h2></div>
         <p>Нажмите на фото, чтобы посмотреть его целиком.</p>
       </div>
       <div class="mosaic" id="mosaic">
-        <button class="tile t1" type="button" data-full="images/g1.jpg"><div class="reveal"><img src="images/g1.jpg" alt="Девушка в красном платье у сверкающей стены" loading="lazy"></div></button>
-        <button class="tile t2" type="button" data-full="images/g2.jpg"><div class="reveal"><img src="images/g2.jpg" alt="Портрет девушки через плечо" loading="lazy"></div></button>
-        <button class="tile t3" type="button" data-full="images/g3.jpg"><div class="reveal"><img src="images/g3.jpg" alt="Девушка в пышном вечернем платье у резной стены" loading="lazy"></div></button>
-        <button class="tile t4" type="button" data-full="images/g4.jpg"><div class="reveal"><img src="images/g4.jpg" alt="Девушка в красном среди блёсток" loading="lazy"></div></button>
-        <button class="tile t5" type="button" data-full="images/g5.jpg"><div class="reveal"><img src="images/g5.jpg" alt="Девушка в платье цвета шампань" loading="lazy"></div></button>
-        <button class="tile t6" type="button" data-full="images/g6.jpg"><div class="reveal"><img src="images/g6.jpg" alt="Девушка в вечернем платье с букетом" loading="lazy"></div></button>
-        <button class="tile t7" type="button" data-full="images/g7.jpg"><div class="reveal"><img src="images/g7.jpg" alt="Девушка в бордовом платье в профиль" loading="lazy"></div></button>
-        <button class="tile t8" type="button" data-full="images/g8.jpg"><div class="reveal"><img src="images/g8.jpg" alt="Девушка в красном платье, руки над головой" loading="lazy"></div></button>
+        <button class="tile t1" type="button" data-full="images/g1.jpg"><div class="reveal tone"><img src="images/g1.jpg" alt="Девушка в красном платье у сверкающей стены" loading="lazy"></div></button>
+        <button class="tile t2" type="button" data-full="images/g2.jpg"><div class="reveal tone"><img src="images/g2.jpg" alt="Портрет девушки через плечо" loading="lazy"></div></button>
+        <button class="tile t3" type="button" data-full="images/g3.jpg"><div class="reveal tone"><img src="images/g3.jpg" alt="Девушка в пышном вечернем платье у резной стены" loading="lazy"></div></button>
+        <button class="tile t4" type="button" data-full="images/g4.jpg"><div class="reveal tone"><img src="images/g4.jpg" alt="Девушка в красном среди блёсток" loading="lazy"></div></button>
+        <button class="tile t5" type="button" data-full="images/g5.jpg"><div class="reveal tone"><img src="images/g5.jpg" alt="Девушка в платье цвета шампань" loading="lazy"></div></button>
+        <button class="tile t6" type="button" data-full="images/g6.jpg"><div class="reveal tone"><img src="images/g6.jpg" alt="Девушка в вечернем платье с букетом" loading="lazy"></div></button>
+        <button class="tile t7" type="button" data-full="images/g7.jpg"><div class="reveal tone"><img src="images/g7.jpg" alt="Девушка в бордовом платье в профиль" loading="lazy"></div></button>
+        <button class="tile t8" type="button" data-full="images/g8.jpg"><div class="reveal tone"><img src="images/g8.jpg" alt="Девушка в красном платье, руки над головой" loading="lazy"></div></button>
       </div>
     </div>
   </section>
 
   <!-- Финал -->
   <section class="finale">
-    <div class="finale__photo"><img src="images/cta.jpg" alt="" loading="lazy"></div>
+    <div class="finale__photo tone"><img src="images/cta.jpg" alt="" loading="lazy"></div>
     <div class="wrap finale__inner">
       <h2>Твоя корона ждёт</h2>
       <p>Заполните анкету в Telegram. Это займёт около пяти минут, а организаторы ответят сами.</p>
