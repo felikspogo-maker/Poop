@@ -157,7 +157,7 @@ h2 { font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.08; }
 /* =================================================================
    СЕКЦИИ
    ================================================================= */
-.block { padding: clamp(80px, 10vw, 140px) 0; }
+.block { padding: clamp(72px, 8.5vw, 120px) 0; }
 .block--cream { background: var(--cream); color: var(--wine); }
 .block--cream .kicker { color: var(--red); }
 
@@ -228,6 +228,47 @@ h2 { font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.08; }
 @media (hover: hover) { .tile:hover img { transform: scale(1.05); } }
 .t1 { grid-area: a; } .t2 { grid-area: b; } .t3 { grid-area: c; } .t4 { grid-area: d; } .t5 { grid-area: e; } .t6 { grid-area: f; } .t7 { grid-area: g; } .t8 { grid-area: h; }
 
+/* Коротко в цифрах — сразу под первым экраном */
+.facts { border-bottom: 1px solid var(--line); }
+.facts__row { display: grid; grid-template-columns: repeat(4, 1fr); }
+.fact { padding: clamp(34px, 4vw, 54px) clamp(14px, 2vw, 30px); text-align: center; }
+.fact + .fact { border-left: 1px solid var(--line); }
+.fact b { display: block; font-family: var(--display); font-weight: 400; font-size: clamp(2.4rem, 4vw, 3.6rem); line-height: 1; color: var(--cream); }
+.fact span { display: block; margin-top: 12px; font-size: .95rem; line-height: 1.4; color: var(--cream-soft); }
+
+/* Что ждёт участниц */
+.perks { display: grid; grid-template-columns: 1.35fr 1fr; gap: clamp(40px, 6vw, 96px); align-items: center; }
+.perks h2 { margin-bottom: 18px; }
+.perks__lead { margin: 0 0 40px; max-width: 30em; color: var(--cream-soft); }
+.perks__list { display: grid; grid-template-columns: 1fr 1fr; gap: 34px 40px; margin: 0; padding: 0; list-style: none; }
+.perk svg { width: 34px; height: 34px; color: var(--gold); margin-bottom: 14px; }
+.perk h3 { font-size: 1.35rem; line-height: 1.2; margin-bottom: 6px; }
+.perk p { margin: 0; font-size: .97rem; line-height: 1.55; color: var(--cream-soft); }
+.perks__photo { position: relative; aspect-ratio: 2 / 3; }
+.perks__photo .reveal { position: absolute; inset: 0; overflow: hidden; border-radius: 2px; }
+.perks__photo img { width: 100%; height: 100%; object-fit: cover; }
+.perks__photo::before { content: ""; position: absolute; inset: -18px 18px 18px -18px; border: 1px solid var(--line); }
+
+/* Девиз — роза на чёрном, фото медленно сдвигается при прокрутке */
+.motto { position: relative; overflow: hidden; min-height: 78svh; display: grid; align-items: center; background: #1c0306; }
+.motto__photo { position: absolute; inset: -12% 0; }
+.motto__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 70% 50%; will-change: transform; }
+.motto__photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(28, 3, 6, .92) 0%, rgba(28, 3, 6, .7) 45%, rgba(28, 3, 6, .1) 80%); }
+.motto__inner { position: relative; z-index: 2; padding: 120px 0; }
+.motto blockquote { margin: 0; max-width: 15em; font-family: var(--display); font-size: clamp(2rem, 4.2vw, 3.6rem); line-height: 1.15; color: var(--cream); }
+.motto blockquote em { font-style: normal; color: var(--gold); }
+
+/* Частые вопросы */
+.faq { display: grid; grid-template-columns: 1fr 1.6fr; gap: clamp(40px, 6vw, 96px); align-items: start; }
+.faq__aside p { margin: 18px 0 28px; color: rgba(90, 11, 23, .78); }
+.faq details { border-top: 1px solid rgba(90, 11, 23, .22); }
+.faq details:last-child { border-bottom: 1px solid rgba(90, 11, 23, .22); }
+.faq summary { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 22px 0; cursor: pointer; list-style: none; font-family: var(--display); font-size: clamp(1.15rem, 1.7vw, 1.4rem); line-height: 1.3; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; flex: none; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(90, 11, 23, .3); display: grid; place-items: center; font: 300 1.3rem/1 var(--text); color: var(--red); transition: transform .4s var(--ease), background .3s; }
+.faq details[open] summary::after { transform: rotate(45deg); background: rgba(142, 21, 39, .08); }
+.faq details p { margin: -6px 0 24px; max-width: 36em; color: rgba(90, 11, 23, .8); }
+
 /* Финал */
 .finale { position: relative; overflow: hidden; min-height: 92svh; display: grid; align-items: center; text-align: center; background: var(--wine-deep); }
 .finale__photo { position: absolute; inset: 0; }
@@ -266,7 +307,11 @@ h2 { font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.08; }
   .nav__links a { color: var(--cream); }
   .burger { display: block; }
   .nav .btn { display: none; }
-  .about, .terms { grid-template-columns: 1fr; }
+  .about, .terms, .perks, .faq { grid-template-columns: 1fr; }
+  .perks__photo { max-width: 420px; margin-left: 18px; }
+  .facts__row { grid-template-columns: repeat(2, 1fr); }
+  .fact:nth-child(3) { border-left: 0; }
+  .fact:nth-child(n+3) { border-top: 1px solid var(--line); }
   .about__photo { max-width: 440px; width: calc(100% - 22px); }
   .terms__photo { max-width: 520px; }
   .steps { grid-template-columns: repeat(2, 1fr); row-gap: 40px; }
@@ -289,6 +334,9 @@ h2 { font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.08; }
   .term { grid-template-columns: 1fr; padding: 14px 0; }
   .term dd { font-size: 1.2rem; }
   .steps { grid-template-columns: 1fr; }
+  .perks__list { grid-template-columns: 1fr; gap: 28px; }
+  .motto__photo::after { background: linear-gradient(0deg, rgba(28, 3, 6, .94) 10%, rgba(28, 3, 6, .55) 60%, rgba(28, 3, 6, .3)); }
+  .motto { align-items: end; }
   .mosaic { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 46vw; grid-template-areas: "a b" "a d" "c c" "e f" "e h" "g g"; }
 }
 
@@ -307,10 +355,12 @@ h2 { font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.08; }
     </a>
     <ul class="nav__links" id="navLinks">
       <li><a href="#about" data-scroll>О конкурсе</a></li>
+      <li><a href="#perks" data-scroll>Что ждёт</a></li>
       <li><a href="#categories" data-scroll>Категории</a></li>
       <li><a href="#terms" data-scroll>Условия</a></li>
       <li><a href="#how" data-scroll>Как подать</a></li>
       <li><a href="#gallery" data-scroll>Галерея</a></li>
+      <li><a href="#faq" data-scroll>Вопросы</a></li>
     </ul>
     <a class="btn js-bot" href="#" target="_blank" rel="noopener">Подать анкету</a>
     <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="navLinks"><i></i><i></i></button>
@@ -341,6 +391,17 @@ h2 { font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.08; }
     </div>
   </section>
 
+
+  <!-- Коротко в цифрах -->
+  <section class="facts" aria-label="Коротко о конкурсе">
+    <div class="wrap facts__row">
+      <div class="fact"><b>3</b><span>категории участниц</span></div>
+      <div class="fact"><b>14–45</b><span>лет — возраст участниц</span></div>
+      <div class="fact"><b>5</b><span>минут на анкету в Telegram</span></div>
+      <div class="fact"><b data-days-num>—</b><span data-days-label>дней до конца приёма анкет</span></div>
+    </div>
+  </section>
+
   <!-- О конкурсе -->
   <section class="block" id="about">
     <div class="wrap about">
@@ -354,6 +415,27 @@ h2 { font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.08; }
         </div>
         <p class="deadline"><strong>до 15 января 2027</strong>принимаем анкеты на новый сезон</p>
       </div>
+    </div>
+  </section>
+
+
+  <!-- Что ждёт участниц -->
+  <section class="block block--next" id="perks">
+    <div class="wrap perks ruled">
+      <div>
+        <span class="kicker">Что ждёт участниц</span>
+        <h2>Больше, чем конкурс красоты</h2>
+        <p class="perks__lead">Несколько месяцев подготовки с командой профессионалов, а в конце — большой финал на сцене.</p>
+        <ul class="perks__list">
+          <li class="perk"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h5l2.5-3h9L23 10h5v15H4z"/><circle cx="16" cy="17" r="5"/></svg><h3>Фотосессии</h3><p>Профессиональные съёмки в образах конкурса.</p></li>
+          <li class="perk"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="17" cy="5.5" r="2.5"/><path d="M17 8v9l-5 9M17 17l5 9M11 12l6-2 6 4"/></svg><h3>Репетиции с хореографом</h3><p>Учимся держаться на сцене, красиво двигаться и позировать.</p></li>
+          <li class="perk"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l1.5 6h5L20 4M13.5 10 9 28h14l-4.5-18"/><path d="M12 4c1.5 1.5 6.5 1.5 8 0"/></svg><h3>Работа со стилистами</h3><p>Подбор образов и платьев для выходов на сцену.</p></li>
+          <li class="perk"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="4"/><circle cx="22" cy="12" r="3.2"/><path d="M3 26c0-5 3.6-8 8-8s8 3 8 8M19 19.5c1-.6 2-.9 3-.9 3.5 0 6 2.4 6 7"/></svg><h3>Новые знакомства</h3><p>Участницы из разных городов и команда конкурса.</p></li>
+          <li class="perk"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3 9 21M16 3l7 18M4 21h24v4H4z"/><path d="M13 13h6"/></svg><h3>Финальное шоу</h3><p>Выход на большую сцену перед зрителями и жюри.</p></li>
+          <li class="perk"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 24 3.5 9l7 6L16 5l5.5 10 7-6L27 24z"/><path d="M5.5 28h21"/></svg><h3>Титул и корона</h3><p>Победительницы каждой категории получают титул сезона 2027.</p></li>
+        </ul>
+      </div>
+      <div class="perks__photo"><div class="reveal tone"><img src="images/perks.jpg" alt="Девушка в пышном светлом платье среди высокой травы" loading="lazy"></div></div>
     </div>
   </section>
 
@@ -381,9 +463,18 @@ h2 { font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.08; }
     </div>
   </section>
 
+
+  <!-- Девиз -->
+  <section class="motto" aria-label="Девиз конкурса">
+    <div class="motto__photo"><img src="images/rose.jpg" alt="" loading="lazy" id="mottoImg"></div>
+    <div class="wrap motto__inner">
+      <blockquote>Корона — это не только красота. Это <em>характер, уверенность</em> и смелость выйти на сцену.</blockquote>
+    </div>
+  </section>
+
   <!-- Условия -->
-  <section class="block block--next" id="terms">
-    <div class="wrap terms ruled">
+  <section class="block" id="terms">
+    <div class="wrap terms">
       <div class="terms__photo"><div class="reveal"><img src="images/tiara.jpg" alt="Диадема на красном фоне" loading="lazy"></div></div>
       <div>
         <span class="kicker">Условия</span>
@@ -437,6 +528,27 @@ h2 { font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.08; }
         <button class="tile t6" type="button" data-full="images/g6.jpg"><div class="reveal tone"><img src="images/g6.jpg" alt="Девушка в вечернем платье с букетом" loading="lazy"></div></button>
         <button class="tile t7" type="button" data-full="images/g7.jpg"><div class="reveal tone"><img src="images/g7.jpg" alt="Девушка в бордовом платье в профиль" loading="lazy"></div></button>
         <button class="tile t8" type="button" data-full="images/g8.jpg"><div class="reveal tone"><img src="images/g8.jpg" alt="Девушка в красном платье, руки над головой" loading="lazy"></div></button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Частые вопросы -->
+  <section class="block block--cream" id="faq">
+    <div class="wrap faq">
+      <div class="faq__aside">
+        <span class="kicker">Вопросы</span>
+        <h2>Частые вопросы</h2>
+        <p>Не нашли ответ? Начните анкету — бот подскажет на каждом шаге.</p>
+        <a class="btn btn--wine js-bot" href="#" target="_blank" rel="noopener">Подать анкету</a>
+      </div>
+      <div>
+        <details><summary>Нужен ли опыт участия в конкурсах?</summary><p>Нет. В анкете есть вопрос об опыте, но если его нет — так и напишите. Участвовать можно с нуля.</p></details>
+        <details><summary>Я живу не в Краснодарском крае. Можно участвовать?</summary><p>Да, анкету может подать участница из любого города и региона.</p></details>
+        <details><summary>Мне меньше 18 лет. Что нужно?</summary><p>Для вас категория «Юная Мисс» — от 14 до 17 лет. Согласие на обработку данных даёт родитель или законный представитель.</p></details>
+        <details><summary>Я замужем. В какую категорию подавать?</summary><p>«Миссис» — от 20 до 45 лет. Если вам от 20 до 35, бот предложит выбрать между «Мисс» и «Миссис».</p></details>
+        <details><summary>Какие фото прислать?</summary><p>Пять фото или видео в любом сочетании: портрет и фото в полный рост. Видео можно прислать вместо части фото.</p></details>
+        <details><summary>Что будет после отправки анкеты?</summary><p>Организаторы посмотрят анкету и свяжутся с вами по телефону или в Telegram.</p></details>
       </div>
     </div>
   </section>
@@ -508,6 +620,8 @@ const SITE = {
   const days = Math.ceil((new Date(SITE.deadline) - Date.now()) / 864e5);
   const plural = n => (n % 10 === 1 && n % 100 !== 11) ? "день" : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) ? "дня" : "дней";
   $("[data-days]").textContent = days > 0 ? `осталось ${days} ${plural(days)}` : "приём анкет завершён";
+  $("[data-days-num]").textContent = Math.max(days, 0);
+  $("[data-days-label]").textContent = days > 0 ? `${plural(days)} до конца приёма анкет` : "приём анкет завершён";
 
   // Загрузка: фото, заголовок, лента
   const go = () => document.documentElement.classList.add("ready");
@@ -543,7 +657,16 @@ const SITE = {
     mbar.classList.toggle("is-shown", y > h * .8 && y + innerHeight < document.documentElement.scrollHeight - 300);
     lastY = y;
   };
-  addEventListener("scroll", onScroll, { passive: true }); onScroll();
+  // Роза в блоке-девизе медленно сдвигается при прокрутке
+  const motto = $(".motto"), mottoImg = $("#mottoImg");
+  const parallax = () => {
+    if (reduce) return;
+    const r = motto.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > innerHeight) return;
+    const p = (r.top + r.height / 2 - innerHeight / 2) / innerHeight; // от -1 до 1
+    mottoImg.style.transform = `translateY(${p * -8}%)`;
+  };
+  addEventListener("scroll", () => { onScroll(); parallax(); }, { passive: true }); onScroll(); parallax();
 
   // Раскрытие фото при прокрутке
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); } }), { threshold: .2 });
