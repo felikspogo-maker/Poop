@@ -311,18 +311,17 @@ body::after {
 /* =================================================================
    ГАЛЕРЕЯ — КОЛОННЫ С ПАРАЛЛАКСОМ
    ================================================================= */
-.gallery { position: relative; padding: clamp(90px, 12vw, 160px) 0 clamp(120px, 14vw, 200px); overflow: clip; }
+.gallery { position: relative; padding: clamp(90px, 12vw, 160px) 0; overflow: clip; }
 .gallery__head { text-align: center; margin-bottom: clamp(50px, 7vw, 100px); }
 .gallery__head .kicker { justify-content: center; }
 .gallery__head .kicker::after { content: ""; width: 34px; height: 1px; background: currentColor; }
 .gallery__head .lead { margin: 20px auto 0; }
-.gcols { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 1.6vw, 26px); align-items: start; }
-.gcol { display: grid; gap: clamp(12px, 1.6vw, 26px); }
-.gcol:nth-child(2) { margin-top: 14vh; }
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: clamp(280px, 34vw, 520px); grid-auto-flow: dense; gap: clamp(10px, 1.4vw, 22px); }
+.gallery-grid .tile--wide { grid-column: span 2; }
 .tile { position: relative; display: block; width: 100%; padding: 0; border: 0; overflow: hidden; border-radius: 2px; background: var(--wine); cursor: zoom-in; }
 .has-cursor .tile { cursor: none; }
 .tile img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s var(--ease); }
-.tile--tall { aspect-ratio: 3 / 4; } .tile--wide { aspect-ratio: 4 / 3; } .tile--sq { aspect-ratio: 1; }
+.tile { height: 100%; }
 @media (hover: hover) { .tile:hover img { transform: scale(1.06); } }
 
 /* =================================================================
@@ -430,9 +429,7 @@ body::after {
   .cats__hint { display: none; }
   .specs { grid-template-columns: 1fr; }
   .spec { min-height: 0; }
-  .gcols { grid-template-columns: repeat(2, 1fr); }
-  .gcol:nth-child(3) { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; } /* на телефоне третья колонка — снизу в два ряда */
-  .gcol:nth-child(2) { margin-top: 8vh; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 58vw; gap: 8px; }
   .step { grid-template-columns: 56px 1fr; gap: 20px; }
   .step__dot { width: 56px; height: 56px; font-size: 1.2rem; }
   .tl__line { left: 28px; top: 28px; }
@@ -625,29 +622,22 @@ body::after {
         <h2 data-split="chars">Галерея</h2>
         <p class="lead" data-r>Нажмите на фото, чтобы посмотреть его целиком.</p>
       </div>
-      <div class="gcols" id="gcols">
-        <div class="gcol" data-col="-8">
-          <button class="tile tile--tall tone" type="button" data-full="images/host-red.jpg"><img src="images/host-red.jpg" alt="Ведущая в красном у герба конкурса" loading="lazy"></button>
-          <button class="tile tile--wide tone" type="button" data-full="images/gala-table.jpg"><img src="images/gala-table.jpg" alt="Шампанское и устрицы на гала-ужине" loading="lazy"></button>
-          <button class="tile tile--tall tone" type="button" data-full="images/veils.jpg"><img src="images/veils.jpg" alt="Участницы под фатой на сцене" loading="lazy"></button>
-          <button class="tile tile--tall tone" type="button" data-full="images/lineup-crest.jpg"><img src="images/lineup-crest.jpg" alt="Участницы на сцене у герба конкурса" loading="lazy"></button>
-          <button class="tile tile--tall tone" type="button" data-full="images/flag-wings.jpg"><img src="images/flag-wings.jpg" alt="Участница в костюме с крыльями цветов флага" loading="lazy"></button>
-        </div>
-        <div class="gcol" data-col="8">
-          <button class="tile tile--sq tone" type="button" data-full="images/winners.jpg"><img src="images/winners.jpg" alt="Победительницы в коронах" loading="lazy"></button>
-          <button class="tile tile--tall tone" type="button" data-full="images/brides-stairs.jpg"><img src="images/brides-stairs.jpg" alt="Выход участниц в белых платьях" loading="lazy"></button>
-          <button class="tile tile--wide tone" type="button" data-full="images/hall-tables.jpg"><img src="images/hall-tables.jpg" alt="Зал конкурса с гостями" loading="lazy"></button>
-          <button class="tile tile--tall tone" type="button" data-full="images/black-lace.jpg"><img src="images/black-lace.jpg" alt="Участница в чёрном кружевном образе на подиуме" loading="lazy"></button>
-          <button class="tile tile--tall tone" type="button" data-full="images/white-feathers.jpg"><img src="images/white-feathers.jpg" alt="Образ из белых перьев в луче света" loading="lazy"></button>
-        </div>
-        <div class="gcol" data-col="-16">
-          <button class="tile tile--wide tone" type="button" data-full="images/coronation.jpg"><img src="images/coronation.jpg" alt="Коронация под огни" loading="lazy"></button>
-          <button class="tile tile--tall tone" type="button" data-full="images/chandeliers.jpg"><img src="images/chandeliers.jpg" alt="Люстры и гости в зале" loading="lazy"></button>
-          <button class="tile tile--sq tone" type="button" data-full="images/hero-crown.jpg"><img src="images/hero-crown.jpg" alt="Победительница в короне" loading="lazy"></button>
-          <button class="tile tile--tall tone" type="button" data-full="images/bride-palace.jpg"><img src="images/bride-palace.jpg" alt="Выход в белом на фоне дворцовой лестницы" loading="lazy"></button>
-          <button class="tile tile--tall tone" type="button" data-full="images/feather-wave.jpg"><img src="images/feather-wave.jpg" alt="Участница в шляпе из перьев приветствует зал" loading="lazy"></button>
-          <button class="tile tile--sq tone" type="button" data-full="images/host-mic.jpg"><img src="images/host-mic.jpg" alt="Ведущая в красном с микрофоном" loading="lazy"></button>
-        </div>
+      <div class="gallery-grid" id="gcols">
+        <button class="tile tile--wide tone" type="button" data-full="images/coronation.jpg"><img src="images/coronation.jpg" alt="Коронация под огни" loading="lazy"></button>
+        <button class="tile tone" type="button" data-full="images/host-red.jpg"><img src="images/host-red.jpg" alt="Ведущая в красном у герба конкурса" loading="lazy"></button>
+        <button class="tile tone" type="button" data-full="images/veils.jpg"><img src="images/veils.jpg" alt="Участницы под фатой на сцене" loading="lazy"></button>
+        <button class="tile tone" type="button" data-full="images/brides-stairs.jpg"><img src="images/brides-stairs.jpg" alt="Выход участниц в белых платьях" loading="lazy"></button>
+        <button class="tile tone" type="button" data-full="images/flag-wings.jpg"><img src="images/flag-wings.jpg" alt="Участница в костюме с крыльями цветов флага" loading="lazy"></button>
+        <button class="tile tone" type="button" data-full="images/black-lace.jpg"><img src="images/black-lace.jpg" alt="Участница в чёрном кружевном образе на подиуме" loading="lazy"></button>
+        <button class="tile tile--wide tone" type="button" data-full="images/winners.jpg"><img src="images/winners.jpg" alt="Победительницы в коронах" loading="lazy"></button>
+        <button class="tile tone" type="button" data-full="images/white-feathers.jpg"><img src="images/white-feathers.jpg" alt="Образ из белых перьев в луче света" loading="lazy"></button>
+        <button class="tile tone" type="button" data-full="images/lineup-crest.jpg"><img src="images/lineup-crest.jpg" alt="Участницы на сцене у герба конкурса" loading="lazy"></button>
+        <button class="tile tone" type="button" data-full="images/bride-palace.jpg"><img src="images/bride-palace.jpg" alt="Выход в белом на фоне дворцовой лестницы" loading="lazy"></button>
+        <button class="tile tile--wide tone" type="button" data-full="images/gala-table.jpg"><img src="images/gala-table.jpg" alt="Шампанское и устрицы на гала-ужине" loading="lazy"></button>
+        <button class="tile tone" type="button" data-full="images/feather-wave.jpg"><img src="images/feather-wave.jpg" alt="Участница в шляпе из перьев приветствует зал" loading="lazy"></button>
+        <button class="tile tone" type="button" data-full="images/chandeliers.jpg"><img src="images/chandeliers.jpg" alt="Люстры и гости в зале" loading="lazy"></button>
+        <button class="tile tone" type="button" data-full="images/host-mic.jpg"><img src="images/host-mic.jpg" alt="Ведущая в красном с микрофоном" loading="lazy"></button>
+        <button class="tile tone" type="button" data-full="images/hall-tables.jpg"><img src="images/hall-tables.jpg" alt="Зал конкурса с гостями" loading="lazy"></button>
       </div>
     </div>
   </section>
@@ -1023,10 +1013,7 @@ const SITE = {
   gsap.to("#tlFill", { scaleY: 1, ease: "none", scrollTrigger: { trigger: "#tl", start: "top 62%", end: "bottom 62%", scrub: .5 } });
   $$(".step").forEach(s => ScrollTrigger.create({ trigger: s, start: "top 64%", onEnter: () => s.classList.add("is-on"), onLeaveBack: () => s.classList.remove("is-on") }));
 
-  /* ---------- Галерея: колонны с разной скоростью ---------- */
-  mm.add("(min-width: 761px)", () => {
-    $$(".gcol").forEach(c => gsap.to(c, { yPercent: +c.dataset.col, ease: "none", scrollTrigger: { trigger: "#gcols", start: "top bottom", end: "bottom top", scrub: true } }));
-  });
+  /* ---------- Галерея: фото раскрываются по очереди ---------- */
   $$(".tile").forEach(t => {
     gsap.from(t, { clipPath: "inset(100% 0% 0% 0%)", duration: 1.5, ease: "expo.inOut", scrollTrigger: { trigger: t, start: "top 95%" } });
     gsap.from($("img", t), { scale: 1.3, duration: 2, ease: "expo.out", scrollTrigger: { trigger: t, start: "top 95%" } });
