@@ -42,6 +42,7 @@
 
 | Файл | Где на сайте |
 |---|---|
+| `logo.png`, `logo-shield.png`, `favicon.png` | Логотип (полный, щит для шапки, иконка вкладки) |
 | `hero-crown.jpg` | Первый экран, фото в арке (вертикальное) |
 | `interview.jpg`, `hall-stage.jpg` | «О конкурсе» |
 | `young-crown.jpg`, `hero-crown.jpg`, `mrs-crown.jpg` | Категории: Юная Мисс, Мисс, Миссис |

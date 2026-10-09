@@ -10,7 +10,8 @@
 <meta property="og:description" content="Конкурс красоты для девушек и женщин от 14 до 45 лет. Анкеты принимаем до 15 января 2027 года через Telegram.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="images/hero-crown.jpg">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='8' fill='%230e0103'/%3E%3Cpath d='M10 33 8 17l9 7 7-11 7 11 9-7-2 16z' fill='none' stroke='%23d2b07a' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="apple-touch-icon" href="images/favicon.png">
 <link rel="preload" href="fonts/Prata-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="images/hero-crown.jpg" as="image">
 <link rel="stylesheet" href="fonts/fonts.css">
@@ -124,10 +125,9 @@ body::after {
 .intro__half::after { content: ""; position: absolute; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, #f3d9a2, var(--gold) 40%, #7a5a2a); box-shadow: 0 0 24px rgba(210, 176, 122, .6); }
 .intro__half--l::after { right: 0; }
 .intro__half--r::after { left: 0; }
-.intro__inner { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 22px; z-index: 2; }
-.intro__crown { width: 92px; height: 62px; color: var(--gold); }
-.intro__crown path { stroke-dasharray: 160; stroke-dashoffset: 160; }
-.intro__name { font: 400 1.5rem/1 var(--display); letter-spacing: .04em; opacity: 0; transform: translateY(14px); }
+.intro__inner { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 22px; z-index: 2;
+  background: radial-gradient(circle at 50% 50%, rgba(10, 0, 2, .85) 0, rgba(10, 0, 2, .6) min(30vw, 220px), transparent min(48vw, 360px)); }
+.intro__logo { width: min(64vw, 380px); height: auto; opacity: 0; filter: drop-shadow(0 0 40px rgba(232, 180, 90, .35)); }
 
 /* =================================================================
    ШАПКА, ПРОГРЕСС, КУРСОР
@@ -137,8 +137,13 @@ body::after {
 .nav.is-solid { background: rgba(40, 5, 11, .86); box-shadow: 0 1px 0 var(--line); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
 .nav.is-hidden { transform: translateY(-100%); }
 .nav__row { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 78px; }
-.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; font: 400 1.25rem/1 var(--display); white-space: nowrap; }
-.logo svg { width: 28px; height: 20px; color: var(--gold); flex: none; }
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; white-space: nowrap; }
+/* у логотипа чёрный фон — режим «экран» делает его прозрачным на тёмном сайте */
+.logo__mark { width: auto; height: 50px; flex: none; }
+.logo__text { font: 400 1.2rem/1 var(--display); }
+.logo__text small { display: block; margin-top: 5px; font: 500 .56rem/1 var(--text); letter-spacing: .3em; text-transform: uppercase; color: var(--gold); }
+.logo__full { width: 190px; height: auto; }
+.hero__logo { display: block; width: 170px; height: auto; margin: 0 0 14px auto; }
 .nav__links { display: flex; gap: 34px; margin: 0; padding: 0; list-style: none; font: 500 .72rem/1 var(--text); letter-spacing: .24em; text-transform: uppercase; }
 .nav__links a { position: relative; text-decoration: none; color: var(--muted); transition: color .3s; }
 .nav__links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -8px; height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: right; transition: transform .5s var(--ease); }
@@ -357,9 +362,8 @@ body::after {
 .finale__photo { position: absolute; inset: 0; z-index: 0; }
 .finale__photo img { width: 100%; height: 100%; object-fit: cover; opacity: .38; filter: saturate(.7); }
 .finale__photo::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(28, 4, 8, .55), var(--black) 90%), linear-gradient(0deg, rgba(150, 18, 38, .45), transparent 60%); mix-blend-mode: normal; }
-.finale__in { position: relative; z-index: 3; padding: 120px var(--gutter); }
-.finale__crown { display: block; width: clamp(80px, 9vw, 120px); height: auto; margin: 0 auto 30px; color: var(--gold); }
-.finale__crown path { stroke-dasharray: 160; }
+.finale__in { position: relative; z-index: 3; padding: 90px var(--gutter); }
+.finale__logo { display: block; width: clamp(150px, 14vw, 210px); height: auto; margin: 0 auto 20px; filter: drop-shadow(0 0 50px rgba(232, 180, 90, .3)); }
 .finale h2 { font-size: clamp(3.2rem, 10vw, 10rem); line-height: .95; }
 .finale p { margin: 26px auto 40px; max-width: 30em; color: var(--muted); }
 .spark { position: absolute; z-index: 2; pointer-events: none; width: var(--s); height: var(--s);
@@ -427,6 +431,9 @@ body::after {
 }
 @media (max-width: 760px) {
   body { font-size: 16.5px; }
+  .logo__mark { height: 44px; }
+  .logo__text { font-size: 1.05rem; }
+  .logo__text small { font-size: .5rem; letter-spacing: .24em; }
   .bigword { font-size: 29vw; }
   .bigword--fill { top: 13svh; left: -3vw; }
   .bigword--line { top: 31svh; font-size: 24vw; }
@@ -465,8 +472,7 @@ body::after {
   <div class="intro__half intro__half--l"></div>
   <div class="intro__half intro__half--r"></div>
   <div class="intro__inner">
-    <svg class="intro__crown" viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"><path d="M6 25 3.5 8l10.5 8L24 3l10 13 10.5-8L42 25z"/><path d="M7 29.5h34"/></svg>
-    <div class="intro__name">Мисс и Миссис</div>
+    <img class="intro__logo" src="images/logo.png" alt="" width="700" height="700">
   </div>
 </div>
 
@@ -476,9 +482,8 @@ body::after {
 
 <header class="nav" id="nav">
   <div class="wrap nav__row">
-    <a class="logo" href="#top" data-scroll>
-      <svg viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M6 25 3.5 8l10.5 8L24 3l10 13 10.5-8L42 25z"/><path d="M7 29.5h34"/></svg>
-      Мисс и Миссис
+    <a class="logo" href="#top" data-scroll aria-label="Мисс и Миссис Краснодарский край — наверх">
+      <img class="logo__mark" src="images/logo-shield.png" alt="" width="126" height="200"><span class="logo__text">Мисс и Миссис<small>Краснодарский край</small></span>
     </a>
     <ul class="nav__links" id="navLinks">
       <li><a href="#about" data-scroll>О конкурсе</a></li>
@@ -509,7 +514,7 @@ body::after {
       <p class="hero__note">Анкеты до 15 января 2027<br><b data-days>скоро финиш</b></p>
       <a class="btn js-bot magnetic" href="#" target="_blank" rel="noopener">Выйти на сцену <span>→</span></a>
     </div>
-    <div class="hero__meta" id="heroMeta"><b>14–45</b>лет<br>3 категории<br>любой город и регион</div>
+    <div class="hero__meta" id="heroMeta"><img class="hero__logo" src="images/logo.png" alt="Герб конкурса «Мисс и Миссис Краснодарский край»" width="700" height="700"><b>14–45</b>лет<br>3 категории<br>любой город и регион</div>
   </section>
 
   <!-- Ленты -->
@@ -685,7 +690,7 @@ body::after {
     <div class="finale__photo" aria-hidden="true"><img src="images/coronation.jpg" alt="" loading="lazy"></div>
     <div class="beam-wrap"><div class="beam"></div></div>
     <div class="finale__in">
-      <svg class="finale__crown" id="finaleCrown" viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round" aria-hidden="true"><path d="M6 25 3.5 8l10.5 8L24 3l10 13 10.5-8L42 25z"/><path d="M7 29.5h34"/></svg>
+      <img class="finale__logo" id="finaleLogo" src="images/logo.png" alt="Герб конкурса «Мисс и Миссис Краснодарский край»" width="700" height="700" loading="lazy">
       <h2 data-split="chars">Твоя корона ждёт</h2>
       <p data-r>Заполните анкету в Telegram. Это займёт около пяти минут, а организаторы ответят сами.</p>
       <div data-r><a class="btn js-bot magnetic" href="#" target="_blank" rel="noopener">Подать анкету <span>→</span></a></div>
@@ -696,9 +701,8 @@ body::after {
 <footer class="footer">
   <div class="wrap">
     <div class="footer__row">
-      <a class="logo" href="#top" data-scroll>
-        <svg viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M6 25 3.5 8l10.5 8L24 3l10 13 10.5-8L42 25z"/><path d="M7 29.5h34"/></svg>
-        Мисс и Миссис
+      <a class="logo logo--footer" href="#top" data-scroll aria-label="Мисс и Миссис Краснодарский край — наверх">
+        <img class="logo__full" src="images/logo.png" alt="Герб конкурса «Мисс и Миссис Краснодарский край»" width="700" height="700" loading="lazy">
       </a>
       <div class="footer__links" id="contacts"></div>
     </div>
@@ -888,9 +892,9 @@ const SITE = {
   try { seen = sessionStorage.getItem("introSeen") === "1"; sessionStorage.setItem("introSeen", "1"); } catch (e) {}
   const tl = gsap.timeline({ defaults: { ease: "expo.out" }, onComplete: () => { lenis && lenis.start(); gsap.set(nav, { clearProps: "transform" }); } });
   if (!seen) {
-    tl.to(".intro__crown path", { strokeDashoffset: 0, duration: 1.2, ease: "power2.inOut", stagger: .15 })
-      .to(".intro__name", { opacity: 1, y: 0, duration: .9 }, "-=.5")
-      .to(".intro__inner", { opacity: 0, y: -10, duration: .45, ease: "power2.in" }, "+=.2");
+    tl.fromTo(".intro__logo", { opacity: 0, scale: .82, filter: "blur(10px) drop-shadow(0 0 0px rgba(232, 180, 90, 0))" },
+        { opacity: 1, scale: 1, filter: "blur(0px) drop-shadow(0 0 40px rgba(232, 180, 90, .45))", duration: 1.5, ease: "expo.out" })
+      .to(".intro__inner", { opacity: 0, y: -10, duration: .5, ease: "power2.in" }, "+=.6");
   } else {
     gsap.set(".intro__inner", { opacity: 0 });
   }
@@ -1083,7 +1087,7 @@ const SITE = {
 
   /* ---------- Финал: корона рисуется, искры ---------- */
   const fin = $("#finale");
-  gsap.fromTo("#finaleCrown path", { strokeDashoffset: 160 }, { strokeDashoffset: 0, duration: 2.2, ease: "power2.inOut", stagger: .25, scrollTrigger: { trigger: fin, start: "top 65%" } });
+  gsap.from("#finaleLogo", { opacity: 0, scale: .7, rotation: -4, duration: 2, ease: "expo.out", scrollTrigger: { trigger: fin, start: "top 65%" } });
   gsap.from($(".beam-wrap", fin), { opacity: 0, duration: 2.4, ease: "power2.out", scrollTrigger: { trigger: fin, start: "top 65%" } });
   // финал «приближается»: фото зала отъезжает, заголовок вырастает из глубины
   gsap.fromTo(".finale__photo img", { scale: 1.35 }, { scale: 1, ease: "none", scrollTrigger: { trigger: fin, start: "top bottom", end: "bottom bottom", scrub: true } });
