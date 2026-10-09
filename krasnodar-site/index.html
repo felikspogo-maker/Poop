@@ -430,7 +430,7 @@ body::after {
   .specs { grid-template-columns: 1fr; }
   .spec { min-height: 0; }
   .gcols { grid-template-columns: repeat(2, 1fr); }
-  .gcol:nth-child(3) { display: none; }
+  .gcol:nth-child(3) { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; } /* на телефоне третья колонка — снизу в два ряда */
   .gcol:nth-child(2) { margin-top: 8vh; }
   .step { grid-template-columns: 56px 1fr; gap: 20px; }
   .step__dot { width: 56px; height: 56px; font-size: 1.2rem; }
@@ -567,7 +567,7 @@ body::after {
       <article class="panel"><span class="panel__num">02</span><div class="panel__img tone"><img src="images/brides-stairs.jpg" alt="Участницы в белых платьях на сцене" loading="lazy"></div><h3>Репетиции с хореографом</h3><p>Учимся держаться на сцене, красиво двигаться и позировать.</p></article>
       <article class="panel"><span class="panel__num">03</span><div class="panel__img tone"><img src="images/kokoshnik.jpg" alt="Участница в национальном костюме с кокошником" loading="lazy"></div><h3>Работа со стилистами</h3><p>Подбор образов и платьев для выходов на сцену.</p></article>
       <article class="panel"><span class="panel__num">04</span><div class="panel__img tone"><img src="images/red-carpet.jpg" alt="Победительницы на красной дорожке" loading="lazy"></div><h3>Новые знакомства</h3><p>Участницы из разных городов и команда конкурса.</p></article>
-      <article class="panel"><span class="panel__num">05</span><div class="panel__img tone"><img src="images/coronation.jpg" alt="Финал конкурса: участницы на сцене, огни" loading="lazy"></div><h3>Финальное шоу</h3><p>Выход на большую сцену перед зрителями и жюри.</p></article>
+      <article class="panel"><span class="panel__num">05</span><div class="panel__img tone"><img src="images/lineup-crest.jpg" alt="Участницы на сцене у герба «Мисс и Миссис Краснодар»" loading="lazy"></div><h3>Финальное шоу</h3><p>Выход на большую сцену перед зрителями и жюри.</p></article>
       <article class="panel"><span class="panel__num">06</span><div class="panel__img tone"><img src="images/winners.jpg" alt="Победительницы в коронах с цветами" loading="lazy"></div><h3>Титул и корона</h3><p>Победительницы каждой категории получают титул сезона 2027.</p></article>
       <div class="hs__end">
         <h3>Твой выход — <em>следующий</em></h3>
@@ -629,16 +629,23 @@ body::after {
           <button class="tile tile--tall tone" type="button" data-full="images/host-red.jpg"><img src="images/host-red.jpg" alt="Ведущая в красном у герба конкурса" loading="lazy"></button>
           <button class="tile tile--wide tone" type="button" data-full="images/gala-table.jpg"><img src="images/gala-table.jpg" alt="Шампанское и устрицы на гала-ужине" loading="lazy"></button>
           <button class="tile tile--tall tone" type="button" data-full="images/veils.jpg"><img src="images/veils.jpg" alt="Участницы под фатой на сцене" loading="lazy"></button>
+          <button class="tile tile--tall tone" type="button" data-full="images/lineup-crest.jpg"><img src="images/lineup-crest.jpg" alt="Участницы на сцене у герба конкурса" loading="lazy"></button>
+          <button class="tile tile--tall tone" type="button" data-full="images/flag-wings.jpg"><img src="images/flag-wings.jpg" alt="Участница в костюме с крыльями цветов флага" loading="lazy"></button>
         </div>
         <div class="gcol" data-col="8">
           <button class="tile tile--sq tone" type="button" data-full="images/winners.jpg"><img src="images/winners.jpg" alt="Победительницы в коронах" loading="lazy"></button>
           <button class="tile tile--tall tone" type="button" data-full="images/brides-stairs.jpg"><img src="images/brides-stairs.jpg" alt="Выход участниц в белых платьях" loading="lazy"></button>
           <button class="tile tile--wide tone" type="button" data-full="images/hall-tables.jpg"><img src="images/hall-tables.jpg" alt="Зал конкурса с гостями" loading="lazy"></button>
+          <button class="tile tile--tall tone" type="button" data-full="images/black-lace.jpg"><img src="images/black-lace.jpg" alt="Участница в чёрном кружевном образе на подиуме" loading="lazy"></button>
+          <button class="tile tile--tall tone" type="button" data-full="images/white-feathers.jpg"><img src="images/white-feathers.jpg" alt="Образ из белых перьев в луче света" loading="lazy"></button>
         </div>
         <div class="gcol" data-col="-16">
           <button class="tile tile--wide tone" type="button" data-full="images/coronation.jpg"><img src="images/coronation.jpg" alt="Коронация под огни" loading="lazy"></button>
           <button class="tile tile--tall tone" type="button" data-full="images/chandeliers.jpg"><img src="images/chandeliers.jpg" alt="Люстры и гости в зале" loading="lazy"></button>
           <button class="tile tile--sq tone" type="button" data-full="images/hero-crown.jpg"><img src="images/hero-crown.jpg" alt="Победительница в короне" loading="lazy"></button>
+          <button class="tile tile--tall tone" type="button" data-full="images/bride-palace.jpg"><img src="images/bride-palace.jpg" alt="Выход в белом на фоне дворцовой лестницы" loading="lazy"></button>
+          <button class="tile tile--tall tone" type="button" data-full="images/feather-wave.jpg"><img src="images/feather-wave.jpg" alt="Участница в шляпе из перьев приветствует зал" loading="lazy"></button>
+          <button class="tile tile--sq tone" type="button" data-full="images/host-mic.jpg"><img src="images/host-mic.jpg" alt="Ведущая в красном с микрофоном" loading="lazy"></button>
         </div>
       </div>
     </div>
