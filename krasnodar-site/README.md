@@ -32,21 +32,19 @@
 Сцена → ленты → О конкурсе → Три короны (категории) → Что ждёт участниц →
 Кто может участвовать → Как подать анкету → Галерея → Частые вопросы → Финал → Подвал.
 
-## ⚠️ Фотографии — временные
+## Фотографии
 
-Сейчас на сайте **стоковые фото** с бесплатной лицензией
-[Burst by Shopify](https://www.shopify.com/stock-photos/licenses) (авторы:
-Samantha Hurley, Thought Catalog и другие). Это не участницы конкурса.
-Перед запуском замените их на настоящие фото конкурса — достаточно положить
-файлы с теми же именами в `images/`:
+На сайте настоящие фото конкурса (лежат в `images/`). Чтобы заменить фото,
+положите новый файл с тем же именем:
 
 | Файл | Где на сайте |
 |---|---|
-| `stage.jpg` | Первый экран, фото в арке (вертикальное) |
-| `about.jpg`, `rose.jpg` | «О конкурсе» |
-| `cat-young.jpg`, `cat-miss.jpg`, `cat-mrs.jpg` | Категории |
-| `g4.jpg`, `g1.jpg`, `g6.jpg`, `g3.jpg`, `cta.jpg`, `tiara.jpg` | «Что ждёт участниц» |
-| `g1.jpg` … `g8.jpg`, `about.jpg` | Галерея |
+| `hero-crown.jpg` | Первый экран, фото в арке (вертикальное) |
+| `interview.jpg`, `hall-stage.jpg` | «О конкурсе» |
+| `silver-gown.jpg`, `feather-hat.jpg`, `mrs-crown.jpg` | Категории: Юная Мисс, Мисс, Миссис |
+| `host-red.jpg`, `brides-stairs.jpg`, `kokoshnik.jpg`, `red-carpet.jpg`, `coronation.jpg`, `winners.jpg` | «Что ждёт участниц» |
+| те же + `gala-table.jpg`, `veils.jpg`, `hall-tables.jpg`, `chandeliers.jpg` | Галерея |
+| `coronation.jpg` | Фон финального блока |
 
 ## Как менять
 
