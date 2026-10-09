@@ -264,15 +264,49 @@ body::after {
 .crowns__head .kicker::after { content: ""; width: 34px; height: 1px; background: currentColor; }
 .crowns__stage { flex: 1; display: grid; grid-template-columns: 1fr 1.15fr 1fr; align-items: end; gap: clamp(8px, 3vw, 50px); margin-top: clamp(16px, 3vh, 34px); }
 .queen { display: flex; flex-direction: column; align-items: center; min-width: 0; }
-.queen__fig { position: relative; width: 100%; height: min(43svh, 500px); display: flex; justify-content: center; align-items: flex-end; }
-.queen--miss .queen__fig { height: min(49svh, 560px); }
+.queen__fig { position: relative; width: 100%; height: min(40svh, 480px); display: flex; justify-content: center; align-items: flex-end; }
+.queen--miss .queen__fig { height: min(45svh, 530px); }
 .queen__fig img { position: absolute; bottom: 0; left: 50%; translate: -50% 0; height: 100%; width: auto; max-width: 118%; object-fit: contain; object-position: 50% 100%; }
 /* силуэт: та же фигура, залитая тёмным, с тонкой золотой кромкой (фильтр статичный — анимируется только прозрачность) */
 .queen__dark { filter: brightness(0) drop-shadow(0 0 1px rgba(232, 196, 124, .9)) drop-shadow(0 0 14px rgba(190, 24, 46, .5)); }
 .queen__beam { position: absolute; left: 50%; bottom: 0; width: 180%; height: 140%; translate: -50% 0; pointer-events: none;
   background: conic-gradient(at 50% 0, transparent 0 164deg, rgba(255, 220, 160, .16) 172deg, rgba(255, 232, 185, .28) 180deg, rgba(255, 220, 160, .16) 188deg, transparent 196deg);
   -webkit-mask-image: linear-gradient(180deg, #000 60%, transparent); mask-image: linear-gradient(180deg, #000 60%, transparent); }
-.queen__cap { margin-top: 16px; text-align: center; }
+.queen__cap { margin-top: 12px; text-align: center; }
+/* огромное слово «КОРОНЫ» тонким золотым контуром за сценой */
+.crowns__word { position: absolute; left: 50%; top: 52%; translate: -50% -50%; z-index: 0; white-space: nowrap; pointer-events: none;
+  font: 400 clamp(6rem, 24vw, 24rem)/1 var(--display); letter-spacing: -.02em; text-transform: uppercase;
+  color: transparent; -webkit-text-stroke: 1px rgba(232, 196, 124, .18); }
+/* медленно вращающиеся золотые лучи за центральной королевой */
+.crowns__rays { position: absolute; left: 50%; top: 56%; width: min(130vw, 1400px); aspect-ratio: 1; translate: -50% -50%; pointer-events: none; z-index: 0;
+  background: repeating-conic-gradient(from 0deg, rgba(255, 214, 140, .09) 0 4deg, transparent 4deg 15deg);
+  -webkit-mask-image: radial-gradient(circle, #000 0, rgba(0, 0, 0, .6) 25%, transparent 62%); mask-image: radial-gradient(circle, #000 0, rgba(0, 0, 0, .6) 25%, transparent 62%);
+  animation: rays 60s linear infinite; }
+@keyframes rays { to { rotate: 360deg; } }
+/* бархатный занавес по краям с золотыми кистями */
+.crowns__curtain { position: absolute; top: 0; bottom: 0; width: clamp(40px, 9vw, 150px); z-index: 1; pointer-events: none;
+  background: linear-gradient(0deg, rgba(0, 0, 0, .55), transparent 40%),
+    repeating-linear-gradient(90deg, #3a060d 0, #6e1120 1.4vw, #9a1a2e 2.1vw, #6e1120 2.8vw, #3a060d 4.2vw); }
+.crowns__curtain--l { left: 0; clip-path: polygon(0 0, 100% 0, 62% 46%, 30% 100%, 0 100%); }
+.crowns__curtain--r { right: 0; clip-path: polygon(0 0, 100% 0, 100% 100%, 70% 100%, 38% 46%); }
+.crowns__curtain::after { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #7a5a2a, #f3d9a2, #7a5a2a); }
+.crowns__tassel { position: absolute; top: 44%; width: 10px; height: 44px; border-radius: 2px 2px 5px 5px;
+  background: linear-gradient(180deg, #f3d9a2, #c18f3a 40%, #7a5a2a); box-shadow: 0 0 14px rgba(232, 180, 90, .45); }
+.crowns__curtain--l .crowns__tassel { left: 58%; } .crowns__curtain--r .crowns__tassel { right: 58%; }
+.crowns__tassel::before { content: ""; position: absolute; left: 50%; top: -30px; width: 1px; height: 30px; background: #e2b65f; }
+.crowns__in { z-index: 2; }
+/* пьедестал: золотой ободок, тёмный бархат, центральный выше — как на награждении */
+.queen__podium { position: relative; width: 82%; height: 34px; margin-top: -4px; display: grid; place-items: center;
+  background: linear-gradient(180deg, #5a0b17, #2a050b); border-radius: 0 0 4px 4px;
+  box-shadow: inset 0 1px 0 #f3d9a2, inset 0 -1px 0 rgba(232, 196, 124, .3), 0 18px 30px -10px rgba(0, 0, 0, .8); }
+.queen__podium::before { content: ""; position: absolute; left: -4%; right: -4%; top: -9px; height: 18px; border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(255, 220, 160, .55), rgba(232, 180, 90, .15) 55%, transparent 72%); }
+.queen__podium span { position: relative; font: 400 1rem/1 var(--display); letter-spacing: .2em;
+  background: var(--metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.queen--miss .queen__podium { height: 50px; width: 88%; }
+.queen--miss .queen__podium span { font-size: 1.3rem; }
+/* низ фигуры мягко уходит в пьедестал */
+.queen__fig img { -webkit-mask-image: linear-gradient(180deg, #000 88%, transparent); mask-image: linear-gradient(180deg, #000 88%, transparent); }
 .queen__num { display: block; font: 500 .7rem/1 var(--text); letter-spacing: .3em; color: var(--gold); }
 .queen__cap h3 { margin: 8px 0 4px; font-size: clamp(1.5rem, 2.6vw, 2.4rem); line-height: 1.05; background: var(--metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .queen__age { font: 500 .72rem/1 var(--text); letter-spacing: .22em; text-transform: uppercase; color: var(--cream); }
@@ -287,6 +321,10 @@ body::after {
   .queen__cap h3 { font-size: 1.15rem; }
   .queen__age { font-size: .56rem; letter-spacing: .14em; }
   .queen__cap p { display: none; }
+  .queen__podium { height: 24px; } .queen--miss .queen__podium { height: 34px; }
+  .queen__podium span { font-size: .8rem; } .queen--miss .queen__podium span { font-size: 1rem; }
+  .crowns__curtain { width: 7vw; } .crowns__tassel { display: none; }
+  .crowns__word { top: 46%; font-size: 30vw; }
   .crowns__note { font-size: .82rem; }
 }
 
@@ -593,6 +631,10 @@ body::after {
 
   <!-- Категории: три королевы выходят из тени -->
   <section class="crowns" id="categories">
+    <div class="crowns__word" aria-hidden="true">Короны</div>
+    <div class="crowns__rays" aria-hidden="true"></div>
+    <div class="crowns__curtain crowns__curtain--l" aria-hidden="true"><i class="crowns__tassel"></i></div>
+    <div class="crowns__curtain crowns__curtain--r" aria-hidden="true"><i class="crowns__tassel"></i></div>
     <div class="crowns__floor" aria-hidden="true"></div>
     <div class="wrap crowns__in">
       <div class="crowns__head">
@@ -606,7 +648,8 @@ body::after {
             <img class="queen__dark" src="images/cut-young.webp" alt="" aria-hidden="true">
             <img class="queen__lit" src="images/cut-young.webp" alt="Победительница в категории «Юная Мисс» в розовой короне">
           </div>
-          <div class="queen__cap"><span class="queen__num">I</span><h3>Юная Мисс</h3><span class="queen__age">14–17 лет</span><p>Первые шаги на сцене. Согласие даёт родитель.</p></div>
+          <div class="queen__podium" aria-hidden="true"><span>I</span></div>
+          <div class="queen__cap"><h3>Юная Мисс</h3><span class="queen__age">14–17 лет</span><p>Первые шаги на сцене. Согласие даёт родитель.</p></div>
         </article>
         <article class="queen queen--miss">
           <div class="queen__fig">
@@ -614,7 +657,8 @@ body::after {
             <img class="queen__dark" src="images/cut-miss.webp" alt="" aria-hidden="true">
             <img class="queen__lit" src="images/cut-miss.webp" alt="Победительница «Мисс Россия Краснодар» в короне и ленте">
           </div>
-          <div class="queen__cap"><span class="queen__num">II</span><h3>Мисс</h3><span class="queen__age">18–35 лет</span><p>Для тех, кто готов заявить о себе.</p></div>
+          <div class="queen__podium" aria-hidden="true"><span>II</span></div>
+          <div class="queen__cap"><h3>Мисс</h3><span class="queen__age">18–35 лет</span><p>Для тех, кто готов заявить о себе.</p></div>
         </article>
         <article class="queen queen--mrs">
           <div class="queen__fig">
@@ -622,7 +666,8 @@ body::after {
             <img class="queen__dark" src="images/cut-mrs.webp" alt="" aria-hidden="true">
             <img class="queen__lit" src="images/cut-mrs.webp" alt="Победительница в категории «Миссис» в золотой короне и белых перьях">
           </div>
-          <div class="queen__cap"><span class="queen__num">III</span><h3>Миссис</h3><span class="queen__age">20–45 лет</span><p>Для женщин, которые вдохновляют.</p></div>
+          <div class="queen__podium" aria-hidden="true"><span>III</span></div>
+          <div class="queen__cap"><h3>Миссис</h3><span class="queen__age">20–45 лет</span><p>Для женщин, которые вдохновляют.</p></div>
         </article>
       </div>
       <p class="crowns__note">Категорию бот предложит сам по возрасту. В 20–35 лет можно выбрать между «Мисс» и «Миссис».</p>
@@ -1076,18 +1121,38 @@ const SITE = {
   gsap.set(queens.map(q => $(".queen__cap", q)), { opacity: 0, y: 24 });
   gsap.set(queens.map(q => $(".queen__fig", q)), { y: 70, opacity: 0 });
   gsap.set(".crowns__note", { opacity: 0 });
+  gsap.set(queens.map(q => $(".queen__podium", q)), { scaleX: 0, opacity: 0 });
+  gsap.set(".crowns__curtain--l", { xPercent: -100 }); gsap.set(".crowns__curtain--r", { xPercent: 100 });
+  // золотое конфетти над королевой, когда она выходит из тени (только при прокрутке вниз)
+  const rain = (q, self) => {
+    if (self && self.direction < 0) return;
+    const r = $(".queen__fig", q).getBoundingClientRect(), n = innerWidth < 760 ? 16 : 30;
+    for (let k = 0; k < n; k++) {
+      const el = document.createElement("i"), star = Math.random() < .35, sz = star ? gsap.utils.random(8, 14) : gsap.utils.random(4, 8);
+      el.className = "fx" + (star ? " fx--star" : Math.random() < .3 ? " fx--ribbon" : "");
+      gsap.set(el, { x: r.left + Math.random() * r.width, y: r.top - gsap.utils.random(10, 120), width: sz, height: el.className.includes("ribbon") ? sz * 2 : sz });
+      document.body.appendChild(el);
+      gsap.to(el, { y: "+=" + gsap.utils.random(r.height * .5, r.height * 1.1), x: "+=" + gsap.utils.random(-40, 40), rotation: gsap.utils.random(-360, 360),
+        opacity: 0, duration: gsap.utils.random(1.4, 2.4), ease: "power1.in", onComplete: () => el.remove() });
+    }
+  };
   const ctl = gsap.timeline({ scrollTrigger: { trigger: "#categories", start: "top top", end: "+=260%", pin: true, scrub: 1, anticipatePin: 1 } });
-  ctl.to(queens.map(q => $(".queen__fig", q)), { y: 0, opacity: 1, duration: .6, stagger: .12, ease: "power2.out" }); // силуэты поднимаются из темноты
+  ctl.to([".crowns__curtain--l", ".crowns__curtain--r"], { xPercent: 0, duration: .5, ease: "power2.out" }, 0)       // занавес въезжает по краям
+     .to(queens.map(q => $(".queen__podium", q)), { scaleX: 1, opacity: 1, duration: .4, stagger: .1 }, 0)           // вырастают пьедесталы
+     .fromTo(".crowns__word", { scale: .85, opacity: 0 }, { scale: 1, opacity: 1, duration: 1 }, 0)
+     .to(queens.map(q => $(".queen__fig", q)), { y: 0, opacity: 1, duration: .6, stagger: .12, ease: "power2.out" }, .2); // силуэты поднимаются из темноты
   queens.forEach((q, i) => {
     const at = 1 + i * 1.1;
     ctl.to($(".queen__beam", q), { opacity: 1, scaleX: 1, duration: .45, ease: "power2.out" }, at)        // загорается софит
        .to($(".queen__lit", q), { opacity: 1, duration: .5 }, at + .2)                                    // фигура выходит из тени
        .fromTo($(".queen__fig", q), { scale: 1 }, { scale: 1.06, duration: .5, yoyo: true, repeat: 1, transformOrigin: "50% 100%" }, at + .2)
-       .to($(".queen__cap", q), { opacity: 1, y: 0, duration: .4 }, at + .45);
+       .to($(".queen__cap", q), { opacity: 1, y: 0, duration: .4 }, at + .45)
+       .call(() => rain(q, ctl.scrollTrigger), null, at + .25);
     if (i > 0) ctl.to($(".queen__beam", queens[i - 1]), { opacity: .35, duration: .4 }, at);              // предыдущий софит приглушается
   });
   ctl.to(queens.map(q => $(".queen__beam", q)), { opacity: .6, duration: .4 }, 4.4)
      .to(".crowns__note", { opacity: 1, duration: .4 }, 4.4)
+     .to(".crowns__word", { scale: 1.08, duration: 4 }, 1)
      .to({}, { duration: .4 });
 
   /* ---------- Что ждёт: горизонтальная прокрутка на широком экране ---------- */
