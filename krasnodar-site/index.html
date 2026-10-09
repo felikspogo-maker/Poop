@@ -75,6 +75,10 @@ h2 .sc, .spec__value span, .spec__value small { background: var(--metal); -webki
 .sw { display: inline-block; overflow: hidden; vertical-align: top; padding: .12em 0 .16em; margin: -.12em 0 -.16em; }
 .sc, .swi { display: inline-block; }
 .mani .sw { overflow: visible; }
+/* 3D-переворот букв в заголовках */
+h2 .sw, .finale h2 .sw { perspective: 600px; }
+h2 .sc { background-size: 100% 260%; background-position: 50% 100%; backface-visibility: hidden; }
+.kicker::before { transform-origin: 0 50%; }
 
 /* Фото в одном винном тоне */
 .tone { position: relative; }
@@ -228,13 +232,13 @@ body::after {
 .cat::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(196, 29, 52, .75), rgba(179, 23, 44, .25) 55%, transparent 85%); box-shadow: inset 2px 0 0 var(--gold);
   transform: scaleX(0); transform-origin: 0 50%; transition: transform .8s var(--ease); }
 .cat__num { font: 500 .8rem/1 var(--text); letter-spacing: .26em; color: var(--gold); padding-left: 6px; }
-.cat h3 { font-size: clamp(3rem, 10vw, 9.4rem); line-height: 1; color: rgba(217, 178, 106, .2); transition: color .6s var(--ease), transform .8s var(--ease); }
+.cat h3 { font-size: clamp(3rem, 10vw, 9.4rem); line-height: 1; color: rgba(217, 178, 106, .2); transition: color .6s var(--ease), translate .8s var(--ease); }
 .cat__age { align-self: start; margin-top: clamp(14px, 2vw, 30px); font: 400 clamp(1.3rem, 2.4vw, 2.2rem)/1 var(--display); color: rgba(217, 178, 106, .45); transition: color .6s; padding-right: 6px; text-align: right; }
 .cat__age small { display: block; margin-top: 8px; font: 500 .64rem/1 var(--text); letter-spacing: .24em; text-transform: uppercase; }
 .cat__desc { position: absolute; right: 6px; bottom: clamp(10px, 1.2vw, 18px); width: min(310px, 28%); margin: 0; text-align: right; font-size: .92rem; line-height: 1.5; color: var(--muted); opacity: 0; transform: translateY(8px); transition: opacity .6s, transform .6s var(--ease); }
 .cat__thumb { display: none; }
 .cat.is-on::before { transform: scaleX(1); }
-.cat.is-on h3 { color: var(--gold-l); transform: translateX(14px); }
+.cat.is-on h3 { color: var(--gold-l); translate: 14px 0; }
 .cat.is-on .cat__age { color: var(--gold); }
 .cat.is-on .cat__desc { opacity: 1; transform: none; }
 .cat-float { position: fixed; top: 0; left: 0; z-index: 40; width: clamp(220px, 19vw, 300px); aspect-ratio: 3 / 4; pointer-events: none; opacity: 0; transform: scale(.6);
@@ -276,7 +280,7 @@ body::after {
 .terms { padding: clamp(90px, 12vw, 160px) 0; }
 .terms__head { display: flex; justify-content: space-between; align-items: end; gap: 20px 40px; flex-wrap: wrap; margin-bottom: clamp(40px, 5vw, 70px); }
 .terms__head .lead { margin: 0; }
-.specs { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.specs { perspective: 1200px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
 .spec { position: relative; isolation: isolate; padding: clamp(28px, 3.4vw, 52px); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden;
   min-height: clamp(200px, 19vw, 280px); display: flex; flex-direction: column; justify-content: space-between; }
 .spec::before { /* свет, который идёт за курсором */
@@ -320,9 +324,10 @@ body::after {
 .gallery-grid .tile--wide { grid-column: span 2; }
 .tile { position: relative; display: block; width: 100%; padding: 0; border: 0; overflow: hidden; border-radius: 2px; background: var(--wine); cursor: zoom-in; }
 .has-cursor .tile { cursor: none; }
-.tile img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s var(--ease); }
+.tile img { width: 100%; height: 118%; margin-top: -9%; object-fit: cover; } /* запас по высоте для параллакса внутри рамки */
 .tile { height: 100%; }
-@media (hover: hover) { .tile:hover img { transform: scale(1.06); } }
+.tile::before { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; box-shadow: inset 0 0 0 1px rgba(232, 196, 124, 0); transition: box-shadow .5s; }
+@media (hover: hover) { .tile:hover::before { box-shadow: inset 0 0 0 1px rgba(232, 196, 124, .8); } }
 
 /* =================================================================
    ВОПРОСЫ
@@ -935,9 +940,20 @@ const SITE = {
   /* ---------- Заголовки и появление элементов ---------- */
   chars.forEach((units, el) => {
     if (el.closest(".stage") || el.closest(".cat")) return;
-    gsap.from(units, { yPercent: 115, duration: 1.3, ease: "expo.out", stagger: .025,
+    // буквы переворачиваются из глубины, как карточки
+    gsap.from(units, { yPercent: 90, rotationX: -95, opacity: 0, transformOrigin: "50% 100% -30px", duration: 1.5, ease: "expo.out", stagger: .03,
       scrollTrigger: { trigger: el, start: "top 88%" } });
+    // золото «перетекает» по буквам, пока заголовок на экране
+    if (el.tagName === "H2") gsap.to(units, { backgroundPosition: "50% 0%", ease: "none",
+      scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true } });
   });
+
+  /* ---------- Скорость прокрутки слегка наклоняет фото (эффект «инерции») ---------- */
+  const skewEls = $$(".gallery-grid, .mani-photo, .panel__img");
+  const skewSet = skewEls.map(el => gsap.quickTo(el, "skewY", { duration: .6, ease: "power3.out" }));
+  let skew = 0;
+  ScrollTrigger.create({ start: 0, end: "max", onUpdate: self => { skew = gsap.utils.clamp(-4, 4, self.getVelocity() / -400); } });
+  gsap.ticker.add(() => { skew *= .88; skewSet.forEach(fn => fn(skew)); }); // плавно возвращается, когда прокрутка остановилась
   gsap.set("[data-r]", { autoAlpha: 0, y: 40 });
   ScrollTrigger.batch("[data-r]", {
     start: "top 92%",
@@ -950,6 +966,11 @@ const SITE = {
   $$("[data-speed]").forEach(el => gsap.to(el, { yPercent: +el.dataset.speed * 3, ease: "none",
     scrollTrigger: { trigger: "#about", start: "top bottom", end: "bottom top", scrub: true } }));
   $$(".mani-photo img").forEach(im => gsap.from(im, { scale: 1.4, duration: 2, ease: "expo.out", scrollTrigger: { trigger: im, start: "top 88%" } }));
+  // фото манифеста раскрываются шторкой и медленно поворачиваются при прокрутке
+  $$(".mani-photo").forEach((p, i) => {
+    gsap.from(p, { clipPath: "inset(0% 0% 100% 0%)", duration: 1.6, ease: "expo.inOut", scrollTrigger: { trigger: p, start: "top 88%" } });
+    gsap.fromTo(p, { rotation: i ? 6 : -6 }, { rotation: i ? -3 : 3, ease: "none", scrollTrigger: { trigger: "#about", start: "top bottom", end: "bottom top", scrub: true } });
+  });
 
   /* ---------- Категории ---------- */
   const cats = $$(".cat"), float = $("#catFloat"), fimgs = $$("img", float);
@@ -958,6 +979,9 @@ const SITE = {
     gsap.from($$(".cat__line", c), { scaleX: 0, duration: 1.6, ease: "expo.inOut", scrollTrigger: st });
     gsap.from(chars.get($("h3", c)), { yPercent: 115, duration: 1.3, ease: "expo.out", stagger: .03, delay: .15, scrollTrigger: st });
     gsap.from([$(".cat__num", c), $(".cat__age", c)], { opacity: 0, y: 20, duration: 1, delay: .3, scrollTrigger: st });
+    // названия категорий плывут в разные стороны при прокрутке
+    const i = cats.indexOf(c);
+    gsap.fromTo($("h3", c), { xPercent: i % 2 ? 6 : -6 }, { xPercent: i % 2 ? -4 : 4, ease: "none", scrollTrigger: { trigger: c, start: "top bottom", end: "bottom top", scrub: true } });
     const th = $(".cat__thumb", c);
     if (getComputedStyle(th).display !== "none") gsap.from(th, { clipPath: "inset(0% 0% 100% 0%)", duration: 1.4, ease: "expo.inOut", scrollTrigger: { trigger: th, start: "top 90%" } });
   });
@@ -1002,7 +1026,9 @@ const SITE = {
   });
 
   /* ---------- Условия: ячейки и счётчики ---------- */
-  gsap.from(".spec", { opacity: 0, y: 40, duration: 1.1, ease: "expo.out", stagger: .08, scrollTrigger: { trigger: "#specs", start: "top 85%" } });
+  // ячейки условий переворачиваются, как карты, по диагонали
+  gsap.from(".spec", { opacity: 0, rotationX: -70, y: 60, transformOrigin: "50% 0%", duration: 1.4, ease: "expo.out",
+    stagger: { each: .1, grid: "auto", from: "start" }, scrollTrigger: { trigger: "#specs", start: "top 82%" } });
   $$("[data-to]").forEach(n => {
     const to = +n.dataset.to, o = { v: 0 };
     n.textContent = "0";
@@ -1011,18 +1037,36 @@ const SITE = {
 
   /* ---------- Как подать: линия заполняется, шаги загораются ---------- */
   gsap.to("#tlFill", { scaleY: 1, ease: "none", scrollTrigger: { trigger: "#tl", start: "top 62%", end: "bottom 62%", scrub: .5 } });
-  $$(".step").forEach(s => ScrollTrigger.create({ trigger: s, start: "top 64%", onEnter: () => s.classList.add("is-on"), onLeaveBack: () => s.classList.remove("is-on") }));
+  $$(".step").forEach(s => {
+    ScrollTrigger.create({ trigger: s, start: "top 64%",
+      onEnter: () => { s.classList.add("is-on"); gsap.fromTo($(".step__dot", s), { scale: .6 }, { scale: 1, duration: 1, ease: "elastic.out(1, .45)" }); },
+      onLeaveBack: () => s.classList.remove("is-on") });
+    gsap.from($("div", s), { x: 60, opacity: 0, duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: s, start: "top 80%" } });
+  });
 
   /* ---------- Галерея: фото раскрываются по очереди ---------- */
-  $$(".tile").forEach(t => {
-    gsap.from(t, { clipPath: "inset(100% 0% 0% 0%)", duration: 1.5, ease: "expo.inOut", scrollTrigger: { trigger: t, start: "top 95%" } });
-    gsap.from($("img", t), { scale: 1.3, duration: 2, ease: "expo.out", scrollTrigger: { trigger: t, start: "top 95%" } });
+  // фото открываются шторками с разных сторон, по очереди в каждом ряду,
+  // а внутри рамки картинка медленно едет — как окно в зал
+  const wipes = ["inset(100% 0% 0% 0%)", "inset(0% 0% 100% 0%)", "inset(0% 100% 0% 0%)", "inset(0% 0% 0% 100%)"];
+  $$(".tile").forEach((t, i) => {
+    const img = $("img", t);
+    gsap.set(t, { clipPath: wipes[i % 4] });
+    gsap.timeline({ scrollTrigger: { trigger: t, start: "top 94%" } })
+      .to(t, { clipPath: "inset(0% 0% 0% 0%)", duration: 1.6, ease: "expo.inOut", delay: (i % 3) * .12 })
+      .from(img, { scale: 1.35, duration: 2.2, ease: "expo.out" }, "<");
+    gsap.fromTo(img, { yPercent: -7 }, { yPercent: 7, ease: "none", scrollTrigger: { trigger: t, start: "top bottom", end: "bottom top", scrub: true } });
   });
+
+  /* ---------- Вопросы: строки выезжают, линии прочерчиваются ---------- */
+  gsap.from(".qa", { x: -50, opacity: 0, duration: 1.1, ease: "expo.out", stagger: .08, scrollTrigger: { trigger: "#faqList", start: "top 82%" } });
 
   /* ---------- Финал: корона рисуется, искры ---------- */
   const fin = $("#finale");
   gsap.fromTo("#finaleCrown path", { strokeDashoffset: 160 }, { strokeDashoffset: 0, duration: 2.2, ease: "power2.inOut", stagger: .25, scrollTrigger: { trigger: fin, start: "top 65%" } });
   gsap.from($(".beam-wrap", fin), { opacity: 0, duration: 2.4, ease: "power2.out", scrollTrigger: { trigger: fin, start: "top 65%" } });
+  // финал «приближается»: фото зала отъезжает, заголовок вырастает из глубины
+  gsap.fromTo(".finale__photo img", { scale: 1.35 }, { scale: 1, ease: "none", scrollTrigger: { trigger: fin, start: "top bottom", end: "bottom bottom", scrub: true } });
+  gsap.fromTo(".finale__in", { scale: .82, y: 80 }, { scale: 1, y: 0, ease: "none", scrollTrigger: { trigger: fin, start: "top bottom", end: "center center", scrub: true } });
   for (let i = 0; i < +fin.dataset.sparks; i++) {
     const sp = document.createElement("i"), big = Math.random() < .35;
     sp.className = "spark" + (big ? "" : " spark--dot");
