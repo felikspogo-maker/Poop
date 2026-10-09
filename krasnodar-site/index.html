@@ -397,6 +397,20 @@ body::after {
   .nav__links { position: fixed; inset: 0; z-index: -1; flex-direction: column; justify-content: center; align-items: center; gap: 30px; background: var(--black); font: 400 2rem/1 var(--display); letter-spacing: 0; text-transform: none; opacity: 0; visibility: hidden; transition: opacity .5s, visibility .5s; }
   .nav.is-open .nav__links { opacity: 1; visibility: visible; }
   .nav__links a { color: var(--cream); }
+  /* размытие и сдвиг шапки «запирают» меню в её высоте — на время открытия выключаем */
+  .nav.is-open { background: transparent; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; transform: none !important; }
+  .nav__links { height: 100svh; counter-reset: m;
+    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(190, 24, 46, .45), transparent 70%), radial-gradient(ellipse 70% 40% at 50% 100%, rgba(150, 18, 38, .4), transparent 70%), #1c0408; }
+  .nav__links li { counter-increment: m; opacity: 0; transform: translateY(24px); transition: opacity .6s var(--ease), transform .8s var(--ease); }
+  .nav__links li a::before { content: "0" counter(m); display: block; margin-bottom: 4px; text-align: center; font: 500 .62rem/1 var(--text); letter-spacing: .3em; color: var(--gold); }
+  .nav__links li a::after { display: none; }
+  .nav.is-open .nav__links li { opacity: 1; transform: none; }
+  .nav.is-open .nav__links li:nth-child(2) { transition-delay: .05s; }
+  .nav.is-open .nav__links li:nth-child(3) { transition-delay: .1s; }
+  .nav.is-open .nav__links li:nth-child(4) { transition-delay: .15s; }
+  .nav.is-open .nav__links li:nth-child(5) { transition-delay: .2s; }
+  .nav.is-open .nav__links li:nth-child(6) { transition-delay: .25s; }
+  .menu-open .mbar { transform: translateY(160%); }
   .burger { display: block; }
   .nav .btn { display: none; }
   .mbar { display: block; }
@@ -758,7 +772,7 @@ const SITE = {
 
   /* ---------- Меню и якоря ---------- */
   const nav = $("#nav"), burger = $("#burger");
-  const setMenu = open => { nav.classList.toggle("is-open", open); burger.setAttribute("aria-expanded", open); burger.setAttribute("aria-label", open ? "Закрыть меню" : "Открыть меню"); lock(open); };
+  const setMenu = open => { nav.classList.toggle("is-open", open); document.documentElement.classList.toggle("menu-open", open); burger.setAttribute("aria-expanded", open); burger.setAttribute("aria-label", open ? "Закрыть меню" : "Открыть меню"); lock(open); };
   burger.addEventListener("click", () => setMenu(!nav.classList.contains("is-open")));
   $$("[data-scroll]").forEach(a => a.addEventListener("click", e => {
     const id = a.getAttribute("href"), t = id === "#top" ? 0 : $(id);
