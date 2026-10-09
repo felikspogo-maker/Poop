@@ -357,7 +357,7 @@ body::after {
 .journey { position: relative; height: 100svh; overflow: hidden; background: var(--black); }
 .journey__slides, .jslide { position: absolute; inset: 0; margin: 0; }
 .jslide { clip-path: circle(0% at 70% 45%); }
-.jslide img { width: 100%; height: 100%; object-fit: cover; will-change: transform; filter: saturate(1.08) contrast(1.05); }
+.jslide img { width: 100%; height: 100%; object-fit: cover; object-position: var(--pd, 50% 50%); transform-origin: var(--pd, 50% 50%); will-change: transform; filter: saturate(1.08) contrast(1.05); }
 .jslide::after { content: ""; position: absolute; inset: 0; background: #a8162c; mix-blend-mode: color; opacity: .1; }
 .journey__shade { position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(90deg, rgba(20, 2, 6, .8) 0%, rgba(20, 2, 6, .3) 34%, transparent 60%), linear-gradient(0deg, rgba(20, 2, 6, .8), transparent 40%); }
@@ -388,8 +388,16 @@ body::after {
   background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(28, 4, 8, .55), rgba(20, 2, 6, .9)); }
 .journey__end h3 { font-size: clamp(2.6rem, 7vw, 6.4rem); line-height: 1; }
 .journey__end h3 em { font-style: normal; }
+/* вертикальные фото на широком экране — кадр справа на всю высоту, слева мягко уходит в фон под подпись */
+@media (min-width: 761px) {
+  .jslide--tall { background: radial-gradient(ellipse 60% 70% at 70% 50%, rgba(120, 14, 30, .5), transparent 70%), #14030a; }
+  .jslide--tall img { position: absolute; right: 11%; top: 0; width: min(64%, calc(100svh * .9)); height: 100%;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 22%, #000 85%, transparent); mask-image: linear-gradient(90deg, transparent, #000 22%, #000 85%, transparent); }
+}
+.jcap h3 { white-space: nowrap; }
 @media (max-width: 760px) {
   .jslide { clip-path: circle(0% at 50% 35%); }
+  .jslide img { object-position: var(--pm, 50% 50%); transform-origin: var(--pm, 50% 50%); }
   .journey__shade { background: linear-gradient(0deg, rgba(20, 2, 6, .95) 0%, rgba(20, 2, 6, .6) 34%, transparent 62%, rgba(20, 2, 6, .3)); }
   .jcap { bottom: 110px; right: var(--gutter); max-width: none; flex-direction: column; align-items: flex-start; gap: 6px; }
   .jcap__num { font-size: 26vw; }
@@ -726,12 +734,12 @@ body::after {
   <!-- Что ждёт участниц — «Путь к короне»: кинопоказ по прокрутке -->
   <section class="journey" id="perks">
     <div class="journey__slides">
-      <figure class="jslide"><img src="images/host-red.jpg" alt="Ведущая в красном на сцене конкурса" loading="lazy"></figure>
-      <figure class="jslide"><img src="images/brides-stairs.jpg" alt="Участницы в белых платьях на сцене" loading="lazy"></figure>
-      <figure class="jslide"><img src="images/kokoshnik.jpg" alt="Участница в национальном костюме с кокошником" loading="lazy"></figure>
-      <figure class="jslide"><img src="images/red-carpet.jpg" alt="Победительницы на красной дорожке" loading="lazy"></figure>
-      <figure class="jslide"><img src="images/lineup-crest.jpg" alt="Участницы на сцене у герба конкурса" loading="lazy"></figure>
-      <figure class="jslide"><img src="images/winners.jpg" alt="Победительницы в коронах с цветами" loading="lazy"></figure>
+      <figure class="jslide jslide--tall"><img src="images/white-feathers.jpg" alt="Участница в образе из белых перьев под светом студийной лампы" loading="lazy" style="--pd: 50% 30%; --pm: 38% 50%"></figure>
+      <figure class="jslide jslide--tall"><img src="images/black-lace.jpg" alt="Участница в чёрном кружевном образе идёт по подиуму" loading="lazy" style="--pd: 50% 30%; --pm: 50% 50%"></figure>
+      <figure class="jslide"><img src="images/kokoshnik.jpg" alt="Участница в национальном костюме с кокошником" loading="lazy" style="--pd: 50% 40%; --pm: 48% 50%"></figure>
+      <figure class="jslide"><img src="images/red-carpet.jpg" alt="Победительницы на красной дорожке" loading="lazy" style="--pd: 50% 25%; --pm: 58% 50%"></figure>
+      <figure class="jslide jslide--tall"><img src="images/lineup-crest.jpg" alt="Участницы на сцене у герба конкурса" loading="lazy" style="--pd: 50% 50%; --pm: 60% 50%"></figure>
+      <figure class="jslide"><img src="images/winners.jpg" alt="Победительницы в коронах с цветами" loading="lazy" style="--pd: 50% 18%; --pm: 53% 50%"></figure>
     </div>
     <div class="journey__shade" aria-hidden="true"></div>
     <div class="journey__intro">
