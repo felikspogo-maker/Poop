@@ -44,6 +44,10 @@
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-stopped { overflow: hidden; }
+/* ничто не должно сдвигать страницу вбок; старые iPhone не знают clip — для них hidden */
+html, body { overflow-x: clip; }
+@supports not (overflow: clip) { html, body { overflow-x: hidden; } }
+main > section, .ribbons, .footer { overflow-x: clip; }
 body {
   margin: 0; color: var(--cream);
   background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(120, 14, 30, .35), transparent 70%) fixed, var(--black);
@@ -853,6 +857,7 @@ const SITE = {
      АНИМАЦИИ
      ================================================================= */
   gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
   scrollTo(0, 0);
 
@@ -985,11 +990,11 @@ const SITE = {
   });
 
   /* ---------- Скорость прокрутки слегка наклоняет фото (эффект «инерции») ---------- */
-  const skewEls = $$(".gallery-grid, .mani-photo, .panel__img");
+  const skewEls = fine ? $$(".gallery-grid, .mani-photo, .panel__img") : []; // на телефоне не нужен — даёт лишнюю нагрузку
   const skewSet = skewEls.map(el => gsap.quickTo(el, "skewY", { duration: .6, ease: "power3.out" }));
   let skew = 0;
-  ScrollTrigger.create({ start: 0, end: "max", onUpdate: self => { skew = gsap.utils.clamp(-4, 4, self.getVelocity() / -400); } });
-  gsap.ticker.add(() => { skew *= .88; skewSet.forEach(fn => fn(skew)); }); // плавно возвращается, когда прокрутка остановилась
+  if (skewEls.length) ScrollTrigger.create({ start: 0, end: "max", onUpdate: self => { skew = gsap.utils.clamp(-4, 4, self.getVelocity() / -400); } });
+  if (skewEls.length) gsap.ticker.add(() => { skew *= .88; skewSet.forEach(fn => fn(skew)); }); // плавно возвращается, когда прокрутка остановилась
   gsap.set("[data-r]", { autoAlpha: 0, y: 40 });
   ScrollTrigger.batch("[data-r]", {
     start: "top 92%",
@@ -1017,7 +1022,7 @@ const SITE = {
     gsap.from([$(".cat__num", c), $(".cat__age", c)], { opacity: 0, y: 20, duration: 1, delay: .3, scrollTrigger: st });
     // названия категорий плывут в разные стороны при прокрутке
     const i = cats.indexOf(c);
-    gsap.fromTo($("h3", c), { xPercent: i % 2 ? 6 : -6 }, { xPercent: i % 2 ? -4 : 4, ease: "none", scrollTrigger: { trigger: c, start: "top bottom", end: "bottom top", scrub: true } });
+    if (innerWidth > 760) gsap.fromTo($("h3", c), { xPercent: i % 2 ? 6 : -6 }, { xPercent: i % 2 ? -4 : 4, ease: "none", scrollTrigger: { trigger: c, start: "top bottom", end: "bottom top", scrub: true } });
     const th = $(".cat__thumb", c);
     if (getComputedStyle(th).display !== "none") gsap.from(th, { clipPath: "inset(0% 0% 100% 0%)", duration: 1.4, ease: "expo.inOut", scrollTrigger: { trigger: th, start: "top 90%" } });
   });
@@ -1077,7 +1082,7 @@ const SITE = {
     ScrollTrigger.create({ trigger: s, start: "top 64%",
       onEnter: () => { s.classList.add("is-on"); gsap.fromTo($(".step__dot", s), { scale: .6 }, { scale: 1, duration: 1, ease: "elastic.out(1, .45)" }); },
       onLeaveBack: () => s.classList.remove("is-on") });
-    gsap.from($("div", s), { x: 60, opacity: 0, duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: s, start: "top 80%" } });
+    gsap.from($("div", s), { x: innerWidth > 760 ? 60 : 0, y: innerWidth > 760 ? 0 : 30, opacity: 0, duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: s, start: "top 80%" } });
   });
 
   /* ---------- Галерея: фото раскрываются по очереди ---------- */
@@ -1094,7 +1099,7 @@ const SITE = {
   });
 
   /* ---------- Вопросы: строки выезжают, линии прочерчиваются ---------- */
-  gsap.from(".qa", { x: -50, autoAlpha: 0, clearProps: "transform", duration: 1.1, ease: "expo.out", stagger: .08, scrollTrigger: { trigger: "#faqList", start: "top 82%" } });
+  gsap.from(".qa", { x: innerWidth > 760 ? -50 : 0, y: innerWidth > 760 ? 0 : 24, autoAlpha: 0, clearProps: "transform", duration: 1.1, ease: "expo.out", stagger: .08, scrollTrigger: { trigger: "#faqList", start: "top 82%" } });
 
   /* ---------- Финал: корона рисуется, искры ---------- */
   const fin = $("#finale");
