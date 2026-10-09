@@ -21,14 +21,16 @@
    Шрифты: Prata (заголовки) + Jost (текст).
    ================================================================= */
 :root {
-  --black: #0e0103;
-  --black-2: #170307;
+  --black: #1c0408;       /* глубокий винный вместо чёрного */
+  --black-2: #2a060c;
   --wine: #5a0b17;
   --red: #b3172c;
   --cream: #f4e9dc;
   --muted: rgba(244, 233, 220, .66);
-  --line: rgba(244, 233, 220, .16);
-  --gold: #d2b07a;
+  --line: rgba(210, 176, 122, .24);   /* линии — золотые */
+  --gold: #d9b26a;
+  --gold-l: #f3d9a2;
+  --metal: linear-gradient(180deg, #fff0c4 0%, #ecc77f 34%, #c18f3a 60%, #f4d790 82%, #d4a556 100%);
 
   --display: "Prata", "Times New Roman", serif;
   --text: "Jost", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -41,7 +43,8 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-stopped { overflow: hidden; }
 body {
-  margin: 0; background: var(--black); color: var(--cream);
+  margin: 0; color: var(--cream);
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(120, 14, 30, .35), transparent 70%) fixed, var(--black);
   font: 400 17px/1.65 var(--text); overflow-x: clip;
   -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
 }
@@ -55,9 +58,18 @@ button { font: inherit; color: inherit; }
 
 h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; letter-spacing: -.01em; }
 h2 { font-size: clamp(2.6rem, 6.2vw, 6rem); line-height: 1; }
+h2, .spec__value, .hs__end h3 { background: var(--metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
+h2 .sc, .spec__value span, .spec__value small { background: var(--metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .kicker { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; font: 500 .74rem/1.2 var(--text); letter-spacing: .28em; text-transform: uppercase; color: var(--gold); }
 .kicker::before { content: ""; width: 34px; height: 1px; background: currentColor; }
 .lead { max-width: 30em; color: var(--muted); font-size: 1.05rem; }
+
+/* Металлическое золото (на буквах — каждая со своим бликом) */
+.metal, .metal .sc, .metal .swi { background: var(--metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.metal .sw { color: transparent; }
+/* блик должен покрывать всю букву, а не только высоту строки */
+.metal .sc, h2 .sc { padding: .16em 0 .12em; margin: -.16em 0 -.12em; }
+.hero__meta b { background: var(--metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
 /* Разбивка текста на слова и буквы для анимаций */
 .sw { display: inline-block; overflow: hidden; vertical-align: top; padding: .12em 0 .16em; margin: -.12em 0 -.16em; }
@@ -66,7 +78,7 @@ h2 { font-size: clamp(2.6rem, 6.2vw, 6rem); line-height: 1; }
 
 /* Фото в одном винном тоне */
 .tone { position: relative; }
-.tone::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: #9e1428; mix-blend-mode: color; opacity: .26; }
+.tone::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: #a8162c; mix-blend-mode: color; opacity: .34; }
 
 /* Зерно сцены поверх всего */
 body::after {
@@ -79,14 +91,15 @@ body::after {
   position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 58px; padding: 0 34px;
   overflow: hidden; border: 0; border-radius: 2px; cursor: pointer; text-decoration: none; isolation: isolate;
   font: 500 .78rem/1 var(--text); letter-spacing: .26em; text-transform: uppercase;
-  background: var(--red); color: var(--cream); transition: color .5s;
+  background: linear-gradient(180deg, #c81f37, #8f1124); color: var(--gold-l); transition: color .5s;
+  box-shadow: inset 0 0 0 1px rgba(243, 217, 162, .55), 0 10px 30px -12px rgba(179, 23, 44, .8);
 }
 .btn::before { /* золотая заливка снизу при наведении */
-  content: ""; position: absolute; inset: 0; z-index: -1; background: var(--gold);
+  content: ""; position: absolute; inset: 0; z-index: -1; background: var(--metal);
   transform: translateY(101%); transition: transform .6s var(--ease);
 }
 .btn:hover::before { transform: none; }
-.btn:hover { color: var(--black); }
+.btn:hover { color: #3a0710; }
 .btn span { display: inline-block; transition: transform .6s var(--ease); }
 .btn:hover span { transform: translateX(5px); }
 
@@ -117,7 +130,7 @@ body::after {
    ================================================================= */
 .progress { position: fixed; top: 0; left: 0; right: 0; z-index: 60; height: 2px; background: linear-gradient(90deg, var(--red), var(--gold)); transform: scaleX(0); transform-origin: 0 50%; }
 .nav { position: fixed; inset: 0 0 auto; z-index: 50; transition: background .5s, transform .7s var(--ease); }
-.nav.is-solid { background: rgba(14, 1, 3, .82); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.nav.is-solid { background: rgba(40, 5, 11, .86); box-shadow: 0 1px 0 var(--line); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
 .nav.is-hidden { transform: translateY(-100%); }
 .nav__row { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 78px; }
 .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; font: 400 1.25rem/1 var(--display); white-space: nowrap; }
@@ -150,21 +163,21 @@ body::after {
    ПЕРВЫЙ ЭКРАН — СЦЕНА
    ================================================================= */
 .stage { position: relative; height: 100svh; min-height: 640px; overflow: hidden;
-  background: radial-gradient(ellipse 70% 40% at 50% 104%, rgba(150, 18, 38, .6), transparent 70%), var(--black); }
+  background: radial-gradient(ellipse 80% 50% at 50% 106%, rgba(190, 24, 46, .75), transparent 70%), radial-gradient(ellipse 45% 60% at 0% 40%, rgba(120, 14, 30, .45), transparent 70%), radial-gradient(ellipse 45% 60% at 100% 40%, rgba(120, 14, 30, .45), transparent 70%), var(--black); }
 .beam-wrap { position: absolute; z-index: 1; left: 50%; top: -12%; width: min(130vh, 1300px); height: 128%; margin-left: calc(min(130vh, 1300px) / -2); transform-origin: 50% 0; pointer-events: none; }
 .beam { position: absolute; inset: 0; filter: blur(8px);
-  background: conic-gradient(at 50% 0, transparent 0 162deg, rgba(255, 226, 200, .14) 171deg, rgba(255, 238, 220, .3) 180deg, rgba(255, 226, 200, .14) 189deg, transparent 198deg); }
+  background: conic-gradient(at 50% 0, transparent 0 162deg, rgba(255, 205, 130, .16) 171deg, rgba(255, 225, 160, .36) 180deg, rgba(255, 205, 130, .16) 189deg, transparent 198deg); }
 .dust { position: absolute; inset: 0; width: 100%; height: 100%;
   -webkit-mask-image: conic-gradient(at 50% 0, transparent 0 164deg, #000 172deg 188deg, transparent 196deg);
           mask-image: conic-gradient(at 50% 0, transparent 0 164deg, #000 172deg 188deg, transparent 196deg); }
 .floor { position: absolute; z-index: 1; left: 5%; right: 5%; bottom: -60px; height: 200px; border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(255, 220, 195, .2), transparent 65%); pointer-events: none; }
+  background: radial-gradient(ellipse, rgba(255, 205, 130, .26), transparent 65%); pointer-events: none; }
 .bigword { position: absolute; z-index: 1; margin: 0; white-space: nowrap; pointer-events: none; user-select: none;
   font: 400 clamp(6rem, 21vw, 22rem)/.8 var(--display); letter-spacing: -.05em; text-transform: uppercase; }
 .bigword--fill { left: -1.5vw; top: 15vh; color: var(--cream); }
 .bigword--line { right: -2vw; top: 42vh; font-size: clamp(5rem, 16.5vw, 17rem); color: transparent; -webkit-text-stroke: 1.4px var(--gold); }
 .arch { position: absolute; z-index: 2; left: 50%; bottom: 0; width: clamp(260px, 28vw, 430px); height: min(78svh, 780px); margin-left: calc(clamp(260px, 28vw, 430px) / -2);
-  border-radius: 999px 999px 0 0; overflow: hidden; box-shadow: 0 0 0 1px rgba(210, 176, 122, .55), 0 0 0 14px var(--black), 0 0 0 15px rgba(210, 176, 122, .25); }
+  border-radius: 999px 999px 0 0; overflow: hidden; box-shadow: 0 0 0 1px rgba(210, 176, 122, .55), 0 0 0 14px var(--black), 0 0 0 15px rgba(210, 176, 122, .45), 0 0 80px 10px rgba(190, 24, 46, .35); }
 .arch img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; }
 .arch::before { content: ""; position: absolute; inset: 0; z-index: 2; background: linear-gradient(0deg, rgba(14, 1, 3, .7), transparent 35%); }
 .hero__info { position: absolute; z-index: 3; left: var(--gutter); bottom: clamp(30px, 6vh, 64px); max-width: 330px; }
@@ -172,21 +185,21 @@ body::after {
 .hero__note { margin: 14px 0 22px; font: 500 .72rem/1.7 var(--text); letter-spacing: .24em; text-transform: uppercase; }
 .hero__note b { font-weight: 500; color: var(--gold); }
 .hero__meta { position: absolute; z-index: 3; right: var(--gutter); bottom: clamp(30px, 6vh, 64px); text-align: right; font: 500 .72rem/2 var(--text); letter-spacing: .28em; text-transform: uppercase; color: var(--muted); }
-.hero__meta b { display: block; font: 400 2.6rem/1 var(--display); letter-spacing: 0; color: var(--cream); margin-bottom: 8px; }
+.hero__meta b { display: block; font: 400 2.6rem/1 var(--display); letter-spacing: 0; margin-bottom: 8px; background: var(--metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
 /* =================================================================
    ЛЕНТЫ
    ================================================================= */
-.ribbons { position: relative; height: clamp(150px, 16vw, 230px); overflow: hidden; background: var(--black); }
+.ribbons { position: relative; height: clamp(150px, 16vw, 230px); overflow: hidden; background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(160, 20, 40, .35), transparent 70%); }
 .rb { position: absolute; left: -5%; right: -5%; top: 50%; display: flex; align-items: center; height: clamp(54px, 5.4vw, 76px); margin-top: calc(clamp(54px, 5.4vw, 76px) / -2); overflow: hidden; }
 .rb--a { z-index: 2; transform: rotate(-3deg); background: linear-gradient(180deg, #4a0911, #8a1426 30%, #ad1d33 50%, #8a1426 70%, #4a0911); box-shadow: 0 20px 40px -14px rgba(0, 0, 0, .8); }
 .rb--a::before { content: ""; position: absolute; inset: 6px 0; border-block: 1px solid var(--gold); opacity: .8; pointer-events: none; }
 .rb--b { transform: rotate(2.4deg); }
 .rb__track { display: flex; flex: none; white-space: nowrap; will-change: transform; }
 .rb__track span { padding: 0 .9em; font: 400 clamp(1.1rem, 1.9vw, 1.7rem)/1 var(--display); letter-spacing: .14em; text-transform: uppercase; }
-.rb--a span { color: var(--cream); }
+.rb--a span { color: var(--gold-l); }
 .rb--a span:nth-child(even) { color: var(--gold); }
-.rb--b span { color: transparent; -webkit-text-stroke: 1px rgba(210, 176, 122, .55); font-size: clamp(1.6rem, 3vw, 2.8rem); }
+.rb--b span { color: transparent; -webkit-text-stroke: 1px rgba(232, 196, 124, .8); font-size: clamp(1.6rem, 3vw, 2.8rem); }
 
 /* =================================================================
    О КОНКУРСЕ — МАНИФЕСТ
@@ -212,16 +225,16 @@ body::after {
 .cat { position: relative; display: grid; grid-template-columns: 90px 1fr auto; align-items: center; column-gap: 20px; padding: clamp(14px, 1.8vw, 26px) 0; isolation: isolate; }
 .cat__line { position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--line); transform-origin: 0 50%; }
 .cat__line--b { top: auto; bottom: 0; }
-.cat::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(179, 23, 44, .5), rgba(179, 23, 44, .12) 55%, transparent 80%);
+.cat::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(196, 29, 52, .75), rgba(179, 23, 44, .25) 55%, transparent 85%); box-shadow: inset 2px 0 0 var(--gold);
   transform: scaleX(0); transform-origin: 0 50%; transition: transform .8s var(--ease); }
 .cat__num { font: 500 .8rem/1 var(--text); letter-spacing: .26em; color: var(--gold); padding-left: 6px; }
-.cat h3 { font-size: clamp(3rem, 10vw, 9.4rem); line-height: 1; color: rgba(244, 233, 220, .2); transition: color .6s var(--ease), transform .8s var(--ease); }
-.cat__age { align-self: start; margin-top: clamp(14px, 2vw, 30px); font: 400 clamp(1.3rem, 2.4vw, 2.2rem)/1 var(--display); color: rgba(244, 233, 220, .45); transition: color .6s; padding-right: 6px; text-align: right; }
+.cat h3 { font-size: clamp(3rem, 10vw, 9.4rem); line-height: 1; color: rgba(217, 178, 106, .2); transition: color .6s var(--ease), transform .8s var(--ease); }
+.cat__age { align-self: start; margin-top: clamp(14px, 2vw, 30px); font: 400 clamp(1.3rem, 2.4vw, 2.2rem)/1 var(--display); color: rgba(217, 178, 106, .45); transition: color .6s; padding-right: 6px; text-align: right; }
 .cat__age small { display: block; margin-top: 8px; font: 500 .64rem/1 var(--text); letter-spacing: .24em; text-transform: uppercase; }
 .cat__desc { position: absolute; right: 6px; bottom: clamp(10px, 1.2vw, 18px); width: min(310px, 28%); margin: 0; text-align: right; font-size: .92rem; line-height: 1.5; color: var(--muted); opacity: 0; transform: translateY(8px); transition: opacity .6s, transform .6s var(--ease); }
 .cat__thumb { display: none; }
 .cat.is-on::before { transform: scaleX(1); }
-.cat.is-on h3 { color: var(--cream); transform: translateX(14px); }
+.cat.is-on h3 { color: var(--gold-l); transform: translateX(14px); }
 .cat.is-on .cat__age { color: var(--gold); }
 .cat.is-on .cat__desc { opacity: 1; transform: none; }
 .cat-float { position: fixed; top: 0; left: 0; z-index: 40; width: clamp(220px, 19vw, 300px); aspect-ratio: 3 / 4; pointer-events: none; opacity: 0; transform: scale(.6);
@@ -233,7 +246,7 @@ body::after {
 /* =================================================================
    ЧТО ЖДЁТ — ГОРИЗОНТАЛЬНАЯ ПРОКРУТКА
    ================================================================= */
-.perks { position: relative; overflow: hidden; background: radial-gradient(ellipse 60% 50% at 20% 50%, rgba(120, 14, 30, .35), transparent 70%), var(--black-2); }
+.perks { position: relative; overflow: hidden; background: radial-gradient(ellipse 60% 70% at 20% 50%, rgba(200, 30, 54, .55), transparent 70%), radial-gradient(ellipse 50% 60% at 90% 60%, rgba(150, 18, 38, .45), transparent 70%), #3d0811; }
 .hs__track { display: flex; align-items: center; gap: clamp(30px, 4vw, 70px); width: max-content; height: 100svh; padding: 0 var(--gutter); }
 .hs__intro { flex: none; width: min(480px, 36vw); }
 .hs__intro .lead { margin: 24px 0 30px; }
@@ -268,7 +281,7 @@ body::after {
   min-height: clamp(200px, 19vw, 280px); display: flex; flex-direction: column; justify-content: space-between; }
 .spec::before { /* свет, который идёт за курсором */
   content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0; transition: opacity .5s;
-  background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), rgba(179, 23, 44, .35), transparent 65%); }
+  background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 50%), rgba(200, 30, 54, .5), transparent 65%); }
 .spec:hover::before { opacity: 1; }
 .spec__label { font: 500 .72rem/1.4 var(--text); letter-spacing: .24em; text-transform: uppercase; color: var(--gold); }
 .spec__value { margin-top: 30px; font: 400 clamp(3rem, 6vw, 5.6rem)/.95 var(--display); white-space: nowrap; }
@@ -279,7 +292,7 @@ body::after {
 /* =================================================================
    КАК ПОДАТЬ — ЛИНИЯ ШАГОВ
    ================================================================= */
-.how { padding: clamp(90px, 12vw, 160px) 0; background: radial-gradient(ellipse 50% 60% at 85% 40%, rgba(120, 14, 30, .3), transparent 70%), var(--black-2); }
+.how { padding: clamp(90px, 12vw, 160px) 0; background: radial-gradient(ellipse 55% 70% at 85% 40%, rgba(200, 30, 54, .5), transparent 70%), radial-gradient(ellipse 50% 60% at 0% 80%, rgba(150, 18, 38, .4), transparent 70%), #3d0811; }
 .how__grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(40px, 7vw, 120px); align-items: start; }
 .how__aside { position: sticky; top: 22vh; }
 .how__aside .lead { margin: 24px 0 34px; }
@@ -288,12 +301,12 @@ body::after {
 .tl__fill { position: absolute; inset: 0; background: linear-gradient(180deg, var(--gold), var(--red)); transform: scaleY(0); transform-origin: 50% 0; }
 .step { position: relative; display: grid; grid-template-columns: 72px 1fr; gap: 30px; padding-bottom: clamp(60px, 9vh, 110px); opacity: .32; transition: opacity .8s var(--ease); }
 .step:last-child { padding-bottom: 0; }
-.step__dot { position: relative; z-index: 1; display: grid; place-items: center; width: 72px; height: 72px; border-radius: 50%; border: 1px solid var(--line); background: var(--black-2);
+.step__dot { position: relative; z-index: 1; display: grid; place-items: center; width: 72px; height: 72px; border-radius: 50%; border: 1px solid var(--line); background: #3d0811;
   font: 400 1.5rem/1 var(--display); transition: border-color .8s, box-shadow .8s, color .8s; }
 .step h3 { font-size: clamp(1.7rem, 2.6vw, 2.4rem); line-height: 1.15; margin: 12px 0 10px; }
 .step p { margin: 0; color: var(--muted); max-width: 28em; }
 .step.is-on { opacity: 1; }
-.step.is-on .step__dot { border-color: var(--gold); color: var(--gold); box-shadow: 0 0 0 8px rgba(210, 176, 122, .08), 0 0 40px rgba(179, 23, 44, .55); }
+.step.is-on .step__dot { border-color: var(--gold); color: #3a0710; background: var(--metal); box-shadow: 0 0 0 8px rgba(210, 176, 122, .12), 0 0 50px rgba(232, 180, 90, .45); }
 
 /* =================================================================
    ГАЛЕРЕЯ — КОЛОННЫ С ПАРАЛЛАКСОМ
@@ -335,7 +348,7 @@ body::after {
    ФИНАЛ
    ================================================================= */
 .finale { position: relative; min-height: 100svh; display: grid; place-items: center; text-align: center; overflow: hidden;
-  background: radial-gradient(ellipse 60% 45% at 50% 100%, rgba(150, 18, 38, .55), transparent 70%), var(--black); }
+  background: radial-gradient(ellipse 70% 55% at 50% 100%, rgba(200, 28, 50, .7), transparent 70%), var(--black); }
 .finale .beam-wrap { top: -10%; }
 .finale__in { position: relative; z-index: 3; padding: 120px var(--gutter); }
 .finale__crown { display: block; width: clamp(80px, 9vw, 120px); height: auto; margin: 0 auto 30px; color: var(--gold); }
@@ -350,7 +363,7 @@ body::after {
 @keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(.4) rotate(0); } 50% { opacity: var(--o); transform: scale(1) rotate(45deg); } }
 
 /* Подвал */
-.footer { padding: 56px 0 34px; border-top: 1px solid var(--line); font-size: .95rem; color: var(--muted); }
+.footer { padding: 56px 0 34px; background: #14030a; border-top: 1px solid var(--line); font-size: .95rem; color: var(--muted); }
 .footer__row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; }
 .footer__links { display: flex; flex-wrap: wrap; gap: 14px 28px; }
 .footer__links a { text-underline-offset: 6px; text-decoration-color: var(--gold); }
@@ -397,7 +410,7 @@ body::after {
   .bigword--fill { top: 13svh; left: -3vw; }
   .bigword--line { top: 31svh; font-size: 24vw; }
   .arch { width: 64vw; height: 60svh; margin-left: -32vw; }
-  .stage::after { content: ""; position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; height: 52%; background: linear-gradient(0deg, var(--black) 18%, rgba(14, 1, 3, .7) 55%, transparent); pointer-events: none; }
+  .stage::after { content: ""; position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; height: 52%; background: linear-gradient(0deg, var(--black) 18%, rgba(28, 4, 8, .7) 55%, transparent); pointer-events: none; }
   .hero__info { right: var(--gutter); max-width: none; bottom: 26px; }
   .hero__info .btn { width: 100%; }
   .hero__meta { display: none; }
@@ -467,7 +480,7 @@ body::after {
     <h1 class="sr">Мисс и Миссис Краснодарский край 2027 — конкурс красоты</h1>
     <div class="beam-wrap" id="beam"><div class="beam"></div><canvas class="dust" id="dust"></canvas></div>
     <div class="floor"></div>
-    <p class="bigword bigword--fill" aria-hidden="true" data-split="chars">Мисс</p>
+    <p class="bigword bigword--fill metal" aria-hidden="true" data-split="chars">Мисс</p>
     <p class="bigword bigword--line" aria-hidden="true" data-split="chars">Миссис</p>
     <div class="arch tone" id="arch"><img src="images/stage.jpg" alt="Девушка в красном платье на фоне сверкающей стены" fetchpriority="high"></div>
     <div class="hero__info" id="heroInfo">
@@ -884,7 +897,7 @@ const SITE = {
   gsap.ticker.add(() => {
     if (!dustOn) return;
     ctx.clearRect(0, 0, cw, ch);
-    ctx.fillStyle = "#ffe9cf";
+    ctx.fillStyle = "#ffd98f";
     for (const d of parts) {
       d.x += d.vx; d.y += d.vy; d.p += .03;
       if (d.y < -5) { d.y = ch + 5; d.x = cw / 2 + (Math.random() - .5) * cw * .5; }
