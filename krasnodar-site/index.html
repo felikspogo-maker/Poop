@@ -234,6 +234,24 @@ body::after {
 .mani-foot p { margin: 0; color: var(--muted); max-width: 30em; }
 
 /* =================================================================
+   ПРОЛЁТ СКВОЗЬ СЛОВО: фото внутри букв, при прокрутке слово растёт
+   ================================================================= */
+.zoom { position: relative; height: 100svh; overflow: hidden; background: var(--black); }
+.zoom__photo { position: absolute; inset: 0; opacity: 0; }
+.zoom__photo img { width: 100%; height: 100%; object-fit: cover; }
+.zoom__photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(28, 4, 8, .85), rgba(28, 4, 8, .15) 55%, rgba(28, 4, 8, .4)); }
+.zoom__mask { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; }
+.zoom__word { display: block; padding: 0 .04em; font: 400 clamp(5rem, 25vw, 25rem)/.86 var(--display); letter-spacing: -.03em; text-transform: uppercase;
+  background: url(images/lineup-crest.jpg) 50% 45% / cover; -webkit-background-clip: text; background-clip: text; color: transparent;
+  -webkit-text-stroke: 1px rgba(232, 196, 124, .5); will-change: transform; }
+.zoom__cap { position: absolute; z-index: 2; left: 0; right: 0; bottom: clamp(50px, 10vh, 110px); text-align: center; opacity: 0; }
+.zoom__cap .kicker { justify-content: center; }
+.zoom__cap .kicker::after { content: ""; width: 34px; height: 1px; background: currentColor; }
+.zoom__cap p { margin: 0; font: 400 clamp(2.2rem, 5.6vw, 5rem)/1.05 var(--display); }
+.zoom__cap em { font-style: normal; background: var(--metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.zoom__hint { position: absolute; left: 50%; bottom: 30px; translate: -50% 0; font: 500 .68rem/1 var(--text); letter-spacing: .3em; text-transform: uppercase; color: var(--gold); }
+
+/* =================================================================
    КАТЕГОРИИ — БОЛЬШОЙ СПИСОК
    ================================================================= */
 .cats { padding: clamp(80px, 10vw, 140px) 0; }
@@ -433,6 +451,11 @@ body::after {
   /* горизонтальная прокрутка превращается в обычный список */
   .hs__track { flex-direction: column; align-items: stretch; width: auto; height: auto; padding: clamp(80px, 12vw, 120px) var(--gutter); gap: 80px; }
   .hs__intro, .hs__end, .panel { width: 100%; max-width: 560px; }
+  /* карточки «Что ждёт» складываются в стопку: каждая прилипает и следующая наезжает сверху */
+  .perks { overflow: clip; }
+  .panel { position: sticky; top: 92px; padding: 18px 18px 22px; border: 1px solid var(--line); border-radius: 4px; transform-origin: 50% 0;
+    background: linear-gradient(180deg, #4a0912, #2a060c); box-shadow: 0 -20px 40px -20px rgba(0, 0, 0, .7); }
+  .panel__num { top: -.35em; left: 10px; }
   .panel:nth-child(odd), .panel:nth-child(even) { margin: 0; }
   .hs__hint, .hs__bar { display: none; }
   .hs__end { padding-right: 0; }
@@ -543,6 +566,17 @@ body::after {
         <p data-r>Участниц ждут фотосессии, репетиции с хореографами и стилистами, новые знакомства и финальное шоу на большой сцене.</p>
       </div>
     </div>
+  </section>
+
+  <!-- Пролёт сквозь слово «СЦЕНА» -->
+  <section class="zoom" id="zoom" aria-label="Сцена конкурса">
+    <div class="zoom__photo"><img src="images/lineup-crest.jpg" alt="Участницы на сцене у герба конкурса" loading="lazy"></div>
+    <div class="zoom__mask" aria-hidden="true"><span class="zoom__word">Сцена</span></div>
+    <div class="zoom__cap">
+      <span class="kicker">Сезон 2027</span>
+      <p>Твой выход — <em>следующий</em></p>
+    </div>
+    <div class="zoom__hint" aria-hidden="true">Листайте</div>
   </section>
 
   <!-- Категории -->
@@ -700,8 +734,8 @@ body::after {
     <div class="finale__in">
       <img class="finale__logo" id="finaleLogo" src="images/logo.png" alt="Герб конкурса «Мисс и Миссис Краснодарский край»" width="700" height="700" loading="lazy">
       <h2 data-split="chars">Твоя корона ждёт</h2>
-      <p data-r>Заполните анкету в Telegram. Это займёт около пяти минут, а организаторы ответят сами.</p>
-      <div data-r><a class="btn js-bot magnetic" href="#" target="_blank" rel="noopener">Подать анкету <span>→</span></a></div>
+      <p>Заполните анкету в Telegram. Это займёт около пяти минут, а организаторы ответят сами.</p>
+      <div><a class="btn js-bot magnetic" href="#" target="_blank" rel="noopener">Подать анкету <span>→</span></a></div>
     </div>
   </section>
 </main>
@@ -980,7 +1014,7 @@ const SITE = {
 
   /* ---------- Заголовки и появление элементов ---------- */
   chars.forEach((units, el) => {
-    if (el.closest(".stage") || el.closest(".cat")) return;
+    if (el.closest(".stage") || el.closest(".cat") || el.closest(".finale")) return;
     // буквы переворачиваются из глубины, как карточки
     gsap.from(units, { yPercent: 90, rotationX: -95, opacity: 0, transformOrigin: "50% 100% -30px", duration: 1.5, ease: "expo.out", stagger: .03,
       scrollTrigger: { trigger: el, start: "top 88%" } });
@@ -1012,6 +1046,17 @@ const SITE = {
     gsap.from(p, { clipPath: "inset(0% 0% 100% 0%)", duration: 1.6, ease: "expo.inOut", scrollTrigger: { trigger: p, start: "top 88%" } });
     gsap.fromTo(p, { rotation: i ? 6 : -6 }, { rotation: i ? -3 : 3, ease: "none", scrollTrigger: { trigger: "#about", start: "top bottom", end: "bottom top", scrub: true } });
   });
+
+  /* ---------- Пролёт сквозь слово «СЦЕНА» ---------- */
+  gsap.timeline({ scrollTrigger: { trigger: "#zoom", start: "top top", end: "+=180%", pin: true, scrub: 1, anticipatePin: 1 } })
+    .fromTo(".zoom__word", { scale: .7, rotation: -4 }, { scale: 1, rotation: 0, duration: .25, ease: "power2.out" })
+    .to(".zoom__hint", { opacity: 0, duration: .1 }, 0)
+    .to(".zoom__word", { scale: 26, duration: .55, ease: "power3.in" })      // летим сквозь букву
+    .to(".zoom__photo", { opacity: 1, duration: .2 }, "-=.25")
+    .to(".zoom__mask", { opacity: 0, duration: .1 }, "-=.08")
+    .fromTo(".zoom__photo img", { scale: 1.25 }, { scale: 1, duration: .45, ease: "none" }, "-=.2")
+    .to(".zoom__cap", { opacity: 1, duration: .15 }, "-=.3")
+    .from(".zoom__cap p", { y: 60, duration: .25 }, "<");
 
   /* ---------- Категории ---------- */
   const cats = $$(".cat"), float = $("#catFloat"), fimgs = $$("img", float);
@@ -1060,6 +1105,13 @@ const SITE = {
     });
   });
   mm.add("(max-width: 1000px)", () => {
+    // стопка: когда следующая карточка наезжает, предыдущая уменьшается и темнеет
+    const pnl = $$(".panel");
+    pnl.forEach((p, i) => {
+      const next = pnl[i + 1]; if (!next) return;
+      gsap.to(p, { scale: .9, filter: "brightness(.55)", ease: "none",
+        scrollTrigger: { trigger: next, start: "top bottom", end: "top 92px", scrub: true } });
+    });
     $$(".panel").forEach(p => {
       gsap.from($(".panel__img", p), { clipPath: "inset(100% 0% 0% 0%)", duration: 1.4, ease: "expo.inOut", scrollTrigger: { trigger: p, start: "top 85%" } });
       gsap.from([$(".panel__num", p), $("h3", p), $("p", p)], { y: 30, opacity: 0, duration: 1, stagger: .08, ease: "expo.out", scrollTrigger: { trigger: p, start: "top 75%" } });
@@ -1114,6 +1166,23 @@ const SITE = {
     sp.style.cssText = `left:${Math.random() * 100}%;top:${Math.random() * 100}%;--s:${big ? 10 + Math.random() * 14 : 3 + Math.random() * 4}px;--t:${2.4 + Math.random() * 3}s;--d:${-Math.random() * 5}s;--o:${.5 + Math.random() * .5}`;
     fin.appendChild(sp);
   }
+
+  /* ---------- Финал: буквы разбросаны по экрану и слетаются в надпись ---------- */
+  const finChars = chars.get($(".finale h2"));
+  const spread = innerWidth > 760 ? 1 : .45;
+  const rnd = gsap.utils.random;
+  gsap.timeline({ scrollTrigger: { trigger: fin, start: "top top", end: "+=90%", pin: true, scrub: 1, anticipatePin: 1 } })
+    .from(finChars, { x: () => rnd(-520, 520) * spread, y: () => rnd(-360, 360) * spread, rotation: () => rnd(-160, 160),
+      scale: () => rnd(.3, 2.4), opacity: 0, ease: "power3.out", stagger: { each: .015, from: "random" }, duration: 1 })
+    .from(".finale p, .finale .btn", { y: 40, opacity: 0, duration: .4 }, "-=.3");
+
+  /* ---------- Галерея: фото наклоняются за мышкой (объём) ---------- */
+  if (fine) $$(".tile").forEach(t => {
+    const rx = gsap.quickTo(t, "rotationX", { duration: .6, ease: "power3.out" }), ry = gsap.quickTo(t, "rotationY", { duration: .6, ease: "power3.out" });
+    gsap.set(t, { transformPerspective: 900 });
+    t.addEventListener("pointermove", e => { const r = t.getBoundingClientRect(); ry(((e.clientX - r.left) / r.width - .5) * 14); rx(-((e.clientY - r.top) / r.height - .5) * 14); });
+    t.addEventListener("pointerleave", () => { rx(0); ry(0); });
+  });
 
   /* ---------- Прогресс прокрутки ---------- */
   gsap.to("#progress", { scaleX: 1, ease: "none", scrollTrigger: { start: 0, end: "max", scrub: .3 } });
