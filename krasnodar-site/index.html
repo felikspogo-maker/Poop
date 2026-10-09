@@ -252,31 +252,43 @@ body::after {
 .zoom__hint { position: absolute; left: 50%; bottom: 30px; translate: -50% 0; font: 500 .68rem/1 var(--text); letter-spacing: .3em; text-transform: uppercase; color: var(--gold); }
 
 /* =================================================================
-   КАТЕГОРИИ — БОЛЬШОЙ СПИСОК
+   КАТЕГОРИИ — ТРИ КОРОЛЕВЫ: силуэты выходят из тени под софитами
    ================================================================= */
-.cats { padding: clamp(80px, 10vw, 140px) 0; }
-.cats__head { display: flex; justify-content: space-between; align-items: end; gap: 20px 40px; flex-wrap: wrap; margin-bottom: clamp(40px, 5vw, 70px); }
-.cats__hint { font: 500 .72rem/1 var(--text); letter-spacing: .26em; text-transform: uppercase; color: var(--gold); }
-.cat { position: relative; display: grid; grid-template-columns: 90px 1fr auto; align-items: center; column-gap: 20px; padding: clamp(14px, 1.8vw, 26px) 0; isolation: isolate; }
-.cat__line { position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--line); transform-origin: 0 50%; }
-.cat__line--b { top: auto; bottom: 0; }
-.cat::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(196, 29, 52, .75), rgba(179, 23, 44, .25) 55%, transparent 85%); box-shadow: inset 2px 0 0 var(--gold);
-  transform: scaleX(0); transform-origin: 0 50%; transition: transform .8s var(--ease); }
-.cat__num { font: 500 .8rem/1 var(--text); letter-spacing: .26em; color: var(--gold); padding-left: 6px; }
-.cat h3 { font-size: clamp(3rem, 10vw, 9.4rem); line-height: 1; color: rgba(217, 178, 106, .2); transition: color .6s var(--ease), translate .8s var(--ease); }
-.cat__age { align-self: start; margin-top: clamp(14px, 2vw, 30px); font: 400 clamp(1.3rem, 2.4vw, 2.2rem)/1 var(--display); color: rgba(217, 178, 106, .45); transition: color .6s; padding-right: 6px; text-align: right; }
-.cat__age small { display: block; margin-top: 8px; font: 500 .64rem/1 var(--text); letter-spacing: .24em; text-transform: uppercase; }
-.cat__desc { position: absolute; right: 6px; bottom: clamp(10px, 1.2vw, 18px); width: min(310px, 28%); margin: 0; text-align: right; font-size: .92rem; line-height: 1.5; color: var(--muted); opacity: 0; transform: translateY(8px); transition: opacity .6s, transform .6s var(--ease); }
-.cat__thumb { display: none; }
-.cat.is-on::before { transform: scaleX(1); }
-.cat.is-on h3 { color: var(--gold-l); translate: 14px 0; }
-.cat.is-on .cat__age { color: var(--gold); }
-.cat.is-on .cat__desc { opacity: 1; transform: none; }
-.cat-float { position: fixed; top: 0; left: 0; z-index: 40; width: clamp(220px, 19vw, 300px); aspect-ratio: 3 / 4; pointer-events: none; opacity: 0; transform: scale(.6);
-  translate: -50% -50%; box-shadow: 0 40px 80px -20px rgba(0, 0, 0, .9); }
-.cat-float__in { position: absolute; inset: 0; overflow: hidden; border-radius: 2px; }
-.cat-float img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 10%; clip-path: inset(100% 0 0 0); transition: clip-path .7s var(--ease); }
-.cat-float img.is-on { clip-path: inset(0 0 0 0); }
+.crowns { position: relative; min-height: 100svh; overflow: clip; display: flex; align-items: stretch;
+  background: radial-gradient(ellipse 70% 45% at 50% 100%, rgba(190, 24, 46, .55), transparent 70%), var(--black); }
+.crowns__floor { position: absolute; left: 0; right: 0; bottom: 0; height: 26%; pointer-events: none;
+  background: radial-gradient(ellipse 60% 70% at 50% 100%, rgba(255, 205, 130, .16), transparent 70%); }
+.crowns__in { position: relative; display: flex; flex-direction: column; padding: clamp(84px, 10vh, 110px) 0 clamp(28px, 5vh, 50px); }
+.crowns__head { text-align: center; }
+.crowns__head .kicker { justify-content: center; margin-bottom: 14px; }
+.crowns__head .kicker::after { content: ""; width: 34px; height: 1px; background: currentColor; }
+.crowns__stage { flex: 1; display: grid; grid-template-columns: 1fr 1.15fr 1fr; align-items: end; gap: clamp(8px, 3vw, 50px); margin-top: clamp(16px, 3vh, 34px); }
+.queen { display: flex; flex-direction: column; align-items: center; min-width: 0; }
+.queen__fig { position: relative; width: 100%; height: min(43svh, 500px); display: flex; justify-content: center; align-items: flex-end; }
+.queen--miss .queen__fig { height: min(49svh, 560px); }
+.queen__fig img { position: absolute; bottom: 0; left: 50%; translate: -50% 0; height: 100%; width: auto; max-width: 118%; object-fit: contain; object-position: 50% 100%; }
+/* силуэт: та же фигура, залитая тёмным, с тонкой золотой кромкой (фильтр статичный — анимируется только прозрачность) */
+.queen__dark { filter: brightness(0) drop-shadow(0 0 1px rgba(232, 196, 124, .9)) drop-shadow(0 0 14px rgba(190, 24, 46, .5)); }
+.queen__beam { position: absolute; left: 50%; bottom: 0; width: 180%; height: 140%; translate: -50% 0; pointer-events: none;
+  background: conic-gradient(at 50% 0, transparent 0 164deg, rgba(255, 220, 160, .16) 172deg, rgba(255, 232, 185, .28) 180deg, rgba(255, 220, 160, .16) 188deg, transparent 196deg);
+  -webkit-mask-image: linear-gradient(180deg, #000 60%, transparent); mask-image: linear-gradient(180deg, #000 60%, transparent); }
+.queen__cap { margin-top: 16px; text-align: center; }
+.queen__num { display: block; font: 500 .7rem/1 var(--text); letter-spacing: .3em; color: var(--gold); }
+.queen__cap h3 { margin: 8px 0 4px; font-size: clamp(1.5rem, 2.6vw, 2.4rem); line-height: 1.05; background: var(--metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.queen__age { font: 500 .72rem/1 var(--text); letter-spacing: .22em; text-transform: uppercase; color: var(--cream); }
+.queen__cap p { margin: 10px auto 0; max-width: 18em; font-size: .93rem; line-height: 1.5; color: var(--muted); }
+.crowns__note { margin: clamp(14px, 2.4vh, 26px) auto 0; max-width: 34em; text-align: center; font-size: .9rem; color: var(--muted); }
+@media (min-width: 761px) and (max-height: 800px) { .crowns__note { display: none; } } /* на невысоких ноутбуках не помещается */
+@media (max-width: 760px) {
+  .crowns__stage { grid-template-columns: 1fr 1.15fr 1fr; gap: 4px; }
+  .queen__fig { height: 32svh; }
+  .queen--miss .queen__fig { height: 37svh; }
+  .crowns__in { padding-bottom: 96px; } /* место под нижнюю кнопку «Подать анкету» */
+  .queen__cap h3 { font-size: 1.15rem; }
+  .queen__age { font-size: .56rem; letter-spacing: .14em; }
+  .queen__cap p { display: none; }
+  .crowns__note { font-size: .82rem; }
+}
 
 /* =================================================================
    ЧТО ЖДЁТ — ГОРИЗОНТАЛЬНАЯ ПРОКРУТКА
@@ -484,13 +496,6 @@ body::after {
   .mani-photo--2 { display: none; }
   .mani { font-size: clamp(1.75rem, 8vw, 2.4rem); }
   .mani-foot { grid-template-columns: 1fr; }
-  .cat { grid-template-columns: 34px 1fr auto; column-gap: 12px; }
-  .cat h3 { font-size: 13vw; }
-  .cat__desc { position: static; grid-column: 1 / -1; width: auto; margin-top: 6px; text-align: left; }
-  .cat__thumb { display: block; grid-column: 1 / -1; margin-top: 16px; aspect-ratio: 16 / 10; overflow: hidden; border-radius: 2px; }
-  .cat__thumb img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 15%; }
-  .cat__thumb { aspect-ratio: 4 / 5 !important; }
-  .cats__hint { display: none; }
   .specs { grid-template-columns: 1fr; }
   .spec { min-height: 0; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 58vw; gap: 8px; }
@@ -586,43 +591,42 @@ body::after {
     <div class="zoom__hint" aria-hidden="true">Листайте</div>
   </section>
 
-  <!-- Категории -->
-  <section class="cats" id="categories">
-    <div class="wrap">
-      <div class="cats__head">
-        <div><span class="kicker" data-r>Категории</span><h2 data-split="chars">Три короны</h2></div>
-        <span class="cats__hint" data-r>Наведите на категорию</span>
+  <!-- Категории: три королевы выходят из тени -->
+  <section class="crowns" id="categories">
+    <div class="crowns__floor" aria-hidden="true"></div>
+    <div class="wrap crowns__in">
+      <div class="crowns__head">
+        <span class="kicker">Категории</span>
+        <h2 data-split="chars">Три короны</h2>
       </div>
-      <div class="cats__list" id="catList">
-        <article class="cat" data-img="0">
-          <i class="cat__line"></i>
-          <span class="cat__num">I</span>
-          <h3 data-split="chars">Юная Мисс</h3>
-          <span class="cat__age">14–17<small>лет</small></span>
-          <p class="cat__desc">Для тех, кто делает первые шаги на сцене. Согласие на участие даёт родитель.</p>
-          <div class="cat__thumb tone"><img src="images/young-crown.jpg" alt="" loading="lazy"></div>
+      <div class="crowns__stage">
+        <article class="queen queen--young">
+          <div class="queen__fig">
+            <i class="queen__beam" aria-hidden="true"></i>
+            <img class="queen__dark" src="images/cut-young.webp" alt="" aria-hidden="true">
+            <img class="queen__lit" src="images/cut-young.webp" alt="Победительница в категории «Юная Мисс» в розовой короне">
+          </div>
+          <div class="queen__cap"><span class="queen__num">I</span><h3>Юная Мисс</h3><span class="queen__age">14–17 лет</span><p>Первые шаги на сцене. Согласие даёт родитель.</p></div>
         </article>
-        <article class="cat" data-img="1">
-          <i class="cat__line"></i>
-          <span class="cat__num">II</span>
-          <h3 data-split="chars">Мисс</h3>
-          <span class="cat__age">18–35<small>лет</small></span>
-          <p class="cat__desc">Для девушек, готовых заявить о себе. В 20–35 лет можно выбрать между «Мисс» и «Миссис».</p>
-          <div class="cat__thumb tone"><img src="images/hero-crown.jpg" alt="" loading="lazy"></div>
+        <article class="queen queen--miss">
+          <div class="queen__fig">
+            <i class="queen__beam" aria-hidden="true"></i>
+            <img class="queen__dark" src="images/cut-miss.webp" alt="" aria-hidden="true">
+            <img class="queen__lit" src="images/cut-miss.webp" alt="Победительница «Мисс Россия Краснодар» в короне и ленте">
+          </div>
+          <div class="queen__cap"><span class="queen__num">II</span><h3>Мисс</h3><span class="queen__age">18–35 лет</span><p>Для тех, кто готов заявить о себе.</p></div>
         </article>
-        <article class="cat" data-img="2">
-          <i class="cat__line"></i><i class="cat__line cat__line--b"></i>
-          <span class="cat__num">III</span>
-          <h3 data-split="chars">Миссис</h3>
-          <span class="cat__age">20–45<small>лет</small></span>
-          <p class="cat__desc">Для женщин, которые вдохновляют своим примером.</p>
-          <div class="cat__thumb tone"><img src="images/mrs-crown.jpg" alt="" loading="lazy"></div>
+        <article class="queen queen--mrs">
+          <div class="queen__fig">
+            <i class="queen__beam" aria-hidden="true"></i>
+            <img class="queen__dark" src="images/cut-mrs.webp" alt="" aria-hidden="true">
+            <img class="queen__lit" src="images/cut-mrs.webp" alt="Победительница в категории «Миссис» в золотой короне и белых перьях">
+          </div>
+          <div class="queen__cap"><span class="queen__num">III</span><h3>Миссис</h3><span class="queen__age">20–45 лет</span><p>Для женщин, которые вдохновляют.</p></div>
         </article>
       </div>
+      <p class="crowns__note">Категорию бот предложит сам по возрасту. В 20–35 лет можно выбрать между «Мисс» и «Миссис».</p>
     </div>
-    <div class="cat-float" id="catFloat" aria-hidden="true"><div class="cat-float__in tone">
-      <img src="images/young-crown.jpg" alt=""><img src="images/hero-crown.jpg" alt=""><img src="images/mrs-crown.jpg" alt="">
-    </div></div>
   </section>
 
   <!-- Что ждёт участниц — горизонтальная прокрутка -->
@@ -890,7 +894,7 @@ const SITE = {
   // Без анимаций (библиотека не загрузилась или включено «уменьшить движение») — всё уже на месте
   if (!gsap || reduce) {
     hideIntro();
-    $$(".step, .cat").forEach(s => s.classList.add("is-on"));
+    $$(".step").forEach(s => s.classList.add("is-on"));
     return;
   }
 
@@ -1021,7 +1025,7 @@ const SITE = {
 
   /* ---------- Заголовки и появление элементов ---------- */
   chars.forEach((units, el) => {
-    if (el.closest(".stage") || el.closest(".cat") || el.closest(".finale")) return;
+    if (el.closest(".stage") || el.closest(".finale")) return;
     // буквы переворачиваются из глубины, как карточки
     gsap.from(units, { yPercent: 90, rotationX: -95, opacity: 0, transformOrigin: "50% 100% -30px", duration: 1.5, ease: "expo.out", stagger: .03,
       scrollTrigger: { trigger: el, start: "top 88%" } });
@@ -1065,36 +1069,26 @@ const SITE = {
     .to(".zoom__cap", { opacity: 1, duration: .15 }, "-=.3")
     .from(".zoom__cap p", { y: 60, duration: .25 }, "<");
 
-  /* ---------- Категории ---------- */
-  const cats = $$(".cat"), float = $("#catFloat"), fimgs = $$("img", float);
-  cats.forEach(c => {
-    const st = { trigger: c, start: "top 88%" };
-    gsap.from($$(".cat__line", c), { scaleX: 0, duration: 1.6, ease: "expo.inOut", scrollTrigger: st });
-    gsap.from(chars.get($("h3", c)), { yPercent: 115, duration: 1.3, ease: "expo.out", stagger: .03, delay: .15, scrollTrigger: st });
-    gsap.from([$(".cat__num", c), $(".cat__age", c)], { opacity: 0, y: 20, duration: 1, delay: .3, scrollTrigger: st });
-    // названия категорий плывут в разные стороны при прокрутке
-    const i = cats.indexOf(c);
-    if (innerWidth > 760) gsap.fromTo($("h3", c), { xPercent: i % 2 ? 6 : -6 }, { xPercent: i % 2 ? -4 : 4, ease: "none", scrollTrigger: { trigger: c, start: "top bottom", end: "bottom top", scrub: true } });
-    const th = $(".cat__thumb", c);
-    if (getComputedStyle(th).display !== "none") gsap.from(th, { clipPath: "inset(0% 0% 100% 0%)", duration: 1.4, ease: "expo.inOut", scrollTrigger: { trigger: th, start: "top 90%" } });
+  /* ---------- Категории: три королевы выходят из тени по очереди ---------- */
+  const queens = $$(".queen");
+  gsap.set(queens.map(q => $(".queen__lit", q)), { opacity: 0 });
+  gsap.set(queens.map(q => $(".queen__beam", q)), { opacity: 0, scaleX: .4, transformOrigin: "50% 0%" });
+  gsap.set(queens.map(q => $(".queen__cap", q)), { opacity: 0, y: 24 });
+  gsap.set(queens.map(q => $(".queen__fig", q)), { y: 70, opacity: 0 });
+  gsap.set(".crowns__note", { opacity: 0 });
+  const ctl = gsap.timeline({ scrollTrigger: { trigger: "#categories", start: "top top", end: "+=260%", pin: true, scrub: 1, anticipatePin: 1 } });
+  ctl.to(queens.map(q => $(".queen__fig", q)), { y: 0, opacity: 1, duration: .6, stagger: .12, ease: "power2.out" }); // силуэты поднимаются из темноты
+  queens.forEach((q, i) => {
+    const at = 1 + i * 1.1;
+    ctl.to($(".queen__beam", q), { opacity: 1, scaleX: 1, duration: .45, ease: "power2.out" }, at)        // загорается софит
+       .to($(".queen__lit", q), { opacity: 1, duration: .5 }, at + .2)                                    // фигура выходит из тени
+       .fromTo($(".queen__fig", q), { scale: 1 }, { scale: 1.06, duration: .5, yoyo: true, repeat: 1, transformOrigin: "50% 100%" }, at + .2)
+       .to($(".queen__cap", q), { opacity: 1, y: 0, duration: .4 }, at + .45);
+    if (i > 0) ctl.to($(".queen__beam", queens[i - 1]), { opacity: .35, duration: .4 }, at);              // предыдущий софит приглушается
   });
-  if (fine) {
-    const fx = gsap.quickTo(float, "x", { duration: .7, ease: "power3.out" }), fy = gsap.quickTo(float, "y", { duration: .7, ease: "power3.out" });
-    const fr = gsap.quickTo(float, "rotation", { duration: .9, ease: "power3.out" });
-    let px = 0;
-    const list = $("#catList");
-    list.addEventListener("pointermove", e => { fx(e.clientX); fy(e.clientY); fr(gsap.utils.clamp(-12, 12, (e.clientX - px) * .6)); px = e.clientX; });
-    cats.forEach(c => c.addEventListener("pointerenter", e => {
-      cats.forEach(o => o.classList.toggle("is-on", o === c));
-      fimgs.forEach((im, i) => im.classList.toggle("is-on", i === +c.dataset.img));
-      gsap.set(float, { x: e.clientX, y: e.clientY });
-      gsap.to(float, { opacity: 1, scale: 1, duration: .6, ease: "expo.out" });
-    }));
-    list.addEventListener("pointerleave", () => { cats.forEach(o => o.classList.remove("is-on")); gsap.to(float, { opacity: 0, scale: .6, duration: .5, ease: "power3.out" }); });
-  } else {
-    // на телефоне строка загорается, когда доходит до середины экрана
-    cats.forEach(c => ScrollTrigger.create({ trigger: c, start: "top 62%", end: "bottom 38%", toggleClass: "is-on" }));
-  }
+  ctl.to(queens.map(q => $(".queen__beam", q)), { opacity: .6, duration: .4 }, 4.4)
+     .to(".crowns__note", { opacity: 1, duration: .4 }, 4.4)
+     .to({}, { duration: .4 });
 
   /* ---------- Что ждёт: горизонтальная прокрутка на широком экране ---------- */
   const mm = gsap.matchMedia();
