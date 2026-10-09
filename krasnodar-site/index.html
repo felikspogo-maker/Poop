@@ -782,12 +782,19 @@ const SITE = {
   }));
 
   /* ---------- Шапка и нижняя кнопка ---------- */
-  const stage = $("#stage"), mbar = $("#mbar"); let lastY = 0;
+  const stage = $("#stage"), mbar = $("#mbar"); let lastY = 0, travel = 0;
+  // на телефоне шапка всегда на месте: палец двигает страницу неровно, и прятки «дёргаются»
+  const canHide = matchMedia("(hover: hover) and (pointer: fine)").matches;
   const onScroll = () => {
-    const y = scrollY, h = stage.offsetHeight;
+    const y = scrollY, h = stage.offsetHeight, d = y - lastY;
     nav.classList.toggle("is-solid", y > 40);
-    if (!nav.classList.contains("is-open")) nav.classList.toggle("is-hidden", y > h && y > lastY + 4);
-    if (y < lastY - 4) nav.classList.remove("is-hidden");
+    // прячем/показываем только после заметного пути в одну сторону (80px), а не от каждого рывка
+    travel = Math.sign(d) === Math.sign(travel) ? travel + d : d;
+    if (canHide && !nav.classList.contains("is-open")) {
+      if (y < h) nav.classList.remove("is-hidden");
+      else if (travel > 80) nav.classList.add("is-hidden");
+      else if (travel < -80) nav.classList.remove("is-hidden");
+    }
     mbar.classList.toggle("is-shown", y > h * .8 && y + innerHeight < document.documentElement.scrollHeight - 400);
     lastY = y;
   };
