@@ -14,6 +14,7 @@
 <link rel="apple-touch-icon" href="images/favicon.png">
 <link rel="preload" href="fonts/Prata-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="images/hero-crown.jpg" as="image">
+<link rel="preload" href="images/logo.png" as="image">
 <link rel="stylesheet" href="fonts/fonts.css">
 <script>document.documentElement.classList.add("js");</script>
 <style>
@@ -127,7 +128,10 @@ body::after {
 .intro__half--r::after { left: 0; }
 .intro__inner { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 22px; z-index: 2;
   background: radial-gradient(circle at 50% 50%, rgba(10, 0, 2, .85) 0, rgba(10, 0, 2, .6) min(30vw, 220px), transparent min(48vw, 360px)); }
-.intro__logo { width: min(64vw, 380px); height: auto; opacity: 0; filter: drop-shadow(0 0 40px rgba(232, 180, 90, .35)); }
+.intro__logo { position: relative; width: min(64vw, 380px); height: auto; opacity: 0; }
+/* золотое свечение за гербом — отдельным слоем, без CSS-фильтров (на iPhone они дают белый прямоугольник) */
+.intro__inner::before { content: ""; position: absolute; left: 50%; top: 50%; width: min(80vw, 520px); aspect-ratio: 1; translate: -50% -50%;
+  background: radial-gradient(circle, rgba(232, 180, 90, .22), transparent 62%); pointer-events: none; }
 
 /* =================================================================
    ШАПКА, ПРОГРЕСС, КУРСОР
@@ -363,7 +367,7 @@ body::after {
 .finale__photo img { width: 100%; height: 100%; object-fit: cover; opacity: .38; filter: saturate(.7); }
 .finale__photo::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(28, 4, 8, .55), var(--black) 90%), linear-gradient(0deg, rgba(150, 18, 38, .45), transparent 60%); mix-blend-mode: normal; }
 .finale__in { position: relative; z-index: 3; padding: 90px var(--gutter); }
-.finale__logo { display: block; width: clamp(150px, 14vw, 210px); height: auto; margin: 0 auto 20px; filter: drop-shadow(0 0 50px rgba(232, 180, 90, .3)); }
+.finale__logo { display: block; width: clamp(150px, 14vw, 210px); height: auto; margin: 0 auto 20px; }
 .finale h2 { font-size: clamp(3.2rem, 10vw, 10rem); line-height: .95; }
 .finale p { margin: 26px auto 40px; max-width: 30em; color: var(--muted); }
 .spark { position: absolute; z-index: 2; pointer-events: none; width: var(--s); height: var(--s);
@@ -743,7 +747,7 @@ const SITE = {
   const gsap = window.gsap && window.ScrollTrigger ? window.gsap : null;
   const intro = $("#intro");
   const hideIntro = () => intro && (intro.style.display = "none");
-  setTimeout(hideIntro, 6000); // страховка: занавес не останется висеть ни при каких ошибках
+  setTimeout(hideIntro, 8000); // страховка: занавес не останется висеть ни при каких ошибках
 
   /* ---------- Общее: ссылки, дни, контакты ---------- */
   $$(".js-bot").forEach(a => (a.href = SITE.botUrl));
@@ -890,15 +894,16 @@ const SITE = {
 
   let seen = false;
   try { seen = sessionStorage.getItem("introSeen") === "1"; sessionStorage.setItem("introSeen", "1"); } catch (e) {}
-  const tl = gsap.timeline({ defaults: { ease: "expo.out" }, onComplete: () => { lenis && lenis.start(); gsap.set(nav, { clearProps: "transform" }); } });
+  const tl = gsap.timeline({ paused: true, defaults: { ease: "expo.out" }, onComplete: () => { lenis && lenis.start(); gsap.set(nav, { clearProps: "transform" }); } });
   if (!seen) {
-    tl.fromTo(".intro__logo", { opacity: 0, scale: .82, filter: "blur(10px) drop-shadow(0 0 0px rgba(232, 180, 90, 0))" },
-        { opacity: 1, scale: 1, filter: "blur(0px) drop-shadow(0 0 40px rgba(232, 180, 90, .45))", duration: 1.5, ease: "expo.out" })
-      .to(".intro__inner", { opacity: 0, y: -10, duration: .5, ease: "power2.in" }, "+=.6");
+    tl.fromTo(".intro__logo", { opacity: 0, scale: .86 }, { opacity: 1, scale: 1, duration: 1.4, ease: "expo.out" })
+      .to(".intro__inner", { opacity: 0, scale: 1.08, duration: .9, ease: "power2.in" }, "+=.6")
+      .addLabel("open", "<.15"); // занавес начинает раскрываться, пока герб ещё гаснет — без пустой паузы
   } else {
     gsap.set(".intro__inner", { opacity: 0 });
   }
-  tl.addLabel("open")
+  if (seen) tl.addLabel("open");
+  tl
     .to(".intro__half--l", { xPercent: -101, duration: 1.5, ease: "power4.inOut" }, "open")
     .to(".intro__half--r", { xPercent: 101, duration: 1.5, ease: "power4.inOut" }, "open")
     .set(intro, { display: "none" })
@@ -910,6 +915,12 @@ const SITE = {
     .to(w2, { yPercent: 0, duration: 1.5, stagger: .06 }, "open+=.9")
     .to(heroBits, { y: 0, opacity: 1, duration: 1.2, stagger: .09 }, "open+=1.3")
     .to(nav, { yPercent: 0, duration: 1.2 }, "open+=1.5");
+  // запускаем занавес, только когда герб загрузился (но не дольше 1,5 с ожидания)
+  const introLogo = $(".intro__logo");
+  let started = false;
+  const startIntro = () => { if (!started) { started = true; tl.play(); } };
+  if (introLogo.complete && introLogo.naturalWidth) startIntro();
+  else { introLogo.addEventListener("load", startIntro); introLogo.addEventListener("error", startIntro); setTimeout(startIntro, 1500); }
 
   /* ---------- Сцена: луч за курсором, пыль, прокрутка ---------- */
   const beamRot = gsap.quickTo("#beam", "rotation", { duration: 1.6, ease: "power3.out" });
