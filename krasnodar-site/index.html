@@ -1105,11 +1105,11 @@ const SITE = {
     });
   });
   mm.add("(max-width: 1000px)", () => {
-    // стопка: когда следующая карточка наезжает, предыдущая уменьшается и темнеет
+    // стопка: когда следующая карточка наезжает, предыдущая слегка уменьшается
     const pnl = $$(".panel");
     pnl.forEach((p, i) => {
       const next = pnl[i + 1]; if (!next) return;
-      gsap.to(p, { scale: .9, filter: "brightness(.55)", ease: "none",
+      gsap.to(p, { scale: .92, ease: "none",
         scrollTrigger: { trigger: next, start: "top bottom", end: "top 92px", scrub: true } });
     });
     $$(".panel").forEach(p => {
