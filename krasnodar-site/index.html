@@ -240,7 +240,7 @@ body::after {
 .cat-float { position: fixed; top: 0; left: 0; z-index: 40; width: clamp(220px, 19vw, 300px); aspect-ratio: 3 / 4; pointer-events: none; opacity: 0; transform: scale(.6);
   translate: -50% -50%; box-shadow: 0 40px 80px -20px rgba(0, 0, 0, .9); }
 .cat-float__in { position: absolute; inset: 0; overflow: hidden; border-radius: 2px; }
-.cat-float img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; clip-path: inset(100% 0 0 0); transition: clip-path .7s var(--ease); }
+.cat-float img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 10%; clip-path: inset(100% 0 0 0); transition: clip-path .7s var(--ease); }
 .cat-float img.is-on { clip-path: inset(0 0 0 0); }
 
 /* =================================================================
@@ -425,7 +425,8 @@ body::after {
   .cat h3 { font-size: 13vw; }
   .cat__desc { position: static; grid-column: 1 / -1; width: auto; margin-top: 6px; text-align: left; }
   .cat__thumb { display: block; grid-column: 1 / -1; margin-top: 16px; aspect-ratio: 16 / 10; overflow: hidden; border-radius: 2px; }
-  .cat__thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .cat__thumb img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 15%; }
+  .cat__thumb { aspect-ratio: 4 / 5 !important; }
   .cats__hint { display: none; }
   .specs { grid-template-columns: 1fr; }
   .spec { min-height: 0; }
@@ -529,7 +530,7 @@ body::after {
           <h3 data-split="chars">Юная Мисс</h3>
           <span class="cat__age">14–17<small>лет</small></span>
           <p class="cat__desc">Для тех, кто делает первые шаги на сцене. Согласие на участие даёт родитель.</p>
-          <div class="cat__thumb tone"><img src="images/silver-gown.jpg" alt="" loading="lazy"></div>
+          <div class="cat__thumb tone"><img src="images/young-crown.jpg" alt="" loading="lazy"></div>
         </article>
         <article class="cat" data-img="1">
           <i class="cat__line"></i>
@@ -537,7 +538,7 @@ body::after {
           <h3 data-split="chars">Мисс</h3>
           <span class="cat__age">18–35<small>лет</small></span>
           <p class="cat__desc">Для девушек, готовых заявить о себе. В 20–35 лет можно выбрать между «Мисс» и «Миссис».</p>
-          <div class="cat__thumb tone"><img src="images/feather-hat.jpg" alt="" loading="lazy"></div>
+          <div class="cat__thumb tone"><img src="images/hero-crown.jpg" alt="" loading="lazy"></div>
         </article>
         <article class="cat" data-img="2">
           <i class="cat__line"></i><i class="cat__line cat__line--b"></i>
@@ -550,7 +551,7 @@ body::after {
       </div>
     </div>
     <div class="cat-float" id="catFloat" aria-hidden="true"><div class="cat-float__in tone">
-      <img src="images/silver-gown.jpg" alt=""><img src="images/feather-hat.jpg" alt=""><img src="images/mrs-crown.jpg" alt="">
+      <img src="images/young-crown.jpg" alt=""><img src="images/hero-crown.jpg" alt=""><img src="images/mrs-crown.jpg" alt="">
     </div></div>
   </section>
 

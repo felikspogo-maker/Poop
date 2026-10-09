@@ -41,7 +41,7 @@
 |---|---|
 | `hero-crown.jpg` | Первый экран, фото в арке (вертикальное) |
 | `interview.jpg`, `hall-stage.jpg` | «О конкурсе» |
-| `silver-gown.jpg`, `feather-hat.jpg`, `mrs-crown.jpg` | Категории: Юная Мисс, Мисс, Миссис |
+| `young-crown.jpg`, `hero-crown.jpg`, `mrs-crown.jpg` | Категории: Юная Мисс, Мисс, Миссис |
 | `host-red.jpg`, `brides-stairs.jpg`, `kokoshnik.jpg`, `red-carpet.jpg`, `coronation.jpg`, `winners.jpg` | «Что ждёт участниц» |
 | те же + `gala-table.jpg`, `veils.jpg`, `hall-tables.jpg`, `chandeliers.jpg` | Галерея |
 | `coronation.jpg` | Фон финального блока |
