@@ -656,12 +656,12 @@ body::after {
         <p class="lead" data-r>Не нашли ответ? Начните анкету — бот подскажет на каждом шаге.</p>
       </div>
       <div id="faqList">
-        <div class="qa" data-r><button class="qa__q" type="button" aria-expanded="false">Нужен ли опыт участия в конкурсах?<i class="qa__icon"></i></button><div class="qa__a"><p>Нет. В анкете есть вопрос об опыте, но если его нет — так и напишите. Участвовать можно с нуля.</p></div></div>
-        <div class="qa" data-r><button class="qa__q" type="button" aria-expanded="false">Я живу не в Краснодарском крае. Можно участвовать?<i class="qa__icon"></i></button><div class="qa__a"><p>Да, анкету может подать участница из любого города и региона.</p></div></div>
-        <div class="qa" data-r><button class="qa__q" type="button" aria-expanded="false">Мне меньше 18 лет. Что нужно?<i class="qa__icon"></i></button><div class="qa__a"><p>Для вас категория «Юная Мисс» — от 14 до 17 лет. Согласие на обработку данных даёт родитель или законный представитель.</p></div></div>
-        <div class="qa" data-r><button class="qa__q" type="button" aria-expanded="false">Я замужем. В какую категорию подавать?<i class="qa__icon"></i></button><div class="qa__a"><p>«Миссис» — от 20 до 45 лет. Если вам от 20 до 35, бот предложит выбрать между «Мисс» и «Миссис».</p></div></div>
-        <div class="qa" data-r><button class="qa__q" type="button" aria-expanded="false">Какие фото прислать?<i class="qa__icon"></i></button><div class="qa__a"><p>Пять фото или видео в любом сочетании: портрет и фото в полный рост. Видео можно прислать вместо части фото.</p></div></div>
-        <div class="qa" data-r><button class="qa__q" type="button" aria-expanded="false">Что будет после отправки анкеты?<i class="qa__icon"></i></button><div class="qa__a"><p>Организаторы посмотрят анкету и свяжутся с вами по телефону или в Telegram.</p></div></div>
+        <div class="qa"><button class="qa__q" type="button" aria-expanded="false">Нужен ли опыт участия в конкурсах?<i class="qa__icon"></i></button><div class="qa__a"><p>Нет. В анкете есть вопрос об опыте, но если его нет — так и напишите. Участвовать можно с нуля.</p></div></div>
+        <div class="qa"><button class="qa__q" type="button" aria-expanded="false">Я живу не в Краснодарском крае. Можно участвовать?<i class="qa__icon"></i></button><div class="qa__a"><p>Да, анкету может подать участница из любого города и региона.</p></div></div>
+        <div class="qa"><button class="qa__q" type="button" aria-expanded="false">Мне меньше 18 лет. Что нужно?<i class="qa__icon"></i></button><div class="qa__a"><p>Для вас категория «Юная Мисс» — от 14 до 17 лет. Согласие на обработку данных даёт родитель или законный представитель.</p></div></div>
+        <div class="qa"><button class="qa__q" type="button" aria-expanded="false">Я замужем. В какую категорию подавать?<i class="qa__icon"></i></button><div class="qa__a"><p>«Миссис» — от 20 до 45 лет. Если вам от 20 до 35, бот предложит выбрать между «Мисс» и «Миссис».</p></div></div>
+        <div class="qa"><button class="qa__q" type="button" aria-expanded="false">Какие фото прислать?<i class="qa__icon"></i></button><div class="qa__a"><p>Пять фото или видео в любом сочетании: портрет и фото в полный рост. Видео можно прислать вместо части фото.</p></div></div>
+        <div class="qa"><button class="qa__q" type="button" aria-expanded="false">Что будет после отправки анкеты?<i class="qa__icon"></i></button><div class="qa__a"><p>Организаторы посмотрят анкету и свяжутся с вами по телефону или в Telegram.</p></div></div>
       </div>
     </div>
   </section>
@@ -1058,7 +1058,7 @@ const SITE = {
   });
 
   /* ---------- Вопросы: строки выезжают, линии прочерчиваются ---------- */
-  gsap.from(".qa", { x: -50, opacity: 0, duration: 1.1, ease: "expo.out", stagger: .08, scrollTrigger: { trigger: "#faqList", start: "top 82%" } });
+  gsap.from(".qa", { x: -50, autoAlpha: 0, clearProps: "transform", duration: 1.1, ease: "expo.out", stagger: .08, scrollTrigger: { trigger: "#faqList", start: "top 82%" } });
 
   /* ---------- Финал: корона рисуется, искры ---------- */
   const fin = $("#finale");
