@@ -534,10 +534,47 @@ body::after {
    АДАПТИВ
    ================================================================= */
 @media (max-width: 1000px) {
+  /* размытие и сдвиг шапки «запирают» меню в её высоте — на время открытия выключаем */
+  .how__grid, .faq__grid { grid-template-columns: 1fr; }
+  .how__aside { position: static; }
+  .specs { grid-template-columns: repeat(2, 1fr); }
+  /* горизонтальная прокрутка превращается в обычный список */
+  /* карточки «Что ждёт» складываются в стопку: каждая прилипает и следующая наезжает сверху */
+    background: linear-gradient(180deg, #4a0912, #2a060c); box-shadow: 0 -20px 40px -20px rgba(0, 0, 0, .7); }
+}
+@media (max-width: 760px) {
+  body { font-size: 16.5px; }
+  .logo__mark { height: 44px; }
+  .logo__text { font-size: 1.05rem; }
+  .logo__text small { font-size: .5rem; letter-spacing: .24em; }
+  .mani-photo--1 { position: relative; right: auto; top: auto; float: right; width: 40vw; margin: 0 var(--gutter) 18px 18px; }
+  .mani-photo--2 { display: none; }
+  .mani { font-size: clamp(1.75rem, 8vw, 2.4rem); }
+  .mani-foot { grid-template-columns: 1fr; }
+  .specs { grid-template-columns: 1fr; }
+  .spec { min-height: 0; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 58vw; gap: 8px; }
+  .step { grid-template-columns: 56px 1fr; gap: 20px; }
+  .step__dot { width: 56px; height: 56px; font-size: 1.2rem; }
+  .tl__line { left: 28px; top: 28px; }
+}
+/* первый экран: телефонная раскладка и на любых «вертикальных» экранах до планшета включительно */
+@media (max-width: 760px), (max-width: 1100px) and (orientation: portrait) {
+  .bigword { font-size: 29vw; }
+  .bigword--fill { top: 13svh; left: -3vw; }
+  .bigword--line { top: 31svh; font-size: 24vw; }
+  .arch { width: 64vw; height: 60svh; margin-left: -32vw; }
+  .stage::after { content: ""; position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; height: 52%; background: linear-gradient(0deg, var(--black) 18%, rgba(28, 4, 8, .7) 55%, transparent); pointer-events: none; }
+  .hero__info { right: var(--gutter); max-width: none; bottom: 26px; }
+  .hero__info .btn { width: 100%; }
+  .hero__meta { display: none; }
+  .hero__info .btn { max-width: 520px; }
+}
+/* меню-«бургер» и нижняя кнопка — до 1200px, иначе пункты меню наезжают на логотип */
+@media (max-width: 1200px) {
   .nav__links { position: fixed; inset: 0; z-index: -1; flex-direction: column; justify-content: center; align-items: center; gap: 30px; background: var(--black); font: 400 2rem/1 var(--display); letter-spacing: 0; text-transform: none; opacity: 0; visibility: hidden; transition: opacity .5s, visibility .5s; }
   .nav.is-open .nav__links { opacity: 1; visibility: visible; }
   .nav__links a { color: var(--cream); }
-  /* размытие и сдвиг шапки «запирают» меню в её высоте — на время открытия выключаем */
   .nav.is-open { background: transparent; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; transform: none !important; }
   .nav__links { height: 100svh; counter-reset: m;
     background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(190, 24, 46, .45), transparent 70%), radial-gradient(ellipse 70% 40% at 50% 100%, rgba(150, 18, 38, .4), transparent 70%), #1c0408; }
@@ -555,36 +592,6 @@ body::after {
   .nav .btn { display: none; }
   .mbar { display: block; }
   .footer { padding-bottom: 110px; }
-  .how__grid, .faq__grid { grid-template-columns: 1fr; }
-  .how__aside { position: static; }
-  .specs { grid-template-columns: repeat(2, 1fr); }
-  /* горизонтальная прокрутка превращается в обычный список */
-  /* карточки «Что ждёт» складываются в стопку: каждая прилипает и следующая наезжает сверху */
-    background: linear-gradient(180deg, #4a0912, #2a060c); box-shadow: 0 -20px 40px -20px rgba(0, 0, 0, .7); }
-}
-@media (max-width: 760px) {
-  body { font-size: 16.5px; }
-  .logo__mark { height: 44px; }
-  .logo__text { font-size: 1.05rem; }
-  .logo__text small { font-size: .5rem; letter-spacing: .24em; }
-  .bigword { font-size: 29vw; }
-  .bigword--fill { top: 13svh; left: -3vw; }
-  .bigword--line { top: 31svh; font-size: 24vw; }
-  .arch { width: 64vw; height: 60svh; margin-left: -32vw; }
-  .stage::after { content: ""; position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; height: 52%; background: linear-gradient(0deg, var(--black) 18%, rgba(28, 4, 8, .7) 55%, transparent); pointer-events: none; }
-  .hero__info { right: var(--gutter); max-width: none; bottom: 26px; }
-  .hero__info .btn { width: 100%; }
-  .hero__meta { display: none; }
-  .mani-photo--1 { position: relative; right: auto; top: auto; float: right; width: 40vw; margin: 0 var(--gutter) 18px 18px; }
-  .mani-photo--2 { display: none; }
-  .mani { font-size: clamp(1.75rem, 8vw, 2.4rem); }
-  .mani-foot { grid-template-columns: 1fr; }
-  .specs { grid-template-columns: 1fr; }
-  .spec { min-height: 0; }
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 58vw; gap: 8px; }
-  .step { grid-template-columns: 56px 1fr; gap: 20px; }
-  .step__dot { width: 56px; height: 56px; font-size: 1.2rem; }
-  .tl__line { left: 28px; top: 28px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
