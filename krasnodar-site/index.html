@@ -64,7 +64,7 @@ button { font: inherit; color: inherit; }
 
 h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; letter-spacing: -.01em; }
 h2 { font-size: clamp(2.6rem, 6.2vw, 6rem); line-height: 1; }
-h2, .spec__value, .hs__end h3 { background: var(--metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
+h2, .spec__value, .journey__end h3 { background: var(--metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
 h2 .sc, .spec__value span, .spec__value small { background: var(--metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .kicker { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; font: 500 .74rem/1.2 var(--text); letter-spacing: .28em; text-transform: uppercase; color: var(--gold); }
 .kicker::before { content: ""; width: 34px; height: 1px; background: currentColor; }
@@ -349,29 +349,57 @@ body::after {
 /* =================================================================
    ЧТО ЖДЁТ — ГОРИЗОНТАЛЬНАЯ ПРОКРУТКА
    ================================================================= */
-.perks { position: relative; overflow: hidden; background: radial-gradient(ellipse 60% 70% at 20% 50%, rgba(200, 30, 54, .55), transparent 70%), radial-gradient(ellipse 50% 60% at 90% 60%, rgba(150, 18, 38, .45), transparent 70%), #3d0811; }
-.hs__track { display: flex; align-items: center; gap: clamp(30px, 4vw, 70px); width: max-content; height: 100svh; padding: 0 var(--gutter); }
-.hs__intro { flex: none; width: min(480px, 36vw); }
-.hs__intro .lead { margin: 24px 0 30px; }
-.hs__hint { display: inline-flex; align-items: center; gap: 14px; font: 500 .72rem/1 var(--text); letter-spacing: .26em; text-transform: uppercase; color: var(--gold); }
-.hs__hint i { width: 60px; height: 1px; background: var(--gold); position: relative; overflow: hidden; }
-.hs__hint i::after { content: ""; position: absolute; inset: 0; background: var(--cream); animation: hint 2s var(--ease) infinite; }
 @keyframes hint { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
-.panel { position: relative; flex: none; width: clamp(300px, 27vw, 420px); }
-.panel:nth-child(odd) { margin-top: 12vh; }
-.panel:nth-child(even) { margin-bottom: 12vh; }
-.panel__num { position: absolute; z-index: 2; top: -.55em; left: -.1em; font: 400 clamp(5rem, 9vw, 8.5rem)/1 var(--display); color: transparent; -webkit-text-stroke: 1px var(--gold); pointer-events: none; }
-.panel__img { position: relative; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 2px; background: var(--wine); }
-.panel__img img { position: absolute; top: 0; left: -10%; width: 120%; max-width: none; height: 100%; object-fit: cover; }
-.panel__img--tiara img { mix-blend-mode: luminosity; filter: brightness(.7) contrast(1.3); }
-.panel h3 { margin: 22px 0 8px; font-size: clamp(1.5rem, 2vw, 2rem); line-height: 1.15; }
-.panel p { margin: 0; color: var(--muted); font-size: .98rem; max-width: 24em; }
-.hs__end { flex: none; width: min(460px, 34vw); padding-right: 6vw; }
-.hs__end h3 { font-size: clamp(2.2rem, 3.6vw, 3.4rem); line-height: 1.05; margin-bottom: 26px; }
-.hs__end h3 em { font-style: normal; color: var(--gold); }
-.hs__bar { position: absolute; left: var(--gutter); right: var(--gutter); bottom: 34px; display: flex; align-items: center; gap: 20px; font: 500 .72rem/1 var(--text); letter-spacing: .24em; color: var(--muted); }
-.hs__bar i { flex: 1; height: 1px; background: var(--line); position: relative; }
-.hs__bar i b { position: absolute; inset: 0; background: var(--gold); transform: scaleX(0); transform-origin: 0 50%; }
+
+/* =================================================================
+   ЧТО ЖДЁТ — «ПУТЬ К КОРОНЕ»: фото открываются кругом прожектора
+   ================================================================= */
+.journey { position: relative; height: 100svh; overflow: hidden; background: var(--black); }
+.journey__slides, .jslide { position: absolute; inset: 0; margin: 0; }
+.jslide { clip-path: circle(0% at 70% 45%); }
+.jslide img { width: 100%; height: 100%; object-fit: cover; will-change: transform; filter: saturate(1.08) contrast(1.05); }
+.jslide::after { content: ""; position: absolute; inset: 0; background: #a8162c; mix-blend-mode: color; opacity: .1; }
+.journey__shade { position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(90deg, rgba(20, 2, 6, .8) 0%, rgba(20, 2, 6, .3) 34%, transparent 60%), linear-gradient(0deg, rgba(20, 2, 6, .8), transparent 40%); }
+.journey__intro { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; text-align: center; padding: 0 var(--gutter); }
+.journey__intro .kicker { justify-content: center; }
+.journey__intro .kicker::after { content: ""; width: 34px; height: 1px; background: currentColor; }
+.journey__intro h2 { font-size: clamp(3rem, 9vw, 8.5rem); }
+.journey__intro .lead { margin: 22px auto 0; text-align: center; }
+.journey__hint { margin-top: 36px; font: 500 .68rem/1 var(--text); letter-spacing: .3em; text-transform: uppercase; color: var(--gold); }
+.jcap { position: absolute; left: var(--gutter); bottom: clamp(60px, 12vh, 120px); display: flex; align-items: flex-end; gap: clamp(14px, 2vw, 30px); max-width: min(720px, 80vw); opacity: 0; }
+.jcap__num { font: 400 clamp(6rem, 16vw, 15rem)/.8 var(--display); color: transparent; -webkit-text-stroke: 1.4px rgba(232, 196, 124, .9); letter-spacing: -.04em; }
+.jcap__step { display: block; margin-bottom: 10px; font: 500 .7rem/1 var(--text); letter-spacing: .3em; text-transform: uppercase; color: var(--gold); }
+.jcap h3 { font-size: clamp(2.2rem, 5vw, 4.6rem); line-height: 1; background: var(--metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.jcap h3 .sc { background: var(--metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.jcap p { margin: 14px 0 0; max-width: 26em; color: var(--cream); font-size: 1.02rem; text-shadow: 0 2px 12px rgba(0, 0, 0, .6); }
+/* шкала пути справа: шесть отметок и корона */
+.journey__path { position: absolute; right: var(--gutter); top: 50%; translate: 0 -50%; margin: 0; padding: 0; list-style: none; display: grid; gap: clamp(14px, 3vh, 26px); justify-items: end; }
+.journey__path::before { content: ""; position: absolute; right: 5px; top: 6px; bottom: 6px; width: 1px; background: rgba(232, 196, 124, .25); }
+.journey__fill { position: absolute; right: 5px; top: 6px; bottom: 6px; width: 1px; background: linear-gradient(180deg, var(--gold-l), var(--gold)); transform-origin: 50% 0; transform: scaleY(0); box-shadow: 0 0 10px rgba(232, 180, 90, .7); }
+.journey__path li { position: relative; display: flex; align-items: center; gap: 14px; flex-direction: row-reverse; }
+.journey__path li i { position: relative; z-index: 1; width: 11px; height: 11px; border-radius: 50%; border: 1px solid var(--gold); background: var(--black); transition: background .4s, box-shadow .4s; }
+.journey__path li span { font: 500 .66rem/1 var(--text); letter-spacing: .22em; text-transform: uppercase; color: rgba(244, 233, 220, .45); transition: color .4s; }
+.journey__path li.is-on i { background: var(--gold-l); box-shadow: 0 0 12px rgba(232, 180, 90, .9); }
+.journey__path li.is-on span { color: var(--cream); }
+.journey__crown svg { width: 30px; height: 22px; color: rgba(232, 196, 124, .45); transition: color .5s, filter .5s; translate: 9px 0; }
+.journey__crown.is-on svg { color: var(--gold-l); filter: drop-shadow(0 0 8px rgba(232, 180, 90, .9)); }
+.journey__end { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 28px; text-align: center; padding: 0 var(--gutter); opacity: 0; visibility: hidden;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(28, 4, 8, .55), rgba(20, 2, 6, .9)); }
+.journey__end h3 { font-size: clamp(2.6rem, 7vw, 6.4rem); line-height: 1; }
+.journey__end h3 em { font-style: normal; }
+@media (max-width: 760px) {
+  .jslide { clip-path: circle(0% at 50% 35%); }
+  .journey__shade { background: linear-gradient(0deg, rgba(20, 2, 6, .95) 0%, rgba(20, 2, 6, .6) 34%, transparent 62%, rgba(20, 2, 6, .3)); }
+  .jcap { bottom: 110px; right: var(--gutter); max-width: none; flex-direction: column; align-items: flex-start; gap: 6px; }
+  .jcap__num { font-size: 26vw; }
+  .jcap p { font-size: .95rem; }
+  .journey__path { top: 96px; translate: 0 0; right: auto; left: var(--gutter); display: flex; gap: 0; width: calc(100% - 2 * var(--gutter)); justify-content: space-between; }
+  .journey__path::before, .journey__fill { top: 5px; bottom: auto; left: 5px; right: 5px; width: auto; height: 1px; }
+  .journey__fill { transform-origin: 0 50%; transform: scaleX(0); }
+  .journey__path li span { display: none; }
+  .journey__crown svg { translate: 0 -6px; }
+}
 
 /* =================================================================
    УСЛОВИЯ — ЦИФРЫ
@@ -523,17 +551,8 @@ body::after {
   .how__aside { position: static; }
   .specs { grid-template-columns: repeat(2, 1fr); }
   /* горизонтальная прокрутка превращается в обычный список */
-  .hs__track { flex-direction: column; align-items: stretch; width: auto; height: auto; padding: clamp(80px, 12vw, 120px) var(--gutter); gap: 80px; }
-  .hs__intro, .hs__end, .panel { width: 100%; max-width: 560px; }
   /* карточки «Что ждёт» складываются в стопку: каждая прилипает и следующая наезжает сверху */
-  .perks { overflow: clip; }
-  .panel { position: sticky; top: 92px; padding: 18px 18px 22px; border: 1px solid var(--line); border-radius: 4px; transform-origin: 50% 0;
     background: linear-gradient(180deg, #4a0912, #2a060c); box-shadow: 0 -20px 40px -20px rgba(0, 0, 0, .7); }
-  .panel__num { top: -.35em; left: 10px; }
-  .hs__end { position: relative; z-index: 2; padding: 40px 0 10px; background: #3d0811; box-shadow: 0 -30px 40px 10px #3d0811; } /* закрывает последнюю карточку стопки */
-  .panel:nth-child(odd), .panel:nth-child(even) { margin: 0; }
-  .hs__hint, .hs__bar { display: none; }
-  .hs__end { padding-right: 0; }
 }
 @media (max-width: 760px) {
   body { font-size: 16.5px; }
@@ -704,27 +723,45 @@ body::after {
     </div>
   </section>
 
-  <!-- Что ждёт участниц — горизонтальная прокрутка -->
-  <section class="perks" id="perks">
-    <div class="hs__track" id="hsTrack">
-      <div class="hs__intro">
-        <span class="kicker" data-r>Что ждёт участниц</span>
-        <h2 data-split="chars">Больше, чем конкурс</h2>
-        <p class="lead" data-r>Несколько месяцев подготовки с командой профессионалов, а в конце — большой финал на сцене.</p>
-        <span class="hs__hint">Листайте <i></i></span>
-      </div>
-      <article class="panel"><span class="panel__num">01</span><div class="panel__img tone"><img src="images/host-red.jpg" alt="Ведущая в красном на сцене конкурса" loading="lazy"></div><h3>Фотосессии</h3><p>Профессиональные съёмки в образах конкурса.</p></article>
-      <article class="panel"><span class="panel__num">02</span><div class="panel__img tone"><img src="images/brides-stairs.jpg" alt="Участницы в белых платьях на сцене" loading="lazy"></div><h3>Репетиции с хореографом</h3><p>Учимся держаться на сцене, красиво двигаться и позировать.</p></article>
-      <article class="panel"><span class="panel__num">03</span><div class="panel__img tone"><img src="images/kokoshnik.jpg" alt="Участница в национальном костюме с кокошником" loading="lazy"></div><h3>Работа со стилистами</h3><p>Подбор образов и платьев для выходов на сцену.</p></article>
-      <article class="panel"><span class="panel__num">04</span><div class="panel__img tone"><img src="images/red-carpet.jpg" alt="Победительницы на красной дорожке" loading="lazy"></div><h3>Новые знакомства</h3><p>Участницы из разных городов и команда конкурса.</p></article>
-      <article class="panel"><span class="panel__num">05</span><div class="panel__img tone"><img src="images/lineup-crest.jpg" alt="Участницы на сцене у герба «Мисс и Миссис Краснодар»" loading="lazy"></div><h3>Финальное шоу</h3><p>Выход на большую сцену перед зрителями и жюри.</p></article>
-      <article class="panel"><span class="panel__num">06</span><div class="panel__img tone"><img src="images/winners.jpg" alt="Победительницы в коронах с цветами" loading="lazy"></div><h3>Титул и корона</h3><p>Победительницы каждой категории получают титул сезона 2027.</p></article>
-      <div class="hs__end">
-        <h3>Твой выход — <em>следующий</em></h3>
-        <a class="btn js-bot magnetic" href="#" target="_blank" rel="noopener">Подать анкету <span>→</span></a>
-      </div>
+  <!-- Что ждёт участниц — «Путь к короне»: кинопоказ по прокрутке -->
+  <section class="journey" id="perks">
+    <div class="journey__slides">
+      <figure class="jslide"><img src="images/host-red.jpg" alt="Ведущая в красном на сцене конкурса" loading="lazy"></figure>
+      <figure class="jslide"><img src="images/brides-stairs.jpg" alt="Участницы в белых платьях на сцене" loading="lazy"></figure>
+      <figure class="jslide"><img src="images/kokoshnik.jpg" alt="Участница в национальном костюме с кокошником" loading="lazy"></figure>
+      <figure class="jslide"><img src="images/red-carpet.jpg" alt="Победительницы на красной дорожке" loading="lazy"></figure>
+      <figure class="jslide"><img src="images/lineup-crest.jpg" alt="Участницы на сцене у герба конкурса" loading="lazy"></figure>
+      <figure class="jslide"><img src="images/winners.jpg" alt="Победительницы в коронах с цветами" loading="lazy"></figure>
     </div>
-    <div class="hs__bar" aria-hidden="true"><span id="hsCount">01</span><i><b id="hsFill"></b></i><span>06</span></div>
+    <div class="journey__shade" aria-hidden="true"></div>
+    <div class="journey__intro">
+      <span class="kicker">Что ждёт участниц</span>
+      <h2 data-split="chars">Путь к короне</h2>
+      <p class="lead">Шесть этапов — от первой фотосессии до коронации на большой сцене.</p>
+      <span class="journey__hint" aria-hidden="true">Листайте</span>
+    </div>
+    <div class="journey__caps">
+      <div class="jcap"><span class="jcap__num" aria-hidden="true">01</span><div><span class="jcap__step">Этап 1 из 6</span><h3 data-split="chars">Фотосессии</h3><p>Профессиональные съёмки в образах конкурса — ваши лучшие кадры сезона.</p></div></div>
+      <div class="jcap"><span class="jcap__num" aria-hidden="true">02</span><div><span class="jcap__step">Этап 2 из 6</span><h3 data-split="chars">Репетиции</h3><p>Хореограф учит держаться на сцене, красиво двигаться и позировать.</p></div></div>
+      <div class="jcap"><span class="jcap__num" aria-hidden="true">03</span><div><span class="jcap__step">Этап 3 из 6</span><h3 data-split="chars">Образы</h3><p>Стилисты подбирают платья и образы для каждого выхода.</p></div></div>
+      <div class="jcap"><span class="jcap__num" aria-hidden="true">04</span><div><span class="jcap__step">Этап 4 из 6</span><h3 data-split="chars">Знакомства</h3><p>Участницы из разных городов, команда конкурса и гости.</p></div></div>
+      <div class="jcap"><span class="jcap__num" aria-hidden="true">05</span><div><span class="jcap__step">Этап 5 из 6</span><h3 data-split="chars">Финальное шоу</h3><p>Большая сцена, свет, зрители и жюри — ваш главный выход.</p></div></div>
+      <div class="jcap"><span class="jcap__num" aria-hidden="true">06</span><div><span class="jcap__step">Этап 6 из 6</span><h3 data-split="chars">Корона</h3><p>Победительницы каждой категории получают титул сезона 2027.</p></div></div>
+    </div>
+    <ol class="journey__path" aria-hidden="true">
+        <li><i></i><span>Фотосессии</span></li>
+        <li><i></i><span>Репетиции</span></li>
+        <li><i></i><span>Образы</span></li>
+        <li><i></i><span>Знакомства</span></li>
+        <li><i></i><span>Финальное шоу</span></li>
+        <li><i></i><span>Корона</span></li>
+      <li class="journey__crown"><svg viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 25 3.5 8l10.5 8L24 3l10 13 10.5-8L42 25z"/><path d="M7 29.5h34"/></svg></li>
+      <b class="journey__fill"></b>
+    </ol>
+    <div class="journey__end">
+      <h3>Твой выход — <em>следующий</em></h3>
+      <a class="btn js-bot magnetic" href="#" target="_blank" rel="noopener">Подать анкету <span>→</span></a>
+    </div>
   </section>
 
   <!-- Условия -->
@@ -1100,7 +1137,7 @@ const SITE = {
 
   /* ---------- Заголовки и появление элементов ---------- */
   chars.forEach((units, el) => {
-    if (el.closest(".stage") || el.closest(".finale")) return;
+    if (el.closest(".stage") || el.closest(".finale") || el.closest(".jcap")) return;
     // буквы переворачиваются из глубины, как карточки
     gsap.from(units, { yPercent: 90, rotationX: -95, opacity: 0, transformOrigin: "50% 100% -30px", duration: 1.5, ease: "expo.out", stagger: .03,
       scrollTrigger: { trigger: el, start: "top 88%" } });
@@ -1110,7 +1147,7 @@ const SITE = {
   });
 
   /* ---------- Скорость прокрутки слегка наклоняет фото (эффект «инерции») ---------- */
-  const skewEls = fine ? $$(".gallery-grid, .mani-photo, .panel__img") : []; // на телефоне не нужен — даёт лишнюю нагрузку
+  const skewEls = fine ? $$(".gallery-grid, .mani-photo") : []; // на телефоне не нужен — даёт лишнюю нагрузку
   const skewSet = skewEls.map(el => gsap.quickTo(el, "skewY", { duration: .6, ease: "power3.out" }));
   let skew = 0;
   if (skewEls.length) ScrollTrigger.create({ start: 0, end: "max", onUpdate: self => { skew = gsap.utils.clamp(-4, 4, self.getVelocity() / -400); } });
@@ -1186,34 +1223,34 @@ const SITE = {
      .to(".crowns__word", { scale: 1.08, duration: 4 }, 1)
      .to({}, { duration: .4 });
 
-  /* ---------- Что ждёт: горизонтальная прокрутка на широком экране ---------- */
-  const mm = gsap.matchMedia();
-  mm.add("(min-width: 1001px)", () => {
-    const track = $("#hsTrack"), panels = $$(".panel", track);
-    const dist = () => track.scrollWidth - innerWidth;
-    const hs = gsap.to(track, { x: () => -dist(), ease: "none",
-      scrollTrigger: { trigger: "#perks", start: "top top", end: () => "+=" + dist(), pin: true, scrub: 1, invalidateOnRefresh: true, anticipatePin: 1,
-        onUpdate: s => { gsap.set("#hsFill", { scaleX: s.progress }); $("#hsCount").textContent = String(Math.min(6, 1 + Math.floor(s.progress * 6))).padStart(2, "0"); } } });
-    panels.forEach(p => {
-      gsap.fromTo($(".panel__img img", p), { xPercent: -7 }, { xPercent: 7, ease: "none", scrollTrigger: { trigger: p, containerAnimation: hs, start: "left right", end: "right left", scrub: true } });
-      gsap.from($(".panel__img", p), { clipPath: "inset(0% 0% 0% 100%)", duration: 1.4, ease: "expo.inOut", scrollTrigger: { trigger: p, containerAnimation: hs, start: "left 95%" } });
-      gsap.from($(".panel__num", p), { xPercent: 60, opacity: 0, duration: 1.4, ease: "expo.out", scrollTrigger: { trigger: p, containerAnimation: hs, start: "left 88%" } });
-      gsap.from([$("h3", p), $("p", p)], { y: 30, opacity: 0, duration: 1, stagger: .08, ease: "expo.out", scrollTrigger: { trigger: p, containerAnimation: hs, start: "left 85%" } });
-    });
+  /* ---------- Что ждёт: «Путь к короне» — фото по очереди открываются кругом прожектора ---------- */
+  const jSlides = $$(".jslide"), jCaps = $$(".jcap"), jMarks = $$(".journey__path li");
+  const mobileJ = innerWidth <= 760, irisAt = mobileJ ? "50% 35%" : "70% 45%";
+  gsap.set(".journey__path", { autoAlpha: 0 });
+  const jtl = gsap.timeline({ scrollTrigger: { trigger: "#perks", start: "top top", end: "+=720%", pin: true, scrub: 1, anticipatePin: 1,
+    onUpdate: self => {
+      const k = Math.floor(self.progress * 7.2 - .6);            // какой этап сейчас на экране
+      jMarks.forEach((m, i) => m.classList.toggle("is-on", i <= k));
+    } } });
+  jtl.from(".journey__intro .lead, .journey__hint", { opacity: 0, y: 20, duration: .3 }, .1)
+     .to(".journey__intro", { scale: .9, opacity: 0, duration: .5 }, .7)
+     .to(".journey__path", { autoAlpha: 1, duration: .3 }, .8);
+  jSlides.forEach((sl, i) => {
+    const at = 1 + i * 1.1, cap = jCaps[i];
+    jtl.fromTo(sl, { clipPath: `circle(0% at ${irisAt})` }, { clipPath: `circle(150% at ${irisAt})`, duration: .7, ease: "power2.inOut" }, at) // круг прожектора
+       .fromTo($("img", sl), { scale: 1.3 }, { scale: 1, duration: 1.8, ease: "none" }, at)                  // медленный наезд камеры
+       .fromTo(cap, { opacity: 0 }, { opacity: 1, duration: .15 }, at + .35)
+       .from($(".jcap__num", cap), { xPercent: -40, opacity: 0, duration: .45, ease: "power3.out" }, at + .35)
+       .from(chars.get($("h3", cap)) || $("h3", cap), { yPercent: 110, opacity: 0, stagger: .02, duration: .4 }, at + .45)
+       .from([$(".jcap__step", cap), $("p", cap)], { y: 24, opacity: 0, duration: .35, stagger: .05 }, at + .55);
+    if (i < jSlides.length - 1) jtl.to(cap, { opacity: 0, y: -30, duration: .25 }, at + 1.0);
   });
-  mm.add("(max-width: 1000px)", () => {
-    // стопка: когда следующая карточка наезжает, предыдущая слегка уменьшается
-    const pnl = $$(".panel");
-    pnl.forEach((p, i) => {
-      const next = pnl[i + 1]; if (!next) return;
-      gsap.to(p, { scale: .92, ease: "none",
-        scrollTrigger: { trigger: next, start: "top bottom", end: "top 92px", scrub: true } });
-    });
-    $$(".panel").forEach(p => {
-      gsap.from($(".panel__img", p), { clipPath: "inset(100% 0% 0% 0%)", duration: 1.4, ease: "expo.inOut", scrollTrigger: { trigger: p, start: "top 85%" } });
-      gsap.from([$(".panel__num", p), $("h3", p), $("p", p)], { y: 30, opacity: 0, duration: 1, stagger: .08, ease: "expo.out", scrollTrigger: { trigger: p, start: "top 75%" } });
-    });
-  });
+  jtl.fromTo(".journey__fill", mobileJ ? { scaleX: 0 } : { scaleY: 0 }, mobileJ ? { scaleX: 1, duration: 6.6, ease: "none" } : { scaleY: 1, duration: 6.6, ease: "none" }, 1)
+     .to(".journey__crown", { className: "journey__crown is-on", duration: .01 }, 7.4)
+     .to(jCaps[jCaps.length - 1], { opacity: 0, duration: .25 }, 7.5)
+     .to(".journey__end", { autoAlpha: 1, duration: .4 }, 7.6)
+     .from(".journey__end h3", { scale: .8, opacity: 0, duration: .5 }, 7.65)
+     .to({}, { duration: .4 });
 
   /* ---------- Условия: ячейки и счётчики ---------- */
   // ячейки условий переворачиваются, как карты, по диагонали
