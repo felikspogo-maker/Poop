@@ -399,6 +399,12 @@ body::after {
 .spark--dot { clip-path: none; border-radius: 50%; }
 @keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(.4) rotate(0); } 50% { opacity: var(--o); transform: scale(1) rotate(45deg); } }
 
+/* Золотые искры: шлейф за курсором и салют по кнопке */
+.fx { position: fixed; top: 0; left: 0; z-index: 190; pointer-events: none; border-radius: 50%;
+  background: radial-gradient(circle, #fff6dc 0%, #f0cf86 45%, rgba(210, 176, 122, 0) 72%); }
+.fx--star { border-radius: 0; clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%); background: linear-gradient(180deg, #fff3cf, #e2b65f); }
+.fx--ribbon { border-radius: 1px; background: linear-gradient(90deg, #c81f37, #e8445a); }
+
 /* Подвал */
 .footer { padding: 56px 0 34px; background: #14030a; border-top: 1px solid var(--line); font-size: .95rem; color: var(--muted); }
 .footer__row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; }
@@ -456,6 +462,7 @@ body::after {
   .panel { position: sticky; top: 92px; padding: 18px 18px 22px; border: 1px solid var(--line); border-radius: 4px; transform-origin: 50% 0;
     background: linear-gradient(180deg, #4a0912, #2a060c); box-shadow: 0 -20px 40px -20px rgba(0, 0, 0, .7); }
   .panel__num { top: -.35em; left: 10px; }
+  .hs__end { position: relative; z-index: 2; padding: 40px 0 10px; background: #3d0811; box-shadow: 0 -30px 40px 10px #3d0811; } /* закрывает последнюю карточку стопки */
   .panel:nth-child(odd), .panel:nth-child(even) { margin: 0; }
   .hs__hint, .hs__bar { display: none; }
   .hs__end { padding-right: 0; }
@@ -1122,10 +1129,16 @@ const SITE = {
   // ячейки условий переворачиваются, как карты, по диагонали
   gsap.from(".spec", { opacity: 0, rotationX: -70, y: 60, transformOrigin: "50% 0%", duration: 1.4, ease: "expo.out",
     stagger: { each: .1, grid: "auto", from: "start" }, scrollTrigger: { trigger: "#specs", start: "top 82%" } });
-  $$("[data-to]").forEach(n => {
-    const to = +n.dataset.to, o = { v: 0 };
-    n.textContent = "0";
-    gsap.to(o, { v: to, duration: 2.2, ease: "power3.out", scrollTrigger: { trigger: n, start: "top 90%" }, onUpdate: () => (n.textContent = Math.round(o.v)) });
+  // цифры крутятся, как барабаны игрового автомата, и по очереди останавливаются
+  $$("[data-to]").forEach((n, k) => {
+    const target = n.dataset.to, len = target.length;
+    n.textContent = target.replace(/\d/g, "0");
+    const o = { p: 0 };
+    gsap.to(o, { p: 1, duration: 1.8 + k * .12, ease: "power2.out", scrollTrigger: { trigger: n, start: "top 90%" },
+      onUpdate: () => {
+        n.textContent = [...target].map((d, i) => o.p > .55 + i * .2 ? d : Math.floor(Math.random() * 10)).join("");
+      },
+      onComplete: () => { n.textContent = target; } });
   });
 
   /* ---------- Как подать: линия заполняется, шаги загораются ---------- */
@@ -1183,6 +1196,52 @@ const SITE = {
     t.addEventListener("pointermove", e => { const r = t.getBoundingClientRect(); ry(((e.clientX - r.left) / r.width - .5) * 14); rx(-((e.clientY - r.top) / r.height - .5) * 14); });
     t.addEventListener("pointerleave", () => { rx(0); ry(0); });
   });
+
+  /* ---------- Раскрытие разделов кругом, как лучом прожектора ---------- */
+  ["#terms", "#how"].forEach(id => {
+    gsap.fromTo(id, { clipPath: "circle(12% at 50% 35%)" }, { clipPath: "circle(110% at 50% 35%)", ease: "none",
+      scrollTrigger: { trigger: id, start: "top bottom", end: "top 25%", scrub: .6 } });
+  });
+
+  /* ---------- Галерея: «камера отъезжает» — сетка сначала крупная, потом видна целиком ---------- */
+  gsap.fromTo("#gcols", { scale: 1.45, transformOrigin: "50% 0%" }, { scale: 1, ease: "none",
+    scrollTrigger: { trigger: "#gcols", start: "top bottom", end: "top 15%", scrub: .8 } });
+
+  /* ---------- Золотой салют при нажатии «Подать анкету» ---------- */
+  const burst = (x, y) => {
+    const n = innerWidth < 760 ? 34 : 60;
+    for (let i = 0; i < n; i++) {
+      const el = document.createElement("i"), kind = Math.random();
+      el.className = "fx" + (kind < .3 ? " fx--star" : kind < .5 ? " fx--ribbon" : "");
+      const sz = kind < .3 ? rnd(10, 18) : kind < .5 ? rnd(5, 9) : rnd(4, 9);
+      gsap.set(el, { x, y, width: sz, height: kind >= .3 && kind < .5 ? sz * 2.2 : sz, xPercent: -50, yPercent: -50 });
+      document.body.appendChild(el);
+      const ang = rnd(0, Math.PI * 2), sp = rnd(120, innerWidth < 760 ? 260 : 420);
+      gsap.timeline({ onComplete: () => el.remove() })
+        .to(el, { x: x + Math.cos(ang) * sp, y: y + Math.sin(ang) * sp * .8 - 60, rotation: rnd(-540, 540), duration: rnd(.6, 1), ease: "power3.out" })
+        .to(el, { y: "+=" + rnd(120, 260), opacity: 0, duration: rnd(.8, 1.3), ease: "power1.in" }, ">-0.15");
+    }
+  };
+  $$(".js-bot").forEach(a => a.addEventListener("click", e => {
+    const r = a.getBoundingClientRect();
+    burst(e.clientX || r.left + r.width / 2, e.clientY || r.top + r.height / 2);
+  }));
+
+  /* ---------- Золотой шлейф из искр за курсором (только мышь) ---------- */
+  if (fine) {
+    let last = 0, live = 0;
+    addEventListener("pointermove", e => {
+      const now = performance.now();
+      if (now - last < 28 || live > 40) return;
+      last = now; live++;
+      const el = document.createElement("i"), sz = rnd(3, 7);
+      el.className = "fx" + (Math.random() < .25 ? " fx--star" : "");
+      gsap.set(el, { x: e.clientX + rnd(-6, 6), y: e.clientY + rnd(-6, 6), width: Math.random() < .25 ? sz * 2 : sz, height: Math.random() < .25 ? sz * 2 : sz, xPercent: -50, yPercent: -50 });
+      document.body.appendChild(el);
+      gsap.to(el, { y: "+=" + rnd(20, 50), x: "+=" + rnd(-14, 14), opacity: 0, scale: .2, rotation: rnd(-120, 120), duration: rnd(.6, 1.1), ease: "power1.out",
+        onComplete: () => { el.remove(); live--; } });
+    });
+  }
 
   /* ---------- Прогресс прокрутки ---------- */
   gsap.to("#progress", { scaleX: 1, ease: "none", scrollTrigger: { start: 0, end: "max", scrub: .3 } });
