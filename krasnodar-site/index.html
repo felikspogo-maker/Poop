@@ -82,8 +82,7 @@ h2 .sc, .spec__value span, .spec__value small { background: var(--metal); -webki
 .sc, .swi { display: inline-block; }
 .mani .sw { overflow: visible; }
 /* 3D-переворот букв в заголовках */
-h2 .sw, .finale h2 .sw { perspective: 600px; }
-h2 .sc { background-size: 100% 260%; background-position: 50% 100%; backface-visibility: hidden; }
+h2 .sc { background-size: 100% 260%; background-position: 50% 100%; }
 .kicker::before { transform-origin: 0 50%; }
 
 /* Фото в одном винном тоне */
@@ -1251,7 +1250,7 @@ const SITE = {
   chars.forEach((units, el) => {
     if (el.closest(".stage") || el.closest(".finale") || el.closest(".jcap")) return;
     // буквы переворачиваются из глубины, как карточки
-    gsap.from(units, { yPercent: 90, rotationX: -95, opacity: 0, transformOrigin: "50% 100% -30px", duration: 1.5, ease: "expo.out", stagger: .03,
+    gsap.from(units, { yPercent: 110, opacity: 0, duration: 1.3, ease: "expo.out", stagger: .03, clearProps: "transform,opacity",
       scrollTrigger: { trigger: el, start: "top 88%" } });
     // золото «перетекает» по буквам, пока заголовок на экране
     if (el.tagName === "H2") gsap.to(units, { backgroundPosition: "50% 0%", ease: "none",
@@ -1367,7 +1366,7 @@ const SITE = {
 
   /* ---------- Условия: ячейки и счётчики ---------- */
   // ячейки условий переворачиваются, как карты, по диагонали
-  gsap.from(".spec", { opacity: 0, rotationX: -70, y: 60, transformOrigin: "50% 0%", duration: 1.4, ease: "expo.out",
+  gsap.from(".spec", { opacity: 0, y: 60, duration: 1.2, ease: "expo.out", clearProps: "transform,opacity",
     stagger: { each: .1, grid: "auto", from: "start" }, scrollTrigger: { trigger: "#specs", start: "top 82%" } });
   // цифры крутятся, как барабаны игрового автомата, и по очереди останавливаются
   $$("[data-to]").forEach((n, k) => {
