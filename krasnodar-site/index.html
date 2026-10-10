@@ -1,0 +1,1523 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Мисс и Миссис Краснодарский край 2027</title>
+<meta name="description" content="Конкурс красоты «Мисс и Миссис Краснодарский край 2027». Категории «Юная Мисс», «Мисс», «Миссис». Анкеты принимаем до 15 января 2027 года.">
+<meta name="theme-color" content="#0e0103">
+<meta property="og:title" content="Мисс и Миссис Краснодарский край 2027">
+<meta property="og:description" content="Конкурс красоты для девушек и женщин от 14 до 45 лет. Анкеты принимаем до 15 января 2027 года через Telegram.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="images/hero-arch.jpg">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="apple-touch-icon" href="images/favicon.png">
+<link rel="preload" href="fonts/Prata-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="images/hero-arch.jpg" as="image">
+<link rel="preload" href="images/logo.png" as="image">
+<link rel="stylesheet" href="fonts/fonts.css">
+<script>document.documentElement.classList.add("js");</script>
+<style>
+/* =================================================================
+   «СЦЕНА»: чёрная сцена, луч софита, винно-красный и золото.
+   Шрифты: Prata (заголовки) + Jost (текст).
+   ================================================================= */
+:root {
+  --black: #1c0408;       /* глубокий винный вместо чёрного */
+  --black-2: #2a060c;
+  --wine: #5a0b17;
+  --red: #b3172c;
+  --cream: #f4e9dc;
+  --muted: rgba(244, 233, 220, .66);
+  --line: rgba(210, 176, 122, .24);   /* линии — золотые */
+  --gold: #d9b26a;
+  --gold-l: #f3d9a2;
+  --metal: linear-gradient(180deg, #fff0c4 0%, #ecc77f 34%, #c18f3a 60%, #f4d790 82%, #d4a556 100%);
+
+  --display: "Prata", "Times New Roman", serif;
+  --text: "Jost", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --gutter: clamp(18px, 3.4vw, 48px);
+  --ease: cubic-bezier(.22, 1, .36, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+/* ничто не должно сдвигать страницу вбок; старые iPhone не знают clip — для них hidden */
+html, body { overflow-x: clip; }
+@supports not (overflow: clip) { html, body { overflow-x: hidden; } }
+main > section, .ribbons, .footer { overflow-x: clip; }
+body {
+  margin: 0; color: var(--cream);
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(120, 14, 30, .35), transparent 70%) fixed, var(--black);
+  font: 400 17px/1.65 var(--text); overflow-x: clip;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+::selection { background: var(--gold); color: var(--black); }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.wrap { width: min(1340px, 100% - 2 * var(--gutter)); margin-inline: auto; }
+
+h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; letter-spacing: -.01em; }
+h2 { font-size: clamp(2.6rem, 6.2vw, 6rem); line-height: 1; }
+h2, .spec__value, .journey__end h3 { background: var(--metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
+h2 .sc, .spec__value span, .spec__value small { background: var(--metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.kicker { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; font: 500 .74rem/1.2 var(--text); letter-spacing: .28em; text-transform: uppercase; color: var(--gold); }
+.kicker::before { content: ""; width: 34px; height: 1px; background: currentColor; }
+.lead { max-width: 30em; color: var(--muted); font-size: 1.05rem; }
+
+/* Металлическое золото (на буквах — каждая со своим бликом) */
+.metal, .metal .sc, .metal .swi { background: var(--metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.metal .sw { color: transparent; }
+/* блик должен покрывать всю букву, а не только высоту строки */
+.metal .sc, h2 .sc { padding: .16em 0 .12em; margin: -.16em 0 -.12em; }
+.hero__meta b { background: var(--metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* Разбивка текста на слова и буквы для анимаций */
+.sw { display: inline-block; overflow: hidden; vertical-align: top; padding: .12em 0 .16em; margin: -.12em 0 -.16em; }
+.sc, .swi { display: inline-block; }
+.mani .sw { overflow: visible; }
+/* 3D-переворот букв в заголовках */
+h2 .sw, .finale h2 .sw { perspective: 600px; }
+h2 .sc { background-size: 100% 260%; background-position: 50% 100%; backface-visibility: hidden; }
+.kicker::before { transform-origin: 0 50%; }
+
+/* Фото в одном винном тоне */
+.tone { position: relative; }
+.tone::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: #a8162c; mix-blend-mode: color; opacity: .2; }
+
+/* Зерно сцены поверх всего */
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: 150; pointer-events: none; opacity: .06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .92 0 0 0 0 .85 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Кнопки ---------- */
+.btn {
+  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 58px; padding: 0 34px;
+  overflow: hidden; border: 0; border-radius: 2px; cursor: pointer; text-decoration: none; isolation: isolate;
+  font: 500 .78rem/1 var(--text); letter-spacing: .26em; text-transform: uppercase;
+  background: linear-gradient(180deg, #c81f37, #8f1124); color: var(--gold-l); transition: color .5s;
+  box-shadow: inset 0 0 0 1px rgba(243, 217, 162, .55), 0 10px 30px -12px rgba(179, 23, 44, .8);
+}
+.btn::before { /* золотая заливка снизу при наведении */
+  content: ""; position: absolute; inset: 0; z-index: -1; background: var(--metal);
+  transform: translateY(101%); transition: transform .6s var(--ease);
+}
+.btn:hover::before { transform: none; }
+.btn:hover { color: #3a0710; }
+.btn span { display: inline-block; transition: transform .6s var(--ease); }
+.btn:hover span { transform: translateX(5px); }
+
+/* =================================================================
+   ЗАНАВЕС ПРИ ЗАГРУЗКЕ
+   ================================================================= */
+.intro { position: fixed; inset: 0; z-index: 200; display: none; pointer-events: none; }
+.js .intro { display: block; }
+.intro__half {
+  position: absolute; top: 0; bottom: 0; width: 50.5%;
+  background:
+    linear-gradient(0deg, rgba(0, 0, 0, .55), transparent 45%),
+    repeating-linear-gradient(90deg, #36050c 0, #67101d 2.6vw, #8f172a 4vw, #67101d 5.4vw, #36050c 8vw);
+}
+.intro__half--l { left: 0; }
+.intro__half--r { right: 0; }
+.intro__half--r .intro__fold { transform: scaleX(-1); }
+.intro__half::after { content: ""; position: absolute; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, #f3d9a2, var(--gold) 40%, #7a5a2a); box-shadow: 0 0 24px rgba(210, 176, 122, .6); }
+.intro__half--l::after { right: 0; }
+.intro__half--r::after { left: 0; }
+.intro__inner { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 22px; z-index: 2;
+  background: radial-gradient(circle at 50% 50%, rgba(10, 0, 2, .85) 0, rgba(10, 0, 2, .6) min(30vw, 220px), transparent min(48vw, 360px)); }
+.intro__logo { position: relative; width: min(64vw, 380px); height: auto; opacity: 0; }
+/* золотое свечение за гербом — отдельным слоем, без CSS-фильтров (на iPhone они дают белый прямоугольник) */
+.intro__inner::before { content: ""; position: absolute; left: 50%; top: 50%; width: min(80vw, 520px); aspect-ratio: 1; translate: -50% -50%;
+  background: radial-gradient(circle, rgba(232, 180, 90, .22), transparent 62%); pointer-events: none; }
+
+/* =================================================================
+   ШАПКА, ПРОГРЕСС, КУРСОР
+   ================================================================= */
+.progress { position: fixed; top: 0; left: 0; right: 0; z-index: 60; height: 2px; background: linear-gradient(90deg, var(--red), var(--gold)); transform: scaleX(0); transform-origin: 0 50%; }
+.nav { position: fixed; inset: 0 0 auto; z-index: 50; transition: background .5s, transform .7s var(--ease); }
+.nav.is-solid { background: rgba(40, 5, 11, .86); box-shadow: 0 1px 0 var(--line); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.nav.is-hidden { transform: translateY(-100%); }
+.nav__row { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 78px; }
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; white-space: nowrap; }
+/* у логотипа чёрный фон — режим «экран» делает его прозрачным на тёмном сайте */
+.logo__mark { width: auto; height: 50px; flex: none; }
+.logo__text { font: 400 1.2rem/1 var(--display); }
+.logo__text small { display: block; margin-top: 5px; font: 500 .56rem/1 var(--text); letter-spacing: .3em; text-transform: uppercase; color: var(--gold); }
+.logo__full { width: 190px; height: auto; }
+.hero__logo { display: block; width: 170px; height: auto; margin: 0 0 14px auto; }
+.nav__links { display: flex; gap: 34px; margin: 0; padding: 0; list-style: none; font: 500 .72rem/1 var(--text); letter-spacing: .24em; text-transform: uppercase; }
+.nav__links a { position: relative; text-decoration: none; color: var(--muted); transition: color .3s; }
+.nav__links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -8px; height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: right; transition: transform .5s var(--ease); }
+.nav__links a:hover { color: var(--cream); }
+.nav__links a:hover::after { transform: scaleX(1); transform-origin: left; }
+.nav .btn { min-height: 44px; padding: 0 22px; font-size: .68rem; }
+.burger { display: none; position: relative; width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--line); background: transparent; cursor: pointer; }
+.burger i { position: absolute; left: 15px; right: 15px; height: 1.5px; background: var(--cream); transition: transform .5s var(--ease); }
+.burger i:first-child { top: 20px; } .burger i:last-child { top: 27px; }
+.nav.is-open .burger i:first-child { transform: translateY(3.5px) rotate(45deg); }
+.nav.is-open .burger i:last-child { transform: translateY(-3.5px) rotate(-45deg); }
+
+.cursor, .cursor-ring { position: fixed; top: 0; left: 0; z-index: 180; pointer-events: none; border-radius: 50%; display: none; opacity: 0; transition: opacity .4s; }
+.cursor-on .cursor, .cursor-on .cursor-ring { opacity: 1; }
+.has-cursor .cursor, .has-cursor .cursor-ring { display: block; }
+.cursor { width: 6px; height: 6px; margin: -3px 0 0 -3px; background: var(--gold); }
+.cursor-ring { width: 42px; height: 42px; margin: -21px 0 0 -21px; border: 1px solid rgba(210, 176, 122, .6);
+  transition: width .45s var(--ease), height .45s var(--ease), margin .45s var(--ease), background .45s, border-color .45s; }
+.has-cursor .cursor-ring { display: grid; place-items: center; }
+.cursor-ring.is-link { width: 70px; height: 70px; margin: -35px 0 0 -35px; border-color: var(--gold); }
+.cursor-ring.is-view { width: 96px; height: 96px; margin: -48px 0 0 -48px; background: var(--gold); border-color: var(--gold); }
+.cursor-ring b { opacity: 0; font: 500 .58rem/1 var(--text); letter-spacing: .18em; text-transform: uppercase; color: var(--black); transition: opacity .3s; }
+.cursor-ring.is-view b { opacity: 1; }
+
+/* =================================================================
+   ПЕРВЫЙ ЭКРАН — СЦЕНА
+   ================================================================= */
+.stage { position: relative; height: 100svh; min-height: 640px; overflow: hidden;
+  background: radial-gradient(ellipse 80% 50% at 50% 106%, rgba(190, 24, 46, .75), transparent 70%), radial-gradient(ellipse 45% 60% at 0% 40%, rgba(120, 14, 30, .45), transparent 70%), radial-gradient(ellipse 45% 60% at 100% 40%, rgba(120, 14, 30, .45), transparent 70%), var(--black); }
+.beam-wrap { position: absolute; z-index: 1; left: 50%; top: -12%; width: min(130vh, 1300px); height: 128%; margin-left: calc(min(130vh, 1300px) / -2); transform-origin: 50% 0; pointer-events: none; }
+.beam { position: absolute; inset: 0; filter: blur(8px);
+  background: conic-gradient(at 50% 0, transparent 0 162deg, rgba(255, 205, 130, .16) 171deg, rgba(255, 225, 160, .36) 180deg, rgba(255, 205, 130, .16) 189deg, transparent 198deg); }
+.dust { position: absolute; inset: 0; width: 100%; height: 100%;
+  -webkit-mask-image: conic-gradient(at 50% 0, transparent 0 164deg, #000 172deg 188deg, transparent 196deg);
+          mask-image: conic-gradient(at 50% 0, transparent 0 164deg, #000 172deg 188deg, transparent 196deg); }
+.floor { position: absolute; z-index: 1; left: 5%; right: 5%; bottom: -60px; height: 200px; border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(255, 205, 130, .26), transparent 65%); pointer-events: none; }
+.bigword { position: absolute; z-index: 1; margin: 0; white-space: nowrap; pointer-events: none; user-select: none;
+  font: 400 clamp(6rem, 21vw, 22rem)/.8 var(--display); letter-spacing: -.05em; text-transform: uppercase; }
+.bigword--fill { left: -1.5vw; top: 15vh; color: var(--cream); }
+.bigword--line { right: -2vw; top: 42vh; font-size: clamp(5rem, 16.5vw, 17rem); color: transparent; -webkit-text-stroke: 1.4px var(--gold); }
+.arch { position: absolute; z-index: 2; left: 50%; bottom: 0; width: clamp(260px, 28vw, 430px); height: min(78svh, 780px); margin-left: calc(clamp(260px, 28vw, 430px) / -2);
+  border-radius: 999px 999px 0 0; overflow: hidden; box-shadow: 0 0 0 1px rgba(210, 176, 122, .55), 0 0 0 14px var(--black), 0 0 0 15px rgba(210, 176, 122, .45), 0 0 80px 10px rgba(190, 24, 46, .35); }
+.arch img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; }
+.arch::before { content: ""; position: absolute; inset: 0; z-index: 2; background: linear-gradient(0deg, rgba(14, 1, 3, .7), transparent 35%); }
+.hero__info { position: absolute; z-index: 3; left: var(--gutter); bottom: clamp(30px, 6vh, 64px); max-width: 330px; }
+.hero__tag { margin: 0; font: 400 clamp(1.7rem, 2.6vw, 2.4rem)/1.12 var(--display); color: var(--gold); }
+.hero__note { margin: 14px 0 22px; font: 500 .72rem/1.7 var(--text); letter-spacing: .24em; text-transform: uppercase; }
+.hero__note b { font-weight: 500; color: var(--gold); }
+.hero__meta { position: absolute; z-index: 3; right: var(--gutter); bottom: clamp(30px, 6vh, 64px); text-align: right; font: 500 .72rem/2 var(--text); letter-spacing: .28em; text-transform: uppercase; color: var(--muted); }
+.hero__meta b { display: block; font: 400 2.6rem/1 var(--display); letter-spacing: 0; margin-bottom: 8px; background: var(--metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* =================================================================
+   ЛЕНТЫ
+   ================================================================= */
+.ribbons { position: relative; height: clamp(150px, 16vw, 230px); overflow: hidden; background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(160, 20, 40, .35), transparent 70%); }
+.rb { position: absolute; left: -5%; right: -5%; top: 50%; display: flex; align-items: center; height: clamp(54px, 5.4vw, 76px); margin-top: calc(clamp(54px, 5.4vw, 76px) / -2); overflow: hidden; }
+.rb--a { z-index: 2; transform: rotate(-3deg); background: linear-gradient(180deg, #4a0911, #8a1426 30%, #ad1d33 50%, #8a1426 70%, #4a0911); box-shadow: 0 20px 40px -14px rgba(0, 0, 0, .8); }
+.rb--a::before { content: ""; position: absolute; inset: 6px 0; border-block: 1px solid var(--gold); opacity: .8; pointer-events: none; }
+.rb--b { transform: rotate(2.4deg); }
+.rb__track { display: flex; flex: none; white-space: nowrap; will-change: transform; }
+.rb__track span { padding: 0 .9em; font: 400 clamp(1.1rem, 1.9vw, 1.7rem)/1 var(--display); letter-spacing: .14em; text-transform: uppercase; }
+.rb--a span { color: var(--gold-l); }
+.rb--a span:nth-child(even) { color: var(--gold); }
+.rb--b span { color: transparent; -webkit-text-stroke: 1px rgba(232, 196, 124, .8); font-size: clamp(1.6rem, 3vw, 2.8rem); }
+
+/* =================================================================
+   О КОНКУРСЕ — МАНИФЕСТ
+   ================================================================= */
+.manifesto { position: relative; padding: clamp(110px, 16vh, 200px) 0; overflow: clip; }
+.mani { position: relative; z-index: 2; margin: 0; max-width: 17em; font: 400 clamp(2rem, 4.6vw, 4.4rem)/1.16 var(--display); }
+.mani em { font-style: normal; color: var(--gold); }
+.mani-photo { position: absolute; z-index: 1; overflow: hidden; border-radius: 2px; box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .8); }
+.mani-photo img { width: 100%; height: 100%; object-fit: cover; }
+.mani-photo--1 { right: 6vw; top: 12%; width: clamp(150px, 17vw, 260px); aspect-ratio: 3 / 4; }
+.mani-photo--2 { right: 22vw; bottom: 8%; width: clamp(130px, 13vw, 210px); aspect-ratio: 4 / 5; }
+.mani-foot { position: relative; z-index: 2; display: grid; grid-template-columns: auto 1fr; gap: 24px 60px; align-items: end; margin-top: clamp(50px, 8vw, 100px); max-width: 860px; }
+.mani-foot strong { display: block; font: 400 clamp(1.8rem, 3vw, 2.6rem)/1.1 var(--display); color: var(--gold); white-space: nowrap; }
+.mani-foot small { display: block; margin-top: 8px; font: 500 .7rem/1.4 var(--text); letter-spacing: .24em; text-transform: uppercase; color: var(--muted); }
+.mani-foot p { margin: 0; color: var(--muted); max-width: 30em; }
+
+/* =================================================================
+   ПРОЛЁТ СКВОЗЬ СЛОВО: фото внутри букв, при прокрутке слово растёт
+   ================================================================= */
+.zoom { position: relative; height: 100svh; overflow: hidden; background: var(--black); }
+.zoom__photo { position: absolute; inset: 0; opacity: 0; }
+.zoom__photo img { width: 100%; height: 100%; object-fit: cover; }
+.zoom__photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(28, 4, 8, .85), rgba(28, 4, 8, .15) 55%, rgba(28, 4, 8, .4)); }
+.zoom__mask { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; }
+.zoom__word { display: block; padding: 0 .04em; font: 400 clamp(5rem, 25vw, 25rem)/.86 var(--display); letter-spacing: -.03em; text-transform: uppercase;
+  background: url(images/lineup-crest.jpg) 50% 45% / cover; -webkit-background-clip: text; background-clip: text; color: transparent;
+  -webkit-text-stroke: 1px rgba(232, 196, 124, .5); will-change: transform; }
+.zoom__cap { position: absolute; z-index: 2; left: 0; right: 0; bottom: clamp(50px, 10vh, 110px); text-align: center; opacity: 0; }
+.zoom__cap .kicker { justify-content: center; }
+.zoom__cap .kicker::after { content: ""; width: 34px; height: 1px; background: currentColor; }
+.zoom__cap p { margin: 0; font: 400 clamp(2.2rem, 5.6vw, 5rem)/1.05 var(--display); }
+.zoom__cap em { font-style: normal; background: var(--metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.zoom__hint { position: absolute; left: 50%; bottom: 30px; translate: -50% 0; font: 500 .68rem/1 var(--text); letter-spacing: .3em; text-transform: uppercase; color: var(--gold); }
+
+/* =================================================================
+   КАТЕГОРИИ — ТРИ КОРОЛЕВЫ: силуэты выходят из тени под софитами
+   ================================================================= */
+.crowns { position: relative; min-height: 100svh; overflow: clip; display: flex; align-items: stretch;
+  background: radial-gradient(ellipse 70% 45% at 50% 100%, rgba(190, 24, 46, .55), transparent 70%), var(--black); }
+.crowns__floor { position: absolute; left: 0; right: 0; bottom: 0; height: 26%; pointer-events: none;
+  background: radial-gradient(ellipse 60% 70% at 50% 100%, rgba(255, 205, 130, .16), transparent 70%); }
+.crowns__in { position: relative; display: flex; flex-direction: column; padding: clamp(84px, 10vh, 110px) 0 clamp(28px, 5vh, 50px); }
+.crowns__head { text-align: center; }
+.crowns__head .kicker { justify-content: center; margin-bottom: 14px; }
+.crowns__head .kicker::after { content: ""; width: 34px; height: 1px; background: currentColor; }
+.crowns__stage { flex: 1; display: grid; grid-template-columns: 1fr 1.15fr 1fr; align-items: end; gap: clamp(8px, 3vw, 50px); margin-top: clamp(16px, 3vh, 34px); }
+.queen { display: flex; flex-direction: column; align-items: center; min-width: 0; }
+.queen__fig { position: relative; width: 100%; height: min(43svh, 500px); display: flex; justify-content: center; align-items: flex-end; }
+.queen--miss .queen__fig { height: min(43svh, 500px); } /* все три в одном масштабе — центр выделен пьедесталом */
+.queen__body { position: absolute; bottom: 0; left: 50%; translate: -50% 0; height: 100%; aspect-ratio: var(--ar); }
+.queen__dark { display: block; width: 100%; height: 100%; }
+.queen__lit { position: absolute; inset: 0; width: 100%; height: 100%; }
+/* золотой отблеск, проходящий по фигуре (вырезан по её силуэту) */
+.queen__shine { position: absolute; inset: 0; pointer-events: none;
+  -webkit-mask: var(--cut) center / 100% 100% no-repeat; mask: var(--cut) center / 100% 100% no-repeat;
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 236, 190, .65) 50%, transparent 62%) 160% 0 / 300% 100% no-repeat; mix-blend-mode: screen; }
+/* звёздочки, мерцающие на короне */
+.queen__glint { position: absolute; left: 44%; top: 2%; width: 22px; height: 22px; pointer-events: none; opacity: 0;
+  background: radial-gradient(circle, #fff 0, #ffe7b0 30%, transparent 70%);
+  clip-path: polygon(50% 0, 56% 44%, 100% 50%, 56% 56%, 50% 100%, 44% 56%, 0 50%, 44% 44%); }
+.queen__glint--2 { left: 58%; top: 7%; width: 14px; height: 14px; }
+.queen.is-lit .queen__glint { animation: glint 2.6s ease-in-out infinite; }
+.queen.is-lit .queen__glint--2 { animation-delay: 1.1s; }
+@keyframes glint { 0%, 100% { opacity: 0; transform: scale(.3) rotate(0); } 45% { opacity: 1; transform: scale(1) rotate(45deg); } 70% { opacity: 0; } }
+/* силуэт: та же фигура, залитая тёмным, с тонкой золотой кромкой (фильтр статичный — анимируется только прозрачность) */
+.queen__dark { filter: brightness(0) drop-shadow(0 0 1px rgba(232, 196, 124, .9)) drop-shadow(0 0 14px rgba(190, 24, 46, .5)); }
+.queen__beam { position: absolute; left: 50%; bottom: 0; width: 180%; height: 140%; translate: -50% 0; pointer-events: none;
+  background: conic-gradient(at 50% 0, transparent 0 164deg, rgba(255, 220, 160, .16) 172deg, rgba(255, 232, 185, .28) 180deg, rgba(255, 220, 160, .16) 188deg, transparent 196deg);
+  -webkit-mask-image: linear-gradient(180deg, #000 60%, transparent); mask-image: linear-gradient(180deg, #000 60%, transparent); }
+.queen__cap { margin-top: 12px; text-align: center; }
+/* огромное слово «КОРОНЫ» тонким золотым контуром за сценой */
+.crowns__word { position: absolute; left: 50%; top: 52%; translate: -50% -50%; z-index: 0; white-space: nowrap; pointer-events: none;
+  font: 400 clamp(6rem, 24vw, 24rem)/1 var(--display); letter-spacing: -.02em; text-transform: uppercase;
+  color: transparent; -webkit-text-stroke: 1px rgba(232, 196, 124, .18); }
+/* медленно вращающиеся золотые лучи за центральной королевой */
+.crowns__rays { position: absolute; left: 50%; top: 56%; width: min(130vw, 1400px); aspect-ratio: 1; translate: -50% -50%; pointer-events: none; z-index: 0;
+  background: repeating-conic-gradient(from 0deg, rgba(255, 214, 140, .09) 0 4deg, transparent 4deg 15deg);
+  -webkit-mask-image: radial-gradient(circle, #000 0, rgba(0, 0, 0, .6) 25%, transparent 62%); mask-image: radial-gradient(circle, #000 0, rgba(0, 0, 0, .6) 25%, transparent 62%);
+  animation: rays 60s linear infinite; }
+@keyframes rays { to { rotate: 360deg; } }
+/* бархатный занавес по краям с золотыми кистями */
+.crowns__curtain { position: absolute; top: 0; bottom: 0; width: clamp(40px, 9vw, 150px); z-index: 1; pointer-events: none;
+  background: linear-gradient(0deg, rgba(0, 0, 0, .55), transparent 40%),
+    repeating-linear-gradient(90deg, #3a060d 0, #6e1120 1.4vw, #9a1a2e 2.1vw, #6e1120 2.8vw, #3a060d 4.2vw); }
+.crowns__curtain--l { left: 0; clip-path: polygon(0 0, 100% 0, 62% 46%, 30% 100%, 0 100%); }
+.crowns__curtain--r { right: 0; clip-path: polygon(0 0, 100% 0, 100% 100%, 70% 100%, 38% 46%); }
+.crowns__curtain::after { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #7a5a2a, #f3d9a2, #7a5a2a); }
+.crowns__tassel { position: absolute; top: 44%; width: 10px; height: 44px; border-radius: 2px 2px 5px 5px;
+  background: linear-gradient(180deg, #f3d9a2, #c18f3a 40%, #7a5a2a); box-shadow: 0 0 14px rgba(232, 180, 90, .45); }
+.crowns__curtain--l .crowns__tassel { left: 58%; } .crowns__curtain--r .crowns__tassel { right: 58%; }
+.crowns__tassel::before { content: ""; position: absolute; left: 50%; top: -30px; width: 1px; height: 30px; background: #e2b65f; }
+.crowns__in { z-index: 2; }
+/* пьедестал: золотой ободок, тёмный бархат, центральный выше — как на награждении */
+.queen__podium { position: relative; width: 82%; height: 34px; margin-top: -4px; display: grid; place-items: center;
+  background: linear-gradient(180deg, #5a0b17, #2a050b); border-radius: 0 0 4px 4px;
+  box-shadow: inset 0 1px 0 #f3d9a2, inset 0 -1px 0 rgba(232, 196, 124, .3), 0 18px 30px -10px rgba(0, 0, 0, .8); }
+.queen__podium::before { content: ""; position: absolute; left: -4%; right: -4%; top: -9px; height: 18px; border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(255, 220, 160, .55), rgba(232, 180, 90, .15) 55%, transparent 72%); }
+.queen__podium span { position: relative; font: 400 1rem/1 var(--display); letter-spacing: .2em;
+  background: var(--metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.queen--miss .queen__podium { height: 50px; width: 88%; }
+.queen--miss .queen__podium span { font-size: 1.3rem; }
+/* низ фигуры мягко уходит в пьедестал */
+.queen__body { -webkit-mask-image: linear-gradient(180deg, #000 88%, transparent); mask-image: linear-gradient(180deg, #000 88%, transparent); }
+.queen__num { display: block; font: 500 .7rem/1 var(--text); letter-spacing: .3em; color: var(--gold); }
+.queen__cap h3 { margin: 8px 0 4px; font-size: clamp(1.5rem, 2.6vw, 2.4rem); line-height: 1.05; background: var(--metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.queen__age { font: 500 .72rem/1 var(--text); letter-spacing: .22em; text-transform: uppercase; color: var(--cream); }
+.queen__cap p { margin: 10px auto 0; max-width: 18em; font-size: .93rem; line-height: 1.5; color: var(--muted); }
+.crowns__note { margin: clamp(14px, 2.4vh, 26px) auto 0; max-width: 34em; text-align: center; font-size: .9rem; color: var(--muted); }
+@media (min-width: 1001px) and (max-height: 800px) { .crowns__note { display: none; } } /* на невысоких ноутбуках не помещается */
+@media (max-width: 1000px) {
+  .crowns__stage { grid-template-columns: 1fr 1.15fr 1fr; gap: 4px; }
+  .queen__fig { height: 27svh; }
+  .queen--miss .queen__fig { height: 27svh; }
+  /* на узком экране — групповой кадр: центральная впереди, боковые прижаты к краям экрана */
+  .queen--miss { position: relative; z-index: 2; }
+  .queen:first-child .queen__body { left: 0; translate: 0 0; }
+  .queen:last-child .queen__body { left: auto; right: 0; translate: 0 0; }
+  .crowns__in { padding-bottom: 96px; } /* место под нижнюю кнопку «Подать анкету» */
+  .queen__cap h3 { font-size: 1.15rem; }
+  .queen__age { font-size: .56rem; letter-spacing: .14em; }
+  .queen__cap p { display: none; }
+  .queen__podium { height: 24px; } .queen--miss .queen__podium { height: 34px; }
+  .queen__podium span { font-size: .8rem; } .queen--miss .queen__podium span { font-size: 1rem; }
+  .crowns__curtain { width: 7vw; } .crowns__tassel { display: none; }
+  .crowns__word { top: 46%; font-size: 30vw; }
+  .crowns__note { font-size: .82rem; }
+}
+
+/* =================================================================
+   ЧТО ЖДЁТ — ГОРИЗОНТАЛЬНАЯ ПРОКРУТКА
+   ================================================================= */
+@keyframes hint { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+
+/* =================================================================
+   ЧТО ЖДЁТ — «ПУТЬ К КОРОНЕ»: фото открываются кругом прожектора
+   ================================================================= */
+.journey { position: relative; height: 100svh; overflow: hidden; background: var(--black); }
+.journey__slides, .jslide { position: absolute; inset: 0; margin: 0; }
+.jslide { clip-path: circle(0% at 70% 45%); }
+.jslide img { width: 100%; height: 100%; object-fit: cover; object-position: var(--pd, 50% 50%); transform-origin: var(--pd, 50% 50%); will-change: transform; filter: saturate(1.08) contrast(1.05); }
+.jslide::after { content: ""; position: absolute; inset: 0; background: #a8162c; mix-blend-mode: color; opacity: .1; }
+.journey__shade { position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(90deg, rgba(20, 2, 6, .8) 0%, rgba(20, 2, 6, .3) 34%, transparent 60%), linear-gradient(0deg, rgba(20, 2, 6, .8), transparent 40%); }
+.journey__intro { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; text-align: center; padding: 0 var(--gutter); }
+.journey__intro .kicker { justify-content: center; }
+.journey__intro .kicker::after { content: ""; width: 34px; height: 1px; background: currentColor; }
+.journey__intro h2 { font-size: clamp(3rem, 9vw, 8.5rem); }
+.journey__intro .lead { margin: 22px auto 0; text-align: center; }
+.journey__hint { margin-top: 36px; font: 500 .68rem/1 var(--text); letter-spacing: .3em; text-transform: uppercase; color: var(--gold); }
+.jcap { position: absolute; left: var(--gutter); bottom: clamp(60px, 12vh, 120px); display: flex; align-items: flex-end; gap: clamp(14px, 2vw, 30px); max-width: min(720px, 80vw); opacity: 0; }
+.jcap__num { font: 400 clamp(6rem, 16vw, 15rem)/.8 var(--display); color: transparent; -webkit-text-stroke: 1.4px rgba(232, 196, 124, .9); letter-spacing: -.04em; }
+.jcap__step { display: block; margin-bottom: 10px; font: 500 .7rem/1 var(--text); letter-spacing: .3em; text-transform: uppercase; color: var(--gold); }
+.jcap h3 { font-size: clamp(2.2rem, 5vw, 4.6rem); line-height: 1; background: var(--metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.jcap h3 .sc { background: var(--metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.jcap p { margin: 14px 0 0; max-width: 26em; color: var(--cream); font-size: 1.02rem; text-shadow: 0 2px 12px rgba(0, 0, 0, .6); }
+/* шкала пути справа: шесть отметок и корона */
+.journey__path { position: absolute; right: var(--gutter); top: 50%; translate: 0 -50%; margin: 0; padding: 0; list-style: none; display: grid; gap: clamp(14px, 3vh, 26px); justify-items: end; }
+.journey__path::before { content: ""; position: absolute; right: 5px; top: 6px; bottom: 6px; width: 1px; background: rgba(232, 196, 124, .25); }
+.journey__fill { position: absolute; right: 5px; top: 6px; bottom: 6px; width: 1px; background: linear-gradient(180deg, var(--gold-l), var(--gold)); transform-origin: 50% 0; transform: scaleY(0); box-shadow: 0 0 10px rgba(232, 180, 90, .7); }
+.journey__path li { position: relative; display: flex; align-items: center; gap: 14px; flex-direction: row-reverse; }
+.journey__path li i { position: relative; z-index: 1; width: 11px; height: 11px; border-radius: 50%; border: 1px solid var(--gold); background: var(--black); transition: background .4s, box-shadow .4s; }
+.journey__path li span { font: 500 .66rem/1 var(--text); letter-spacing: .22em; text-transform: uppercase; color: rgba(244, 233, 220, .45); transition: color .4s; }
+.journey__path li.is-on i { background: var(--gold-l); box-shadow: 0 0 12px rgba(232, 180, 90, .9); }
+.journey__path li.is-on span { color: var(--cream); }
+.journey__crown svg { width: 30px; height: 22px; color: rgba(232, 196, 124, .45); transition: color .5s, filter .5s; translate: 9px 0; }
+.journey__crown.is-on svg { color: var(--gold-l); filter: drop-shadow(0 0 8px rgba(232, 180, 90, .9)); }
+.journey__end { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 28px; text-align: center; padding: 0 var(--gutter); opacity: 0; visibility: hidden;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(28, 4, 8, .55), rgba(20, 2, 6, .9)); }
+.journey__end h3 { font-size: clamp(2.6rem, 7vw, 6.4rem); line-height: 1; }
+.journey__end h3 em { font-style: normal; }
+/* вертикальные фото на широком экране — кадр справа на всю высоту, слева мягко уходит в фон под подпись */
+@media (min-width: 1001px) {
+  .jslide--tall { background: radial-gradient(ellipse 60% 70% at 70% 50%, rgba(120, 14, 30, .5), transparent 70%), #14030a; }
+  .jslide--tall img { position: absolute; right: 11%; top: 0; width: min(64%, calc(100svh * .9)); height: 100%;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 22%, #000 85%, transparent); mask-image: linear-gradient(90deg, transparent, #000 22%, #000 85%, transparent); }
+}
+.jcap h3 { white-space: nowrap; }
+@media (max-width: 1000px) {
+  .jslide { clip-path: circle(0% at 50% 35%); }
+  .jslide img { object-position: var(--pm, 50% 50%); transform-origin: var(--pm, 50% 50%); }
+  .journey__shade { background: linear-gradient(0deg, rgba(20, 2, 6, .95) 0%, rgba(20, 2, 6, .6) 34%, transparent 62%, rgba(20, 2, 6, .3)); }
+  .jcap { bottom: 110px; right: var(--gutter); max-width: none; flex-direction: column; align-items: flex-start; gap: 6px; }
+  .jcap__num { font-size: 26vw; }
+  .jcap p { font-size: .95rem; }
+  .journey__path { top: 96px; translate: 0 0; right: auto; left: var(--gutter); display: flex; gap: 0; width: calc(100% - 2 * var(--gutter)); justify-content: space-between; }
+  .journey__path::before, .journey__fill { top: 5px; bottom: auto; left: 5px; right: 5px; width: auto; height: 1px; }
+  .journey__fill { transform-origin: 0 50%; transform: scaleX(0); }
+  .journey__path li span { display: none; }
+  .journey__crown svg { translate: 0 -6px; }
+}
+
+/* =================================================================
+   УСЛОВИЯ — ЦИФРЫ
+   ================================================================= */
+.terms { padding: clamp(90px, 12vw, 160px) 0; }
+.terms__head { display: flex; justify-content: space-between; align-items: end; gap: 20px 40px; flex-wrap: wrap; margin-bottom: clamp(40px, 5vw, 70px); }
+.terms__head .lead { margin: 0; }
+.specs { perspective: 1200px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.spec { position: relative; isolation: isolate; padding: clamp(28px, 3.4vw, 52px); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden;
+  min-height: clamp(200px, 19vw, 280px); display: flex; flex-direction: column; justify-content: space-between; }
+.spec::before { /* свет, который идёт за курсором */
+  content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0; transition: opacity .5s;
+  background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 50%), rgba(200, 30, 54, .5), transparent 65%); }
+.spec:hover::before { opacity: 1; }
+.spec__label { font: 500 .72rem/1.4 var(--text); letter-spacing: .24em; text-transform: uppercase; color: var(--gold); }
+.spec__value { margin-top: 30px; font: 400 clamp(3rem, 6vw, 5.6rem)/.95 var(--display); white-space: nowrap; }
+.spec__value--word { font-size: clamp(2.6rem, 4.4vw, 4.2rem); }
+.spec__value small { font-size: .32em; color: var(--muted); margin-left: .25em; letter-spacing: 0; }
+.spec__note { margin: 12px 0 0; color: var(--muted); font-size: .95rem; }
+
+/* =================================================================
+   КАК ПОДАТЬ — ЛИНИЯ ШАГОВ
+   ================================================================= */
+.how { padding: clamp(90px, 12vw, 160px) 0; background: radial-gradient(ellipse 55% 70% at 85% 40%, rgba(200, 30, 54, .5), transparent 70%), radial-gradient(ellipse 50% 60% at 0% 80%, rgba(150, 18, 38, .4), transparent 70%), #3d0811; }
+.how__grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(40px, 7vw, 120px); align-items: start; }
+.how__aside { position: sticky; top: 22vh; }
+.how__aside .lead { margin: 24px 0 34px; }
+.tl { position: relative; margin: 0; padding: 0; list-style: none; }
+.tl__line { position: absolute; left: 36px; top: 36px; bottom: 36px; width: 1px; background: var(--line); }
+.tl__fill { position: absolute; inset: 0; background: linear-gradient(180deg, var(--gold), var(--red)); transform: scaleY(0); transform-origin: 50% 0; }
+.step { position: relative; display: grid; grid-template-columns: 72px 1fr; gap: 30px; padding-bottom: clamp(60px, 9vh, 110px); opacity: .32; transition: opacity .8s var(--ease); }
+.step:last-child { padding-bottom: 0; }
+.step__dot { position: relative; z-index: 1; display: grid; place-items: center; width: 72px; height: 72px; border-radius: 50%; border: 1px solid var(--line); background: #3d0811;
+  font: 400 1.5rem/1 var(--display); transition: border-color .8s, box-shadow .8s, color .8s; }
+.step h3 { font-size: clamp(1.7rem, 2.6vw, 2.4rem); line-height: 1.15; margin: 12px 0 10px; }
+.step p { margin: 0; color: var(--muted); max-width: 28em; }
+.step.is-on { opacity: 1; }
+.step.is-on .step__dot { border-color: var(--gold); color: #3a0710; background: var(--metal); box-shadow: 0 0 0 8px rgba(210, 176, 122, .12), 0 0 50px rgba(232, 180, 90, .45); }
+
+/* =================================================================
+   ГАЛЕРЕЯ — КОЛОННЫ С ПАРАЛЛАКСОМ
+   ================================================================= */
+.gallery { position: relative; padding: clamp(90px, 12vw, 160px) 0 clamp(40px, 5vw, 70px); overflow: clip; }
+.gallery__head { text-align: center; margin-bottom: clamp(50px, 7vw, 100px); }
+.gallery__head .kicker { justify-content: center; }
+.gallery__head .kicker::after { content: ""; width: 34px; height: 1px; background: currentColor; }
+.gallery__head .lead { margin: 20px auto 0; }
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: clamp(280px, 34vw, 520px); grid-auto-flow: dense; gap: clamp(10px, 1.4vw, 22px); }
+.gallery-grid .tile--wide { grid-column: span 2; }
+.tile { position: relative; display: block; width: 100%; padding: 0; border: 0; overflow: hidden; border-radius: 2px; background: var(--wine); cursor: zoom-in; }
+.has-cursor .tile { cursor: none; }
+.tile img { width: 100%; height: 118%; margin-top: -9%; object-fit: cover; } /* запас по высоте для параллакса внутри рамки */
+.tile { height: 100%; }
+.tile::before { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; box-shadow: inset 0 0 0 1px rgba(232, 196, 124, 0); transition: box-shadow .5s; }
+@media (hover: hover) { .tile:hover::before { box-shadow: inset 0 0 0 1px rgba(232, 196, 124, .8); } }
+
+/* =================================================================
+   ДИРЕКТОР КОНКУРСА
+   ================================================================= */
+.director { position: relative; overflow: clip; padding: clamp(80px, 10vw, 140px) 0 0;
+  background: radial-gradient(ellipse 50% 70% at 30% 60%, rgba(200, 30, 54, .55), transparent 70%), radial-gradient(ellipse 60% 40% at 50% 100%, rgba(150, 18, 38, .5), transparent 70%), var(--black-2); }
+.director__curtain { position: absolute; top: 0; bottom: 0; width: clamp(30px, 6vw, 110px); z-index: 0; pointer-events: none;
+  background: linear-gradient(0deg, rgba(0, 0, 0, .5), transparent 40%), repeating-linear-gradient(90deg, #3a060d 0, #6e1120 1.4vw, #9a1a2e 2.1vw, #6e1120 2.8vw, #3a060d 4.2vw); }
+.director__curtain--l { left: 0; } .director__curtain--r { right: 0; }
+.director__curtain::after { content: ""; position: absolute; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, #f3d9a2, #c18f3a 50%, transparent); }
+.director__curtain--l::after { right: 0; } .director__curtain--r::after { left: 0; }
+.director__grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(30px, 5vw, 90px); align-items: end; }
+.director__fig { position: relative; height: min(88svh, 820px); display: flex; justify-content: center; align-items: flex-end; }
+.director__halo { position: absolute; left: 50%; top: 4%; width: 92%; aspect-ratio: 1; translate: -50% 0; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 214, 150, .35), rgba(200, 30, 54, .25) 45%, transparent 70%); }
+.director__ring { position: absolute; left: 50%; top: 6%; width: 78%; aspect-ratio: 1; translate: -50% 0; border-radius: 50%;
+  border: 1px solid rgba(232, 196, 124, .55); box-shadow: 0 0 0 14px rgba(232, 196, 124, .05), inset 0 0 60px rgba(232, 180, 90, .15); }
+.director__ring::before { content: ""; position: absolute; inset: -14px; border-radius: 50%; border: 1px dashed rgba(232, 196, 124, .3); animation: rays 80s linear infinite; }
+.director__img { position: relative; height: 100%; width: auto; max-width: 100%; object-fit: contain; object-position: 50% 100%;
+  -webkit-mask-image: linear-gradient(180deg, #000 85%, transparent); mask-image: linear-gradient(180deg, #000 85%, transparent); }
+.director__fig::after { content: ""; position: absolute; left: 15%; right: 15%; bottom: 0; height: 60px; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, .55), transparent 70%); }
+.director__text { padding-bottom: clamp(60px, 9vw, 130px); }
+.director__name { font-size: clamp(3rem, 7vw, 6.6rem); line-height: .95; }
+.director__name > span { display: inline-block; }
+.director__patr { margin: 12px 0 0; font: 400 clamp(1.4rem, 2.4vw, 2.1rem)/1 var(--display); color: var(--cream); letter-spacing: .02em; }
+.director__lead { margin: 26px 0 34px; max-width: 30em; color: var(--muted); }
+.director__contacts { display: grid; gap: 14px; max-width: 460px; }
+.dcard { display: flex; align-items: center; gap: 18px; padding: 16px 20px; text-decoration: none; border: 1px solid rgba(232, 196, 124, .35); border-radius: 2px;
+  background: linear-gradient(110deg, rgba(244, 233, 220, .07), rgba(244, 233, 220, 0) 60%); transition: border-color .4s, background .4s, translate .5s var(--ease); }
+@media (hover: hover) { .dcard:hover { border-color: var(--gold); background: linear-gradient(110deg, rgba(232, 196, 124, .16), rgba(244, 233, 220, 0) 70%); translate: 6px 0; } }
+.dcard__icon { flex: none; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; color: #3a0710; background: var(--metal); }
+.dcard__icon svg { width: 22px; height: 22px; }
+.dcard small { display: block; font: 500 .66rem/1 var(--text); letter-spacing: .26em; text-transform: uppercase; color: var(--gold); }
+.dcard b { display: block; margin-top: 7px; font: 400 clamp(1.05rem, 1.6vw, 1.3rem)/1.2 var(--display); color: var(--cream); word-break: break-word; }
+@media (max-width: 1000px) {
+  .director { padding-top: 70px; }
+  .director__grid { grid-template-columns: 1fr; gap: 0; }
+  .director__fig { height: min(62svh, 560px); order: 0; }
+  .director__text { padding: 36px 0 90px; text-align: center; }
+  .director__text .kicker { justify-content: center; }
+  .director__text .kicker::after { content: ""; width: 34px; height: 1px; background: currentColor; }
+  .director__lead { margin-inline: auto; }
+  .director__contacts { width: 100%; margin-inline: auto; text-align: left; }
+  .director__curtain { width: 6vw; }
+}
+
+/* =================================================================
+   ВОПРОСЫ
+   ================================================================= */
+.faq { padding: clamp(50px, 6vw, 80px) 0 clamp(90px, 12vw, 160px); }
+.faq__grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: clamp(40px, 7vw, 120px); align-items: start; }
+.faq__aside .lead { margin: 24px 0 0; }
+.qa { border-top: 1px solid var(--line); }
+.qa:last-child { border-bottom: 1px solid var(--line); }
+.qa__q { display: flex; width: 100%; justify-content: space-between; align-items: center; gap: 24px; padding: 26px 0; background: none; border: 0; cursor: pointer; text-align: left;
+  font: 400 clamp(1.15rem, 1.8vw, 1.5rem)/1.3 var(--display); transition: color .4s; }
+.qa__q:hover { color: var(--gold); }
+.qa__icon { position: relative; flex: none; width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line); transition: transform .6s var(--ease), border-color .4s, background .4s; }
+.qa__icon::before, .qa__icon::after { content: ""; position: absolute; left: 50%; top: 50%; width: 14px; height: 1px; margin-left: -7px; background: var(--gold); }
+.qa__icon::after { transform: rotate(90deg); }
+.qa.is-open .qa__icon { transform: rotate(135deg); border-color: var(--gold); background: rgba(179, 23, 44, .3); }
+.qa__a { overflow: hidden; }
+.js .qa__a { height: 0; }
+.qa__a p { margin: 0 0 26px; max-width: 36em; color: var(--muted); }
+
+/* =================================================================
+   ФИНАЛ
+   ================================================================= */
+.finale { position: relative; min-height: 100svh; display: grid; place-items: center; text-align: center; overflow: hidden;
+  background: radial-gradient(ellipse 70% 55% at 50% 100%, rgba(200, 28, 50, .7), transparent 70%), var(--black); }
+.finale .beam-wrap { top: -10%; }
+.finale__photo { position: absolute; inset: 0; z-index: 0; }
+.finale__photo img { width: 100%; height: 100%; object-fit: cover; opacity: .38; filter: saturate(.7); }
+.finale__photo::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(28, 4, 8, .55), var(--black) 90%), linear-gradient(0deg, rgba(150, 18, 38, .45), transparent 60%); mix-blend-mode: normal; }
+.finale__in { position: relative; z-index: 3; padding: 90px var(--gutter); }
+/* королева в луче софита: на компьютере справа, текст — левее центра */
+.finale__queen { position: absolute; z-index: 2; right: 5vw; bottom: 0; height: min(92svh, 900px); aspect-ratio: 701 / 1200; pointer-events: none; }
+.finale__queen img { position: relative; width: 100%; height: 100%;
+  -webkit-mask-image: linear-gradient(180deg, #000 80%, transparent); mask-image: linear-gradient(180deg, #000 80%, transparent); }
+.finale__glow { position: absolute; left: 50%; top: 2%; width: 120%; aspect-ratio: 1; translate: -50% 0; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 214, 140, .4), rgba(200, 30, 54, .25) 42%, transparent 68%); }
+@media (min-width: 1001px) {
+  .finale { place-items: center start; }
+  .finale__in { width: min(58vw, 820px); margin-left: 5vw; }
+  .finale h2 { font-size: clamp(3.2rem, 7.2vw, 8rem); }
+}
+@media (max-width: 1000px) {
+  .finale { align-items: start; }
+  .finale__in { padding-top: 80px; }
+  .finale__queen { right: 50%; translate: 50% 0; height: 46svh; }
+  .finale { min-height: 112svh; }
+  .finale__in { padding-bottom: 50svh; }
+  .finale p { margin: 18px auto 26px; }
+  .finale__logo { width: 100px; margin-bottom: 10px; }
+}
+.finale__logo { display: block; width: clamp(150px, 14vw, 210px); height: auto; margin: 0 auto 20px; }
+.finale h2 { font-size: clamp(3.2rem, 10vw, 10rem); line-height: .95; }
+.finale p { margin: 26px auto 40px; max-width: 30em; color: var(--muted); }
+.spark { position: absolute; z-index: 2; pointer-events: none; width: var(--s); height: var(--s);
+  background: radial-gradient(circle, #fff3d6 0%, #e7c98f 40%, rgba(210, 176, 122, 0) 72%);
+  clip-path: polygon(50% 0, 58% 42%, 100% 50%, 58% 58%, 50% 100%, 42% 58%, 0 50%, 42% 42%);
+  opacity: 0; animation: twinkle var(--t) ease-in-out var(--d) infinite; }
+.spark--dot { clip-path: none; border-radius: 50%; }
+@keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(.4) rotate(0); } 50% { opacity: var(--o); transform: scale(1) rotate(45deg); } }
+
+/* Золотые искры: шлейф за курсором и салют по кнопке */
+.fx { position: fixed; top: 0; left: 0; z-index: 190; pointer-events: none; border-radius: 50%;
+  background: radial-gradient(circle, #fff6dc 0%, #f0cf86 45%, rgba(210, 176, 122, 0) 72%); }
+.fx--star { border-radius: 0; clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%); background: linear-gradient(180deg, #fff3cf, #e2b65f); }
+.fx--ribbon { border-radius: 1px; background: linear-gradient(90deg, #c81f37, #e8445a); }
+
+/* Подвал */
+.footer { padding: 56px 0 34px; background: #14030a; border-top: 1px solid var(--line); font-size: .95rem; color: var(--muted); }
+.footer__row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; }
+.footer__links { display: flex; flex-wrap: wrap; gap: 14px 28px; }
+.footer__links a { text-underline-offset: 6px; text-decoration-color: var(--gold); }
+.footer__copy { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 30px; margin-top: 34px; padding-top: 22px; border-top: 1px solid var(--line); font-size: .85rem; }
+
+/* Просмотр фото */
+.lightbox { position: fixed; inset: 0; z-index: 170; display: grid; place-items: center; padding: 64px var(--gutter); background: rgba(8, 0, 2, .96); opacity: 0; visibility: hidden; transition: opacity .4s, visibility .4s; }
+.lightbox.is-open { opacity: 1; visibility: visible; }
+.lightbox img { max-height: 84vh; width: auto; border-radius: 2px; }
+.lb-btn { position: absolute; width: 50px; height: 50px; border-radius: 50%; border: 1px solid var(--line); background: rgba(14, 1, 3, .6); font-size: 1.4rem; cursor: pointer; display: grid; place-items: center; }
+.lb-btn:hover { background: var(--red); }
+.lb-close { top: 16px; right: 16px; }
+.lb-prev { left: 16px; top: 50%; margin-top: -25px; } .lb-next { right: 16px; top: 50%; margin-top: -25px; }
+
+/* Кнопка внизу экрана на телефоне */
+.mbar { position: fixed; left: 12px; right: 12px; bottom: max(12px, env(safe-area-inset-bottom)); z-index: 45; display: none; transform: translateY(160%); transition: transform .6s var(--ease); }
+.mbar.is-shown { transform: none; }
+.mbar .btn { width: 100%; box-shadow: 0 14px 34px -10px rgba(0, 0, 0, .8); }
+
+/* =================================================================
+   АДАПТИВ
+   ================================================================= */
+@media (max-width: 1000px) {
+  .how__grid, .faq__grid { grid-template-columns: 1fr; }
+  .how__aside { position: static; }
+  .specs { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 1000px) {
+  body { font-size: 16.5px; }
+  .logo__mark { height: 44px; }
+  .logo__text { font-size: 1.05rem; }
+  .logo__text small { font-size: .5rem; letter-spacing: .24em; }
+  .mani-photo--1 { position: relative; right: auto; top: auto; display: block; width: calc(100% - 2 * var(--gutter)); max-width: 460px; aspect-ratio: 4 / 3; margin: 0 auto 34px; }
+  .mani-photo--1 img { object-position: 50% 25%; }
+  .mani-photo--2 { display: none; }
+  .mani { font-size: clamp(1.75rem, 8vw, 2.4rem); }
+  .mani-foot { grid-template-columns: 1fr; }
+  .specs { grid-template-columns: 1fr 1fr; }
+  .spec { min-height: 0; }
+  .spec__value--word { font-size: clamp(2rem, 7vw, 3rem); }
+  .spec__value { white-space: nowrap; }
+}
+@media (max-width: 600px) {
+  .specs { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 58vw; gap: 8px; }
+  .step { grid-template-columns: 56px 1fr; gap: 20px; }
+  .step__dot { width: 56px; height: 56px; font-size: 1.2rem; }
+  .tl__line { left: 28px; top: 28px; }
+}
+/* первый экран: телефонная раскладка и на любых «вертикальных» экранах до планшета включительно */
+@media (max-width: 1000px), (max-width: 1100px) and (orientation: portrait) {
+  .bigword { font-size: 29vw; }
+  .bigword--fill { top: 13svh; left: -3vw; }
+  .bigword--line { top: 31svh; font-size: 24vw; }
+  .arch { width: 64vw; height: 60svh; margin-left: -32vw; }
+  .stage::after { content: ""; position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; height: 52%; background: linear-gradient(0deg, var(--black) 18%, rgba(28, 4, 8, .7) 55%, transparent); pointer-events: none; }
+  .hero__info { right: var(--gutter); max-width: none; bottom: 26px; }
+  .hero__info .btn { width: 100%; }
+  .hero__meta { display: none; }
+  .hero__info .btn { max-width: 520px; }
+}
+/* меню-«бургер» и нижняя кнопка — до 1200px, иначе пункты меню наезжают на логотип */
+@media (max-width: 1200px) {
+  .nav__links { position: fixed; inset: 0; z-index: -1; flex-direction: column; justify-content: center; align-items: center; gap: 30px; background: var(--black); font: 400 2rem/1 var(--display); letter-spacing: 0; text-transform: none; opacity: 0; visibility: hidden; transition: opacity .5s, visibility .5s; }
+  .nav.is-open .nav__links { opacity: 1; visibility: visible; }
+  .nav__links a { color: var(--cream); }
+  .nav.is-open { background: transparent; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; transform: none !important; }
+  .nav__links { height: 100svh; counter-reset: m;
+    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(190, 24, 46, .45), transparent 70%), radial-gradient(ellipse 70% 40% at 50% 100%, rgba(150, 18, 38, .4), transparent 70%), #1c0408; }
+  .nav__links li { counter-increment: m; opacity: 0; transform: translateY(24px); transition: opacity .6s var(--ease), transform .8s var(--ease); }
+  .nav__links li a::before { content: "0" counter(m); display: block; margin-bottom: 4px; text-align: center; font: 500 .62rem/1 var(--text); letter-spacing: .3em; color: var(--gold); }
+  .nav__links li a::after { display: none; }
+  .nav.is-open .nav__links li { opacity: 1; transform: none; }
+  .nav.is-open .nav__links li:nth-child(2) { transition-delay: .05s; }
+  .nav.is-open .nav__links li:nth-child(3) { transition-delay: .1s; }
+  .nav.is-open .nav__links li:nth-child(4) { transition-delay: .15s; }
+  .nav.is-open .nav__links li:nth-child(5) { transition-delay: .2s; }
+  .nav.is-open .nav__links li:nth-child(6) { transition-delay: .25s; }
+  .menu-open .mbar { transform: translateY(160%); }
+  .burger { display: block; }
+  .nav .btn { display: none; }
+  .mbar { display: block; }
+  .footer { padding-bottom: 110px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- Занавес при загрузке -->
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="intro__half intro__half--l"></div>
+  <div class="intro__half intro__half--r"></div>
+  <div class="intro__inner">
+    <img class="intro__logo" src="images/logo.png" alt="" width="700" height="700">
+  </div>
+</div>
+
+<div class="progress" id="progress"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"><b>Смотреть</b></div>
+
+<header class="nav" id="nav">
+  <div class="wrap nav__row">
+    <a class="logo" href="#top" data-scroll aria-label="Мисс и Миссис Краснодарский край — наверх">
+      <img class="logo__mark" src="images/logo-shield.png" alt="" width="126" height="200"><span class="logo__text">Мисс и Миссис<small>Краснодарский край</small></span>
+    </a>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="#about" data-scroll>О конкурсе</a></li>
+      <li><a href="#categories" data-scroll>Категории</a></li>
+      <li><a href="#perks" data-scroll>Что ждёт</a></li>
+      <li><a href="#terms" data-scroll>Условия</a></li>
+      <li><a href="#gallery" data-scroll>Галерея</a></li>
+      <li><a href="#director" data-scroll>Директор</a></li>
+      <li><a href="#faq" data-scroll>Вопросы</a></li>
+    </ul>
+    <a class="btn js-bot magnetic" href="#" target="_blank" rel="noopener">Подать анкету</a>
+    <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="navLinks"><i></i><i></i></button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- Первый экран: сцена -->
+  <section class="stage" id="stage">
+    <h1 class="sr">Мисс и Миссис Краснодарский край 2027 — конкурс красоты</h1>
+    <div class="beam-wrap" id="beam"><div class="beam"></div><canvas class="dust" id="dust"></canvas></div>
+    <div class="floor"></div>
+    <p class="bigword bigword--fill metal" aria-hidden="true" data-split="chars">Мисс</p>
+    <p class="bigword bigword--line" aria-hidden="true" data-split="chars">Миссис</p>
+    <div class="arch tone" id="arch"><img src="images/hero-arch.jpg" alt="Победительница в бриллиантовой короне" fetchpriority="high"></div>
+    <div class="hero__info" id="heroInfo">
+      <span class="kicker">Краснодарский край · 2027</span>
+      <p class="hero__tag">Свет софитов ждёт тебя</p>
+      <p class="hero__note">Анкеты до 15 января 2027<br><b data-days>скоро финиш</b></p>
+      <a class="btn js-bot magnetic" href="#" target="_blank" rel="noopener">Выйти на сцену <span>→</span></a>
+    </div>
+    <div class="hero__meta" id="heroMeta"><img class="hero__logo" src="images/logo.png" alt="Герб конкурса «Мисс и Миссис Краснодарский край»" width="700" height="700"><b>14–45</b>лет<br>3 категории<br>любой город и регион</div>
+  </section>
+
+  <!-- Ленты -->
+  <div class="ribbons" aria-hidden="true">
+    <div class="rb rb--b"><div class="rb__track"><span>Красота</span><span>Характер</span><span>Уверенность</span><span>Сцена</span><span>Красота</span><span>Характер</span><span>Уверенность</span><span>Сцена</span></div></div>
+    <div class="rb rb--a"><div class="rb__track"><span>Мисс и Миссис</span><span>✦</span><span>Краснодарский край</span><span>✦</span><span>Сезон 2027</span><span>✦</span><span>Мисс и Миссис</span><span>✦</span><span>Краснодарский край</span><span>✦</span><span>Сезон 2027</span><span>✦</span></div></div>
+  </div>
+
+  <!-- О конкурсе — манифест -->
+  <section class="manifesto" id="about">
+    <div class="mani-photo mani-photo--1 tone" data-speed="-14"><img src="images/interview.jpg" alt="Участница в красном платье даёт интервью" loading="lazy"></div>
+    <div class="mani-photo mani-photo--2 tone" data-speed="12"><img src="images/hall-stage.jpg" alt="" loading="lazy"></div>
+    <div class="wrap">
+      <span class="kicker" data-r>О конкурсе</span>
+      <p class="mani" id="mani">Сцена ждёт тех, кто умеет <em>светиться.</em> «Мисс и Миссис Краснодарский край» — конкурс, где ценят <em>красоту, характер и уверенность.</em> Участвовать могут девушки и женщины от 14 до 45 лет из любого города и региона.</p>
+      <div class="mani-foot">
+        <div data-r><strong>до 15 января 2027</strong><small>приём анкет</small></div>
+        <p data-r>Участниц ждут фотосессии, репетиции с хореографами и стилистами, новые знакомства и финальное шоу на большой сцене.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Пролёт сквозь слово «СЦЕНА» -->
+  <section class="zoom" id="zoom" aria-label="Сцена конкурса">
+    <div class="zoom__photo"><img src="images/lineup-crest.jpg" alt="Участницы на сцене у герба конкурса" loading="lazy"></div>
+    <div class="zoom__mask" aria-hidden="true"><span class="zoom__word">Сцена</span></div>
+    <div class="zoom__cap">
+      <span class="kicker">Сезон 2027</span>
+      <p>Твой выход — <em>следующий</em></p>
+    </div>
+    <div class="zoom__hint" aria-hidden="true">Листайте</div>
+  </section>
+
+  <!-- Категории: три королевы выходят из тени -->
+  <section class="crowns" id="categories">
+    <div class="crowns__word" aria-hidden="true">Короны</div>
+    <div class="crowns__rays" aria-hidden="true"></div>
+    <div class="crowns__curtain crowns__curtain--l" aria-hidden="true"><i class="crowns__tassel"></i></div>
+    <div class="crowns__curtain crowns__curtain--r" aria-hidden="true"><i class="crowns__tassel"></i></div>
+    <div class="crowns__floor" aria-hidden="true"></div>
+    <div class="wrap crowns__in">
+      <div class="crowns__head">
+        <span class="kicker">Категории</span>
+        <h2 data-split="chars">Три короны</h2>
+      </div>
+      <div class="crowns__stage">
+        <article class="queen queen--mrs">
+          <div class="queen__fig">
+            <i class="queen__beam" aria-hidden="true"></i>
+            <div class="queen__body" style="--ar: 760 / 904">
+              <img class="queen__dark" src="images/cut-mrs.webp" alt="" aria-hidden="true">
+              <img class="queen__lit" src="images/cut-mrs.webp" alt="Победительница в категории «Миссис» в золотой короне и белых перьях">
+              <i class="queen__shine" style="--cut: url(images/cut-mrs.webp)" aria-hidden="true"></i>
+              <i class="queen__glint" aria-hidden="true"></i><i class="queen__glint queen__glint--2" aria-hidden="true"></i>
+            </div>
+          </div>
+          <div class="queen__podium" aria-hidden="true"></div>
+          <div class="queen__cap"><h3>Миссис</h3><span class="queen__age">20–45 лет</span><p>Для женщин, которые вдохновляют.</p></div>
+        </article>
+        <article class="queen queen--miss">
+          <div class="queen__fig">
+            <i class="queen__beam" aria-hidden="true"></i>
+            <div class="queen__body" style="--ar: 673 / 1000">
+              <img class="queen__dark" src="images/cut-miss.webp" alt="" aria-hidden="true">
+              <img class="queen__lit" src="images/cut-miss.webp" alt="Победительница «Мисс Россия Краснодар» в короне и ленте">
+              <i class="queen__shine" style="--cut: url(images/cut-miss.webp)" aria-hidden="true"></i>
+              <i class="queen__glint" aria-hidden="true"></i><i class="queen__glint queen__glint--2" aria-hidden="true"></i>
+            </div>
+          </div>
+          <div class="queen__podium" aria-hidden="true"></div>
+          <div class="queen__cap"><h3>Мисс</h3><span class="queen__age">18–35 лет</span><p>Для тех, кто готов заявить о себе.</p></div>
+        </article>
+        <article class="queen queen--young">
+          <div class="queen__fig">
+            <i class="queen__beam" aria-hidden="true"></i>
+            <div class="queen__body" style="--ar: 672 / 1000">
+              <img class="queen__dark" src="images/cut-young.webp" alt="" aria-hidden="true">
+              <img class="queen__lit" src="images/cut-young.webp" alt="Победительница в категории «Юная Мисс» в розовой короне">
+              <i class="queen__shine" style="--cut: url(images/cut-young.webp)" aria-hidden="true"></i>
+              <i class="queen__glint" aria-hidden="true"></i><i class="queen__glint queen__glint--2" aria-hidden="true"></i>
+            </div>
+          </div>
+          <div class="queen__podium" aria-hidden="true"></div>
+          <div class="queen__cap"><h3>Юная Мисс</h3><span class="queen__age">14–17 лет</span><p>Первые шаги на сцене. Согласие даёт родитель.</p></div>
+        </article>
+      </div>
+      <p class="crowns__note">Категорию бот предложит сам по возрасту. В 20–35 лет можно выбрать между «Мисс» и «Миссис».</p>
+    </div>
+  </section>
+
+  <!-- Что ждёт участниц — «Путь к короне»: кинопоказ по прокрутке -->
+  <section class="journey" id="perks">
+    <div class="journey__slides">
+      <figure class="jslide jslide--tall"><img src="images/white-feathers.jpg" alt="Участница в образе из белых перьев под светом студийной лампы" loading="lazy" style="--pd: 50% 30%; --pm: 38% 50%"></figure>
+      <figure class="jslide jslide--tall"><img src="images/black-lace.jpg" alt="Участница в чёрном кружевном образе идёт по подиуму" loading="lazy" style="--pd: 50% 30%; --pm: 50% 50%"></figure>
+      <figure class="jslide"><img src="images/kokoshnik.jpg" alt="Участница в национальном костюме с кокошником" loading="lazy" style="--pd: 50% 40%; --pm: 48% 50%"></figure>
+      <figure class="jslide"><img src="images/red-carpet.jpg" alt="Победительницы на красной дорожке" loading="lazy" style="--pd: 50% 25%; --pm: 58% 50%"></figure>
+      <figure class="jslide jslide--tall"><img src="images/lineup-crest.jpg" alt="Участницы на сцене у герба конкурса" loading="lazy" style="--pd: 50% 50%; --pm: 60% 50%"></figure>
+      <figure class="jslide"><img src="images/winners.jpg" alt="Победительницы в коронах с цветами" loading="lazy" style="--pd: 50% 18%; --pm: 53% 50%"></figure>
+    </div>
+    <div class="journey__shade" aria-hidden="true"></div>
+    <div class="journey__intro">
+      <span class="kicker">Что ждёт участниц</span>
+      <h2 data-split="chars">Путь к короне</h2>
+      <p class="lead">Шесть этапов — от первой фотосессии до коронации на большой сцене.</p>
+      <span class="journey__hint" aria-hidden="true">Листайте</span>
+    </div>
+    <div class="journey__caps">
+      <div class="jcap"><span class="jcap__num" aria-hidden="true">01</span><div><span class="jcap__step">Этап 1 из 6</span><h3 data-split="chars">Фотосессии</h3><p>Профессиональные съёмки в образах конкурса — ваши лучшие кадры сезона.</p></div></div>
+      <div class="jcap"><span class="jcap__num" aria-hidden="true">02</span><div><span class="jcap__step">Этап 2 из 6</span><h3 data-split="chars">Репетиции</h3><p>Хореограф учит держаться на сцене, красиво двигаться и позировать.</p></div></div>
+      <div class="jcap"><span class="jcap__num" aria-hidden="true">03</span><div><span class="jcap__step">Этап 3 из 6</span><h3 data-split="chars">Образы</h3><p>Стилисты подбирают платья и образы для каждого выхода.</p></div></div>
+      <div class="jcap"><span class="jcap__num" aria-hidden="true">04</span><div><span class="jcap__step">Этап 4 из 6</span><h3 data-split="chars">Знакомства</h3><p>Участницы из разных городов, команда конкурса и гости.</p></div></div>
+      <div class="jcap"><span class="jcap__num" aria-hidden="true">05</span><div><span class="jcap__step">Этап 5 из 6</span><h3 data-split="chars">Финальное шоу</h3><p>Большая сцена, свет, зрители и жюри — ваш главный выход.</p></div></div>
+      <div class="jcap"><span class="jcap__num" aria-hidden="true">06</span><div><span class="jcap__step">Этап 6 из 6</span><h3 data-split="chars">Корона</h3><p>Победительницы каждой категории получают титул сезона 2027.</p></div></div>
+    </div>
+    <ol class="journey__path" aria-hidden="true">
+        <li><i></i><span>Фотосессии</span></li>
+        <li><i></i><span>Репетиции</span></li>
+        <li><i></i><span>Образы</span></li>
+        <li><i></i><span>Знакомства</span></li>
+        <li><i></i><span>Финальное шоу</span></li>
+        <li><i></i><span>Корона</span></li>
+      <li class="journey__crown"><svg viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 25 3.5 8l10.5 8L24 3l10 13 10.5-8L42 25z"/><path d="M7 29.5h34"/></svg></li>
+      <b class="journey__fill"></b>
+    </ol>
+    <div class="journey__end">
+      <h3>Твой выход — <em>следующий</em></h3>
+      <a class="btn js-bot magnetic" href="#" target="_blank" rel="noopener">Подать анкету <span>→</span></a>
+    </div>
+  </section>
+
+  <!-- Условия -->
+  <section class="terms" id="terms">
+    <div class="wrap">
+      <div class="terms__head">
+        <div><span class="kicker" data-r>Условия</span><h2 data-split="chars">Кто может участвовать</h2></div>
+        <p class="lead" data-r>Опыт в конкурсах не нужен — если его нет, так и напишите в анкете.</p>
+      </div>
+      <div class="specs" id="specs">
+        <div class="spec"><span class="spec__label">Возраст</span><div class="spec__value"><span data-to="14">14</span>–<span data-to="45">45</span><small>лет</small></div></div>
+        <div class="spec"><span class="spec__label">Рост</span><div class="spec__value"><small style="margin:0 .25em 0 0">от</small><span data-to="165">165</span><small>см</small></div></div>
+        <div class="spec"><span class="spec__label">Размер одежды</span><div class="spec__value"><span data-to="40">40</span>–<span data-to="46">46</span></div></div>
+        <div class="spec"><span class="spec__label">Что прислать</span><div><div class="spec__value"><span data-to="5">5</span><small>фото или видео</small></div><p class="spec__note">Портрет и в полный рост, в любом сочетании</p></div></div>
+        <div class="spec"><span class="spec__label">Откуда</span><div><div class="spec__value spec__value--word">Любой<small>город</small></div><p class="spec__note">Участвовать можно из любого региона</p></div></div>
+        <div class="spec"><span class="spec__label">Семейное положение</span><div><div class="spec__value spec__value--word">Любое</div><p class="spec__note">Замужем — категория «Миссис»</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Как подать -->
+  <section class="how" id="how">
+    <div class="wrap how__grid">
+      <div class="how__aside">
+        <span class="kicker" data-r>Как участвовать</span>
+        <h2 data-split="chars">Как подать анкету</h2>
+        <p class="lead" data-r>Анкета заполняется в Telegram-боте конкурса и занимает около пяти минут.</p>
+        <div data-r><a class="btn js-bot magnetic" href="#" target="_blank" rel="noopener">Открыть бота <span>→</span></a></div>
+      </div>
+      <div class="tl" id="tl">
+        <span class="tl__line" aria-hidden="true"><i class="tl__fill" id="tlFill"></i></span>
+        <ol style="margin:0;padding:0;list-style:none">
+          <li class="step"><span class="step__dot">01</span><div><h3>Откройте бота</h3><p>Нажмите «Подать анкету» — откроется Telegram-бот конкурса.</p></div></li>
+          <li class="step"><span class="step__dot">02</span><div><h3>Ответьте на вопросы</h3><p>Имя, город, возраст, рост, размер одежды и опыт участия в конкурсах.</p></div></li>
+          <li class="step"><span class="step__dot">03</span><div><h3>Пришлите 5 фото</h3><p>Портрет и фото в полный рост. Часть фото можно заменить видео.</p></div></li>
+          <li class="step"><span class="step__dot">04</span><div><h3>Ждите звонка</h3><p>Организаторы посмотрят анкету и свяжутся с вами по телефону или в Telegram.</p></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Галерея -->
+  <section class="gallery" id="gallery">
+    <div class="wrap">
+      <div class="gallery__head">
+        <span class="kicker" data-r>Фото</span>
+        <h2 data-split="chars">Галерея</h2>
+        <p class="lead" data-r>Нажмите на фото, чтобы посмотреть его целиком.</p>
+      </div>
+      <div class="gallery-grid" id="gcols">
+        <button class="tile tile--wide tone" type="button" data-full="images/coronation.jpg"><img src="images/coronation.jpg" alt="Коронация под огни" loading="lazy"></button>
+        <button class="tile tone" type="button" data-full="images/host-red.jpg"><img src="images/host-red.jpg" alt="Ведущая в красном у герба конкурса" loading="lazy"></button>
+        <button class="tile tone" type="button" data-full="images/veils.jpg"><img src="images/veils.jpg" alt="Участницы под фатой на сцене" loading="lazy"></button>
+        <button class="tile tone" type="button" data-full="images/brides-stairs.jpg"><img src="images/brides-stairs.jpg" alt="Выход участниц в белых платьях" loading="lazy"></button>
+        <button class="tile tone" type="button" data-full="images/flag-wings.jpg"><img src="images/flag-wings.jpg" alt="Участница в костюме с крыльями цветов флага" loading="lazy"></button>
+        <button class="tile tone" type="button" data-full="images/black-lace.jpg"><img src="images/black-lace.jpg" alt="Участница в чёрном кружевном образе на подиуме" loading="lazy"></button>
+        <button class="tile tile--wide tone" type="button" data-full="images/winners.jpg"><img src="images/winners.jpg" alt="Победительницы в коронах" loading="lazy"></button>
+        <button class="tile tone" type="button" data-full="images/white-feathers.jpg"><img src="images/white-feathers.jpg" alt="Образ из белых перьев в луче света" loading="lazy"></button>
+        <button class="tile tone" type="button" data-full="images/lineup-crest.jpg"><img src="images/lineup-crest.jpg" alt="Участницы на сцене у герба конкурса" loading="lazy"></button>
+        <button class="tile tone" type="button" data-full="images/bride-palace.jpg"><img src="images/bride-palace.jpg" alt="Выход в белом на фоне дворцовой лестницы" loading="lazy"></button>
+        <button class="tile tile--wide tone" type="button" data-full="images/gala-table.jpg"><img src="images/gala-table.jpg" alt="Шампанское и устрицы на гала-ужине" loading="lazy"></button>
+        <button class="tile tone" type="button" data-full="images/feather-wave.jpg"><img src="images/feather-wave.jpg" alt="Участница в шляпе из перьев приветствует зал" loading="lazy"></button>
+        <button class="tile tone" type="button" data-full="images/chandeliers.jpg"><img src="images/chandeliers.jpg" alt="Люстры и гости в зале" loading="lazy"></button>
+        <button class="tile tone" type="button" data-full="images/host-mic.jpg"><img src="images/host-mic.jpg" alt="Ведущая в красном с микрофоном" loading="lazy"></button>
+        <button class="tile tone" type="button" data-full="images/hall-tables.jpg"><img src="images/hall-tables.jpg" alt="Зал конкурса с гостями" loading="lazy"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Директор конкурса -->
+  <section class="director" id="director">
+    <div class="director__curtain director__curtain--l" aria-hidden="true"></div>
+    <div class="director__curtain director__curtain--r" aria-hidden="true"></div>
+    <div class="wrap director__grid">
+      <div class="director__fig">
+        <div class="director__halo" aria-hidden="true"></div>
+        <div class="director__ring" aria-hidden="true"></div>
+        <img class="director__img" src="images/director.webp" alt="Директор конкурса Елена Александровна Конусова" width="525" height="1111" loading="lazy">
+      </div>
+      <div class="director__text">
+        <span class="kicker">Директор конкурса</span>
+        <h2 class="director__name"><span data-split="chars">Елена</span> <span data-split="chars">Конусова</span></h2>
+        <p class="director__patr">Александровна</p>
+        <p class="director__lead">Руководитель конкурса «Мисс и Миссис Краснодарский край». По вопросам участия, партнёрства и сотрудничества — пишите или звоните напрямую.</p>
+        <div class="director__contacts">
+          <a class="dcard" href="tel:+79883692915"><span class="dcard__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true"><path d="M6.6 3.5h2.6l1.4 4-2 1.6a12 12 0 0 0 6.3 6.3l1.6-2 4 1.4v2.6c0 1-.8 1.8-1.8 1.8A16.2 16.2 0 0 1 4.8 5.3c0-1 .8-1.8 1.8-1.8z"/></svg></span><span><small>Телефон</small><b>+7 988 369-29-15</b></span></a>
+          <a class="dcard" href="mailto:missis.krasnodar@gmail.com"><span class="dcard__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m3.5 6 8.5 7 8.5-7"/></svg></span><span><small>Почта</small><b>missis.krasnodar@gmail.com</b></span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Вопросы -->
+  <section class="faq" id="faq">
+    <div class="wrap faq__grid">
+      <div class="faq__aside">
+        <span class="kicker" data-r>Вопросы</span>
+        <h2 data-split="chars">Частые вопросы</h2>
+        <p class="lead" data-r>Не нашли ответ? Начните анкету — бот подскажет на каждом шаге.</p>
+      </div>
+      <div id="faqList">
+        <div class="qa"><button class="qa__q" type="button" aria-expanded="false">Нужен ли опыт участия в конкурсах?<i class="qa__icon"></i></button><div class="qa__a"><p>Нет. В анкете есть вопрос об опыте, но если его нет — так и напишите. Участвовать можно с нуля.</p></div></div>
+        <div class="qa"><button class="qa__q" type="button" aria-expanded="false">Я живу не в Краснодарском крае. Можно участвовать?<i class="qa__icon"></i></button><div class="qa__a"><p>Да, анкету может подать участница из любого города и региона.</p></div></div>
+        <div class="qa"><button class="qa__q" type="button" aria-expanded="false">Мне меньше 18 лет. Что нужно?<i class="qa__icon"></i></button><div class="qa__a"><p>Для вас категория «Юная Мисс» — от 14 до 17 лет. Согласие на обработку данных даёт родитель или законный представитель.</p></div></div>
+        <div class="qa"><button class="qa__q" type="button" aria-expanded="false">Я замужем. В какую категорию подавать?<i class="qa__icon"></i></button><div class="qa__a"><p>«Миссис» — от 20 до 45 лет. Если вам от 20 до 35, бот предложит выбрать между «Мисс» и «Миссис».</p></div></div>
+        <div class="qa"><button class="qa__q" type="button" aria-expanded="false">Какие фото прислать?<i class="qa__icon"></i></button><div class="qa__a"><p>Пять фото или видео в любом сочетании: портрет и фото в полный рост. Видео можно прислать вместо части фото.</p></div></div>
+        <div class="qa"><button class="qa__q" type="button" aria-expanded="false">Что будет после отправки анкеты?<i class="qa__icon"></i></button><div class="qa__a"><p>Организаторы посмотрят анкету и свяжутся с вами по телефону или в Telegram.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Финал -->
+  <section class="finale" id="finale" data-sparks="26">
+    <div class="finale__photo" aria-hidden="true"><img src="images/coronation.jpg" alt="" loading="lazy"></div>
+    <div class="beam-wrap"><div class="beam"></div></div>
+    <div class="finale__queen" aria-hidden="true">
+      <i class="finale__glow"></i>
+      <img src="images/cut-gold.webp" alt="" width="701" height="1200" loading="lazy">
+    </div>
+    <div class="finale__in">
+      <img class="finale__logo" id="finaleLogo" src="images/logo.png" alt="Герб конкурса «Мисс и Миссис Краснодарский край»" width="700" height="700" loading="lazy">
+      <h2 data-split="chars">Твоя корона ждёт</h2>
+      <p>Заполните анкету в Telegram. Это займёт около пяти минут, а организаторы ответят сами.</p>
+      <div><a class="btn js-bot magnetic" href="#" target="_blank" rel="noopener">Подать анкету <span>→</span></a></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__row">
+      <a class="logo logo--footer" href="#top" data-scroll aria-label="Мисс и Миссис Краснодарский край — наверх">
+        <img class="logo__full" src="images/logo.png" alt="Герб конкурса «Мисс и Миссис Краснодарский край»" width="700" height="700" loading="lazy">
+      </a>
+      <div class="footer__links" id="contacts"></div>
+    </div>
+    <div class="footer__copy"><span>© <span id="year"></span> «Мисс и Миссис Краснодарский край»</span><span>Организатор: ИП Лысенко Надежда Николаевна</span></div>
+  </div>
+</footer>
+
+<div class="mbar" id="mbar"><a class="btn js-bot" href="#" target="_blank" rel="noopener">Подать анкету</a></div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр фото">
+  <button class="lb-btn lb-close" id="lbClose" aria-label="Закрыть">×</button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Предыдущее фото">‹</button>
+  <img id="lbImg" alt="">
+  <button class="lb-btn lb-next" id="lbNext" aria-label="Следующее фото">›</button>
+</div>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/lenis.min.js"></script>
+<script>
+/* Настройки сайта */
+const SITE = {
+  botUrl: "https://t.me/msmrs_krasnodarskiykray_bot",
+  deadline: "2027-01-15T23:59:59+03:00",
+  contacts: {                  // пустые не показываются
+    "Telegram-бот": "https://t.me/msmrs_krasnodarskiykray_bot",
+    "Instagram": "",
+    "ВКонтакте": "",
+    "Почта": "missis.krasnodar@gmail.com",
+    "Телефон": "+7 988 369-29-15",
+  },
+};
+
+(function () {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const fine = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const gsap = window.gsap && window.ScrollTrigger ? window.gsap : null;
+  const intro = $("#intro");
+  const hideIntro = () => intro && (intro.style.display = "none");
+  setTimeout(hideIntro, 8000); // страховка: занавес не останется висеть ни при каких ошибках
+
+  /* ---------- Общее: ссылки, дни, контакты ---------- */
+  $$(".js-bot").forEach(a => (a.href = SITE.botUrl));
+  $("#year").textContent = new Date().getFullYear();
+  Object.entries(SITE.contacts).forEach(([name, v]) => {
+    if (!v) return;
+    const a = document.createElement("a");
+    a.textContent = name === "Телефон" || name === "Почта" ? v : name;
+    a.href = name === "Телефон" ? "tel:" + v.replace(/[^\d+]/g, "") : name === "Почта" ? "mailto:" + v : v;
+    if (name !== "Телефон" && name !== "Почта") { a.target = "_blank"; a.rel = "noopener"; }
+    $("#contacts").appendChild(a);
+  });
+  const days = Math.ceil((new Date(SITE.deadline) - Date.now()) / 864e5);
+  const plural = n => (n % 10 === 1 && n % 100 !== 11) ? "день" : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) ? "дня" : "дней";
+  $("[data-days]").textContent = days > 0 ? `осталось ${days} ${plural(days)}` : "приём анкет завершён";
+
+  /* ---------- Плавная прокрутка ---------- */
+  let lenis = null;
+  if (window.Lenis && !reduce) {
+    lenis = new Lenis({ lerp: .085 });
+    if (gsap) {
+      lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add(t => lenis.raf(t * 1000));
+      gsap.ticker.lagSmoothing(0);
+    } else {
+      (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
+    }
+  }
+  const lock = on => lenis ? (on ? lenis.stop() : lenis.start()) : (document.body.style.overflow = on ? "hidden" : "");
+
+  /* ---------- Меню и якоря ---------- */
+  const nav = $("#nav"), burger = $("#burger");
+  const setMenu = open => { nav.classList.toggle("is-open", open); document.documentElement.classList.toggle("menu-open", open); burger.setAttribute("aria-expanded", open); burger.setAttribute("aria-label", open ? "Закрыть меню" : "Открыть меню"); lock(open); };
+  burger.addEventListener("click", () => setMenu(!nav.classList.contains("is-open")));
+  $$("[data-scroll]").forEach(a => a.addEventListener("click", e => {
+    const id = a.getAttribute("href"), t = id === "#top" ? 0 : $(id);
+    if (t === null) return;
+    e.preventDefault(); setMenu(false);
+    lenis ? lenis.scrollTo(t, { offset: 0, duration: 1.6 }) : (t === 0 ? scrollTo({ top: 0, behavior: "smooth" }) : t.scrollIntoView({ behavior: "smooth" }));
+  }));
+
+  /* ---------- Шапка и нижняя кнопка ---------- */
+  const stage = $("#stage"), mbar = $("#mbar"); let lastY = 0, travel = 0;
+  // на телефоне шапка всегда на месте: палец двигает страницу неровно, и прятки «дёргаются»
+  const canHide = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const onScroll = () => {
+    const y = scrollY, h = stage.offsetHeight, d = y - lastY;
+    nav.classList.toggle("is-solid", y > 40);
+    // прячем/показываем только после заметного пути в одну сторону (80px), а не от каждого рывка
+    travel = Math.sign(d) === Math.sign(travel) ? travel + d : d;
+    if (canHide && !nav.classList.contains("is-open")) {
+      if (y < h) nav.classList.remove("is-hidden");
+      else if (travel > 80) nav.classList.add("is-hidden");
+      else if (travel < -80) nav.classList.remove("is-hidden");
+    }
+    mbar.classList.toggle("is-shown", y > h * .8 && y + innerHeight < document.documentElement.scrollHeight - 400);
+    lastY = y;
+  };
+  addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+  /* ---------- Вопросы ---------- */
+  $$(".qa").forEach(qa => {
+    const q = $(".qa__q", qa), a = $(".qa__a", qa);
+    q.addEventListener("click", () => {
+      const open = !qa.classList.contains("is-open");
+      qa.classList.toggle("is-open", open); q.setAttribute("aria-expanded", open);
+      if (gsap && !reduce) gsap.to(a, { height: open ? "auto" : 0, duration: .7, ease: "expo.out", onComplete: () => ScrollTrigger.refresh() });
+      else a.style.height = open ? "auto" : "0";
+    });
+  });
+
+  /* ---------- Просмотр фото ---------- */
+  const tiles = $$("#gcols .tile"), lb = $("#lightbox"), lbImg = $("#lbImg"); let cur = 0;
+  const show = i => { cur = (i + tiles.length) % tiles.length; const t = tiles[cur]; lbImg.src = t.dataset.full; lbImg.alt = $("img", t).alt; };
+  const openLb = i => { show(i); lb.classList.add("is-open"); lock(true); $("#lbClose").focus(); };
+  const closeLb = () => { lb.classList.remove("is-open"); lock(false); tiles[cur].focus(); };
+  tiles.forEach((t, i) => t.addEventListener("click", () => openLb(i)));
+  $("#lbClose").onclick = closeLb; $("#lbPrev").onclick = () => show(cur - 1); $("#lbNext").onclick = () => show(cur + 1);
+  lb.addEventListener("click", e => { if (e.target === lb) closeLb(); });
+  addEventListener("keydown", e => {
+    if (e.key === "Escape") { if (lb.classList.contains("is-open")) closeLb(); else setMenu(false); }
+    if (!lb.classList.contains("is-open")) return;
+    if (e.key === "ArrowLeft") show(cur - 1); if (e.key === "ArrowRight") show(cur + 1);
+  });
+  let tx = 0;
+  lb.addEventListener("touchstart", e => (tx = e.touches[0].clientX), { passive: true });
+  lb.addEventListener("touchend", e => { const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1)); });
+
+  /* ---------- Подсветка ячеек условий за курсором ---------- */
+  $$(".spec").forEach(c => c.addEventListener("pointermove", e => {
+    const r = c.getBoundingClientRect();
+    c.style.setProperty("--mx", e.clientX - r.left + "px"); c.style.setProperty("--my", e.clientY - r.top + "px");
+  }));
+
+  // Без анимаций (библиотека не загрузилась или включено «уменьшить движение») — всё уже на месте
+  if (!gsap || reduce) {
+    hideIntro();
+    $$(".step").forEach(s => s.classList.add("is-on"));
+    return;
+  }
+
+  /* =================================================================
+     АНИМАЦИИ
+     ================================================================= */
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  scrollTo(0, 0);
+
+  // Разбивка текста на буквы или слова (выделения <em> сохраняются)
+  const split = (el, mode) => {
+    const label = el.textContent.replace(/\s+/g, " ").trim();
+    const units = [];
+    const walk = (src, dst) => [...src.childNodes].forEach(n => {
+      if (n.nodeType === 3) {
+        n.textContent.split(/(\s+)/).forEach(part => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { dst.appendChild(document.createTextNode(" ")); return; }
+          const w = document.createElement("span"); w.className = "sw"; w.setAttribute("aria-hidden", "true");
+          if (mode === "chars") [...part].forEach(ch => { const c = document.createElement("span"); c.className = "sc"; c.textContent = ch; w.appendChild(c); units.push(c); });
+          else { const i = document.createElement("span"); i.className = "swi"; i.textContent = part; w.appendChild(i); units.push(i); }
+          dst.appendChild(w);
+        });
+      } else if (n.nodeType === 1) { const c = n.cloneNode(false); dst.appendChild(c); walk(n, c); }
+    });
+    const tmp = document.createElement("div"); walk(el, tmp);
+    el.textContent = ""; while (tmp.firstChild) el.appendChild(tmp.firstChild);
+    if (!el.hasAttribute("aria-hidden")) el.setAttribute("aria-label", label);
+    return units;
+  };
+  const chars = new Map();
+  $$("[data-split]").forEach(el => chars.set(el, split(el, el.dataset.split)));
+  const maniWords = split($("#mani"), "words");
+
+  /* ---------- Занавес и выход на сцену ---------- */
+  const w1 = chars.get($(".bigword--fill")), w2 = chars.get($(".bigword--line"));
+  const heroBits = [...$$("#heroInfo > *"), $("#heroMeta")];
+  gsap.set("#arch", { clipPath: "inset(100% 0% 0% 0% round 999px 999px 0px 0px)" });
+  gsap.set("#arch img", { scale: 1.35 });
+  gsap.set([...w1, ...w2], { yPercent: 118 });
+  gsap.set("#beam", { opacity: 0 });
+  gsap.set(heroBits, { y: 30, opacity: 0 });
+  gsap.set(nav, { yPercent: -100 });
+  lenis && lenis.stop();
+
+  let seen = false;
+  try { seen = sessionStorage.getItem("introSeen") === "1"; sessionStorage.setItem("introSeen", "1"); } catch (e) {}
+  const tl = gsap.timeline({ paused: true, defaults: { ease: "expo.out" }, onComplete: () => { lenis && lenis.start(); gsap.set(nav, { clearProps: "transform" }); } });
+  if (!seen) {
+    tl.fromTo(".intro__logo", { opacity: 0, scale: .86 }, { opacity: 1, scale: 1, duration: 1.4, ease: "expo.out" })
+      .to(".intro__inner", { opacity: 0, scale: 1.08, duration: .9, ease: "power2.in" }, "+=.6")
+      .addLabel("open", "<.15"); // занавес начинает раскрываться, пока герб ещё гаснет — без пустой паузы
+  } else {
+    gsap.set(".intro__inner", { opacity: 0 });
+  }
+  if (seen) tl.addLabel("open");
+  tl
+    .to(".intro__half--l", { xPercent: -101, duration: 1.5, ease: "power4.inOut" }, "open")
+    .to(".intro__half--r", { xPercent: 101, duration: 1.5, ease: "power4.inOut" }, "open")
+    .set(intro, { display: "none" })
+    // софит «зажигается» с мерцанием
+    .to("#beam", { keyframes: [{ opacity: .6, duration: .07 }, { opacity: .1, duration: .1 }, { opacity: .85, duration: .06 }, { opacity: .25, duration: .14 }, { opacity: 1, duration: .7 }], ease: "none" }, "open+=.55")
+    .to("#arch", { clipPath: "inset(0% 0% 0% 0% round 999px 999px 0px 0px)", duration: 1.8, ease: "expo.inOut" }, "open+=.35")
+    .to("#arch img", { scale: 1, duration: 2.6 }, "open+=.5")
+    .to(w1, { yPercent: 0, duration: 1.5, stagger: .07 }, "open+=.7")
+    .to(w2, { yPercent: 0, duration: 1.5, stagger: .06 }, "open+=.9")
+    .to(heroBits, { y: 0, opacity: 1, duration: 1.2, stagger: .09 }, "open+=1.3")
+    .to(nav, { yPercent: 0, duration: 1.2 }, "open+=1.5");
+  // запускаем занавес, только когда герб загрузился (но не дольше 1,5 с ожидания)
+  const introLogo = $(".intro__logo");
+  let started = false;
+  const startIntro = () => { if (!started) { started = true; tl.play(); } };
+  if (introLogo.complete && introLogo.naturalWidth) startIntro();
+  else { introLogo.addEventListener("load", startIntro); introLogo.addEventListener("error", startIntro); setTimeout(startIntro, 1500); }
+
+  /* ---------- Сцена: луч за курсором, пыль, прокрутка ---------- */
+  const beamRot = gsap.quickTo("#beam", "rotation", { duration: 1.6, ease: "power3.out" });
+  if (fine) stage.addEventListener("pointermove", e => beamRot((e.clientX / innerWidth - .5) * -16));
+
+  const canvas = $("#dust"), ctx = canvas.getContext("2d");
+  let dustOn = true, parts = [], cw = 0, ch = 0;
+  const dpr = Math.min(devicePixelRatio || 1, 2);
+  const resizeDust = () => {
+    cw = canvas.clientWidth; ch = canvas.clientHeight;
+    canvas.width = cw * dpr; canvas.height = ch * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const n = innerWidth < 1000 ? 45 : 100;
+    parts = Array.from({ length: n }, () => ({ x: cw / 2 + (Math.random() - .5) * cw * .5, y: Math.random() * ch, r: .5 + Math.random() * 1.6, vy: -.08 - Math.random() * .3, vx: (Math.random() - .5) * .15, p: Math.random() * 6.28 }));
+  };
+  resizeDust(); addEventListener("resize", resizeDust);
+  new IntersectionObserver(es => (dustOn = es[0].isIntersecting)).observe(stage);
+  gsap.ticker.add(() => {
+    if (!dustOn) return;
+    ctx.clearRect(0, 0, cw, ch);
+    ctx.fillStyle = "#ffd98f";
+    for (const d of parts) {
+      d.x += d.vx; d.y += d.vy; d.p += .03;
+      if (d.y < -5) { d.y = ch + 5; d.x = cw / 2 + (Math.random() - .5) * cw * .5; }
+      ctx.globalAlpha = .45 + Math.sin(d.p) * .35;
+      ctx.beginPath(); ctx.arc(d.x, d.y, d.r, 0, 6.283); ctx.fill();
+    }
+  });
+
+  gsap.timeline({ scrollTrigger: { trigger: stage, start: "top top", end: "bottom top", scrub: true } })
+    .to(".bigword--fill", { xPercent: -22 }, 0)
+    .to(".bigword--line", { xPercent: 16 }, 0)
+    .to("#arch", { yPercent: 14, scale: .9, transformOrigin: "50% 100%" }, 0)
+    .to(["#heroInfo", "#heroMeta"], { y: -80, autoAlpha: 0 }, 0);
+
+  /* ---------- Ленты: скорость зависит от прокрутки ---------- */
+  const tracks = $$(".rb__track").map((el, i) => {
+    el.innerHTML += el.innerHTML; // дубль для бесшовного повтора
+    return { el, x: i ? -el.scrollWidth / 4 : 0, sign: i ? 1 : -1 };
+  });
+  let boost = 0, dir = 1;
+  ScrollTrigger.create({ start: 0, end: "max", onUpdate: s => { dir = s.direction; boost = Math.min(Math.abs(s.getVelocity()) / 160, 14); } });
+  gsap.ticker.add(() => {
+    boost *= .93;
+    tracks.forEach(t => {
+      const half = t.el.scrollWidth / 2;
+      t.x += (.7 + boost) * dir * t.sign;
+      if (t.x <= -half) t.x += half;
+      if (t.x > 0) t.x -= half;
+      t.el.style.transform = `translate3d(${t.x}px,0,0) skewX(${-boost * .6 * dir}deg)`;
+    });
+  });
+
+  /* ---------- Заголовки и появление элементов ---------- */
+  chars.forEach((units, el) => {
+    if (el.closest(".stage") || el.closest(".finale") || el.closest(".jcap")) return;
+    // буквы переворачиваются из глубины, как карточки
+    gsap.from(units, { yPercent: 90, rotationX: -95, opacity: 0, transformOrigin: "50% 100% -30px", duration: 1.5, ease: "expo.out", stagger: .03,
+      scrollTrigger: { trigger: el, start: "top 88%" } });
+    // золото «перетекает» по буквам, пока заголовок на экране
+    if (el.tagName === "H2") gsap.to(units, { backgroundPosition: "50% 0%", ease: "none",
+      scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true } });
+  });
+
+  /* ---------- Скорость прокрутки слегка наклоняет фото (эффект «инерции») ---------- */
+  const skewEls = fine ? $$(".gallery-grid, .mani-photo") : []; // на телефоне не нужен — даёт лишнюю нагрузку
+  const skewSet = skewEls.map(el => gsap.quickTo(el, "skewY", { duration: .6, ease: "power3.out" }));
+  let skew = 0;
+  if (skewEls.length) ScrollTrigger.create({ start: 0, end: "max", onUpdate: self => { skew = gsap.utils.clamp(-4, 4, self.getVelocity() / -400); } });
+  if (skewEls.length) gsap.ticker.add(() => { skew *= .88; skewSet.forEach(fn => fn(skew)); }); // плавно возвращается, когда прокрутка остановилась
+  gsap.set("[data-r]", { autoAlpha: 0, y: 40 });
+  ScrollTrigger.batch("[data-r]", {
+    start: "top 92%",
+    onEnter: els => gsap.to(els, { y: 0, autoAlpha: 1, duration: 1.1, ease: "expo.out", stagger: .1, overwrite: true }),
+  });
+
+  /* ---------- Манифест: слова загораются по мере прокрутки ---------- */
+  gsap.fromTo(maniWords, { opacity: .12 }, { opacity: 1, ease: "none", stagger: .05,
+    scrollTrigger: { trigger: "#mani", start: "top 78%", end: "bottom 42%", scrub: .6 } });
+  $$("[data-speed]").forEach(el => gsap.to(el, { yPercent: +el.dataset.speed * 3, ease: "none",
+    scrollTrigger: { trigger: "#about", start: "top bottom", end: "bottom top", scrub: true } }));
+  $$(".mani-photo img").forEach(im => gsap.from(im, { scale: 1.4, duration: 2, ease: "expo.out", scrollTrigger: { trigger: im, start: "top 88%" } }));
+  // фото манифеста раскрываются шторкой и медленно поворачиваются при прокрутке
+  $$(".mani-photo").forEach((p, i) => {
+    gsap.from(p, { clipPath: "inset(0% 0% 100% 0%)", duration: 1.6, ease: "expo.inOut", scrollTrigger: { trigger: p, start: "top 88%" } });
+    gsap.fromTo(p, { rotation: i ? 6 : -6 }, { rotation: i ? -3 : 3, ease: "none", scrollTrigger: { trigger: "#about", start: "top bottom", end: "bottom top", scrub: true } });
+  });
+
+  /* ---------- Пролёт сквозь слово «СЦЕНА» ---------- */
+  gsap.timeline({ scrollTrigger: { trigger: "#zoom", start: "top top", end: "+=180%", pin: true, scrub: 1, anticipatePin: 1 } })
+    .fromTo(".zoom__word", { scale: .7, rotation: -4 }, { scale: 1, rotation: 0, duration: .25, ease: "power2.out" })
+    .to(".zoom__hint", { opacity: 0, duration: .1 }, 0)
+    .to(".zoom__word", { scale: 26, duration: .55, ease: "power3.in" })      // летим сквозь букву
+    .to(".zoom__photo", { opacity: 1, duration: .2 }, "-=.25")
+    .to(".zoom__mask", { opacity: 0, duration: .1 }, "-=.08")
+    .fromTo(".zoom__photo img", { scale: 1.25 }, { scale: 1, duration: .45, ease: "none" }, "-=.2")
+    .to(".zoom__cap", { opacity: 1, duration: .15 }, "-=.3")
+    .from(".zoom__cap p", { y: 60, duration: .25 }, "<");
+
+  /* ---------- Категории: три королевы выходят из тени по очереди ---------- */
+  const queens = $$(".queen");
+  gsap.set(queens.map(q => $(".queen__lit", q)), { opacity: 0 });
+  gsap.set(queens.map(q => $(".queen__beam", q)), { opacity: 0, scaleX: .4, transformOrigin: "50% 0%" });
+  gsap.set(queens.map(q => $(".queen__cap", q)), { opacity: 0, y: 24 });
+  gsap.set(queens.map(q => $(".queen__fig", q)), { y: 70, opacity: 0 });
+  gsap.set(".crowns__note", { opacity: 0 });
+  gsap.set(queens.map(q => $(".queen__podium", q)), { scaleX: 0, opacity: 0 });
+  gsap.set(".crowns__curtain--l", { xPercent: -100 }); gsap.set(".crowns__curtain--r", { xPercent: 100 });
+  // золотое конфетти над королевой, когда она выходит из тени (только при прокрутке вниз)
+  const rain = (q, self) => {
+    if (self && self.direction < 0) return;
+    const r = $(".queen__fig", q).getBoundingClientRect(), n = innerWidth < 1000 ? 16 : 30;
+    for (let k = 0; k < n; k++) {
+      const el = document.createElement("i"), star = Math.random() < .35, sz = star ? gsap.utils.random(8, 14) : gsap.utils.random(4, 8);
+      el.className = "fx" + (star ? " fx--star" : Math.random() < .3 ? " fx--ribbon" : "");
+      gsap.set(el, { x: r.left + Math.random() * r.width, y: r.top - gsap.utils.random(10, 120), width: sz, height: el.className.includes("ribbon") ? sz * 2 : sz });
+      document.body.appendChild(el);
+      gsap.to(el, { y: "+=" + gsap.utils.random(r.height * .5, r.height * 1.1), x: "+=" + gsap.utils.random(-40, 40), rotation: gsap.utils.random(-360, 360),
+        opacity: 0, duration: gsap.utils.random(1.4, 2.4), ease: "power1.in", onComplete: () => el.remove() });
+    }
+  };
+  const ctl = gsap.timeline({ scrollTrigger: { trigger: "#categories", start: "top top", end: "+=260%", pin: true, scrub: 1, anticipatePin: 1 } });
+  ctl.to([".crowns__curtain--l", ".crowns__curtain--r"], { xPercent: 0, duration: .5, ease: "power2.out" }, 0)       // занавес въезжает по краям
+     .to(queens.map(q => $(".queen__podium", q)), { scaleX: 1, opacity: 1, duration: .4, stagger: .1 }, 0)           // вырастают пьедесталы
+     .fromTo(".crowns__word", { scale: .85, opacity: 0 }, { scale: 1, opacity: 1, duration: 1 }, 0)
+     .to(queens.map(q => $(".queen__fig", q)), { y: 0, opacity: 1, duration: .6, stagger: .12, ease: "power2.out" }, .2); // силуэты поднимаются из темноты
+  queens.forEach((q, i) => {
+    const at = 1 + i * 1.1;
+    ctl.to($(".queen__beam", q), { opacity: 1, scaleX: 1, duration: .45, ease: "power2.out" }, at)        // загорается софит
+       .to($(".queen__lit", q), { opacity: 1, duration: .5 }, at + .2)                                    // фигура выходит из тени
+       .to($(".queen__dark", q), { opacity: 0, duration: .2 }, at + .7)                                  // тёмный слой убираем совсем (иначе iPhone может рисовать рамку)
+       .fromTo($(".queen__fig", q), { scale: 1 }, { scale: 1.06, duration: .5, yoyo: true, repeat: 1, transformOrigin: "50% 100%" }, at + .2)
+       .to($(".queen__cap", q), { opacity: 1, y: 0, duration: .4 }, at + .45)
+       .fromTo($(".queen__shine", q), { backgroundPosition: "160% 0" }, { backgroundPosition: "-60% 0", duration: .7, ease: "none" }, at + .3)
+       .call(() => { q.classList.add("is-lit"); rain(q, ctl.scrollTrigger); }, null, at + .25);
+    if (i > 0) ctl.to($(".queen__beam", queens[i - 1]), { opacity: .35, duration: .4 }, at);              // предыдущий софит приглушается
+  });
+  ctl.to(queens.map(q => $(".queen__beam", q)), { opacity: .6, duration: .4 }, 4.4)
+     .to(".crowns__note", { opacity: 1, duration: .4 }, 4.4)
+     .to(".crowns__word", { scale: 1.08, duration: 4 }, 1)
+     .to({}, { duration: .4 });
+
+  /* ---------- Что ждёт: «Путь к короне» — фото по очереди открываются кругом прожектора ---------- */
+  const jSlides = $$(".jslide"), jCaps = $$(".jcap"), jMarks = $$(".journey__path li");
+  const mobileJ = innerWidth <= 1000, irisAt = mobileJ ? "50% 35%" : "70% 45%";
+  gsap.set(".journey__path", { autoAlpha: 0 });
+  const jtl = gsap.timeline({ scrollTrigger: { trigger: "#perks", start: "top top", end: "+=720%", pin: true, scrub: 1, anticipatePin: 1,
+    onUpdate: self => {
+      const k = Math.floor(self.progress * 7.2 - .6);            // какой этап сейчас на экране
+      jMarks.forEach((m, i) => m.classList.toggle("is-on", i <= k));
+    } } });
+  jtl.from(".journey__intro .lead, .journey__hint", { opacity: 0, y: 20, duration: .3 }, .1)
+     .to(".journey__intro", { scale: .9, opacity: 0, duration: .5 }, .7)
+     .to(".journey__path", { autoAlpha: 1, duration: .3 }, .8);
+  jSlides.forEach((sl, i) => {
+    const at = 1 + i * 1.1, cap = jCaps[i];
+    jtl.fromTo(sl, { clipPath: `circle(0% at ${irisAt})` }, { clipPath: `circle(150% at ${irisAt})`, duration: .7, ease: "power2.inOut" }, at) // круг прожектора
+       .fromTo($("img", sl), { scale: 1.3 }, { scale: 1, duration: 1.8, ease: "none" }, at)                  // медленный наезд камеры
+       .fromTo(cap, { opacity: 0 }, { opacity: 1, duration: .15 }, at + .35)
+       .from($(".jcap__num", cap), { xPercent: -40, opacity: 0, duration: .45, ease: "power3.out" }, at + .35)
+       .from(chars.get($("h3", cap)) || $("h3", cap), { yPercent: 110, opacity: 0, stagger: .02, duration: .4 }, at + .45)
+       .from([$(".jcap__step", cap), $("p", cap)], { y: 24, opacity: 0, duration: .35, stagger: .05 }, at + .55);
+    if (i < jSlides.length - 1) jtl.to(cap, { opacity: 0, y: -30, duration: .25 }, at + 1.0);
+  });
+  jtl.fromTo(".journey__fill", mobileJ ? { scaleX: 0 } : { scaleY: 0 }, mobileJ ? { scaleX: 1, duration: 6.6, ease: "none" } : { scaleY: 1, duration: 6.6, ease: "none" }, 1)
+     .to(".journey__crown", { className: "journey__crown is-on", duration: .01 }, 7.4)
+     .to(jCaps[jCaps.length - 1], { opacity: 0, duration: .25 }, 7.5)
+     .to(".journey__end", { autoAlpha: 1, duration: .4 }, 7.6)
+     .from(".journey__end h3", { scale: .8, opacity: 0, duration: .5 }, 7.65)
+     .to({}, { duration: .4 });
+
+  /* ---------- Условия: ячейки и счётчики ---------- */
+  // ячейки условий переворачиваются, как карты, по диагонали
+  gsap.from(".spec", { opacity: 0, rotationX: -70, y: 60, transformOrigin: "50% 0%", duration: 1.4, ease: "expo.out",
+    stagger: { each: .1, grid: "auto", from: "start" }, scrollTrigger: { trigger: "#specs", start: "top 82%" } });
+  // цифры крутятся, как барабаны игрового автомата, и по очереди останавливаются
+  $$("[data-to]").forEach((n, k) => {
+    const target = n.dataset.to, len = target.length;
+    n.textContent = target.replace(/\d/g, "0");
+    const o = { p: 0 };
+    gsap.to(o, { p: 1, duration: 1.8 + k * .12, ease: "power2.out", scrollTrigger: { trigger: n, start: "top 90%" },
+      onUpdate: () => {
+        n.textContent = [...target].map((d, i) => o.p > .55 + i * .2 ? d : Math.floor(Math.random() * 10)).join("");
+      },
+      onComplete: () => { n.textContent = target; } });
+  });
+
+  /* ---------- Как подать: линия заполняется, шаги загораются ---------- */
+  gsap.to("#tlFill", { scaleY: 1, ease: "none", scrollTrigger: { trigger: "#tl", start: "top 62%", end: "bottom 62%", scrub: .5 } });
+  $$(".step").forEach(s => {
+    ScrollTrigger.create({ trigger: s, start: "top 64%",
+      onEnter: () => { s.classList.add("is-on"); gsap.fromTo($(".step__dot", s), { scale: .6 }, { scale: 1, duration: 1, ease: "elastic.out(1, .45)" }); },
+      onLeaveBack: () => s.classList.remove("is-on") });
+    gsap.from($("div", s), { x: innerWidth > 1000 ? 60 : 0, y: innerWidth > 1000 ? 0 : 30, opacity: 0, duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: s, start: "top 80%" } });
+  });
+
+  /* ---------- Галерея: фото раскрываются по очереди ---------- */
+  // фото открываются шторками с разных сторон, по очереди в каждом ряду,
+  // а внутри рамки картинка медленно едет — как окно в зал
+  const wipes = ["inset(100% 0% 0% 0%)", "inset(0% 0% 100% 0%)", "inset(0% 100% 0% 0%)", "inset(0% 0% 0% 100%)"];
+  $$(".tile").forEach((t, i) => {
+    const img = $("img", t);
+    gsap.set(t, { clipPath: wipes[i % 4] });
+    gsap.timeline({ scrollTrigger: { trigger: t, start: "top 100%" } })
+      .to(t, { clipPath: "inset(0% 0% 0% 0%)", duration: .9, ease: "power3.out", delay: (i % 3) * .06 })
+      .from(img, { scale: 1.25, duration: 1.2, ease: "power3.out" }, "<");
+    gsap.fromTo(img, { yPercent: -7 }, { yPercent: 7, ease: "none", scrollTrigger: { trigger: t, start: "top bottom", end: "bottom top", scrub: true } });
+  });
+
+  /* ---------- Вопросы: строки выезжают, линии прочерчиваются ---------- */
+  gsap.from(".qa", { x: innerWidth > 1000 ? -50 : 0, y: innerWidth > 1000 ? 0 : 24, autoAlpha: 0, clearProps: "transform", duration: 1.1, ease: "expo.out", stagger: .08, scrollTrigger: { trigger: "#faqList", start: "top 82%" } });
+
+  /* ---------- Финал: корона рисуется, искры ---------- */
+  const fin = $("#finale");
+  gsap.from("#finaleLogo", { opacity: 0, scale: .7, rotation: -4, duration: 2, ease: "expo.out", scrollTrigger: { trigger: fin, start: "top 65%" } });
+  gsap.from($(".beam-wrap", fin), { opacity: 0, duration: 2.4, ease: "power2.out", scrollTrigger: { trigger: fin, start: "top 65%" } });
+  // финал «приближается»: фото зала отъезжает, заголовок вырастает из глубины
+  gsap.fromTo(".finale__photo img", { scale: 1.35 }, { scale: 1, ease: "none", scrollTrigger: { trigger: fin, start: "top bottom", end: "bottom bottom", scrub: true } });
+  gsap.fromTo(".finale__queen", { yPercent: 18, opacity: 0 }, { yPercent: 0, opacity: 1, ease: "none", scrollTrigger: { trigger: fin, start: "top 90%", end: "top 10%", scrub: true } });
+  gsap.fromTo(".finale__glow", { scale: .5, opacity: 0 }, { scale: 1, opacity: 1, ease: "none", scrollTrigger: { trigger: fin, start: "top 70%", end: "top top", scrub: true } });
+  gsap.fromTo(".finale__in", { scale: .82, y: 80 }, { scale: 1, y: 0, ease: "none", scrollTrigger: { trigger: fin, start: "top bottom", end: "center center", scrub: true } });
+  for (let i = 0; i < +fin.dataset.sparks; i++) {
+    const sp = document.createElement("i"), big = Math.random() < .35;
+    sp.className = "spark" + (big ? "" : " spark--dot");
+    sp.style.cssText = `left:${Math.random() * 100}%;top:${Math.random() * 100}%;--s:${big ? 10 + Math.random() * 14 : 3 + Math.random() * 4}px;--t:${2.4 + Math.random() * 3}s;--d:${-Math.random() * 5}s;--o:${.5 + Math.random() * .5}`;
+    fin.appendChild(sp);
+  }
+
+  /* ---------- Финал: буквы разбросаны по экрану и слетаются в надпись ---------- */
+  const finChars = chars.get($(".finale h2"));
+  const spread = innerWidth > 1000 ? 1 : .45;
+  const rnd = gsap.utils.random;
+  gsap.timeline({ scrollTrigger: { trigger: fin, start: "top top", end: "+=90%", pin: true, scrub: 1, anticipatePin: 1 } })
+    .from(finChars, { x: () => rnd(-520, 520) * spread, y: () => rnd(-360, 360) * spread, rotation: () => rnd(-160, 160),
+      scale: () => rnd(.3, 2.4), opacity: 0, ease: "power3.out", stagger: { each: .015, from: "random" }, duration: 1 })
+    .from(".finale p, .finale .btn", { y: 40, opacity: 0, duration: .4 }, "-=.3");
+
+  /* ---------- Галерея: фото наклоняются за мышкой (объём) ---------- */
+  if (fine) $$(".tile").forEach(t => {
+    const rx = gsap.quickTo(t, "rotationX", { duration: .6, ease: "power3.out" }), ry = gsap.quickTo(t, "rotationY", { duration: .6, ease: "power3.out" });
+    gsap.set(t, { transformPerspective: 900 });
+    t.addEventListener("pointermove", e => { const r = t.getBoundingClientRect(); ry(((e.clientX - r.left) / r.width - .5) * 14); rx(-((e.clientY - r.top) / r.height - .5) * 14); });
+    t.addEventListener("pointerleave", () => { rx(0); ry(0); });
+  });
+
+  /* ---------- Раскрытие разделов кругом, как лучом прожектора ---------- */
+  ["#terms", "#how"].forEach(id => {
+    gsap.fromTo(id, { clipPath: "circle(12% at 50% 35%)" }, { clipPath: "circle(110% at 50% 35%)", ease: "none",
+      scrollTrigger: { trigger: id, start: "top bottom", end: "top 25%", scrub: .6 } });
+  });
+
+
+  /* ---------- Золотой салют при нажатии «Подать анкету» ---------- */
+  const burst = (x, y) => {
+    const n = innerWidth < 1000 ? 34 : 60;
+    for (let i = 0; i < n; i++) {
+      const el = document.createElement("i"), kind = Math.random();
+      el.className = "fx" + (kind < .3 ? " fx--star" : kind < .5 ? " fx--ribbon" : "");
+      const sz = kind < .3 ? rnd(10, 18) : kind < .5 ? rnd(5, 9) : rnd(4, 9);
+      gsap.set(el, { x, y, width: sz, height: kind >= .3 && kind < .5 ? sz * 2.2 : sz, xPercent: -50, yPercent: -50 });
+      document.body.appendChild(el);
+      const ang = rnd(0, Math.PI * 2), sp = rnd(120, innerWidth < 1000 ? 260 : 420);
+      gsap.timeline({ onComplete: () => el.remove() })
+        .to(el, { x: x + Math.cos(ang) * sp, y: y + Math.sin(ang) * sp * .8 - 60, rotation: rnd(-540, 540), duration: rnd(.6, 1), ease: "power3.out" })
+        .to(el, { y: "+=" + rnd(120, 260), opacity: 0, duration: rnd(.8, 1.3), ease: "power1.in" }, ">-0.15");
+    }
+  };
+  $$(".js-bot").forEach(a => a.addEventListener("click", e => {
+    const r = a.getBoundingClientRect();
+    burst(e.clientX || r.left + r.width / 2, e.clientY || r.top + r.height / 2);
+  }));
+
+  /* ---------- Золотой шлейф из искр за курсором (только мышь) ---------- */
+  if (fine) {
+    let last = 0, live = 0;
+    addEventListener("pointermove", e => {
+      const now = performance.now();
+      if (now - last < 28 || live > 40) return;
+      last = now; live++;
+      const el = document.createElement("i"), sz = rnd(3, 7);
+      el.className = "fx" + (Math.random() < .25 ? " fx--star" : "");
+      gsap.set(el, { x: e.clientX + rnd(-6, 6), y: e.clientY + rnd(-6, 6), width: Math.random() < .25 ? sz * 2 : sz, height: Math.random() < .25 ? sz * 2 : sz, xPercent: -50, yPercent: -50 });
+      document.body.appendChild(el);
+      gsap.to(el, { y: "+=" + rnd(20, 50), x: "+=" + rnd(-14, 14), opacity: 0, scale: .2, rotation: rnd(-120, 120), duration: rnd(.6, 1.1), ease: "power1.out",
+        onComplete: () => { el.remove(); live--; } });
+    });
+  }
+
+  /* ---------- Директор: силуэт поднимается в золотом кольце ---------- */
+  gsap.timeline({ scrollTrigger: { trigger: "#director", start: "top 70%" } })
+    .from(".director__halo", { scale: .4, opacity: 0, duration: 1.6, ease: "expo.out" })
+    .from(".director__ring", { scale: .6, opacity: 0, rotation: -40, duration: 1.6, ease: "expo.out" }, "<.1")
+    .from(".director__img", { y: 120, opacity: 0, duration: 1.4, ease: "expo.out" }, "<.15")
+    .from(".director__patr, .director__lead", { y: 30, opacity: 0, duration: 1, stagger: .1, ease: "expo.out" }, "<.4")
+    .from(".dcard", { y: 24, opacity: 0, duration: 1, stagger: .12, ease: "expo.out", clearProps: "transform" }, "<.2");
+  gsap.fromTo(".director__img", { yPercent: 4 }, { yPercent: -3, ease: "none", scrollTrigger: { trigger: "#director", start: "top bottom", end: "bottom top", scrub: true } });
+
+  /* ---------- Прогресс прокрутки ---------- */
+  gsap.to("#progress", { scaleX: 1, ease: "none", scrollTrigger: { start: 0, end: "max", scrub: .3 } });
+
+  /* ---------- Курсор и магнитные кнопки (только мышь) ---------- */
+  if (fine) {
+    document.documentElement.classList.add("has-cursor");
+    const ring = $("#cursorRing");
+    const cx = gsap.quickTo("#cursor", "x", { duration: .12 }), cy = gsap.quickTo("#cursor", "y", { duration: .12 });
+    const rx = gsap.quickTo(ring, "x", { duration: .5, ease: "power3.out" }), ry = gsap.quickTo(ring, "y", { duration: .5, ease: "power3.out" });
+    addEventListener("pointermove", e => { cx(e.clientX); cy(e.clientY); rx(e.clientX); ry(e.clientY); document.documentElement.classList.add("cursor-on"); });
+    document.addEventListener("pointerleave", () => document.documentElement.classList.remove("cursor-on"));
+    document.addEventListener("pointerover", e => {
+      const t = e.target;
+      ring.classList.toggle("is-view", !!t.closest(".tile"));
+      ring.classList.toggle("is-link", !t.closest(".tile") && !!t.closest("a, button"));
+    });
+    $$(".magnetic").forEach(b => {
+      const mx = gsap.quickTo(b, "x", { duration: .6, ease: "power3.out" }), my = gsap.quickTo(b, "y", { duration: .6, ease: "power3.out" });
+      b.addEventListener("pointermove", e => { const r = b.getBoundingClientRect(); mx((e.clientX - r.left - r.width / 2) * .3); my((e.clientY - r.top - r.height / 2) * .4); });
+      b.addEventListener("pointerleave", () => gsap.to(b, { x: 0, y: 0, duration: 1, ease: "elastic.out(1, .4)" }));
+    });
+  }
+
+  // Пересчёт после загрузки шрифтов и картинок
+  document.fonts && document.fonts.ready.then(() => ScrollTrigger.refresh());
+  addEventListener("load", () => ScrollTrigger.refresh());
+})();
+</script>
+</body>
+</html>
