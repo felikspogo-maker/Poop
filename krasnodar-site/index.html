@@ -326,8 +326,8 @@ body::after {
 .queen__age { font: 500 .72rem/1 var(--text); letter-spacing: .22em; text-transform: uppercase; color: var(--cream); }
 .queen__cap p { margin: 10px auto 0; max-width: 18em; font-size: .93rem; line-height: 1.5; color: var(--muted); }
 .crowns__note { margin: clamp(14px, 2.4vh, 26px) auto 0; max-width: 34em; text-align: center; font-size: .9rem; color: var(--muted); }
-@media (min-width: 761px) and (max-height: 800px) { .crowns__note { display: none; } } /* на невысоких ноутбуках не помещается */
-@media (max-width: 760px) {
+@media (min-width: 1001px) and (max-height: 800px) { .crowns__note { display: none; } } /* на невысоких ноутбуках не помещается */
+@media (max-width: 1000px) {
   .crowns__stage { grid-template-columns: 1fr 1.15fr 1fr; gap: 4px; }
   .queen__fig { height: 27svh; }
   .queen--miss .queen__fig { height: 27svh; }
@@ -389,13 +389,13 @@ body::after {
 .journey__end h3 { font-size: clamp(2.6rem, 7vw, 6.4rem); line-height: 1; }
 .journey__end h3 em { font-style: normal; }
 /* вертикальные фото на широком экране — кадр справа на всю высоту, слева мягко уходит в фон под подпись */
-@media (min-width: 761px) {
+@media (min-width: 1001px) {
   .jslide--tall { background: radial-gradient(ellipse 60% 70% at 70% 50%, rgba(120, 14, 30, .5), transparent 70%), #14030a; }
   .jslide--tall img { position: absolute; right: 11%; top: 0; width: min(64%, calc(100svh * .9)); height: 100%;
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 22%, #000 85%, transparent); mask-image: linear-gradient(90deg, transparent, #000 22%, #000 85%, transparent); }
 }
 .jcap h3 { white-space: nowrap; }
-@media (max-width: 760px) {
+@media (max-width: 1000px) {
   .jslide { clip-path: circle(0% at 50% 35%); }
   .jslide img { object-position: var(--pm, 50% 50%); transform-origin: var(--pm, 50% 50%); }
   .journey__shade { background: linear-gradient(0deg, rgba(20, 2, 6, .95) 0%, rgba(20, 2, 6, .6) 34%, transparent 62%, rgba(20, 2, 6, .3)); }
@@ -534,32 +534,34 @@ body::after {
    АДАПТИВ
    ================================================================= */
 @media (max-width: 1000px) {
-  /* размытие и сдвиг шапки «запирают» меню в её высоте — на время открытия выключаем */
   .how__grid, .faq__grid { grid-template-columns: 1fr; }
   .how__aside { position: static; }
   .specs { grid-template-columns: repeat(2, 1fr); }
-  /* горизонтальная прокрутка превращается в обычный список */
-  /* карточки «Что ждёт» складываются в стопку: каждая прилипает и следующая наезжает сверху */
-    background: linear-gradient(180deg, #4a0912, #2a060c); box-shadow: 0 -20px 40px -20px rgba(0, 0, 0, .7); }
 }
-@media (max-width: 760px) {
+@media (max-width: 1000px) {
   body { font-size: 16.5px; }
   .logo__mark { height: 44px; }
   .logo__text { font-size: 1.05rem; }
   .logo__text small { font-size: .5rem; letter-spacing: .24em; }
-  .mani-photo--1 { position: relative; right: auto; top: auto; float: right; width: 40vw; margin: 0 var(--gutter) 18px 18px; }
+  .mani-photo--1 { position: relative; right: auto; top: auto; display: block; width: calc(100% - 2 * var(--gutter)); max-width: 560px; aspect-ratio: 4 / 3; margin: 0 auto 34px; }
+  .mani-photo--1 img { object-position: 50% 25%; }
   .mani-photo--2 { display: none; }
   .mani { font-size: clamp(1.75rem, 8vw, 2.4rem); }
   .mani-foot { grid-template-columns: 1fr; }
-  .specs { grid-template-columns: 1fr; }
+  .specs { grid-template-columns: 1fr 1fr; }
   .spec { min-height: 0; }
+  .spec__value--word { font-size: clamp(2rem, 7vw, 3rem); }
+  .spec__value { white-space: nowrap; }
+}
+@media (max-width: 600px) {
+  .specs { grid-template-columns: 1fr; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 58vw; gap: 8px; }
   .step { grid-template-columns: 56px 1fr; gap: 20px; }
   .step__dot { width: 56px; height: 56px; font-size: 1.2rem; }
   .tl__line { left: 28px; top: 28px; }
 }
 /* первый экран: телефонная раскладка и на любых «вертикальных» экранах до планшета включительно */
-@media (max-width: 760px), (max-width: 1100px) and (orientation: portrait) {
+@media (max-width: 1000px), (max-width: 1100px) and (orientation: portrait) {
   .bigword { font-size: 29vw; }
   .bigword--fill { top: 13svh; left: -3vw; }
   .bigword--line { top: 31svh; font-size: 24vw; }
@@ -1109,7 +1111,7 @@ const SITE = {
   const resizeDust = () => {
     cw = canvas.clientWidth; ch = canvas.clientHeight;
     canvas.width = cw * dpr; canvas.height = ch * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const n = innerWidth < 760 ? 45 : 100;
+    const n = innerWidth < 1000 ? 45 : 100;
     parts = Array.from({ length: n }, () => ({ x: cw / 2 + (Math.random() - .5) * cw * .5, y: Math.random() * ch, r: .5 + Math.random() * 1.6, vy: -.08 - Math.random() * .3, vx: (Math.random() - .5) * .15, p: Math.random() * 6.28 }));
   };
   resizeDust(); addEventListener("resize", resizeDust);
@@ -1208,7 +1210,7 @@ const SITE = {
   // золотое конфетти над королевой, когда она выходит из тени (только при прокрутке вниз)
   const rain = (q, self) => {
     if (self && self.direction < 0) return;
-    const r = $(".queen__fig", q).getBoundingClientRect(), n = innerWidth < 760 ? 16 : 30;
+    const r = $(".queen__fig", q).getBoundingClientRect(), n = innerWidth < 1000 ? 16 : 30;
     for (let k = 0; k < n; k++) {
       const el = document.createElement("i"), star = Math.random() < .35, sz = star ? gsap.utils.random(8, 14) : gsap.utils.random(4, 8);
       el.className = "fx" + (star ? " fx--star" : Math.random() < .3 ? " fx--ribbon" : "");
@@ -1240,7 +1242,7 @@ const SITE = {
 
   /* ---------- Что ждёт: «Путь к короне» — фото по очереди открываются кругом прожектора ---------- */
   const jSlides = $$(".jslide"), jCaps = $$(".jcap"), jMarks = $$(".journey__path li");
-  const mobileJ = innerWidth <= 760, irisAt = mobileJ ? "50% 35%" : "70% 45%";
+  const mobileJ = innerWidth <= 1000, irisAt = mobileJ ? "50% 35%" : "70% 45%";
   gsap.set(".journey__path", { autoAlpha: 0 });
   const jtl = gsap.timeline({ scrollTrigger: { trigger: "#perks", start: "top top", end: "+=720%", pin: true, scrub: 1, anticipatePin: 1,
     onUpdate: self => {
@@ -1289,7 +1291,7 @@ const SITE = {
     ScrollTrigger.create({ trigger: s, start: "top 64%",
       onEnter: () => { s.classList.add("is-on"); gsap.fromTo($(".step__dot", s), { scale: .6 }, { scale: 1, duration: 1, ease: "elastic.out(1, .45)" }); },
       onLeaveBack: () => s.classList.remove("is-on") });
-    gsap.from($("div", s), { x: innerWidth > 760 ? 60 : 0, y: innerWidth > 760 ? 0 : 30, opacity: 0, duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: s, start: "top 80%" } });
+    gsap.from($("div", s), { x: innerWidth > 1000 ? 60 : 0, y: innerWidth > 1000 ? 0 : 30, opacity: 0, duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: s, start: "top 80%" } });
   });
 
   /* ---------- Галерея: фото раскрываются по очереди ---------- */
@@ -1306,7 +1308,7 @@ const SITE = {
   });
 
   /* ---------- Вопросы: строки выезжают, линии прочерчиваются ---------- */
-  gsap.from(".qa", { x: innerWidth > 760 ? -50 : 0, y: innerWidth > 760 ? 0 : 24, autoAlpha: 0, clearProps: "transform", duration: 1.1, ease: "expo.out", stagger: .08, scrollTrigger: { trigger: "#faqList", start: "top 82%" } });
+  gsap.from(".qa", { x: innerWidth > 1000 ? -50 : 0, y: innerWidth > 1000 ? 0 : 24, autoAlpha: 0, clearProps: "transform", duration: 1.1, ease: "expo.out", stagger: .08, scrollTrigger: { trigger: "#faqList", start: "top 82%" } });
 
   /* ---------- Финал: корона рисуется, искры ---------- */
   const fin = $("#finale");
@@ -1324,7 +1326,7 @@ const SITE = {
 
   /* ---------- Финал: буквы разбросаны по экрану и слетаются в надпись ---------- */
   const finChars = chars.get($(".finale h2"));
-  const spread = innerWidth > 760 ? 1 : .45;
+  const spread = innerWidth > 1000 ? 1 : .45;
   const rnd = gsap.utils.random;
   gsap.timeline({ scrollTrigger: { trigger: fin, start: "top top", end: "+=90%", pin: true, scrub: 1, anticipatePin: 1 } })
     .from(finChars, { x: () => rnd(-520, 520) * spread, y: () => rnd(-360, 360) * spread, rotation: () => rnd(-160, 160),
@@ -1348,14 +1350,14 @@ const SITE = {
 
   /* ---------- Золотой салют при нажатии «Подать анкету» ---------- */
   const burst = (x, y) => {
-    const n = innerWidth < 760 ? 34 : 60;
+    const n = innerWidth < 1000 ? 34 : 60;
     for (let i = 0; i < n; i++) {
       const el = document.createElement("i"), kind = Math.random();
       el.className = "fx" + (kind < .3 ? " fx--star" : kind < .5 ? " fx--ribbon" : "");
       const sz = kind < .3 ? rnd(10, 18) : kind < .5 ? rnd(5, 9) : rnd(4, 9);
       gsap.set(el, { x, y, width: sz, height: kind >= .3 && kind < .5 ? sz * 2.2 : sz, xPercent: -50, yPercent: -50 });
       document.body.appendChild(el);
-      const ang = rnd(0, Math.PI * 2), sp = rnd(120, innerWidth < 760 ? 260 : 420);
+      const ang = rnd(0, Math.PI * 2), sp = rnd(120, innerWidth < 1000 ? 260 : 420);
       gsap.timeline({ onComplete: () => el.remove() })
         .to(el, { x: x + Math.cos(ang) * sp, y: y + Math.sin(ang) * sp * .8 - 60, rotation: rnd(-540, 540), duration: rnd(.6, 1), ease: "power3.out" })
         .to(el, { y: "+=" + rnd(120, 260), opacity: 0, duration: rnd(.8, 1.3), ease: "power1.in" }, ">-0.15");
