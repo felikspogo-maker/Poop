@@ -241,9 +241,7 @@ body::after {
 .zoom__photo img { width: 100%; height: 100%; object-fit: cover; }
 .zoom__photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(28, 4, 8, .85), rgba(28, 4, 8, .15) 55%, rgba(28, 4, 8, .4)); }
 .zoom__mask { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; }
-.zoom__word { display: block; padding: 0 .04em; font: 400 clamp(5rem, 25vw, 25rem)/.86 var(--display); letter-spacing: -.03em; text-transform: uppercase;
-  background: url(images/lineup-crest.jpg) 50% 45% / cover; -webkit-background-clip: text; background-clip: text; color: transparent;
-  -webkit-text-stroke: 1px rgba(232, 196, 124, .5); will-change: transform; }
+.zoom__word { display: block; width: min(94vw, 1500px); height: auto; overflow: visible; transform-origin: 50% 52%; }
 .zoom__cap { position: absolute; z-index: 2; left: 0; right: 0; bottom: clamp(50px, 10vh, 110px); text-align: center; opacity: 0; }
 .zoom__cap .kicker { justify-content: center; }
 .zoom__cap .kicker::after { content: ""; width: 34px; height: 1px; background: currentColor; }
@@ -742,7 +740,16 @@ body::after {
   <!-- Пролёт сквозь слово «СЦЕНА» -->
   <section class="zoom" id="zoom" aria-label="Сцена конкурса">
     <div class="zoom__photo"><img src="images/lineup-crest.jpg" alt="Участницы на сцене у герба конкурса" loading="lazy"></div>
-    <div class="zoom__mask" aria-hidden="true"><span class="zoom__word">Сцена</span></div>
+    <div class="zoom__mask" aria-hidden="true">
+      <svg class="zoom__word" viewBox="0 0 1000 300" preserveAspectRatio="xMidYMid meet">
+        <defs><mask id="zoomMask" maskUnits="userSpaceOnUse" x="0" y="0" width="1000" height="300">
+          <rect width="1000" height="300" fill="#000"/>
+          <text x="500" y="248" text-anchor="middle" textLength="960" lengthAdjust="spacingAndGlyphs" font-family="Prata, serif" font-size="285" fill="#fff">СЦЕНА</text>
+        </mask></defs>
+        <image href="images/lineup-crest.jpg" x="0" y="-180" width="1000" height="660" preserveAspectRatio="xMidYMid slice" mask="url(#zoomMask)"/>
+        <text x="500" y="248" text-anchor="middle" textLength="960" lengthAdjust="spacingAndGlyphs" font-family="Prata, serif" font-size="285" fill="none" stroke="rgba(232,196,124,.6)" stroke-width="1.2" vector-effect="non-scaling-stroke">СЦЕНА</text>
+      </svg>
+    </div>
     <div class="zoom__cap">
       <span class="kicker">Сезон 2027</span>
       <p>Твой выход — <em>следующий</em></p>
@@ -1286,9 +1293,9 @@ const SITE = {
   gsap.timeline({ scrollTrigger: { trigger: "#zoom", start: "top top", end: "+=180%", pin: true, scrub: 1, anticipatePin: 1 } })
     .fromTo(".zoom__word", { scale: .7, rotation: -4 }, { scale: 1, rotation: 0, duration: .25, ease: "power2.out" })
     .to(".zoom__hint", { opacity: 0, duration: .1 }, 0)
-    .to(".zoom__word", { scale: 26, duration: .55, ease: "power3.in" })      // летим сквозь букву
-    .to(".zoom__photo", { opacity: 1, duration: .2 }, "-=.25")
-    .to(".zoom__mask", { opacity: 0, duration: .1 }, "-=.08")
+    .to(".zoom__word", { scale: 14, duration: .55, ease: "power3.in" })      // летим сквозь букву
+    .to(".zoom__photo", { opacity: 1, duration: .3 }, "-=.35")
+    .to(".zoom__mask", { opacity: 0, duration: .2 }, "-=.2")
     .fromTo(".zoom__photo img", { scale: 1.25 }, { scale: 1, duration: .45, ease: "none" }, "-=.2")
     .to(".zoom__cap", { opacity: 1, duration: .15 }, "-=.3")
     .from(".zoom__cap p", { y: 60, duration: .25 }, "<");
