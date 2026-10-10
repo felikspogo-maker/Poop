@@ -9,11 +9,11 @@
 <meta property="og:title" content="Мисс и Миссис Краснодарский край 2027">
 <meta property="og:description" content="Конкурс красоты для девушек и женщин от 14 до 45 лет. Анкеты принимаем до 15 января 2027 года через Telegram.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="images/hero-crown.jpg">
+<meta property="og:image" content="images/hero-arch.jpg">
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="apple-touch-icon" href="images/favicon.png">
 <link rel="preload" href="fonts/Prata-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="images/hero-crown.jpg" as="image">
+<link rel="preload" href="images/hero-arch.jpg" as="image">
 <link rel="preload" href="images/logo.png" as="image">
 <link rel="stylesheet" href="fonts/fonts.css">
 <script>document.documentElement.classList.add("js");</script>
@@ -195,7 +195,7 @@ body::after {
 .bigword--line { right: -2vw; top: 42vh; font-size: clamp(5rem, 16.5vw, 17rem); color: transparent; -webkit-text-stroke: 1.4px var(--gold); }
 .arch { position: absolute; z-index: 2; left: 50%; bottom: 0; width: clamp(260px, 28vw, 430px); height: min(78svh, 780px); margin-left: calc(clamp(260px, 28vw, 430px) / -2);
   border-radius: 999px 999px 0 0; overflow: hidden; box-shadow: 0 0 0 1px rgba(210, 176, 122, .55), 0 0 0 14px var(--black), 0 0 0 15px rgba(210, 176, 122, .45), 0 0 80px 10px rgba(190, 24, 46, .35); }
-.arch img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 6%; }
+.arch img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; }
 .arch::before { content: ""; position: absolute; inset: 0; z-index: 2; background: linear-gradient(0deg, rgba(14, 1, 3, .7), transparent 35%); }
 .hero__info { position: absolute; z-index: 3; left: var(--gutter); bottom: clamp(30px, 6vh, 64px); max-width: 330px; }
 .hero__tag { margin: 0; font: 400 clamp(1.7rem, 2.6vw, 2.4rem)/1.12 var(--display); color: var(--gold); }
@@ -465,6 +465,51 @@ body::after {
 @media (hover: hover) { .tile:hover::before { box-shadow: inset 0 0 0 1px rgba(232, 196, 124, .8); } }
 
 /* =================================================================
+   ДИРЕКТОР КОНКУРСА
+   ================================================================= */
+.director { position: relative; overflow: clip; padding: clamp(80px, 10vw, 140px) 0 0;
+  background: radial-gradient(ellipse 50% 70% at 30% 60%, rgba(200, 30, 54, .55), transparent 70%), radial-gradient(ellipse 60% 40% at 50% 100%, rgba(150, 18, 38, .5), transparent 70%), var(--black-2); }
+.director__curtain { position: absolute; top: 0; bottom: 0; width: clamp(30px, 6vw, 110px); z-index: 0; pointer-events: none;
+  background: linear-gradient(0deg, rgba(0, 0, 0, .5), transparent 40%), repeating-linear-gradient(90deg, #3a060d 0, #6e1120 1.4vw, #9a1a2e 2.1vw, #6e1120 2.8vw, #3a060d 4.2vw); }
+.director__curtain--l { left: 0; } .director__curtain--r { right: 0; }
+.director__curtain::after { content: ""; position: absolute; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, #f3d9a2, #c18f3a 50%, transparent); }
+.director__curtain--l::after { right: 0; } .director__curtain--r::after { left: 0; }
+.director__grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(30px, 5vw, 90px); align-items: end; }
+.director__fig { position: relative; height: min(88svh, 820px); display: flex; justify-content: center; align-items: flex-end; }
+.director__halo { position: absolute; left: 50%; top: 4%; width: 92%; aspect-ratio: 1; translate: -50% 0; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 214, 150, .35), rgba(200, 30, 54, .25) 45%, transparent 70%); }
+.director__ring { position: absolute; left: 50%; top: 6%; width: 78%; aspect-ratio: 1; translate: -50% 0; border-radius: 50%;
+  border: 1px solid rgba(232, 196, 124, .55); box-shadow: 0 0 0 14px rgba(232, 196, 124, .05), inset 0 0 60px rgba(232, 180, 90, .15); }
+.director__ring::before { content: ""; position: absolute; inset: -14px; border-radius: 50%; border: 1px dashed rgba(232, 196, 124, .3); animation: rays 80s linear infinite; }
+.director__img { position: relative; height: 100%; width: auto; max-width: 100%; object-fit: contain; object-position: 50% 100%;
+  filter: drop-shadow(0 30px 50px rgba(0, 0, 0, .6));
+  -webkit-mask-image: linear-gradient(180deg, #000 85%, transparent); mask-image: linear-gradient(180deg, #000 85%, transparent); }
+.director__text { padding-bottom: clamp(60px, 9vw, 130px); }
+.director__name { font-size: clamp(3rem, 7vw, 6.6rem); line-height: .95; }
+.director__name > span { display: inline-block; }
+.director__patr { margin: 12px 0 0; font: 400 clamp(1.4rem, 2.4vw, 2.1rem)/1 var(--display); color: var(--cream); letter-spacing: .02em; }
+.director__lead { margin: 26px 0 34px; max-width: 30em; color: var(--muted); }
+.director__contacts { display: grid; gap: 14px; max-width: 460px; }
+.dcard { display: flex; align-items: center; gap: 18px; padding: 16px 20px; text-decoration: none; border: 1px solid rgba(232, 196, 124, .35); border-radius: 2px;
+  background: linear-gradient(110deg, rgba(244, 233, 220, .07), rgba(244, 233, 220, 0) 60%); transition: border-color .4s, background .4s, transform .5s var(--ease); }
+.dcard:hover { border-color: var(--gold); background: linear-gradient(110deg, rgba(232, 196, 124, .16), rgba(244, 233, 220, 0) 70%); transform: translateX(6px); }
+.dcard__icon { flex: none; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; color: #3a0710; background: var(--metal); }
+.dcard__icon svg { width: 22px; height: 22px; }
+.dcard small { display: block; font: 500 .66rem/1 var(--text); letter-spacing: .26em; text-transform: uppercase; color: var(--gold); }
+.dcard b { display: block; margin-top: 7px; font: 400 clamp(1.05rem, 1.6vw, 1.3rem)/1.2 var(--display); color: var(--cream); word-break: break-word; }
+@media (max-width: 1000px) {
+  .director { padding-top: 70px; }
+  .director__grid { grid-template-columns: 1fr; gap: 0; }
+  .director__fig { height: min(62svh, 560px); order: 0; }
+  .director__text { padding: 36px 0 90px; text-align: center; }
+  .director__text .kicker { justify-content: center; }
+  .director__text .kicker::after { content: ""; width: 34px; height: 1px; background: currentColor; }
+  .director__lead { margin-inline: auto; }
+  .director__contacts { margin-inline: auto; text-align: left; }
+  .director__curtain { width: 6vw; }
+}
+
+/* =================================================================
    ВОПРОСЫ
    ================================================================= */
 .faq { padding: clamp(50px, 6vw, 80px) 0 clamp(90px, 12vw, 160px); }
@@ -626,6 +671,7 @@ body::after {
       <li><a href="#perks" data-scroll>Что ждёт</a></li>
       <li><a href="#terms" data-scroll>Условия</a></li>
       <li><a href="#gallery" data-scroll>Галерея</a></li>
+      <li><a href="#director" data-scroll>Директор</a></li>
       <li><a href="#faq" data-scroll>Вопросы</a></li>
     </ul>
     <a class="btn js-bot magnetic" href="#" target="_blank" rel="noopener">Подать анкету</a>
@@ -642,7 +688,7 @@ body::after {
     <div class="floor"></div>
     <p class="bigword bigword--fill metal" aria-hidden="true" data-split="chars">Мисс</p>
     <p class="bigword bigword--line" aria-hidden="true" data-split="chars">Миссис</p>
-    <div class="arch tone" id="arch"><img src="images/hero-crown.jpg" alt="Победительница в короне и ленте «Мисс Россия Краснодар» на фоне красного занавеса" fetchpriority="high"></div>
+    <div class="arch tone" id="arch"><img src="images/hero-arch.jpg" alt="Победительница в бриллиантовой короне" fetchpriority="high"></div>
     <div class="hero__info" id="heroInfo">
       <span class="kicker">Краснодарский край · 2027</span>
       <p class="hero__tag">Свет софитов ждёт тебя</p>
@@ -848,6 +894,29 @@ body::after {
     </div>
   </section>
 
+  <!-- Директор конкурса -->
+  <section class="director" id="director">
+    <div class="director__curtain director__curtain--l" aria-hidden="true"></div>
+    <div class="director__curtain director__curtain--r" aria-hidden="true"></div>
+    <div class="wrap director__grid">
+      <div class="director__fig">
+        <div class="director__halo" aria-hidden="true"></div>
+        <div class="director__ring" aria-hidden="true"></div>
+        <img class="director__img" src="images/director.webp" alt="Директор конкурса Елена Александровна Конусова" width="525" height="1111" loading="lazy">
+      </div>
+      <div class="director__text">
+        <span class="kicker">Директор конкурса</span>
+        <h2 class="director__name"><span data-split="chars">Елена</span> <span data-split="chars">Конусова</span></h2>
+        <p class="director__patr">Александровна</p>
+        <p class="director__lead">Руководитель конкурса «Мисс и Миссис Краснодарский край». По вопросам участия, партнёрства и сотрудничества — пишите или звоните напрямую.</p>
+        <div class="director__contacts">
+          <a class="dcard" href="tel:+79883692915"><span class="dcard__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true"><path d="M6.6 3.5h2.6l1.4 4-2 1.6a12 12 0 0 0 6.3 6.3l1.6-2 4 1.4v2.6c0 1-.8 1.8-1.8 1.8A16.2 16.2 0 0 1 4.8 5.3c0-1 .8-1.8 1.8-1.8z"/></svg></span><span><small>Телефон</small><b>+7 988 369-29-15</b></span></a>
+          <a class="dcard" href="mailto:missis.krasnodar@gmail.com"><span class="dcard__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m3.5 6 8.5 7 8.5-7"/></svg></span><span><small>Почта</small><b>missis.krasnodar@gmail.com</b></span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Вопросы -->
   <section class="faq" id="faq">
     <div class="wrap faq__grid">
@@ -913,7 +982,8 @@ const SITE = {
     "Telegram-бот": "https://t.me/msmrs_krasnodarskiykray_bot",
     "Instagram": "",
     "ВКонтакте": "",
-    "Телефон": "",
+    "Почта": "missis.krasnodar@gmail.com",
+    "Телефон": "+7 988 369-29-15",
   },
 };
 
@@ -933,9 +1003,9 @@ const SITE = {
   Object.entries(SITE.contacts).forEach(([name, v]) => {
     if (!v) return;
     const a = document.createElement("a");
-    a.textContent = name === "Телефон" ? v : name;
-    a.href = name === "Телефон" ? "tel:" + v.replace(/[^\d+]/g, "") : v;
-    if (name !== "Телефон") { a.target = "_blank"; a.rel = "noopener"; }
+    a.textContent = name === "Телефон" || name === "Почта" ? v : name;
+    a.href = name === "Телефон" ? "tel:" + v.replace(/[^\d+]/g, "") : name === "Почта" ? "mailto:" + v : v;
+    if (name !== "Телефон" && name !== "Почта") { a.target = "_blank"; a.rel = "noopener"; }
     $("#contacts").appendChild(a);
   });
   const days = Math.ceil((new Date(SITE.deadline) - Date.now()) / 864e5);
@@ -1383,6 +1453,15 @@ const SITE = {
         onComplete: () => { el.remove(); live--; } });
     });
   }
+
+  /* ---------- Директор: силуэт поднимается в золотом кольце ---------- */
+  gsap.timeline({ scrollTrigger: { trigger: "#director", start: "top 70%" } })
+    .from(".director__halo", { scale: .4, opacity: 0, duration: 1.6, ease: "expo.out" })
+    .from(".director__ring", { scale: .6, opacity: 0, rotation: -40, duration: 1.6, ease: "expo.out" }, "<.1")
+    .from(".director__img", { y: 120, opacity: 0, duration: 1.4, ease: "expo.out" }, "<.15")
+    .from(".director__patr, .director__lead", { y: 30, opacity: 0, duration: 1, stagger: .1, ease: "expo.out" }, "<.4")
+    .from(".dcard", { x: -40, opacity: 0, duration: 1, stagger: .12, ease: "expo.out" }, "<.2");
+  gsap.fromTo(".director__img", { yPercent: 4 }, { yPercent: -3, ease: "none", scrollTrigger: { trigger: "#director", start: "top bottom", end: "bottom top", scrub: true } });
 
   /* ---------- Прогресс прокрутки ---------- */
   gsap.to("#progress", { scaleX: 1, ease: "none", scrollTrigger: { start: 0, end: "max", scrub: .3 } });
