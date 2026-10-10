@@ -482,8 +482,9 @@ body::after {
   border: 1px solid rgba(232, 196, 124, .55); box-shadow: 0 0 0 14px rgba(232, 196, 124, .05), inset 0 0 60px rgba(232, 180, 90, .15); }
 .director__ring::before { content: ""; position: absolute; inset: -14px; border-radius: 50%; border: 1px dashed rgba(232, 196, 124, .3); animation: rays 80s linear infinite; }
 .director__img { position: relative; height: 100%; width: auto; max-width: 100%; object-fit: contain; object-position: 50% 100%;
-  filter: drop-shadow(0 30px 50px rgba(0, 0, 0, .6));
   -webkit-mask-image: linear-gradient(180deg, #000 85%, transparent); mask-image: linear-gradient(180deg, #000 85%, transparent); }
+.director__fig::after { content: ""; position: absolute; left: 15%; right: 15%; bottom: 0; height: 60px; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, .55), transparent 70%); }
 .director__text { padding-bottom: clamp(60px, 9vw, 130px); }
 .director__name { font-size: clamp(3rem, 7vw, 6.6rem); line-height: .95; }
 .director__name > span { display: inline-block; }
@@ -491,8 +492,8 @@ body::after {
 .director__lead { margin: 26px 0 34px; max-width: 30em; color: var(--muted); }
 .director__contacts { display: grid; gap: 14px; max-width: 460px; }
 .dcard { display: flex; align-items: center; gap: 18px; padding: 16px 20px; text-decoration: none; border: 1px solid rgba(232, 196, 124, .35); border-radius: 2px;
-  background: linear-gradient(110deg, rgba(244, 233, 220, .07), rgba(244, 233, 220, 0) 60%); transition: border-color .4s, background .4s, transform .5s var(--ease); }
-.dcard:hover { border-color: var(--gold); background: linear-gradient(110deg, rgba(232, 196, 124, .16), rgba(244, 233, 220, 0) 70%); transform: translateX(6px); }
+  background: linear-gradient(110deg, rgba(244, 233, 220, .07), rgba(244, 233, 220, 0) 60%); transition: border-color .4s, background .4s, translate .5s var(--ease); }
+@media (hover: hover) { .dcard:hover { border-color: var(--gold); background: linear-gradient(110deg, rgba(232, 196, 124, .16), rgba(244, 233, 220, 0) 70%); translate: 6px 0; } }
 .dcard__icon { flex: none; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; color: #3a0710; background: var(--metal); }
 .dcard__icon svg { width: 22px; height: 22px; }
 .dcard small { display: block; font: 500 .66rem/1 var(--text); letter-spacing: .26em; text-transform: uppercase; color: var(--gold); }
@@ -505,7 +506,7 @@ body::after {
   .director__text .kicker { justify-content: center; }
   .director__text .kicker::after { content: ""; width: 34px; height: 1px; background: currentColor; }
   .director__lead { margin-inline: auto; }
-  .director__contacts { margin-inline: auto; text-align: left; }
+  .director__contacts { width: 100%; margin-inline: auto; text-align: left; }
   .director__curtain { width: 6vw; }
 }
 
@@ -1299,6 +1300,7 @@ const SITE = {
     const at = 1 + i * 1.1;
     ctl.to($(".queen__beam", q), { opacity: 1, scaleX: 1, duration: .45, ease: "power2.out" }, at)        // загорается софит
        .to($(".queen__lit", q), { opacity: 1, duration: .5 }, at + .2)                                    // фигура выходит из тени
+       .to($(".queen__dark", q), { opacity: 0, duration: .2 }, at + .7)                                  // тёмный слой убираем совсем (иначе iPhone может рисовать рамку)
        .fromTo($(".queen__fig", q), { scale: 1 }, { scale: 1.06, duration: .5, yoyo: true, repeat: 1, transformOrigin: "50% 100%" }, at + .2)
        .to($(".queen__cap", q), { opacity: 1, y: 0, duration: .4 }, at + .45)
        .fromTo($(".queen__shine", q), { backgroundPosition: "160% 0" }, { backgroundPosition: "-60% 0", duration: .7, ease: "none" }, at + .3)
@@ -1460,7 +1462,7 @@ const SITE = {
     .from(".director__ring", { scale: .6, opacity: 0, rotation: -40, duration: 1.6, ease: "expo.out" }, "<.1")
     .from(".director__img", { y: 120, opacity: 0, duration: 1.4, ease: "expo.out" }, "<.15")
     .from(".director__patr, .director__lead", { y: 30, opacity: 0, duration: 1, stagger: .1, ease: "expo.out" }, "<.4")
-    .from(".dcard", { x: -40, opacity: 0, duration: 1, stagger: .12, ease: "expo.out" }, "<.2");
+    .from(".dcard", { y: 24, opacity: 0, duration: 1, stagger: .12, ease: "expo.out", clearProps: "transform" }, "<.2");
   gsap.fromTo(".director__img", { yPercent: 4 }, { yPercent: -3, ease: "none", scrollTrigger: { trigger: "#director", start: "top bottom", end: "bottom top", scrub: true } });
 
   /* ---------- Прогресс прокрутки ---------- */
