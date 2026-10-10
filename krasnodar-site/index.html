@@ -191,7 +191,7 @@ body::after {
   background: radial-gradient(ellipse, rgba(255, 205, 130, .26), transparent 65%); pointer-events: none; }
 .bigword { position: absolute; z-index: 1; margin: 0; white-space: nowrap; pointer-events: none; user-select: none;
   font: 400 clamp(6rem, 21vw, 22rem)/.8 var(--display); letter-spacing: -.05em; text-transform: uppercase; }
-.bigword--fill { left: -1.5vw; top: 15vh; color: var(--cream); }
+.bigword--fill { left: -1.5vw; top: 15vh; color: transparent; padding: .06em 0; margin-top: -.06em; }
 .bigword--line { right: -2vw; top: 42vh; font-size: clamp(5rem, 16.5vw, 17rem); color: transparent; -webkit-text-stroke: 1.4px var(--gold); }
 .arch { position: absolute; z-index: 2; left: 50%; bottom: 0; width: clamp(260px, 28vw, 430px); height: min(78svh, 780px); margin-left: calc(clamp(260px, 28vw, 430px) / -2);
   border-radius: 999px 999px 0 0; overflow: hidden; box-shadow: 0 0 0 1px rgba(210, 176, 122, .55), 0 0 0 14px var(--black), 0 0 0 15px rgba(210, 176, 122, .45), 0 0 80px 10px rgba(190, 24, 46, .35); }
@@ -705,7 +705,7 @@ body::after {
     <h1 class="sr">Мисс и Миссис Краснодарский край 2027 — конкурс красоты</h1>
     <div class="beam-wrap" id="beam"><div class="beam"></div><canvas class="dust" id="dust"></canvas></div>
     <div class="floor"></div>
-    <p class="bigword bigword--fill metal" aria-hidden="true" data-split="chars">Мисс</p>
+    <p class="bigword bigword--fill metal" aria-hidden="true">Мисс</p>
     <p class="bigword bigword--line" aria-hidden="true" data-split="chars">Миссис</p>
     <div class="arch tone" id="arch"><img src="images/hero-arch.jpg" alt="Победительница в бриллиантовой короне" fetchpriority="high"></div>
     <div class="hero__info" id="heroInfo">
@@ -1163,11 +1163,12 @@ const SITE = {
   const maniWords = split($("#mani"), "words");
 
   /* ---------- Занавес и выход на сцену ---------- */
-  const w1 = chars.get($(".bigword--fill")), w2 = chars.get($(".bigword--line"));
+  const w1 = $(".bigword--fill"), w2 = chars.get($(".bigword--line"));
   const heroBits = [...$$("#heroInfo > *"), $("#heroMeta")];
   gsap.set("#arch", { clipPath: "inset(100% 0% 0% 0% round 999px 999px 0px 0px)" });
   gsap.set("#arch img", { scale: 1.35 });
-  gsap.set([...w1, ...w2], { yPercent: 118 });
+  gsap.set(w2, { yPercent: 118 });
+  gsap.set(w1, { clipPath: "inset(0% 0% 100% 0%)", y: 40 }); // золотое слово проявляется целиком, без движения отдельных букв
   gsap.set("#beam", { opacity: 0 });
   gsap.set(heroBits, { y: 30, opacity: 0 });
   gsap.set(nav, { yPercent: -100 });
@@ -1192,7 +1193,7 @@ const SITE = {
     .to("#beam", { keyframes: [{ opacity: .6, duration: .07 }, { opacity: .1, duration: .1 }, { opacity: .85, duration: .06 }, { opacity: .25, duration: .14 }, { opacity: 1, duration: .7 }], ease: "none" }, "open+=.55")
     .to("#arch", { clipPath: "inset(0% 0% 0% 0% round 999px 999px 0px 0px)", duration: 1.8, ease: "expo.inOut" }, "open+=.35")
     .to("#arch img", { scale: 1, duration: 2.6 }, "open+=.5")
-    .to(w1, { yPercent: 0, duration: 1.5, stagger: .07, clearProps: "transform" }, "open+=.7")
+    .to(w1, { clipPath: "inset(-10% 0% -10% 0%)", y: 0, duration: 1.6, clearProps: "clipPath,transform" }, "open+=.7")
     .to(w2, { yPercent: 0, duration: 1.5, stagger: .06, clearProps: "transform" }, "open+=.9")
     .to(heroBits, { y: 0, opacity: 1, duration: 1.2, stagger: .09 }, "open+=1.3")
     .to(nav, { yPercent: 0, duration: 1.2 }, "open+=1.5");
