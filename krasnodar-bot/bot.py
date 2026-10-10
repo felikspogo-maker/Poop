@@ -38,7 +38,6 @@ logger = logging.getLogger(__name__)
 
 (
     CONSENT,
-    REGION,
     NAME,
     CITY,
     AGE,
@@ -51,13 +50,11 @@ logger = logging.getLogger(__name__)
     TELEGRAM,
     PHOTOS,
     CONFIRM,
-) = range(14)
+) = range(13)
 
 # --- Кнопки ---
 BTN_APPLY = "📝 Подать анкету"
 BTN_INFO = "👑 О конкурсе"
-BTN_YES = "✅ Да"
-BTN_NO = "❌ Нет"
 BTN_AGREE = "✅ Согласна"
 BTN_DISAGREE = "❌ Не согласна"
 BTN_SEND = "✅ Отправить анкету"
@@ -70,7 +67,6 @@ def _kb(rows: list[list[str]], one_time: bool = True) -> ReplyKeyboardMarkup:
 
 MAIN_MENU = _kb([[BTN_APPLY], [BTN_INFO]], one_time=False)
 CONSENT_KB = _kb([[BTN_AGREE], [BTN_DISAGREE]])
-YES_NO = _kb([[BTN_YES, BTN_NO]])
 MARITAL_KB = _kb([[m] for m in config.MARITAL_OPTIONS])
 SIZE_KB = _kb([config.CLOTHING_SIZES])
 PHONE_KB = _kb([[KeyboardButton("📞 Отправить мой номер", request_contact=True)]])
@@ -89,8 +85,7 @@ def _categories_text() -> str:
 
 INFO_TEXT = (
     f"👑 <b>{config.CONTEST_NAME}</b> 👑\n\n"
-    f"📅 Приём анкет до <b>{config.DEADLINE_TEXT}</b>\n"
-    f"📍 Участвуют жительницы <b>Южного федерального округа</b>\n\n"
+    f"📅 Приём анкет до <b>{config.DEADLINE_TEXT}</b>\n\n"
     "<b>Категории:</b>\n"
     f"{_categories_text()}\n\n"
     "<b>Требования:</b>\n"
@@ -176,12 +171,6 @@ async def apply(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     return CONSENT
 
 
-REGIONS_TEXT = (
-    "Это Краснодарский край, Республики Адыгея, Калмыкия и Крым, "
-    "Астраханская, Волгоградская и Ростовская области, город Севастополь."
-)
-
-
 async def get_consent(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     if update.message.text != BTN_AGREE:
         context.user_data.clear()
@@ -192,26 +181,6 @@ async def get_consent(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int
         )
         return ConversationHandler.END
     context.user_data["consent"] = f"Дано {datetime.now().strftime('%d.%m.%Y %H:%M')}"
-    await update.message.reply_html(
-        f"Вы проживаете в <b>Южном федеральном округе</b>?\n\n{REGIONS_TEXT}",
-        reply_markup=YES_NO,
-    )
-    return REGION
-
-
-async def get_region(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-    text = update.message.text
-    if text == BTN_NO:
-        context.user_data.clear()
-        await update.message.reply_text(
-            "К сожалению, в конкурсе участвуют только жительницы "
-            "Южного федерального округа.",
-            reply_markup=MAIN_MENU,
-        )
-        return ConversationHandler.END
-    if text != BTN_YES:
-        await update.message.reply_text("Ответьте кнопками ниже:", reply_markup=YES_NO)
-        return REGION
     await update.message.reply_html(
         "1️⃣ Ваши <b>Фамилия, Имя, Отчество</b>:", reply_markup=ReplyKeyboardRemove()
     )
@@ -225,7 +194,7 @@ async def get_name(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         return NAME
     context.user_data["name"] = name
     await update.message.reply_html(
-        "2️⃣ Ваш <b>город / населённый пункт</b> (Южный федеральный округ):"
+        "2️⃣ Ваш <b>город / населённый пункт</b>:"
     )
     return CITY
 
@@ -523,7 +492,6 @@ def build_application() -> Application:
         ],
         states={
             CONSENT: [MessageHandler(text, get_consent)],
-            REGION: [MessageHandler(text, get_region)],
             NAME: [MessageHandler(text, get_name)],
             CITY: [MessageHandler(text, get_city)],
             AGE: [MessageHandler(text, get_age)],
