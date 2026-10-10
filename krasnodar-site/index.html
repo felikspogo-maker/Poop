@@ -226,7 +226,8 @@ body::after {
 .mani em { font-style: normal; color: var(--gold); }
 .mani-photo { position: absolute; z-index: 1; overflow: hidden; border-radius: 2px; box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .8); }
 .mani-photo img { width: 100%; height: 100%; object-fit: cover; }
-.mani-photo--1 { right: 6vw; top: 12%; width: clamp(150px, 17vw, 260px); aspect-ratio: 3 / 4; }
+.mani-photo--1 { right: 6vw; top: 10%; width: clamp(180px, 20vw, 300px); aspect-ratio: 2 / 3; }
+.mani-photo--1 img { object-position: 50% 15%; }
 .mani-photo--2 { right: 22vw; bottom: 8%; width: clamp(130px, 13vw, 210px); aspect-ratio: 4 / 5; }
 .mani-foot { position: relative; z-index: 2; display: grid; grid-template-columns: auto 1fr; gap: 24px 60px; align-items: end; margin-top: clamp(50px, 8vw, 100px); max-width: 860px; }
 .mani-foot strong { display: block; font: 400 clamp(1.8rem, 3vw, 2.6rem)/1.1 var(--display); color: var(--gold); white-space: nowrap; }
@@ -333,8 +334,8 @@ body::after {
   .queen--miss .queen__fig { height: 27svh; }
   /* на узком экране — групповой кадр: центральная впереди, боковые прижаты к краям экрана */
   .queen--miss { position: relative; z-index: 2; }
-  .queen--young .queen__body { left: 0; translate: 0 0; }
-  .queen--mrs .queen__body { left: auto; right: 0; translate: 0 0; }
+  .queen:first-child .queen__body { left: 0; translate: 0 0; }
+  .queen:last-child .queen__body { left: auto; right: 0; translate: 0 0; }
   .crowns__in { padding-bottom: 96px; } /* место под нижнюю кнопку «Подать анкету» */
   .queen__cap h3 { font-size: 1.15rem; }
   .queen__age { font-size: .56rem; letter-spacing: .14em; }
@@ -560,7 +561,7 @@ body::after {
 .footer__row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; }
 .footer__links { display: flex; flex-wrap: wrap; gap: 14px 28px; }
 .footer__links a { text-underline-offset: 6px; text-decoration-color: var(--gold); }
-.footer__copy { margin-top: 34px; padding-top: 22px; border-top: 1px solid var(--line); font-size: .85rem; }
+.footer__copy { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 30px; margin-top: 34px; padding-top: 22px; border-top: 1px solid var(--line); font-size: .85rem; }
 
 /* Просмотр фото */
 .lightbox { position: fixed; inset: 0; z-index: 170; display: grid; place-items: center; padding: 64px var(--gutter); background: rgba(8, 0, 2, .96); opacity: 0; visibility: hidden; transition: opacity .4s, visibility .4s; }
@@ -589,8 +590,8 @@ body::after {
   .logo__mark { height: 44px; }
   .logo__text { font-size: 1.05rem; }
   .logo__text small { font-size: .5rem; letter-spacing: .24em; }
-  .mani-photo--1 { position: relative; right: auto; top: auto; display: block; width: calc(100% - 2 * var(--gutter)); max-width: 560px; aspect-ratio: 4 / 3; margin: 0 auto 34px; }
-  .mani-photo--1 img { object-position: 50% 25%; }
+  .mani-photo--1 { position: relative; right: auto; top: auto; display: block; width: calc(100% - 2 * var(--gutter)); max-width: 460px; aspect-ratio: 4 / 5; margin: 0 auto 34px; }
+  .mani-photo--1 img { object-position: 50% 20%; }
   .mani-photo--2 { display: none; }
   .mani { font-size: clamp(1.75rem, 8vw, 2.4rem); }
   .mani-foot { grid-template-columns: 1fr; }
@@ -707,8 +708,8 @@ body::after {
 
   <!-- О конкурсе — манифест -->
   <section class="manifesto" id="about">
-    <div class="mani-photo mani-photo--1 tone" data-speed="-14"><img src="images/interview.jpg" alt="Участница в красном платье даёт интервью" loading="lazy"></div>
-    <div class="mani-photo mani-photo--2 tone" data-speed="12"><img src="images/hall-stage.jpg" alt="" loading="lazy"></div>
+    <div class="mani-photo mani-photo--1 tone" data-speed="-14"><img src="images/gold-crown.jpg" alt="Победительница в короне на фоне золотой стены" loading="lazy"></div>
+    <div class="mani-photo mani-photo--2 tone" data-speed="12"><img src="images/interview.jpg" alt="Участница в красном платье даёт интервью" loading="lazy"></div>
     <div class="wrap">
       <span class="kicker" data-r>О конкурсе</span>
       <p class="mani" id="mani">Сцена ждёт тех, кто умеет <em>светиться.</em> «Мисс и Миссис Краснодарский край» — конкурс, где ценят <em>красоту, характер и уверенность.</em> Участвовать могут девушки и женщины от 14 до 45 лет из любого города и региона.</p>
@@ -743,18 +744,18 @@ body::after {
         <h2 data-split="chars">Три короны</h2>
       </div>
       <div class="crowns__stage">
-        <article class="queen queen--young">
+        <article class="queen queen--mrs">
           <div class="queen__fig">
             <i class="queen__beam" aria-hidden="true"></i>
-            <div class="queen__body" style="--ar: 672 / 1000">
-              <img class="queen__dark" src="images/cut-young.webp" alt="" aria-hidden="true">
-              <img class="queen__lit" src="images/cut-young.webp" alt="Победительница в категории «Юная Мисс» в розовой короне">
-              <i class="queen__shine" style="--cut: url(images/cut-young.webp)" aria-hidden="true"></i>
+            <div class="queen__body" style="--ar: 760 / 904">
+              <img class="queen__dark" src="images/cut-mrs.webp" alt="" aria-hidden="true">
+              <img class="queen__lit" src="images/cut-mrs.webp" alt="Победительница в категории «Миссис» в золотой короне и белых перьях">
+              <i class="queen__shine" style="--cut: url(images/cut-mrs.webp)" aria-hidden="true"></i>
               <i class="queen__glint" aria-hidden="true"></i><i class="queen__glint queen__glint--2" aria-hidden="true"></i>
             </div>
           </div>
-          <div class="queen__podium" aria-hidden="true"><span>I</span></div>
-          <div class="queen__cap"><h3>Юная Мисс</h3><span class="queen__age">14–17 лет</span><p>Первые шаги на сцене. Согласие даёт родитель.</p></div>
+          <div class="queen__podium" aria-hidden="true"></div>
+          <div class="queen__cap"><h3>Миссис</h3><span class="queen__age">20–45 лет</span><p>Для женщин, которые вдохновляют.</p></div>
         </article>
         <article class="queen queen--miss">
           <div class="queen__fig">
@@ -766,21 +767,21 @@ body::after {
               <i class="queen__glint" aria-hidden="true"></i><i class="queen__glint queen__glint--2" aria-hidden="true"></i>
             </div>
           </div>
-          <div class="queen__podium" aria-hidden="true"><span>II</span></div>
+          <div class="queen__podium" aria-hidden="true"></div>
           <div class="queen__cap"><h3>Мисс</h3><span class="queen__age">18–35 лет</span><p>Для тех, кто готов заявить о себе.</p></div>
         </article>
-        <article class="queen queen--mrs">
+        <article class="queen queen--young">
           <div class="queen__fig">
             <i class="queen__beam" aria-hidden="true"></i>
-            <div class="queen__body" style="--ar: 760 / 904">
-              <img class="queen__dark" src="images/cut-mrs.webp" alt="" aria-hidden="true">
-              <img class="queen__lit" src="images/cut-mrs.webp" alt="Победительница в категории «Миссис» в золотой короне и белых перьях">
-              <i class="queen__shine" style="--cut: url(images/cut-mrs.webp)" aria-hidden="true"></i>
+            <div class="queen__body" style="--ar: 672 / 1000">
+              <img class="queen__dark" src="images/cut-young.webp" alt="" aria-hidden="true">
+              <img class="queen__lit" src="images/cut-young.webp" alt="Победительница в категории «Юная Мисс» в розовой короне">
+              <i class="queen__shine" style="--cut: url(images/cut-young.webp)" aria-hidden="true"></i>
               <i class="queen__glint" aria-hidden="true"></i><i class="queen__glint queen__glint--2" aria-hidden="true"></i>
             </div>
           </div>
-          <div class="queen__podium" aria-hidden="true"><span>III</span></div>
-          <div class="queen__cap"><h3>Миссис</h3><span class="queen__age">20–45 лет</span><p>Для женщин, которые вдохновляют.</p></div>
+          <div class="queen__podium" aria-hidden="true"></div>
+          <div class="queen__cap"><h3>Юная Мисс</h3><span class="queen__age">14–17 лет</span><p>Первые шаги на сцене. Согласие даёт родитель.</p></div>
         </article>
       </div>
       <p class="crowns__note">Категорию бот предложит сам по возрасту. В 20–35 лет можно выбрать между «Мисс» и «Миссис».</p>
@@ -876,6 +877,7 @@ body::after {
         <p class="lead" data-r>Нажмите на фото, чтобы посмотреть его целиком.</p>
       </div>
       <div class="gallery-grid" id="gcols">
+        <button class="tile tone" type="button" data-full="images/gold-crown.jpg"><img src="images/gold-crown.jpg" alt="Победительница в короне на фоне золотой стены" loading="lazy"></button>
         <button class="tile tile--wide tone" type="button" data-full="images/coronation.jpg"><img src="images/coronation.jpg" alt="Коронация под огни" loading="lazy"></button>
         <button class="tile tone" type="button" data-full="images/host-red.jpg"><img src="images/host-red.jpg" alt="Ведущая в красном у герба конкурса" loading="lazy"></button>
         <button class="tile tone" type="button" data-full="images/veils.jpg"><img src="images/veils.jpg" alt="Участницы под фатой на сцене" loading="lazy"></button>
@@ -886,7 +888,7 @@ body::after {
         <button class="tile tone" type="button" data-full="images/white-feathers.jpg"><img src="images/white-feathers.jpg" alt="Образ из белых перьев в луче света" loading="lazy"></button>
         <button class="tile tone" type="button" data-full="images/lineup-crest.jpg"><img src="images/lineup-crest.jpg" alt="Участницы на сцене у герба конкурса" loading="lazy"></button>
         <button class="tile tone" type="button" data-full="images/bride-palace.jpg"><img src="images/bride-palace.jpg" alt="Выход в белом на фоне дворцовой лестницы" loading="lazy"></button>
-        <button class="tile tile--wide tone" type="button" data-full="images/gala-table.jpg"><img src="images/gala-table.jpg" alt="Шампанское и устрицы на гала-ужине" loading="lazy"></button>
+        <button class="tile tone" type="button" data-full="images/gala-table.jpg"><img src="images/gala-table.jpg" alt="Шампанское и устрицы на гала-ужине" loading="lazy"></button>
         <button class="tile tone" type="button" data-full="images/feather-wave.jpg"><img src="images/feather-wave.jpg" alt="Участница в шляпе из перьев приветствует зал" loading="lazy"></button>
         <button class="tile tone" type="button" data-full="images/chandeliers.jpg"><img src="images/chandeliers.jpg" alt="Люстры и гости в зале" loading="lazy"></button>
         <button class="tile tone" type="button" data-full="images/host-mic.jpg"><img src="images/host-mic.jpg" alt="Ведущая в красном с микрофоном" loading="lazy"></button>
@@ -958,7 +960,7 @@ body::after {
       </a>
       <div class="footer__links" id="contacts"></div>
     </div>
-    <div class="footer__copy">© <span id="year"></span> «Мисс и Миссис Краснодарский край»</div>
+    <div class="footer__copy"><span>© <span id="year"></span> «Мисс и Миссис Краснодарский край»</span><span>Организатор: ИП Лысенко Надежда Николаевна</span></div>
   </div>
 </footer>
 
