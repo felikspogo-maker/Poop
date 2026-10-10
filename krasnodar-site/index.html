@@ -226,8 +226,7 @@ body::after {
 .mani em { font-style: normal; color: var(--gold); }
 .mani-photo { position: absolute; z-index: 1; overflow: hidden; border-radius: 2px; box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .8); }
 .mani-photo img { width: 100%; height: 100%; object-fit: cover; }
-.mani-photo--1 { right: 6vw; top: 10%; width: clamp(180px, 20vw, 300px); aspect-ratio: 2 / 3; }
-.mani-photo--1 img { object-position: 50% 15%; }
+.mani-photo--1 { right: 6vw; top: 12%; width: clamp(150px, 17vw, 260px); aspect-ratio: 3 / 4; }
 .mani-photo--2 { right: 22vw; bottom: 8%; width: clamp(130px, 13vw, 210px); aspect-ratio: 4 / 5; }
 .mani-foot { position: relative; z-index: 2; display: grid; grid-template-columns: auto 1fr; gap: 24px 60px; align-items: end; margin-top: clamp(50px, 8vw, 100px); max-width: 860px; }
 .mani-foot strong { display: block; font: 400 clamp(1.8rem, 3vw, 2.6rem)/1.1 var(--display); color: var(--gold); white-space: nowrap; }
@@ -540,6 +539,26 @@ body::after {
 .finale__photo img { width: 100%; height: 100%; object-fit: cover; opacity: .38; filter: saturate(.7); }
 .finale__photo::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(28, 4, 8, .55), var(--black) 90%), linear-gradient(0deg, rgba(150, 18, 38, .45), transparent 60%); mix-blend-mode: normal; }
 .finale__in { position: relative; z-index: 3; padding: 90px var(--gutter); }
+/* королева в луче софита: на компьютере справа, текст — левее центра */
+.finale__queen { position: absolute; z-index: 2; right: 5vw; bottom: 0; height: min(92svh, 900px); aspect-ratio: 701 / 1200; pointer-events: none; }
+.finale__queen img { position: relative; width: 100%; height: 100%;
+  -webkit-mask-image: linear-gradient(180deg, #000 80%, transparent); mask-image: linear-gradient(180deg, #000 80%, transparent); }
+.finale__glow { position: absolute; left: 50%; top: 2%; width: 120%; aspect-ratio: 1; translate: -50% 0; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 214, 140, .4), rgba(200, 30, 54, .25) 42%, transparent 68%); }
+@media (min-width: 1001px) {
+  .finale { place-items: center start; }
+  .finale__in { width: min(58vw, 820px); margin-left: 5vw; }
+  .finale h2 { font-size: clamp(3.2rem, 7.2vw, 8rem); }
+}
+@media (max-width: 1000px) {
+  .finale { align-items: start; }
+  .finale__in { padding-top: 80px; }
+  .finale__queen { right: 50%; translate: 50% 0; height: 46svh; }
+  .finale { min-height: 112svh; }
+  .finale__in { padding-bottom: 50svh; }
+  .finale p { margin: 18px auto 26px; }
+  .finale__logo { width: 100px; margin-bottom: 10px; }
+}
 .finale__logo { display: block; width: clamp(150px, 14vw, 210px); height: auto; margin: 0 auto 20px; }
 .finale h2 { font-size: clamp(3.2rem, 10vw, 10rem); line-height: .95; }
 .finale p { margin: 26px auto 40px; max-width: 30em; color: var(--muted); }
@@ -590,8 +609,8 @@ body::after {
   .logo__mark { height: 44px; }
   .logo__text { font-size: 1.05rem; }
   .logo__text small { font-size: .5rem; letter-spacing: .24em; }
-  .mani-photo--1 { position: relative; right: auto; top: auto; display: block; width: calc(100% - 2 * var(--gutter)); max-width: 460px; aspect-ratio: 4 / 5; margin: 0 auto 34px; }
-  .mani-photo--1 img { object-position: 50% 20%; }
+  .mani-photo--1 { position: relative; right: auto; top: auto; display: block; width: calc(100% - 2 * var(--gutter)); max-width: 460px; aspect-ratio: 4 / 3; margin: 0 auto 34px; }
+  .mani-photo--1 img { object-position: 50% 25%; }
   .mani-photo--2 { display: none; }
   .mani { font-size: clamp(1.75rem, 8vw, 2.4rem); }
   .mani-foot { grid-template-columns: 1fr; }
@@ -708,8 +727,8 @@ body::after {
 
   <!-- О конкурсе — манифест -->
   <section class="manifesto" id="about">
-    <div class="mani-photo mani-photo--1 tone" data-speed="-14"><img src="images/gold-crown.jpg" alt="Победительница в короне на фоне золотой стены" loading="lazy"></div>
-    <div class="mani-photo mani-photo--2 tone" data-speed="12"><img src="images/interview.jpg" alt="Участница в красном платье даёт интервью" loading="lazy"></div>
+    <div class="mani-photo mani-photo--1 tone" data-speed="-14"><img src="images/interview.jpg" alt="Участница в красном платье даёт интервью" loading="lazy"></div>
+    <div class="mani-photo mani-photo--2 tone" data-speed="12"><img src="images/hall-stage.jpg" alt="" loading="lazy"></div>
     <div class="wrap">
       <span class="kicker" data-r>О конкурсе</span>
       <p class="mani" id="mani">Сцена ждёт тех, кто умеет <em>светиться.</em> «Мисс и Миссис Краснодарский край» — конкурс, где ценят <em>красоту, характер и уверенность.</em> Участвовать могут девушки и женщины от 14 до 45 лет из любого города и региона.</p>
@@ -877,7 +896,6 @@ body::after {
         <p class="lead" data-r>Нажмите на фото, чтобы посмотреть его целиком.</p>
       </div>
       <div class="gallery-grid" id="gcols">
-        <button class="tile tone" type="button" data-full="images/gold-crown.jpg"><img src="images/gold-crown.jpg" alt="Победительница в короне на фоне золотой стены" loading="lazy"></button>
         <button class="tile tile--wide tone" type="button" data-full="images/coronation.jpg"><img src="images/coronation.jpg" alt="Коронация под огни" loading="lazy"></button>
         <button class="tile tone" type="button" data-full="images/host-red.jpg"><img src="images/host-red.jpg" alt="Ведущая в красном у герба конкурса" loading="lazy"></button>
         <button class="tile tone" type="button" data-full="images/veils.jpg"><img src="images/veils.jpg" alt="Участницы под фатой на сцене" loading="lazy"></button>
@@ -888,7 +906,7 @@ body::after {
         <button class="tile tone" type="button" data-full="images/white-feathers.jpg"><img src="images/white-feathers.jpg" alt="Образ из белых перьев в луче света" loading="lazy"></button>
         <button class="tile tone" type="button" data-full="images/lineup-crest.jpg"><img src="images/lineup-crest.jpg" alt="Участницы на сцене у герба конкурса" loading="lazy"></button>
         <button class="tile tone" type="button" data-full="images/bride-palace.jpg"><img src="images/bride-palace.jpg" alt="Выход в белом на фоне дворцовой лестницы" loading="lazy"></button>
-        <button class="tile tone" type="button" data-full="images/gala-table.jpg"><img src="images/gala-table.jpg" alt="Шампанское и устрицы на гала-ужине" loading="lazy"></button>
+        <button class="tile tile--wide tone" type="button" data-full="images/gala-table.jpg"><img src="images/gala-table.jpg" alt="Шампанское и устрицы на гала-ужине" loading="lazy"></button>
         <button class="tile tone" type="button" data-full="images/feather-wave.jpg"><img src="images/feather-wave.jpg" alt="Участница в шляпе из перьев приветствует зал" loading="lazy"></button>
         <button class="tile tone" type="button" data-full="images/chandeliers.jpg"><img src="images/chandeliers.jpg" alt="Люстры и гости в зале" loading="lazy"></button>
         <button class="tile tone" type="button" data-full="images/host-mic.jpg"><img src="images/host-mic.jpg" alt="Ведущая в красном с микрофоном" loading="lazy"></button>
@@ -943,6 +961,10 @@ body::after {
   <section class="finale" id="finale" data-sparks="26">
     <div class="finale__photo" aria-hidden="true"><img src="images/coronation.jpg" alt="" loading="lazy"></div>
     <div class="beam-wrap"><div class="beam"></div></div>
+    <div class="finale__queen" aria-hidden="true">
+      <i class="finale__glow"></i>
+      <img src="images/cut-gold.webp" alt="" width="701" height="1200" loading="lazy">
+    </div>
     <div class="finale__in">
       <img class="finale__logo" id="finaleLogo" src="images/logo.png" alt="Герб конкурса «Мисс и Миссис Краснодарский край»" width="700" height="700" loading="lazy">
       <h2 data-split="chars">Твоя корона ждёт</h2>
@@ -1390,6 +1412,8 @@ const SITE = {
   gsap.from($(".beam-wrap", fin), { opacity: 0, duration: 2.4, ease: "power2.out", scrollTrigger: { trigger: fin, start: "top 65%" } });
   // финал «приближается»: фото зала отъезжает, заголовок вырастает из глубины
   gsap.fromTo(".finale__photo img", { scale: 1.35 }, { scale: 1, ease: "none", scrollTrigger: { trigger: fin, start: "top bottom", end: "bottom bottom", scrub: true } });
+  gsap.fromTo(".finale__queen", { yPercent: 18, opacity: 0 }, { yPercent: 0, opacity: 1, ease: "none", scrollTrigger: { trigger: fin, start: "top 90%", end: "top 10%", scrub: true } });
+  gsap.fromTo(".finale__glow", { scale: .5, opacity: 0 }, { scale: 1, opacity: 1, ease: "none", scrollTrigger: { trigger: fin, start: "top 70%", end: "top top", scrub: true } });
   gsap.fromTo(".finale__in", { scale: .82, y: 80 }, { scale: 1, y: 0, ease: "none", scrollTrigger: { trigger: fin, start: "top bottom", end: "center center", scrub: true } });
   for (let i = 0; i < +fin.dataset.sparks; i++) {
     const sp = document.createElement("i"), big = Math.random() < .35;
