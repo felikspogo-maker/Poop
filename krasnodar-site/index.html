@@ -71,6 +71,7 @@ h2 .sc, .spec__value span, .spec__value small { background: var(--metal); -webki
 .lead { max-width: 30em; color: var(--muted); font-size: 1.05rem; }
 
 /* Металлическое золото (на буквах — каждая со своим бликом) */
+.metal .sc { -webkit-box-decoration-break: clone; }
 .metal, .metal .sc, .metal .swi { background: var(--metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .metal .sw { color: transparent; }
 /* блик должен покрывать всю букву, а не только высоту строки */
@@ -1184,8 +1185,8 @@ const SITE = {
     .to("#beam", { keyframes: [{ opacity: .6, duration: .07 }, { opacity: .1, duration: .1 }, { opacity: .85, duration: .06 }, { opacity: .25, duration: .14 }, { opacity: 1, duration: .7 }], ease: "none" }, "open+=.55")
     .to("#arch", { clipPath: "inset(0% 0% 0% 0% round 999px 999px 0px 0px)", duration: 1.8, ease: "expo.inOut" }, "open+=.35")
     .to("#arch img", { scale: 1, duration: 2.6 }, "open+=.5")
-    .to(w1, { yPercent: 0, duration: 1.5, stagger: .07 }, "open+=.7")
-    .to(w2, { yPercent: 0, duration: 1.5, stagger: .06 }, "open+=.9")
+    .to(w1, { yPercent: 0, duration: 1.5, stagger: .07, clearProps: "transform" }, "open+=.7")
+    .to(w2, { yPercent: 0, duration: 1.5, stagger: .06, clearProps: "transform" }, "open+=.9")
     .to(heroBits, { y: 0, opacity: 1, duration: 1.2, stagger: .09 }, "open+=1.3")
     .to(nav, { yPercent: 0, duration: 1.2 }, "open+=1.5");
   // запускаем занавес, только когда герб загрузился (но не дольше 1,5 с ожидания)
