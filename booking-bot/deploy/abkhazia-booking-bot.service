@@ -1,0 +1,14 @@
+[Unit]
+Description=Telegram-бот бронирования «Гостевой дом A-Home» (Сухум)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/abkhazia-booking-bot/booking-bot
+ExecStart=/opt/abkhazia-booking-bot/booking-bot/venv/bin/python bot.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

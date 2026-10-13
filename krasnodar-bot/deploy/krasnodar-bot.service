@@ -1,0 +1,14 @@
+[Unit]
+Description=Telegram-бот «Мисс и Миссис Краснодарский край 2027»
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/krasnodar-bot/krasnodar-bot
+ExecStart=/opt/krasnodar-bot/krasnodar-bot/venv/bin/python bot.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
