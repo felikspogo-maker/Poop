@@ -16,3 +16,6 @@ env/
 # IDE
 .vscode/
 .idea/
+
+# Данные бота China Fashion Week (черновики, счётчик анкет)
+bot_data.pickle

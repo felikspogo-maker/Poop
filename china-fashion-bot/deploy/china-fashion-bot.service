@@ -1,0 +1,14 @@
+[Unit]
+Description=Telegram-бот кастинга China Fashion Week 2027
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/krasnodar-bot/china-fashion-bot
+ExecStart=/opt/krasnodar-bot/china-fashion-bot/venv/bin/python bot.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
