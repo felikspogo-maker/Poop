@@ -100,8 +100,9 @@ def _contact_line() -> str:
 
 WELCOME = (
     f"🇨🇳 <b>{config.EVENT_NAME}</b> — кастинг моделей\n\n"
-    "Подиум, свет софитов, дизайнеры и фотографы — и, возможно, именно вы "
-    "выйдете на показ сезона 2027.\n\n"
+    f"📅 <b>{config.EVENT_DATES}</b> · 📍 <b>{config.EVENT_PLACE}</b>\n\n"
+    "Тропический остров, шикарный отель, подиум и <b>дизайнеры мирового уровня</b> — "
+    "и, возможно, именно вы выйдете на их показ.\n\n"
     "Анкета занимает около <b>5 минут</b>: 10 коротких шагов и несколько фото. "
     "Перед отправкой можно проверить и исправить любой пункт.\n\n"
     f"Нажмите «{BTN_APPLY}», чтобы начать."
@@ -109,6 +110,9 @@ WELCOME = (
 
 ABOUT = (
     f"✨ <b>{config.EVENT_NAME}</b>\n\n"
+    f"📅 <b>Когда:</b> {config.EVENT_DATES}\n"
+    f"📍 <b>Где:</b> {config.EVENT_PLACE}, в шикарном отеле\n"
+    "👗 <b>Кто:</b> дизайнеры мирового уровня и их коллекции\n\n"
     "Мы ищем моделей для показов недели моды: девушек и парней, "
     "с опытом и без — главное, желание работать на подиуме.\n\n"
     "<b>Как проходит отбор</b>\n"
@@ -573,8 +577,9 @@ async def admin_decision(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
             await context.bot.send_message(
                 uid,
                 f"🎉 <b>Поздравляем!</b>\n\nВаша анкета №{num:04d} одобрена — вы приглашены на кастинг "
-                f"<b>{html.escape(config.EVENT_NAME)}</b>.\n\nОрганизаторы свяжутся с вами в ближайшее время "
-                f"и расскажут о дате и месте. Держите телефон рядом! ✨{_contact_line()}",
+                f"<b>{html.escape(config.EVENT_NAME)}</b> — {config.EVENT_DATES}, {config.EVENT_PLACE}.\n\n"
+                f"Организаторы свяжутся с вами в ближайшее время и расскажут все детали. "
+                f"Держите телефон рядом! ✨{_contact_line()}",
                 parse_mode="HTML",
             )
             await q.answer("Кандидат получил приглашение")
@@ -608,9 +613,13 @@ async def post_init(app: Application) -> None:
             BotCommand("apply", "Подать анкету"),
             BotCommand("cancel", "Отменить анкету"),
         ])
-        await app.bot.set_my_short_description(f"Кастинг моделей {config.EVENT_NAME}. Анкета за 5 минут.")
+        await app.bot.set_my_short_description(
+            f"Кастинг моделей {config.EVENT_NAME} · {config.EVENT_DATES}, Санья. Анкета за 5 минут."
+        )
         await app.bot.set_my_description(
-            f"🇨🇳 Кастинг моделей {config.EVENT_NAME}\n\n"
+            f"🇨🇳 Кастинг моделей {config.EVENT_NAME}\n"
+            f"📅 {config.EVENT_DATES} · 📍 {config.EVENT_PLACE}\n"
+            "Шикарный отель и дизайнеры мирового уровня.\n\n"
             "Заполните короткую анкету и пришлите фото — организаторы рассмотрят её "
             "и пригласят подходящих кандидатов на кастинг. Нажмите «Старт»."
         )
