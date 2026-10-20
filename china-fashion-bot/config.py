@@ -25,6 +25,7 @@ CONTACT_INFO: str = os.getenv("CONTACT_INFO", "").strip()
 EVENT_NAME = "China Fashion Week 2027"
 EVENT_DATES = "20–22 ноября"
 EVENT_PLACE = "Санья, остров Хайнань, Китай"
+EVENT_PLACE_IN = "в Санье (остров Хайнань, Китай)"
 
 # Разумные границы, чтобы отсеять опечатки (не требования кастинга)
 AGE_MIN, AGE_MAX = 14, 60
